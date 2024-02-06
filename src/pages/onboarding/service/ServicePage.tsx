@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { CheckboxContainer, OnboardingContainner, OnboardingLine } from './OnboardingPage.styles';
-import { useModal } from '../../hook/useModal';
+import {
+    CheckboxContainer,
+    OnboardingBotten,
+    OnboardingContainner,
+    OnboardingLine,
+} from '../OnboardingPage.styles';
+import { useModal } from '../../../hook/useModal';
 import ModalContent from './ModalContent';
 import NotificationModal from './NotificationModal';
+import { useNavigate } from 'react-router-dom';
 
-const OnboardingPage: React.FC = () => {
+const ServicePage: React.FC = () => {
+    const navigate = useNavigate();
     const [allAgreed, setAllAgreed] = useState(false);
     const [agreements, setAgreements] = useState({
         isTermsChecked: false,
@@ -15,7 +22,7 @@ const OnboardingPage: React.FC = () => {
     const { open, modalOpen, modalClose } = useModal();
     const [selectedAgreement, setSelectedAgreement] = useState<string | null>(null);
     const [notificationModalDisplayed, setNotificationModalDisplayed] = useState(false);
-
+    const [isChecked, setisChecked] = useState(false);
     const handleAllAgreementChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { checked } = event.target;
         setAgreements({
@@ -40,6 +47,7 @@ const OnboardingPage: React.FC = () => {
         // isTermsChecked와 isPrivacyChecked가 선택되었는지 확인
         const termsAndPrivacyChecked = agreements.isTermsChecked && agreements.isPrivacyChecked;
 
+        setisChecked(termsAndPrivacyChecked);
         // 확인했어요 버튼 활성화 여부 업데이트
         setConfirmationButtonEnabled(termsAndPrivacyChecked);
     }, [agreements.isTermsChecked, agreements.isPrivacyChecked]);
@@ -49,8 +57,12 @@ const OnboardingPage: React.FC = () => {
         modalOpen();
     };
 
+    const handleNameDecisionButtonClick = () => {
+        navigate('/user');
+    };
+
     return (
-        <OnboardingContainner >
+        <OnboardingContainner>
             <div>
                 <CheckboxContainer>
                     <label style={{ fontSize: '24px' }}>서비스 이용 동의</label>
@@ -155,15 +167,16 @@ const OnboardingPage: React.FC = () => {
                 </>
             )}
 
-            <button
+            <NotificationModal />
+            <OnboardingBotten
+                isChecked={isChecked}
                 disabled={!confirmationButtonEnabled}
-                style={{ position: 'fixed', bottom: '10%' }}
+                onClick={handleNameDecisionButtonClick}
             >
                 확인했어요
-            </button>
-            <NotificationModal />
+            </OnboardingBotten>
         </OnboardingContainner>
     );
 };
 
-export default OnboardingPage;
+export default ServicePage;

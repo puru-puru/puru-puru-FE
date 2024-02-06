@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useModal } from '../../hook/useModal';
+import { useModal } from '../../../hook/useModal';
 
 const NotificationModal: React.FC = () => {
     const { open, modalOpen, modalClose } = useModal();

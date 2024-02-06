@@ -27,13 +27,14 @@ const Layout: React.FC = () => {
     const { pathname } = useLocation();
 
     const isOnboading = pathname === '/';
+    const isName = pathname === '/name';
 
     return (
         <>
             <LayoutContainer>
                 <LayoutpContent>
                     <Outlet/>
-                    { !isOnboading && <Footer />}
+                    { !isOnboading || isName && <Footer />}
                 </LayoutpContent>
             </LayoutContainer>
         </>
