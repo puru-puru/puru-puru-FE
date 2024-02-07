@@ -8,7 +8,7 @@ export function useModal() {
   };
 
   const modalClose = () => {
-    setOpen(false);
+    setOpen(false); 
   };
 
   return { open, modalOpen, modalClose };
