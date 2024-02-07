@@ -83,7 +83,7 @@ const NameDecision: React.FC = () => {
                     </NameDecisionText>
                     <div style={{ position: 'relative' }}>
                         <NameDecisionInput
-                            isError={nameInfo.isError}
+                            $isError={nameInfo.isError}
                             type="text"
                             value={nameInfo.name}
                             onChange={handleNameInputChange}
@@ -92,7 +92,7 @@ const NameDecision: React.FC = () => {
                     </div>
                     {nameInfo.errorMessage && <ErrorText>{nameInfo.errorMessage}</ErrorText>}
                 </div>
-                <OnboardingBotten isChecked={nameInfo.isChecked} onClick={handleNameDecisionButtonClick}>
+                <OnboardingBotten $isChecked={nameInfo.isChecked} onClick={handleNameDecisionButtonClick}>
                     확인했어요
                 </OnboardingBotten>
             </OnboardingContainner>

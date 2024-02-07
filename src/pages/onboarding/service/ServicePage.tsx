@@ -168,8 +168,9 @@ const ServicePage: React.FC = () => {
             )}
 
             <NotificationModal />
+            {/* transient props사용 */}
             <OnboardingBotten
-                isChecked={isChecked}
+                $isChecked={isChecked}
                 disabled={!confirmationButtonEnabled}
                 onClick={handleNameDecisionButtonClick}
             >

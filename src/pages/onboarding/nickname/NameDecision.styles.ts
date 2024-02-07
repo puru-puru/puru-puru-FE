@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 // import { colors } from '../../../styles/colors';
 
-export const NameDecisionInput = styled.input<{ isError: boolean }>`
+export const NameDecisionInput = styled.input<{ $isError: boolean }>`
     width: 334px;
     height: 50px;
     font-size: 18px;
     border-radius: 20px;
     padding: 0 20px;
     border-style: solid;
-    border-color: ${props => props.isError ?   '#FF5555' : '#72A474' };
+    border-color: ${props => props.$isError ?   '#FF5555' : '#72A474' };
     outline: none;
 `;
 

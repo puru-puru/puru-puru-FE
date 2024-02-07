@@ -17,13 +17,13 @@ export const CheckboxContainer = styled.div`
     margin-bottom: 10px;
 `;
 
-export const OnboardingBotten = styled.button<{ isChecked: boolean }>`
+export const OnboardingBotten = styled.button<{ $isChecked: boolean }>`
     position: fixed;
     bottom: 10%;
     width: 334px;
     height: 57px;
     border-radius: 20px;
-    background-color: ${props => props.isChecked ? "#72A474" : "#DAEBCA"};;
+    background-color: ${props => props.$isChecked ? "#72A474" : "#DAEBCA"};;
     color: #FFFFFF;
     border: none;
     &:active {
