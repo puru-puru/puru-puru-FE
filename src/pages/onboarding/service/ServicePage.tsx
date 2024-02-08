@@ -177,6 +177,7 @@ const ServicePage: React.FC = () => {
                 확인했어요
             </OnboardingBotten>
         </OnboardingContainner>
+
     );
 };
 

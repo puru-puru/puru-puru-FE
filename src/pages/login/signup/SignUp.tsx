@@ -67,7 +67,6 @@ const SignUp: React.FC = () => {
 
     return (
         <LoginContainner>
-            <div>
                 <h2>회원가입</h2>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <form onSubmit={onSubmitHandler}>
@@ -101,7 +100,6 @@ const SignUp: React.FC = () => {
                     <br />
                     <SignUpBotten $isChecked={isChecked}type="submit">가입하기</SignUpBotten>
                 </form>
-            </div>
         </LoginContainner>
     );
 };

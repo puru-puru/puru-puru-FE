@@ -18,6 +18,7 @@ const LayoutpContent = styled.div`
     height: 800px;
     overflow-y: auto;
     margin: 0;
+    position: relative;
     /* padding: 20px; */
     border: 1px solid gray;
     box-sizing: border-box;
@@ -27,7 +28,7 @@ const Layout: React.FC = () => {
     const { pathname } = useLocation();
 
     const isOnboading = pathname === '/';
-    const isName = pathname === '/name';
+    const isName = pathname === '/user';
 
     return (
         <>
