@@ -14,6 +14,9 @@ export const LoginInput = styled.input`
     border-radius: 15px;
     padding: 0 20px;
     border-style: solid;
-    outline: none;
     border-color: #BDBDBD;
 `;
+
+export const ErrorMessage = styled.p`
+    color: red;
+`

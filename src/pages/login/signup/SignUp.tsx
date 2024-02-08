@@ -1,18 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserWithConfirmPassword } from '../../../api/Login/User';
-import { LoginContainner, LoginInput } from '../Login.styles';
+import { ErrorMessage, LoginContainner, LoginInput } from '../Login.styles';
 import { SignUpBotten } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
 import { http } from '../../../api/http';
 const SignUp: React.FC = () => {
     const navigate = useNavigate();
+    const [isChecked, setIsChecked] = useState(false);
     const [user, setUser] = useState<UserWithConfirmPassword>({
         email: '',
         password: '',
         confirmpassword: '',
     });
     const [error, setError] = useState('');
+    
 
+    const validateEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+    // 이메일과 비밀번호가 5자 이상 입력되었을 때 isChecked를 true로 설정
+    useEffect(() => {
+        const isEmailValid = user.email.length > 0 && validateEmail(user.email);
+        const isPasswordValid = user.password.length >= 5;
+    
+        if (isEmailValid && isPasswordValid) {
+            setIsChecked(true);
+        } else {
+            setIsChecked(false);
+        }
+    }, [user.email, user.password]);
+    
 
     // 회원가입 폼 제출 핸들러
     const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -67,9 +85,10 @@ const SignUp: React.FC = () => {
                         <LoginInput
                             type="password"
                             value={user.password}
-                            placeholder="비밀번호를 입력하세요"
+                            placeholder="비밀번호를 5자 이상 입력하세요"
                             onChange={(e) => setUser({ ...user, password: e.target.value })}
                         />
+                        {user.password.length < 5 && user.password && <ErrorMessage>비밀번호를 5자 이상 입력하세요</ErrorMessage>}
                         <p></p>
                         <LoginInput 
                         type="password"
@@ -77,10 +96,10 @@ const SignUp: React.FC = () => {
                         onChange={(e) => setUser({ ...user, confirmpassword: e.target.value })}
                         placeholder="비밀번호를 재입력하세요" 
                         />
-                        {user.password!==user.confirmpassword && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
+                        {user.password!==user.confirmpassword && user.confirmpassword && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
                     </label>
                     <br />
-                    <SignUpBotten type="submit">가입하기</SignUpBotten>
+                    <SignUpBotten $isChecked={isChecked}type="submit">가입하기</SignUpBotten>
                 </form>
             </div>
         </LoginContainner>

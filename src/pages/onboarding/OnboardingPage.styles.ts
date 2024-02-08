@@ -25,8 +25,4 @@ export const OnboardingBotten = styled.button<{ $isChecked: boolean }>`
     border-radius: 20px;
     background-color: ${props => props.$isChecked ? "#72A474" : "#DAEBCA"};
     color: #FFFFFF;
-    border: none;
-    &:focus {
-        outline: none; // 클릭되었을 때 생기는 외곽선 제거
-    }
 `;
