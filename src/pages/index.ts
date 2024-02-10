@@ -1,2 +1,1 @@
-export { default as SignUp } from "./signup/SignUp";
-export { default as MyPage } from "./mypage/MyPage";
+export { default as MainPage } from './mainpage/MainPage';

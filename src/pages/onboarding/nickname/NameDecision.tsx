@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { OnboardingBotten, OnboardingContainner } from '../OnboardingPage.styles';
+import { OnboardingButton, OnboardingContainer } from '../OnboardingPage.styles';
 import {
     ClearButton,
     ErrorText,
@@ -23,19 +23,17 @@ const NameDecision: React.FC = () => {
 
     const handleNameInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newName = event.target.value;
-        setNameInfo(prevState => ({
+        setNameInfo((prevState) => ({
             ...prevState,
             name: newName,
             isError: !isNameValid(newName),
             isChecked: isNameValid(newName),
-            errorMessage: !isNameValid(newName)
-                ? '닉네임은 2자~8자로 입력해 주세요'
-                : '',
+            errorMessage: !isNameValid(newName) ? '닉네임은 2자~8자로 입력해 주세요' : '',
         }));
     };
 
     const handleClear = () => {
-        setNameInfo(prevState => ({
+        setNameInfo((prevState) => ({
             ...prevState,
             name: '',
             isError: false,
@@ -51,7 +49,7 @@ const NameDecision: React.FC = () => {
                 .post(`/api/users`, { nickname: nameInfo.name })
                 .then((response) => {
                     // API 요청 성공 시 처리
-                    setNameInfo(prevState => ({
+                    setNameInfo((prevState) => ({
                         ...prevState,
                         errorMessage: '',
                     }));
@@ -60,7 +58,7 @@ const NameDecision: React.FC = () => {
                 })
                 .catch((error) => {
                     // API 요청 실패 시 처리
-                    setNameInfo(prevState => ({
+                    setNameInfo((prevState) => ({
                         ...prevState,
                         errorMessage: '서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
                     }));
@@ -71,7 +69,7 @@ const NameDecision: React.FC = () => {
 
     return (
         <>
-            <OnboardingContainner>
+            <OnboardingContainer>
                 <div>
                     <NameDecisionHeading>
                         어떻게
@@ -92,10 +90,13 @@ const NameDecision: React.FC = () => {
                     </div>
                     {nameInfo.errorMessage && <ErrorText>{nameInfo.errorMessage}</ErrorText>}
                 </div>
-                <OnboardingBotten $isChecked={nameInfo.isChecked} onClick={handleNameDecisionButtonClick}>
+                <OnboardingButton
+                    $isChecked={nameInfo.isChecked}
+                    onClick={handleNameDecisionButtonClick}
+                >
                     확인했어요
-                </OnboardingBotten>
-            </OnboardingContainner>
+                </OnboardingButton>
+            </OnboardingContainer>
         </>
     );
 };

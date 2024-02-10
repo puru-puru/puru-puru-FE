@@ -1,10 +1,11 @@
 import React, { CSSProperties } from 'react';
 
 const FooterStyles: CSSProperties = {
+    position: 'absolute',
+    bottom: '0',
     background: 'black',
     display: 'flex',
     justifyContent: 'space-between',
-    left: '50%',
     maxWidth: '360px',
     width: '100%',
 };
@@ -15,8 +16,7 @@ const FooterItemStyles: CSSProperties = {
     display: 'flex',
     flexBasis: '100%',
     justifyContent: 'center',
-    minHeight: '80px',
-    position: 'relative',
+    minHeight: '48px',
 };
 
 const Footer: React.FC = () => {

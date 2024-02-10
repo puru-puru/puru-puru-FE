@@ -7,10 +7,10 @@ import {
 } from 'react-router-dom';
 import Layout from '../components/atoms/Layout';
 import { GlobalStyles } from '../components/atoms/GlobalStyled';
-const SignUp = lazy(() => import('../pages/signup/SignUp'));
+
 const ServicePage = lazy(() => import('../pages/onboarding/service/ServicePage'));
 const NameDecision = lazy(() => import('../pages/onboarding/nickname/NameDecision'));
-
+const MainPage = lazy(() => import('../pages/mainpage/MainPage'));
 
 export const Routes = () => {
     return (
@@ -21,7 +21,7 @@ export const Routes = () => {
                     <Route element={<Layout />}>
                         <Route path="/" element={<ServicePage />} />
                         <Route path="/user" element={<NameDecision />} />
-                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/mainpage" element={<MainPage />} />
                         <Route path="*" element={<Navigate replace to="/" />} />
                     </Route>
                 </ReactRouterRoutes>
