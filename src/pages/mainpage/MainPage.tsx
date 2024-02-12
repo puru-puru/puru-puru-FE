@@ -4,7 +4,7 @@ import * as St from './MainPage.styles';
 const MainPage: React.FC = () => {
     return (
         <St.MainWrapper>
-            <div>main</div>
+            <div>0000의 오늘의 추천 미션</div>
         </St.MainWrapper>
     );
 };

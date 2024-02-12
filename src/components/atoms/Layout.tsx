@@ -37,7 +37,7 @@ const Layout: React.FC = () => {
                 <LayoutContent>
                     {isMain && <Navbar />}
                     <Outlet />
-                    {(!isOnboarding || isName) && <Footer />}
+                    {(!isOnboarding || !isName) && <Footer />}
                 </LayoutContent>
             </LayoutContainer>
         </>
