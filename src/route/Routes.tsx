@@ -12,7 +12,7 @@ const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
 const SignUp = lazy(() => import('../pages/login/signup/SignUp'));
 const ServicePage = lazy(() => import('../pages/onboarding/service/ServicePage'));
 const NameDecision = lazy(() => import('../pages/onboarding/nickname/NameDecision'));
-
+const MyPlantPage = lazy(() => import('../pages/mypage/MyPlantPage'));
 
 export const Routes = () => {
     return (
@@ -21,9 +21,9 @@ export const Routes = () => {
             <Suspense fallback={<div>loading...</div>}>
                 <ReactRouterRoutes>
                     <Route element={<Layout />}>
-
+                    <Route path="/myplant" element={<MyPlantPage />} />
                         <Route path="/service" element={<ServicePage />} />
-                        <Route path="/users" element={<NameDecision />} />
+                        <Route path="/user" element={<NameDecision />} />
                         <Route path="/" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="*" element={<Navigate replace to="/" />} />

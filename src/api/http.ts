@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import { ApiResponse, User, UserWithConfirmPassword } from './Login/User';
+import { ApiResponse, User, UserWithConfirmPassword } from './User';
 const axios = Axios.create({
     baseURL: 'https://localhost:3000/',
 });

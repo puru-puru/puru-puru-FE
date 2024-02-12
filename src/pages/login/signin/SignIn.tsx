@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { User } from '../../../api/Login/User';
+import { User } from '../../../api/User';
 import {
     Heading,
     SignInBotten,

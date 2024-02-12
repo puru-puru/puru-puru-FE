@@ -14,3 +14,11 @@ export interface ApiResponse {
     token?: string;
     // 기타 필요한 속성들...
 }
+
+export interface PetPlant {
+    name: string;
+    image: string;
+    date: Date;
+    title: string;
+    content: string;
+}
