@@ -20,6 +20,7 @@ const NotificationModal: React.FC = () => {
     };
     useEffect(() => {
         modalOpen();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <>

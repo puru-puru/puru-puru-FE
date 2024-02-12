@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const OnboardingContainner = styled.div`
     margin-top: 200px;
     display: flex;
+    
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -18,15 +19,11 @@ export const CheckboxContainer = styled.div`
 `;
 
 export const OnboardingBotten = styled.button<{ $isChecked: boolean }>`
-    position: fixed;
-    bottom: 10%;
+    position: absolute;
+    bottom: 2%;
     width: 334px;
     height: 57px;
     border-radius: 20px;
-    background-color: ${props => props.$isChecked ? "#72A474" : "#DAEBCA"};;
-    color: #FFFFFF;
-    border: none;
-    &:active {
-        outline: none; // 클릭되었을 때 생기는 외곽선 제거
-    }
+    background-color: ${(props) => (props.$isChecked ? '#72A474' : '#DAEBCA')};
+    color: #ffffff;
 `;

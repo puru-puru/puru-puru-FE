@@ -10,6 +10,9 @@ export const NameDecisionInput = styled.input<{ $isError: boolean }>`
     border-style: solid;
     border-color: ${props => props.$isError ?   '#FF5555' : '#72A474' };
     outline: none;
+    &:focus-visible {
+        border-color: ${props => props.$isError ?   '#FF5555' : '#72A474' };
+    }
 `;
 
 export const NameDecisionText = styled.p`

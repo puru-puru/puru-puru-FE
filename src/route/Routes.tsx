@@ -7,7 +7,9 @@ import {
 } from 'react-router-dom';
 import Layout from '../components/atoms/Layout';
 import { GlobalStyles } from '../components/atoms/GlobalStyled';
-const SignUp = lazy(() => import('../pages/signup/SignUp'));
+
+const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
+const SignUp = lazy(() => import('../pages/login/signup/SignUp'));
 const ServicePage = lazy(() => import('../pages/onboarding/service/ServicePage'));
 const NameDecision = lazy(() => import('../pages/onboarding/nickname/NameDecision'));
 
@@ -19,8 +21,10 @@ export const Routes = () => {
             <Suspense fallback={<div>loading...</div>}>
                 <ReactRouterRoutes>
                     <Route element={<Layout />}>
-                        <Route path="/" element={<ServicePage />} />
-                        <Route path="/user" element={<NameDecision />} />
+
+                        <Route path="/service" element={<ServicePage />} />
+                        <Route path="/users" element={<NameDecision />} />
+                        <Route path="/" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="*" element={<Navigate replace to="/" />} />
                     </Route>

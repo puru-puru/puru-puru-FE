@@ -18,6 +18,7 @@ const LayoutpContent = styled.div`
     height: 800px;
     overflow-y: auto;
     margin: 0;
+    position: relative;
     /* padding: 20px; */
     border: 1px solid gray;
     box-sizing: border-box;
@@ -26,15 +27,13 @@ const LayoutpContent = styled.div`
 const Layout: React.FC = () => {
     const { pathname } = useLocation();
 
-    const isOnboading = pathname === '/';
-    const isName = pathname === '/name';
-
+    const isMyPlant = pathname === '/myplant';
     return (
         <>
             <LayoutContainer>
                 <LayoutpContent>
                     <Outlet/>
-                    { !isOnboading || isName && <Footer />}
+                    { isMyPlant && <Footer />}
                 </LayoutpContent>
             </LayoutContainer>
         </>
