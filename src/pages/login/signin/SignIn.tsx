@@ -9,11 +9,11 @@ import {
     SocialContainer,
     SocialDescription,
 } from './SignIn.styles'; // 에러 메시지를 표시할 컴포넌트 추가
-import { ErrorMessage, LoginContainner, LoginInput } from '../Login.styles';
+import { ErrorMessage, LoginContainer, LoginInput } from '../Login.styles';
 import { useNavigate } from 'react-router-dom';
 import SocialKakao from '../social/SocialKakao';
 import SocialGoogle from '../social/SocialGoogle';
-import { http } from '../../../api/http';
+import { signinApi } from '../../../api/http';
 
 const SignIn: React.FC = () => {
     const navigate = useNavigate();
@@ -48,9 +48,10 @@ const SignIn: React.FC = () => {
                 setError('아이디와 비밀번호를 입력해주세요');
                 return;
             }
-            const response = await http.post('api/auth/sign-in', user);
+            const response = await signinApi.post('api/auth/sign-in', user);
             console.log(response);
-            Cookies.set('Authorization', response.data.token);
+            Cookies.set('AccessToken', response.data.token);
+            Cookies.set('RefreshToken', response.data.refreshToken);
             if (response.status === 200) {
                 setError(response.data.message);
                 setUser({
@@ -78,7 +79,7 @@ const SignIn: React.FC = () => {
     };
 
     return (
-        <LoginContainner>
+        <LoginContainer>
             <div>
                 <Heading>Login</Heading>
                 <div>
@@ -119,7 +120,7 @@ const SignIn: React.FC = () => {
                     </SocialBotten>
                 </SocialContainer>
             </div>
-        </LoginContainner>
+        </LoginContainer>
     );
 };
 

@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 * {
         box-sizing: border-box;
-        font-family: 'Pretendard-Regular';
+        font-family: 'Pretendard';
     }
 /* body {
     align-items: center;

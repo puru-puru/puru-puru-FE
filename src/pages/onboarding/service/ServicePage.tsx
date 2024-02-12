@@ -58,7 +58,7 @@ const ServicePage: React.FC = () => {
     };
 
     const handleNameDecisionButtonClick = () => {
-        navigate('/user');
+        navigate('/users');
     };
 
     return (

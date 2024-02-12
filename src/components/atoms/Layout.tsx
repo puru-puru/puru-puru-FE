@@ -27,15 +27,13 @@ const LayoutpContent = styled.div`
 const Layout: React.FC = () => {
     const { pathname } = useLocation();
 
-    const isOnboading = pathname === '/';
-    const isName = pathname === '/user';
-
+    const isMyPlant = pathname === '/myplant';
     return (
         <>
             <LayoutContainer>
                 <LayoutpContent>
                     <Outlet/>
-                    { !isOnboading || isName && <Footer />}
+                    { isMyPlant && <Footer />}
                 </LayoutpContent>
             </LayoutContainer>
         </>

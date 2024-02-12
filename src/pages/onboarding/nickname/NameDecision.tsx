@@ -8,7 +8,7 @@ import {
     NameDecisionText,
 } from './NameDecision.styles';
 import { useNavigate } from 'react-router-dom';
-import { http } from '../../../api/http';
+import { nameApi } from '../../../api/http';
 
 const NameDecision: React.FC = () => {
     const navigate = useNavigate();
@@ -47,7 +47,7 @@ const NameDecision: React.FC = () => {
     const handleNameDecisionButtonClick = () => {
         if (nameInfo.isChecked) {
             // API 요청 보내기
-            http
+            nameApi
                 .post(`/api/users/set-name`, { nickname: nameInfo.name })
                 .then((response) => {
                     // API 요청 성공 시 처리

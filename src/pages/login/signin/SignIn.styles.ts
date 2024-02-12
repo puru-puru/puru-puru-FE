@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Heading = styled.h1`
     width: 334px;
-    height: 142px;
+    height: 106px;
     display: flex;
     align-items: center;
     justify-content: center;

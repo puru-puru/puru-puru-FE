@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { UserWithConfirmPassword } from '../../../api/Login/User';
-import { ErrorMessage, LoginContainner, LoginInput } from '../Login.styles';
+import { ErrorMessage, LoginContainer, LoginInput } from '../Login.styles';
 import { SignUpBotten } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
-import { http } from '../../../api/http';
+import { signupApi } from '../../../api/http';
 const SignUp: React.FC = () => {
     const navigate = useNavigate();
     const [isChecked, setIsChecked] = useState(false);
@@ -40,7 +40,7 @@ const SignUp: React.FC = () => {
                 alert('아이디와 비밀번호를 입력해주세요');
                 return;
             }
-            const response = await http.post('http://localhost:3001/api/auth/sign-up', user);
+            const response = await signupApi.post('http://localhost:3001/api/auth/sign-up', user);
 
             if (response.data) {
                 alert(response.data.Message);
@@ -66,7 +66,7 @@ const SignUp: React.FC = () => {
 
 
     return (
-        <LoginContainner>
+        <LoginContainer>
                 <h2>회원가입</h2>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <form onSubmit={onSubmitHandler}>
@@ -100,7 +100,7 @@ const SignUp: React.FC = () => {
                     <br />
                     <SignUpBotten $isChecked={isChecked}type="submit">가입하기</SignUpBotten>
                 </form>
-        </LoginContainner>
+        </LoginContainer>
     );
 };
 

@@ -11,6 +11,6 @@ export interface ApiResponse {
     status: number;
     data: any;
     message: string;
-    token: string;
+    token?: string;
     // 기타 필요한 속성들...
 }
