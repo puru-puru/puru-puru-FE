@@ -8,7 +8,7 @@ import {
     NameDecisionText,
 } from './NameDecision.styles';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { nameApi } from '../../../api/http';
 
 const NameDecision: React.FC = () => {
     const navigate = useNavigate();
@@ -26,9 +26,11 @@ const NameDecision: React.FC = () => {
         setNameInfo((prevState) => ({
             ...prevState,
             name: newName,
-            isError: !isNameValid(newName),
             isChecked: isNameValid(newName),
-            errorMessage: !isNameValid(newName) ? '닉네임은 2자~8자로 입력해 주세요' : '',
+            isError: !isNameValid(newName),
+            errorMessage: !isNameValid(newName)
+                ? '닉네임은 2자~8자로 입력해 주세요'
+                : '',
         }));
     };
 
@@ -45,8 +47,8 @@ const NameDecision: React.FC = () => {
     const handleNameDecisionButtonClick = () => {
         if (nameInfo.isChecked) {
             // API 요청 보내기
-            axios
-                .post(`/api/users`, { nickname: nameInfo.name })
+            nameApi
+                .post(`/api/users/set-name`, { nickname: nameInfo.name })
                 .then((response) => {
                     // API 요청 성공 시 처리
                     setNameInfo((prevState) => ({

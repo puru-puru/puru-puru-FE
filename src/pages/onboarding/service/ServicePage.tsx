@@ -50,13 +50,8 @@ const ServicePage: React.FC = () => {
         setisChecked(termsAndPrivacyChecked);
         // 확인했어요 버튼 활성화 여부 업데이트
         setConfirmationButtonEnabled(termsAndPrivacyChecked);
-    }, [
-        agreements.isTermsChecked,
-        agreements.isPrivacyChecked,
-        modalOpen,
-        notificationModalDisplayed,
-        open,
-    ]);
+
+    }, [agreements.isTermsChecked, agreements.isPrivacyChecked, notificationModalDisplayed, open, modalOpen]);
 
     const handleArrowButtonClick = (agreementName: string) => {
         setSelectedAgreement(agreementName);
@@ -64,7 +59,7 @@ const ServicePage: React.FC = () => {
     };
 
     const handleNameDecisionButtonClick = () => {
-        navigate('/user');
+        navigate('/users');
     };
 
     return (
@@ -181,8 +176,9 @@ const ServicePage: React.FC = () => {
                 onClick={handleNameDecisionButtonClick}
             >
                 확인했어요
-            </OnboardingButton>
-        </OnboardingContainer>
+
+            </OnboardingBotten>
+        </OnboardingContainner>
     );
 };
 
