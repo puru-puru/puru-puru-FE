@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { UserWithConfirmPassword } from '../../../api/User';
-import { ErrorMessage, LoginContainer, LoginInput } from '../Login.styles';
+import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { SignUpBotten } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
 import { signupApi } from '../../../api/http';
+import { SharedInput } from '../../Shared.styles';
 const SignUp: React.FC = () => {
     const navigate = useNavigate();
     const [isChecked, setIsChecked] = useState(false);
@@ -71,7 +72,7 @@ const SignUp: React.FC = () => {
                 <form onSubmit={onSubmitHandler}>
                     <label>
                         <p>Email</p>
-                        <LoginInput
+                        <SharedInput
                             type="text"
                             value={user.email}
                             placeholder="예)puleuspuleus@puleus.co.kr"
@@ -80,7 +81,7 @@ const SignUp: React.FC = () => {
                     </label>
                     <label>
                         <p>Password</p>
-                        <LoginInput
+                        <SharedInput
                             type="password"
                             value={user.password}
                             placeholder="비밀번호를 5자 이상 입력하세요"
@@ -88,7 +89,7 @@ const SignUp: React.FC = () => {
                         />
                         {user.password.length < 5 && user.password && <ErrorMessage>비밀번호를 5자 이상 입력하세요</ErrorMessage>}
                         <p></p>
-                        <LoginInput 
+                        <SharedInput 
                         type="password"
                         value={user.confirmPassword}
                         onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}

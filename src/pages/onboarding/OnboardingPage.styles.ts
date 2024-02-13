@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { colors } from '../../styles/colors';
+import { SharedBotten } from '../Shared.styles';
 
 export const OnboardingContainner = styled.div`
     margin-top: 200px;
@@ -18,12 +18,6 @@ export const CheckboxContainer = styled.div`
     margin-bottom: 10px;
 `;
 
-export const OnboardingBotten = styled.button<{ $isChecked: boolean }>`
-    position: absolute;
-    bottom: 2%;
-    width: 334px;
-    height: 57px;
-    border-radius: 20px;
+export const OnboardingBotten = styled(SharedBotten)<{ $isChecked: boolean }>`
     background-color: ${(props) => (props.$isChecked ? '#72A474' : '#DAEBCA')};
-    color: #ffffff;
 `;

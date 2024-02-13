@@ -4,8 +4,7 @@ import { currentStepState } from '../../../recoil/atom';
 import { useRecoilState } from 'recoil';
 import { RegistrationStepOne } from './RegistrationStepOne';
 import { RegistrationStepTwo } from './RegistrationStepTwo';
-import HorizontalStepper from './HorizontalStepper'; // 변경된 부분: Stepper -> HorizontalStepper
-
+import HorizontalStepper from './stepper/HorizontalStepper'; 
 const PlantRegistrationPage: React.FC = () => {
     const [currentStep] = useRecoilState<number>(currentStepState);
     

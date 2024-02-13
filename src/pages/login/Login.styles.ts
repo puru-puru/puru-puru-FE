@@ -9,14 +9,7 @@ export const LoginContainer = styled.div`
     padding: 20px;
 `;
 
-export const LoginInput = styled.input`
-    width: 334px;
-    height: 50px;
-    border-radius: 15px;
-    padding: 0 20px;
-    border-style: solid;
-    border-color: #BDBDBD;
-`;
+
 
 export const ErrorMessage = styled.p`
     color: red;
