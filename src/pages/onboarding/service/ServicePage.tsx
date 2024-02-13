@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
     CheckboxContainer,
-    OnboardingButton,
+    OnboardingBotten,
     OnboardingContainer,
     OnboardingLine,
 } from '../OnboardingPage.styles';
@@ -170,7 +170,7 @@ const ServicePage: React.FC = () => {
 
             <NotificationModal />
             {/* transient props사용 */}
-            <OnboardingButton
+            <OnboardingBotten
                 $isChecked={isChecked}
                 disabled={!confirmationButtonEnabled}
                 onClick={handleNameDecisionButtonClick}
@@ -178,7 +178,7 @@ const ServicePage: React.FC = () => {
                 확인했어요
 
             </OnboardingBotten>
-        </OnboardingContainner>
+        </OnboardingContainer>
     );
 };
 
