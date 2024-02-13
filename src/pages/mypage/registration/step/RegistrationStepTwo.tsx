@@ -1,5 +1,5 @@
 import React from 'react'
-import { currentStepState } from '../../../recoil/atom'
+import { currentStepState } from '../../../../recoil/atom'
 import { useRecoilState } from 'recoil';
 
 export const RegistrationStepTwo:React.FC = () => {

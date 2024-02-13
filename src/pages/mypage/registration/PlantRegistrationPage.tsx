@@ -2,8 +2,8 @@ import React from 'react';
 import { PetPlantHeader, PetPlantHeaderTitle } from '../MyPlantPage.styles';
 import { currentStepState } from '../../../recoil/atom';
 import { useRecoilState } from 'recoil';
-import { RegistrationStepOne } from './RegistrationStepOne';
-import { RegistrationStepTwo } from './RegistrationStepTwo';
+import { RegistrationStepOne } from './step/RegistrationStepOne';
+import { RegistrationStepTwo } from './step/RegistrationStepTwo';
 import HorizontalStepper from './stepper/HorizontalStepper'; 
 const PlantRegistrationPage: React.FC = () => {
     const [currentStep] = useRecoilState<number>(currentStepState);

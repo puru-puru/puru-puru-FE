@@ -14,8 +14,6 @@ export const SharedInput = styled.input`
 `;
 
 export const SharedBotten = styled.button`
-    position: absolute;
-    bottom: 2%;
     width: 334px;
     height: 57px;
     border-radius: 20px;
