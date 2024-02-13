@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     VerticalDivider,
     JournalContainer,
@@ -15,15 +15,19 @@ import {
     PlusButton,
     PhotoButton,
     PlantButton,
+    PetPlantRegister,
+    PetPlantRegisterBotten,
+    PetPlantRegisterText,
 } from './MyPlantPage.styles';
 import { PetPlant } from '../../api/User';
 import { useModal } from '../../hook/useModal';
+import { myplantApi } from '../../api/http';
 
 const MyPage: React.FC = () => {
     const { open, modalOpen, modalClose } = useModal();
     const [petPlant, setPetPlant] = useState<PetPlant>({
         name: '나팔꽃',
-        image: 'https://north-east~~.png',
+        image: 'url(plantimg.png)',
         date: new Date('2024-02-08'),
         title: '나의 첫 식물',
         content: '드디어 나팔꽃 씨앗을 구매했다~~',
@@ -33,35 +37,58 @@ const MyPage: React.FC = () => {
         if (open) modalClose();
         else modalOpen();
     };
-    // 요청을 받아서 petPlant 상태를 업데이트하는 함수
-    // const handleRequest = (requestData) => {
-    //     // requestData로부터 필요한 정보를 추출하여 새로운 상태를 생성
-    //     const newPetPlant = {
-    //         name: requestData.name,
-    //         image: requestData.image,
-    //         date: requestData.date,
-    //         title: requestData.title,
-    //         content: requestData.content,
-    //     };
+    useEffect(() => {
+        // async 함수 정의
+        const fetchData = async () => {
+            try {
+                // Axios를 사용하여 데이터를 가져오기
+                const response = await myplantApi.get('/api/plants'); // URL은 실제 db.json 파일의 위치로 변경해야 합니다.
+                console.log(response);
+                // 응답 데이터에서 petPlant를 추출하고 상태 업데이트
+                const data = response;
+                setPetPlant(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
 
-    //     // 새로운 상태로 petPlant 상태를 업데이트
-    //     setPetPlant(newPetPlant);
-    // };
+        // fetchData 함수 호출
+        fetchData();
+    }, []);
 
     // 현재 날짜에서 입력받은 날짜를 뺀 d+day값 계산
     const currentDate = new Date();
     const petDate = new Date(petPlant.date);
     const timeDifference = currentDate.getTime() - petDate.getTime();
     const diffDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
-
+    if (!petPlant)
+        return (
+            <>
+             <PetPlantHeader>
+                <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
+                <PetPlantRegisterText>
+                    등록된 식물이 없어요! 식물을 먼저 등록해주세요
+                </PetPlantRegisterText>
+                </PetPlantHeader>
+                <PetPlantRegister>
+                    <PetPlantHeaderImg
+                        style={{ backgroundImage: `url(plantimg.png)`, marginTop: '100px' }}
+                    />
+                    <PetPlantRegisterBotten >등록하기</PetPlantRegisterBotten>
+                </PetPlantRegister>
+            </>
+        );
     return (
         <div>
             <PetPlantHeader>
                 <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
                 <PetPlantCardContainer>
-                    <PetPlantHeaderImg></PetPlantHeaderImg>
+                    <PetPlantHeaderImg
+                        style={{ backgroundImage: `${petPlant.image}` }}
+                    ></PetPlantHeaderImg>
                     <PetPlantHeaderDetail>
-                        {`이미지 + ${diffDays}`} <br />
+                        <img src="./calendar_clock.svg" />
+                        {` +  ${diffDays}`} <br />
                         {petPlant.name} <br />
                         {petPlant.content}
                     </PetPlantHeaderDetail>
@@ -90,8 +117,6 @@ const MyPage: React.FC = () => {
                         </PetPlantDetailText>
                     </PetPlantDetailTextContainer>
                 </div>
-
-                <PlusButton $isChecked={open} onClick={toggleButtons}></PlusButton>
                 {open && (
                     <>
                         <div className="dark-overlay"></div>
@@ -99,6 +124,7 @@ const MyPage: React.FC = () => {
                         <PlantButton />
                     </>
                 )}
+                <PlusButton $isChecked={open} onClick={toggleButtons}></PlusButton>
             </JournalContainer>
         </div>
     );

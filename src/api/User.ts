@@ -4,7 +4,7 @@ export interface User {
 }
 
 export interface UserWithConfirmPassword extends User {
-    confirmpassword: string;
+    confirmPassword: string;
 }
 
 export interface ApiResponse {

@@ -50,16 +50,21 @@ const SignIn: React.FC = () => {
             }
             const response = await signinApi.post('api/auth/sign-in', user);
             console.log(response);
-            Cookies.set('AccessToken', response.data.token);
+            Cookies.set('AccessToken', response.data.accessToken);
             Cookies.set('RefreshToken', response.data.refreshToken);
-            if (response.status === 200) {
-                setError(response.data.message);
-                setUser({
-                    email: '',
-                    password: '',
-                });
-                // navigate('/');
-            }
+            setUser({
+                email: '',
+                password: '',
+            });
+            navigate('/service');
+            // if (response.status === 200) {
+            //     setError(response.data.message);
+            //     setUser({
+            //         email: '',
+            //         password: '',
+            //     });
+            //     navigate('/service');
+            // }
         } catch (error: any) {
             // 서버 응답 오류 처리
             if (error.response) {

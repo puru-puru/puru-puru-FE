@@ -15,7 +15,7 @@ const LayoutContainer = styled.div`
 
 const LayoutpContent = styled.div`
     width: 360px;
-    height: 800px;
+    height: 728px;
     overflow-y: auto;
     margin: 0;
     position: relative;
@@ -23,6 +23,7 @@ const LayoutpContent = styled.div`
     border: 1px solid gray;
     box-sizing: border-box;
 `;
+  
 
 const Layout: React.FC = () => {
     const { pathname } = useLocation();

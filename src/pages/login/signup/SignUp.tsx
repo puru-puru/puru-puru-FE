@@ -10,7 +10,7 @@ const SignUp: React.FC = () => {
     const [user, setUser] = useState<UserWithConfirmPassword>({
         email: '',
         password: '',
-        confirmpassword: '',
+        confirmPassword: '',
     });
     const [error, setError] = useState('');
     
@@ -40,14 +40,13 @@ const SignUp: React.FC = () => {
                 alert('아이디와 비밀번호를 입력해주세요');
                 return;
             }
-            const response = await signupApi.post('http://localhost:3001/api/auth/sign-up', user);
-
-            if (response.data) {
-                alert(response.data.Message);
+            const response = await signupApi.post('/api/auth/sign-up', user);
+            if (response.message) {
+                alert(response.message);
                 setUser({
                     email: '',
                     password: '',
-                    confirmpassword: '',
+                    confirmPassword: '',
                 });
                 navigate('/');
             } else {
@@ -91,11 +90,11 @@ const SignUp: React.FC = () => {
                         <p></p>
                         <LoginInput 
                         type="password"
-                        value={user.confirmpassword}
-                        onChange={(e) => setUser({ ...user, confirmpassword: e.target.value })}
+                        value={user.confirmPassword}
+                        onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
                         placeholder="비밀번호를 재입력하세요" 
                         />
-                        {user.password!==user.confirmpassword && user.confirmpassword && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
+                        {user.password!==user.confirmPassword && user.confirmPassword && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
                     </label>
                     <br />
                     <SignUpBotten $isChecked={isChecked}type="submit">가입하기</SignUpBotten>
