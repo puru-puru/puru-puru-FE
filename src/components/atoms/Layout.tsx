@@ -1,7 +1,8 @@
 import React from 'react';
-import { Outlet, useLocation  } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from './Footer';
+import Navbar from './Navbar';
 
 const LayoutContainer = styled.div`
     width: 100vw;
@@ -13,7 +14,7 @@ const LayoutContainer = styled.div`
     padding: 0;
 `;
 
-const LayoutpContent = styled.div`
+const LayoutContent = styled.div`
     width: 360px;
     height: 800px;
     overflow-y: auto;
@@ -28,13 +29,16 @@ const Layout: React.FC = () => {
     const { pathname } = useLocation();
 
     const isMyPlant = pathname === '/myplant';
+    const isMain = pathname === '/mainpage';
+  
     return (
         <>
             <LayoutContainer>
-                <LayoutpContent>
-                    <Outlet/>
-                    { isMyPlant && <Footer />}
-                </LayoutpContent>
+                <LayoutContent>
+                    {(isMain || isMyPlant) && <Navbar />}
+                    <Outlet />
+                    {(isMain || isMyPlant) && <Footer />}
+                </LayoutContent>
             </LayoutContainer>
         </>
     );

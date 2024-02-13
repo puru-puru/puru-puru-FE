@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 // import { colors } from '../../styles/colors';
 
-export const OnboardingContainner = styled.div`
+export const OnboardingContainer = styled.div`
     margin-top: 200px;
     display: flex;
     
@@ -17,6 +17,7 @@ export const OnboardingLine = styled.div`
 export const CheckboxContainer = styled.div`
     margin-bottom: 10px;
 `;
+
 
 export const OnboardingBotten = styled.button<{ $isChecked: boolean }>`
     position: absolute;
