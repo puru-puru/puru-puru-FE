@@ -8,12 +8,13 @@ export const SharedInput = styled.input`
     border: 2px solid #bdbdbd;
     outline: none;
     transition: border-color 0.3s ease;
+    opacity: 70%;
     &:focus {
         border-color: #72a474;
     }
 `;
 
-export const SharedBotten = styled.button`
+export const SharedButton = styled.button`
     width: 334px;
     height: 57px;
     border-radius: 20px;

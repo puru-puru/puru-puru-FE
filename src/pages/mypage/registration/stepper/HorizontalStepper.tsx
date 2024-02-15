@@ -13,7 +13,7 @@ const CustomStepper: React.FC<{ currentStep: number }> = ({ currentStep }) => {
                 {[...Array(2)].map((_, index) => (
                     <React.Fragment key={index}>
                         <StepperState $isActive={index + 1 <= currentStep}>{index + 1}</StepperState>
-                        {index !== 2 - 1 && <StepperLine $isActive={index + 1 === currentStep} key={`line-${index}`} />}
+                        {index !== 1 && <StepperLine $isActive={index + 1 === currentStep} key={`line-${index}`} />}
                     </React.Fragment>
                 ))}
             </StepperContainer>

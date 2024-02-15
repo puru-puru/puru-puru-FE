@@ -12,7 +12,10 @@ const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
 const SignUp = lazy(() => import('../pages/login/signup/SignUp'));
 const ServicePage = lazy(() => import('../pages/onboarding/service/ServicePage'));
 const NameDecision = lazy(() => import('../pages/onboarding/nickname/NameDecision'));
+
 const MyPlantPage = lazy(() => import('../pages/mypage/MyPlantPage'));
+const MyComponent = lazy(() => import('../pages/mypage/MyComponent'));
+
 const PlantRegistrationPage = lazy(() => import('../pages/mypage/registration/PlantRegistrationPage'));
 
 
@@ -27,6 +30,7 @@ export const Routes = () => {
                         <Route path="/plants" element={<PlantRegistrationPage />} />
                         <Route path="/service" element={<ServicePage />} />
                         <Route path="/users" element={<NameDecision />} />
+                        <Route path="/mycomponent" element={<MyComponent />} />
 
                         <Route path="/" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />

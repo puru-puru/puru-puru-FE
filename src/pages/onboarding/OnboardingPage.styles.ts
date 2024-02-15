@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SharedBotten } from '../Shared.styles';
+import { SharedButton } from '../Shared.styles';
 
 export const OnboardingContainner = styled.div`
     margin-top: 200px;
@@ -18,7 +18,7 @@ export const CheckboxContainer = styled.div`
     margin-bottom: 10px;
 `;
 
-export const OnboardingBotten = styled(SharedBotten)<{ $isChecked: boolean }>`
+export const OnboardingBotten = styled(SharedButton)<{ $isChecked: boolean }>`
     position: absolute;
     bottom: 2%;
     background-color: ${(props) => (props.$isChecked ? '#72A474' : '#DAEBCA')};

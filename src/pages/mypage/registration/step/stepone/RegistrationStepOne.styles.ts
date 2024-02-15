@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SharedBotten } from '../../../Shared.styles';
+import { SharedButton } from '../../../../Shared.styles';
 
 export const StepOneContainer = styled.div`
     display: flex;
@@ -8,22 +8,17 @@ export const StepOneContainer = styled.div`
 `;
 
 export const SetImgContainer = styled.div`
-    width: auto;
-    min-width: 334px;
-    height: auto;
-    margin: 0 10px;
+    margin: 0 auto;
 `;
 
 export const SetNameContainer = styled.div`
-    width: auto;
-    height: auto;
-    margin: 0 10px;
+    margin: 0 auto;
 `;
 
-export const NextStepButton = styled(SharedBotten)`
+export const NextStepButton = styled(SharedButton)<{ $isChecked: boolean }>`
     position: absolute;
     bottom: 2%;
-    background-color: #72a474;
+    background-color: ${(props) => (props.$isChecked ? '#72A474' : '#DAEBCA')};
 `;
 
 export const PreviewContainer = styled.div`
@@ -32,15 +27,15 @@ export const PreviewContainer = styled.div`
     border: 2px solid rgba(204, 204, 204, 0.7);
     border-radius: 18px;
     position: relative;
-    
-`
+`;
 
 export const PreviewImage = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0;
-    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 145px;
+    max-width: 326px;
 `;
 
 export const UploadButton = styled.button`
@@ -55,7 +50,7 @@ export const UploadButton = styled.button`
     color: white;
     border: none;
     display: flex;
-    
+
     justify-content: center;
     align-items: center;
     cursor: pointer;

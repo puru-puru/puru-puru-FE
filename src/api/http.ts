@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import { ApiResponse, PetPlant, User, UserWithConfirmPassword } from './User';
+import { ApiResponse, PetPlant, SearchApiResponse, User, UserWithConfirmPassword } from './User';
 export const axios = Axios.create({
     baseURL: 'https://www.purupuru.store/',
 });
@@ -63,6 +63,8 @@ export const http = {
     },
 };
 
+
+// 제네릭 타입을 지정함으로써 코드의 재사용성을 높이고, 함수를 호출할 때 요청과 응답의 타입을 명시적으로 지정하여 타입 안정성을 확보할 수 있습니다.
 // 로그인
 export const signinApi = {
     post: async function signinApiPost<Request = User, Response = ApiResponse>(
@@ -96,10 +98,36 @@ export const nameApi = {
     },
 };
 
-//
+// 반려식물 페이지
 export const myplantApi = {
-    get: async function httpGet<Response = PetPlant>(url: string) {
+    get: async function myplantApi<Response = PetPlant>(url: string) {
         const res = await axios.get<Response>(url);
         return res.data;
     },
 };
+
+// 반려식물 등록
+export const registrationApi = {
+    post: async function registrationApiPost(formData: FormData) {
+        try {
+            const response = await axios.post('/api/diaries', formData);
+            console.log(response)
+            return response.data;
+        } catch (error: any) {
+            // 에러 처리
+            console.error('에러 발생:', error);
+            if (error.response) {
+                console.error('서버 응답 데이터:', error.response.data);
+            }
+            throw error; 
+        }
+    },
+};
+
+// 반려식물 검색
+export const searchApi = {
+    get: async function searchApi<Response = SearchApiResponse>(url: string) {
+        const res = await axios.get<Response>(url);
+        return res.data;
+    },
+}
