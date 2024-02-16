@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "plantImgURL": "https://hgarden.net/wp-content/uploads/2018/01/IMG_2008_Areca_palm-300x200.jpg?189db0&189db0",
+        "plantName": "아레카야자",
+        "plantContent": "모든 유해성 화학물질 제거력이 뛰어나다. 또한 공기 중으로 많은 수분을 방출하여 실내 습도 유지에도 도움이 된다. 게다가 관리도 쉽고 시원시원한 잎이 열대 분위기를 내기 때문에 실내 식물로는 최고이다."
+    },
+    {
+        "id": 2,
+        "plantImgURL": "https://hgarden.net/wp-content/uploads/2018/01/IMG_1588_Lady_palm-300x200.jpg?189db0&189db0",
+        "plantName": "관음죽",
+        "plantContent": "윤기 있고 끝이 톱니 바퀴형태로 갈라지는 잎이 매력적이다. 얼핏 대나무 처럼 보인다. 관음죽이란 이름은 일본 관음산에서 기원한다.공기정화 효과도 탁월한 식물이고 키우기도 아주 쉽다."
+    },
+    {
+        "id": 3,
+        "plantImgURL": "https://hgarden.net/wp-content/uploads/2017/06/IMG_4872_Rubber_plant-300x200.jpg?189db0&189db0",
+        "plantName": "인도고무나무",
+        "plantContent": "실내에서도 잘 자라고 관리가 쉬운데다가 공기정화 효과도 뛰어나다. 실루엣도 아름답고 광택이 나는 잎도 보기 좋아 인테리어로도 인기가 높아 주위에서 흔하게 볼 수 있다."
+    }
+]
