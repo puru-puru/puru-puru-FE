@@ -14,15 +14,6 @@ export interface ApiResponse {
     token?: string;
     // 기타 필요한 속성들...
 }
-
-export interface PetPlant {
-    name: string;
-    image: string;
-    date: Date;
-    title: string;
-    content: string;
-}
-
 export interface PetPlantFormData {
     name: string;
     plantAt: string;
@@ -30,7 +21,7 @@ export interface PetPlantFormData {
 }
 
 export interface SelectedCardProps {
-    selectedCard: string | undefined;
+    selectedCard: number | undefined;
 }
 
 export interface SearchInProgressProps {
@@ -55,7 +46,7 @@ interface UserPlant {
     Templelate: {
       question: string;
     };
-  }
+  } 
   
   export interface DiaryEntry {
     diaryId: number;
@@ -68,8 +59,16 @@ interface UserPlant {
   
   export interface SearchApiResponse {
     data?: any;
-    plantId: string;
-    name: string;
+    plantsId: number;
+    plantName: string;
+    type: string;
     image: string;
+    content:string;
+    tag:string;
+  }
+
+  export interface PlantData{
+    plantName: string;
+    type: string;
     content: string;
   }

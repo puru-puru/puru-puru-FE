@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { NonExistentContainer, NonExistentNextButton, NonExistentText } from './NonExistentStep.styles';
 import { SharedInput } from '../../../../Shared.styles';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { plantdataApi } from '../../../../../api/http';
 
 export const RegistrationListStep: React.FC = () => {
     const [plantData, setPlantData] = useState({
-        name: '',
+        plantName: '',
         type: '',
         content: ''
     });
@@ -21,8 +21,8 @@ export const RegistrationListStep: React.FC = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('/api/newplants', plantData);
-            console.log(response.data); 
+            const response = await plantdataApi.post('/api/newplants', plantData);
+            console.log(response);
             navigate('/myplant');
         } catch (error) {
             console.error('Error occurred:', error);
@@ -39,8 +39,8 @@ export const RegistrationListStep: React.FC = () => {
                 <p>반려 식물 이름</p>
                 <SharedInput 
                     placeholder="자엽풍년화"
-                    name="name"
-                    value={plantData.name}
+                    name="plantName"
+                    value={plantData.plantName}
                     onChange={handleChange}
                 />
                 <p>식물 종류 입력</p>
@@ -54,7 +54,7 @@ export const RegistrationListStep: React.FC = () => {
                 <SharedInput 
                     placeholder="물을 일주일에 세번 주어도 잘 자란다."
                     name="content"
-                    value={plantData.content}
+                    value={plantData.content} 
                     onChange={handleChange}
                 />
                 <NonExistentNextButton onClick={handleSubmit}>다음</NonExistentNextButton>

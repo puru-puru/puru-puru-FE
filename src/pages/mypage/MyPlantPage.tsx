@@ -23,6 +23,7 @@ import { DiaryEntry } from '../../api/User';
 import { useModal } from '../../hook/useModal';
 import { myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
@@ -70,35 +71,32 @@ const MyPage: React.FC = () => {
         // 아이콘을 클릭하여 MyComponent 페이지로 이동
         const { diaryId } = petPlant;
         navigate('/mycomponent', { state: { diaryId, templateId, question, answer } });
-      };
-      const handleRegisterClick = () => {
+    };
+    const handleRegisterClick = () => {
         navigate('/plants'); // 등록하기 버튼 클릭 시 /plants로 이동
     };
 
+    // 갤러리 및 추가 버튼
     const toggleButtons = () => {
         if (open) modalClose();
         else modalOpen();
     };
-    useEffect(() => {
-        // async 함수 정의
-        const fetchData = async () => {
-            try {
-                const response = await myplantApi.get('/api/diaries'); 
-                console.log(response);
-                // 응답 데이터에서 petPlant를 추출하고 상태 업데이트
-                setPetPlant(response.date[0]);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+    const { data: petPlantDate, isLoading, isError } = useQuery('petPlant', () => myplantApi.get('/api/diaries'));
 
-        // fetchData 함수 호출
-        fetchData();
-    }, []);
+    useEffect(() => {
+        if (petPlantDate) {
+            console.log(petPlantDate); 
+            setPetPlant(petPlantDate[8]);
+        }
+    }, [petPlantDate]);
+    
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error occurred.</div>;
 
     const IconAndText = ({ template }) => (
         <PetPlantDetailTextContainer>
             <PetPlantIcon
+            src={`plantimg.png`}
                 onClick={() =>
                     handleIconClick(template.id, template.Templelate.question, template.answer)
                 }
@@ -113,10 +111,10 @@ const MyPage: React.FC = () => {
 
     // 현재 날짜에서 입력받은 날짜를 뺀 d+day값 계산
     const currentDate = new Date();
-    const petDate = new Date(petPlant.plantAt);
+    const petDate = new Date(petPlant?.plantAt);
     const timeDifference = currentDate.getTime() - petDate.getTime();
-    const diffDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
-    if (!petPlant)
+        const diffDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+        if (!petPlant)
         return (
             <>
                 <PetPlantHeader>
@@ -129,7 +127,9 @@ const MyPage: React.FC = () => {
                     <PetPlantHeaderImg
                         style={{ backgroundImage: `url(plantimg.png)`, marginTop: '100px' }}
                     />
-                    <PetPlantRegisterBotten onClick={handleRegisterClick}>등록하기</PetPlantRegisterBotten>
+                    <PetPlantRegisterBotten onClick={handleRegisterClick}>
+                        등록하기
+                    </PetPlantRegisterBotten>
                 </PetPlantRegister>
             </>
         );
@@ -138,13 +138,13 @@ const MyPage: React.FC = () => {
             <PetPlantHeader>
                 <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
                 <PetPlantCardContainer>
-                <PetPlantHeaderImg src={petPlant.image} />
+                    <PetPlantHeaderImg src={petPlant.image} />
                     <PetPlantHeaderDetail>
                         <img src="./calendar_clock.svg" />
                         {` +  ${diffDays}`} <br />
-                        {petPlant.UserPlant.Plant.plantName} <br />
-                        {petPlant.UserPlant.Plant.type} <br />
-                        {petPlant.UserPlant.Plant.content}
+                        {petPlant.UserPlant?.Plant?.plantName} <br />
+                        {petPlant.UserPlant?.Plant?.type} <br />
+                        {petPlant.UserPlant?.Plant?.content}
                     </PetPlantHeaderDetail>
                 </PetPlantCardContainer>
             </PetPlantHeader>
@@ -154,11 +154,21 @@ const MyPage: React.FC = () => {
                 <PetPlantDetailLine />
                 <hr style={{ opacity: '30%' }} />
                 <div style={{ margin: '20px 10px' }}>
-                    <IconAndText template={petPlant.SavedTemplelates[0]} />
-                    <VerticalDivider />
-                    <IconAndText template={petPlant.SavedTemplelates[1]} />
-                    <VerticalDivider />
-                    <IconAndText template={petPlant.SavedTemplelates[2]} />
+                    {petPlant.SavedTemplelates?.length > 0 && (
+                        <>
+                            <IconAndText template={petPlant.SavedTemplelates[0]} />
+                            <VerticalDivider />
+                        </>
+                    )}
+                    {petPlant.SavedTemplelates?.length > 1 && (
+                        <>
+                            <IconAndText template={petPlant.SavedTemplelates[1]} />
+                            <VerticalDivider />
+                        </>
+                    )}
+                    {petPlant.SavedTemplelates?.length > 2 && (
+                        <IconAndText template={petPlant.SavedTemplelates[2]} />
+                    )}
                 </div>
                 {/* 플러스 버튼(갤러리, 식물추가) */}
                 {/* {open && (
