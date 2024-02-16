@@ -1,10 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { currentStepState } from '../../../../../recoil/atom';
 import { useRecoilState } from 'recoil';
 import { FindOtherPlantsButton, SavePlantsButton, SearchCompletedContainer } from './SearchCompleted.styles';
 import { SelectedCardProps } from '../../../../../api/User';
+import { searchresultsApi } from '../../../../../api/http';
 
 
 
@@ -18,8 +18,7 @@ const SearchCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
     const handleSelect = async () => {
         
         try {
-            const response = await axios.post(`/api/plants/${selectedCard}/save`);
-            console.log(response);
+            await searchresultsApi.post(`/api/plants/${selectedCard}/save`);
             navigate('/myplant');
         } catch (error: any) {
             // 에러 처리

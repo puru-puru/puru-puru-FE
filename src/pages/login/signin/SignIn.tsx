@@ -34,13 +34,19 @@ const SignIn: React.FC = () => {
     useEffect(() => {
         const isEmailValid = user.email.length > 0 && validateEmail(user.email);
         const isPasswordValid = user.password.length >= 5;
-    
+        // 토큰에 대한 만료 되었는지 유효성 검사 필요
+        const accessTokenExpiration = Cookies.get('AccessToken');
+        if(accessTokenExpiration){
+            alert('이미 로그인이 되어 있습니다.')
+            navigate('/mainpage');
+            return; 
+        }
         if (isEmailValid && isPasswordValid) {
             setIsChecked(true);
         } else {
             setIsChecked(false);
         }
-    }, [user.email, user.password]);
+    }, [user.email, user.password, navigate]);
 
     const handleLogin = async () => {
         try {

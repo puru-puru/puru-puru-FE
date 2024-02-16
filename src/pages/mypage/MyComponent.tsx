@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SharedInput } from '../Shared.styles';
 import { MyComponentButton, MyComponentContainer } from './MyComponent.styles';
+import { diariesApi } from '../../api/http';
 
 
 const MyComponent: React.FC = () => {
@@ -21,11 +21,11 @@ const MyComponent: React.FC = () => {
     // 수정을 저장할 때 PATCH 요청을 보냅니다.
     const saveChanges = async () => {
         try {
-            const response = await axios.patch(`/api/${diaryId}/templelates/${templateId}`, {
+            const response = await diariesApi.patch(`/api/random/templates/${templateId}`, {
                 answer: editedEntry, 
             });
             navigate('/myplant');
-            console.log('일지 수정 완료:', response.data);
+            console.log('일지 수정 완료:', response);
         } catch (error) {
             console.error('일지 수정 실패:', error);
         }

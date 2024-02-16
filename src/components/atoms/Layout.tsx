@@ -31,14 +31,16 @@ const Layout: React.FC = () => {
 
     const isMyPlant = pathname === '/myplant';
     const isMain = pathname === '/mainpage';
+    const isMyprofile = pathname === '/myprofile';
+
   
     return (
         <>
             <LayoutContainer>
                 <LayoutContent>
-                    {(isMain || isMyPlant) && <Navbar />}
+                    {(isMain || isMyPlant || isMyprofile) && <Navbar />}
                     <Outlet />
-                    {(isMain || isMyPlant) && <Footer />}
+                    {(isMain || isMyPlant || isMyprofile) && <Footer />}
                 </LayoutContent>
             </LayoutContainer>
         </>

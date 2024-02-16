@@ -1,5 +1,5 @@
 import { Routes } from "./route/Routes";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 
 function App() {

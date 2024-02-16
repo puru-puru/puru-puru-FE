@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { OnboardingBotten, OnboardingContainer } from '../OnboardingPage.styles';
+import { OnboardingButton, OnboardingContainer } from '../OnboardingPage.styles';
 import {
     ClearButton,
     ErrorText,
@@ -61,7 +61,7 @@ const NameDecision: React.FC = () => {
                         errorMessage: '',
                     }));
                     console.log('API 요청 성공:', response);
-                    navigate('/main');
+                    navigate('/mainpage');
                 } catch (error) {
                     // API 요청 실패 시 처리
                     setNameInfo((prevState) => ({
