@@ -11,8 +11,8 @@ import { GlobalStyles } from '../components/atoms/GlobalStyled';
 const ServicePage = lazy(() => import('../pages/onboarding/service/ServicePage'));
 const NameDecision = lazy(() => import('../pages/onboarding/nickname/NameDecision'));
 const MainPage = lazy(() => import('../pages/mainpage/MainPage'));
-const Boardtest = lazy(() => import('../pages/boardtest/BoardTest'));
-
+const BoardTest = lazy(() => import('../pages/boardtest/boardtestpage/BoardTest'));
+const BoardResult = lazy(() => import('../pages/boardtest/boardresultpage/BoardResult'));
 export const Routes = () => {
     return (
         <Router>
@@ -23,7 +23,8 @@ export const Routes = () => {
                         <Route path="/" element={<ServicePage />} />
                         <Route path="/user" element={<NameDecision />} />
                         <Route path="/mainpage" element={<MainPage />} />
-                        <Route path="/boardtest" element={<Boardtest />} />
+                        <Route path="/boardtest" element={<BoardTest />} />
+                        <Route path="/boardresult" element={<BoardResult />} />
                         <Route path="*" element={<Navigate replace to="/" />} />
                     </Route>
                 </ReactRouterRoutes>

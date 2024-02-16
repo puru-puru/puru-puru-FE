@@ -28,8 +28,6 @@ const LayoutContent = styled.div`
 const Layout: React.FC = () => {
     const { pathname } = useLocation();
     // console.log('pathname => ', pathname);
-    const isOnboarding = pathname === '/';
-    const isName = pathname === '/name';
     const isMain = pathname === '/mainpage';
     return (
         <>
@@ -37,7 +35,7 @@ const Layout: React.FC = () => {
                 <LayoutContent>
                     {isMain && <Navbar />}
                     <Outlet />
-                    {(!isOnboarding || isName) && <Footer />}
+                    {isMain && <Footer />}
                 </LayoutContent>
             </LayoutContainer>
         </>

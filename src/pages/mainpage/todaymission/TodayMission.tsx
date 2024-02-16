@@ -19,7 +19,7 @@ const TodayMission: React.FC = () => {
     const missionCardLayout: CSSProperties = {
         maxWidth: '330px',
         height: '120px',
-        border: '1px solid white',
+        border: '1px solid rgba(218, 234, 202, 1)',
         background: 'rgba(218, 234, 202, 1)',
         borderRadius: '20px',
         display: 'flex',
@@ -27,12 +27,24 @@ const TodayMission: React.FC = () => {
         alignItems: 'center',
         padding: '60px',
     };
+    const missionCardContent: CSSProperties = {
+        width: '220px',
+        height: '54px',
+        fontFamily: 'sans-serif',
+        fontWeight: 700,
+        lineHeight: '32px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    };
     return (
         <Slider {...settings}>
             {mission.map((item) => {
                 return (
                     <div key={item.id}>
-                        <div style={missionCardLayout}>{item.content}</div>
+                        <div style={missionCardLayout}>
+                            <div style={missionCardContent}>{item.content}</div>
+                        </div>
                     </div>
                 );
             })}
