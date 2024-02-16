@@ -25,11 +25,12 @@ const PlantRecommend: React.FC = () => {
         maxWidth: '200px',
         minHeight: '260px',
         border: '1px solid white',
-        background: 'mintcream',
         borderRadius: '20px',
         boxShadow: '8px 8px 5px rgba(185, 185, 185, 0.25)',
         fontSize: '10px',
         marginBottom: '7px',
+        marginLeft: '120px',
+        fontFamily: "'Noto Sans KR', 'sans-serif'",
     };
 
     return (
@@ -42,7 +43,18 @@ const PlantRecommend: React.FC = () => {
                                 style={{ width: '170px', height: '112px', borderRadius: '15px' }}
                                 src={item.plantImg}
                             />
-                            <div>{item.plantTitle}</div>
+                            <div
+                                style={{
+                                    width: '128px',
+                                    height: '21px',
+                                    display: 'flex',
+                                    justifyContent: 'flex-start',
+                                    fontWeight: '700',
+                                    marginTop: '10px',
+                                }}
+                            >
+                                {item.plantTitle}
+                            </div>
                             <div>{item.plantContent}</div>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <button
