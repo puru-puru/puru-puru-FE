@@ -18,8 +18,14 @@ export const CheckboxContainer = styled.div`
     margin-bottom: 10px;
 `;
 
-export const OnboardingBotten = styled(SharedButton)<{ $isChecked: boolean }>`
+export const OnboardingButton = styled(SharedButton)<{ $isChecked: boolean }>`
     position: absolute;
     bottom: 2%;
     background-color: ${(props) => (props.$isChecked ? '#72A474' : '#DAEBCA')};
 `;
+
+export const CheckboxButton = styled(SharedButton)`
+    width: 264px;
+    margin: auto;
+    background-color: #72A474;
+`

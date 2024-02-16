@@ -3,16 +3,17 @@ import styled from 'styled-components';
 // 반려식물 내용 style
 export const PetPlantHeader = styled.div`
     letter-spacing: -1.2px;
-    padding: 10px;
+    margin-top: 78px;
 `;
 export const PetPlantHeaderTitle = styled.h2`
     margin-left: 10px;
 `;
 export const PetPlantCardContainer = styled.div`
     display: flex;
-    margin-top: 50px;
+    margin-top: 40px;
+    
 `;
-export const PetPlantHeaderImg = styled.div`
+export const PetPlantHeaderImg = styled.img`
     width: 200px;
     height: 200px;
     background-color: #DAEACA;
@@ -25,8 +26,8 @@ export const PetPlantHeaderImg = styled.div`
     background-size: cover;
 `;
 export const PetPlantHeaderDetail = styled.div`
-    width: 115px;
-    height: 100px;
+    width: 116px;
+    height: 150px;
 
     margin: auto;
     font-size: 12px;

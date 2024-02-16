@@ -67,11 +67,14 @@ const MyPage: React.FC = () => {
     });
 
     const handleIconClick = (templateId: string, question: string, answer: string) => {
-        // 아이콘을 클릭하여 MyComponent 페이지로 이동합니다.
+        // 아이콘을 클릭하여 MyComponent 페이지로 이동
         const { diaryId } = petPlant;
         navigate('/mycomponent', { state: { diaryId, templateId, question, answer } });
       };
-    
+      const handleRegisterClick = () => {
+        navigate('/plants'); // 등록하기 버튼 클릭 시 /plants로 이동
+    };
+
     const toggleButtons = () => {
         if (open) modalClose();
         else modalOpen();
@@ -127,7 +130,7 @@ const MyPage: React.FC = () => {
                     <PetPlantHeaderImg
                         style={{ backgroundImage: `url(plantimg.png)`, marginTop: '100px' }}
                     />
-                    <PetPlantRegisterBotten>등록하기</PetPlantRegisterBotten>
+                    <PetPlantRegisterBotten onClick={handleRegisterClick}>등록하기</PetPlantRegisterBotten>
                 </PetPlantRegister>
             </>
         );
@@ -136,9 +139,7 @@ const MyPage: React.FC = () => {
             <PetPlantHeader>
                 <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
                 <PetPlantCardContainer>
-                    <PetPlantHeaderImg
-                        style={{ backgroundImage: `url${petPlant.image}` }}
-                    ></PetPlantHeaderImg>
+                <PetPlantHeaderImg src={petPlant.image} />
                     <PetPlantHeaderDetail>
                         <img src="./calendar_clock.svg" />
                         {` +  ${diffDays}`} <br />
@@ -161,14 +162,14 @@ const MyPage: React.FC = () => {
                     <IconAndText template={petPlant.SavedTemplelates[2]} />
                 </div>
                 {/* 플러스 버튼(갤러리, 식물추가) */}
-                {open && (
+                {/* {open && (
                     <>
                         <div className="dark-overlay"></div>
                         <PhotoButton />
                         <PlantButton />
                     </>
                 )}
-                <PlusButton $isChecked={open} onClick={toggleButtons}></PlusButton>
+                <PlusButton $isChecked={open} onClick={toggleButtons}></PlusButton> */}
             </JournalContainer>
         </div>
     );

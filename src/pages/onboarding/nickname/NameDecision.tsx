@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { OnboardingBotten, OnboardingContainner } from '../OnboardingPage.styles';
+import { OnboardingButton, OnboardingContainner } from '../OnboardingPage.styles';
 import {
     ClearButton,
     ErrorText,
@@ -28,7 +28,7 @@ const NameDecision: React.FC = () => {
             name: newName,
             isChecked: isNameValid(newName),
             isError: !isNameValid(newName),
-            errorMessage: !isNameValid(newName) ? '닉네임은 2자~8자로 입력해 주세요' : '',
+            errorMessage: !isNameValid(newName) ? '닉네임은 한글/영문/숫자 2자~8자로 입력해 주세요' : '',
         }));
     };
 
@@ -99,12 +99,12 @@ const NameDecision: React.FC = () => {
                     </div>
                     {nameInfo.errorMessage && <ErrorText>{nameInfo.errorMessage}</ErrorText>}
                 </div>
-                <OnboardingBotten
+                <OnboardingButton
                     $isChecked={nameInfo.isChecked}
                     onClick={handleNameDecisionButtonClick}
                 >
                     확인했어요
-                </OnboardingBotten>
+                </OnboardingButton>
             </OnboardingContainner>
         </>
     );

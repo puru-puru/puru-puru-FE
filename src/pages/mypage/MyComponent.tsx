@@ -9,7 +9,7 @@ const MyComponent: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { diaryId, templateId, question, answer } = location.state|| {};
-
+    console.log(diaryId, templateId, question, answer)
 
     const [editedEntry, setEditedEntry] = useState(answer);
 

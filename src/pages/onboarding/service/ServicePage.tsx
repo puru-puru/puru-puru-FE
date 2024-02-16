@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {
+    CheckboxButton,
     CheckboxContainer,
-    OnboardingBotten,
+    OnboardingButton,
     OnboardingContainner,
     OnboardingLine,
 } from '../OnboardingPage.styles';
@@ -158,24 +159,23 @@ const ServicePage: React.FC = () => {
                             zIndex: 2, // 모달이 레이어 위에 올라오도록 설정
                         }}
                     >
-                        {/* Render the ModalContent component */}
                         {selectedAgreement === 'terms' && <ModalContent content={'terms'} />}
                         {selectedAgreement === 'privacy' && <ModalContent content={'privacy'} />}
 
-                        <button onClick={modalClose}>확인했어요</button>
+                        <CheckboxButton onClick={modalClose}>확인했어요</CheckboxButton>
                     </div>
                 </>
             )}
 
             <NotificationModal />
             {/* transient props사용 */}
-            <OnboardingBotten
+            <OnboardingButton
                 $isChecked={isChecked}
                 disabled={!confirmationButtonEnabled}
                 onClick={handleNameDecisionButtonClick}
             >
                 확인했어요
-            </OnboardingBotten>
+            </OnboardingButton>
         </OnboardingContainner>
 
     );
