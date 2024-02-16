@@ -1,8 +1,8 @@
 import React from 'react';
 import { CSSProperties } from 'styled-components';
-import { GrHomeRounded } from 'react-icons/gr';
-import { IoIosSearch } from 'react-icons/io';
-import { MdStorefront } from 'react-icons/md';
+import home from '../../assets/home.svg';
+import search from '../../assets/search.svg';
+import store from '../../assets/storefront.svg';
 
 const Navbar: React.FC = () => {
     const NavbarWrapper: CSSProperties = {
@@ -19,40 +19,43 @@ const Navbar: React.FC = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '13px',
+        fontSize: '18px',
+        padding: '0px',
     };
     const NavbarSearchButtonStyle: CSSProperties = {
         marginRight: '60px',
-        boxShadow: '2px 2px 5px rgba(185, 185, 185, 0.25)',
+        boxShadow: '8px 8px 5px rgba(185, 185, 185, 0.25)',
         width: '48px',
         height: '48px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '13px',
+        fontSize: '22px',
+        padding: '0px',
     };
     const NavbarStoreButtonStyle: CSSProperties = {
         marginLeft: '60px',
         marginTop: '-47.5px',
-        boxShadow: '2px 2px 5px rgba(185, 185, 185, 0.25)',
+        boxShadow: '8px 8px 5px rgba(185, 185, 185, 0.25)',
         width: '48px',
         height: '48px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '13px',
+        fontSize: '20px',
+        padding: '0px',
     };
     return (
         <nav style={NavbarWrapper}>
             <button style={NavbarHomeButtonStyle}>
-                <GrHomeRounded />
+                <img src={home} />
             </button>
             <div>
                 <button style={NavbarSearchButtonStyle}>
-                    <IoIosSearch />
+                    <img src={search} />
                 </button>
                 <button style={NavbarStoreButtonStyle}>
-                    <MdStorefront />
+                    <img src={store} />
                 </button>
             </div>
         </nav>

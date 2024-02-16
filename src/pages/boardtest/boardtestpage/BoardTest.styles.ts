@@ -36,7 +36,7 @@ export const BoardTestMainItem = styled.button`
     border-radius: 20px;
     border: 2px solid white;
     box-shadow: 8px 8px 5px rgba(152, 152, 152, 0.25);
-    background-color: rgba(255, 229, 222, 1);
+    background-color: rgba(218, 234, 202, 1);
     &:hover {
         border-color: rgba(114, 164, 116, 1);
     }
