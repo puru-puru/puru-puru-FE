@@ -17,7 +17,10 @@ const MyPlantPage = lazy(() => import('../pages/mypage/MyPlantPage'));
 const MyComponent = lazy(() => import('../pages/mypage/MyComponent'));
 
 const PlantRegistrationPage = lazy(() => import('../pages/mypage/registration/PlantRegistrationPage'));
-
+  
+const MainPage = lazy(() => import('../pages/mainpage/MainPage'));
+const BoardTest = lazy(() => import('../pages/boardtest/boardtestpage/BoardTest'));
+const BoardResult = lazy(() => import('../pages/boardtest/boardresultpage/BoardResult'));
 
 export const Routes = () => {
     return (
@@ -28,12 +31,15 @@ export const Routes = () => {
                     <Route element={<Layout />}>
                         <Route path="/myplant" element={<MyPlantPage />} />
                         <Route path="/plants" element={<PlantRegistrationPage />} />
+                        <Route path="/mainpage" element={<MainPage />} />
                         <Route path="/service" element={<ServicePage />} />
                         <Route path="/users" element={<NameDecision />} />
                         <Route path="/mycomponent" element={<MyComponent />} />
 
                         <Route path="/" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />
+                        <Route path="/boardtest" element={<BoardTest />} />
+                        <Route path="/boardresult" element={<BoardResult />} />
                         <Route path="*" element={<Navigate replace to="/" />} />
                     </Route>
                 </ReactRouterRoutes>

@@ -3,7 +3,7 @@ import {
     CheckboxButton,
     CheckboxContainer,
     OnboardingButton,
-    OnboardingContainner,
+    OnboardingContainer,
     OnboardingLine,
 } from '../OnboardingPage.styles';
 import { useModal } from '../../../hook/useModal';
@@ -51,6 +51,7 @@ const ServicePage: React.FC = () => {
         setisChecked(termsAndPrivacyChecked);
         // 확인했어요 버튼 활성화 여부 업데이트
         setConfirmationButtonEnabled(termsAndPrivacyChecked);
+
     }, [agreements.isTermsChecked, agreements.isPrivacyChecked, notificationModalDisplayed, open, modalOpen]);
 
     const handleArrowButtonClick = (agreementName: string) => {
@@ -63,7 +64,7 @@ const ServicePage: React.FC = () => {
     };
 
     return (
-        <OnboardingContainner>
+        <OnboardingContainer>
             <div>
                 <CheckboxContainer>
                     <label style={{ fontSize: '24px' }}>서비스 이용 동의</label>
@@ -176,8 +177,7 @@ const ServicePage: React.FC = () => {
             >
                 확인했어요
             </OnboardingButton>
-        </OnboardingContainner>
-
+        </OnboardingContainer>
     );
 };
 

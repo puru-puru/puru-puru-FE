@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { OnboardingButton, OnboardingContainner } from '../OnboardingPage.styles';
+
+import { OnboardingBotten, OnboardingContainer } from '../OnboardingPage.styles';
 import {
     ClearButton,
     ErrorText,
@@ -78,7 +79,7 @@ const NameDecision: React.FC = () => {
 
     return (
         <>
-            <OnboardingContainner>
+            <OnboardingContainer>
                 <div>
                     <NameDecisionHeading>
                         어떻게
@@ -100,12 +101,14 @@ const NameDecision: React.FC = () => {
                     {nameInfo.errorMessage && <ErrorText>{nameInfo.errorMessage}</ErrorText>}
                 </div>
                 <OnboardingButton
+
                     $isChecked={nameInfo.isChecked}
                     onClick={handleNameDecisionButtonClick}
                 >
                     확인했어요
                 </OnboardingButton>
-            </OnboardingContainner>
+            </OnboardingContainer>
+
         </>
     );
 };
