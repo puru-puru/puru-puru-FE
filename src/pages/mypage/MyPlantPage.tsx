@@ -83,8 +83,7 @@ const MyPage: React.FC = () => {
         // async 함수 정의
         const fetchData = async () => {
             try {
-                // Axios를 사용하여 데이터를 가져오기
-                const response = await myplantApi.get('/api/plants'); // URL은 실제 db.json 파일의 위치로 변경해야 합니다.
+                const response = await myplantApi.get('/api/diaries'); 
                 console.log(response);
                 // 응답 데이터에서 petPlant를 추출하고 상태 업데이트
                 setPetPlant(response.date[0]);

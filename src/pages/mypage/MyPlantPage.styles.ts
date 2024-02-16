@@ -3,7 +3,6 @@ import styled from 'styled-components';
 // 반려식물 내용 style
 export const PetPlantHeader = styled.div`
     letter-spacing: -1.2px;
-    margin-top: 78px;
 `;
 export const PetPlantHeaderTitle = styled.h2`
     margin-left: 10px;

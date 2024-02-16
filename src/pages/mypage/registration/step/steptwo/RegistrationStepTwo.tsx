@@ -22,12 +22,12 @@ export const RegistrationStepTwo: React.FC = () => {
     ]);
 
     const handleSearch = async () => {
-       
+        setSearchCompleted(true);
         try {
             const response = await searchApi.get(`/api/plants/serch?query=${searchItem}`);
             console.log(response);
             setPlants(response.data.data);
-            setSearchCompleted(true);
+            
         } catch (error: any) {
             // 에러 처리
             console.error('에러 발생:', error);
