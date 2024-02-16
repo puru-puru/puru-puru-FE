@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SharedButton } from '../../Shared.styles';
 
 export const Heading = styled.h1`
     width: 334px;
@@ -6,6 +7,7 @@ export const Heading = styled.h1`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin:0;
 `;
 
 export const SignInnContainer = styled.div`
@@ -13,19 +15,12 @@ export const SignInnContainer = styled.div`
     justify-content: center;
 `;
 
-export const SignInBotten = styled.button<{ $isChecked: boolean }>`
-    width: 334px;
-    height: 50px;
-    border-radius: 20px;
+export const SignInBotten = styled(SharedButton)<{ $isChecked: boolean }>`
     background-color: ${props => props.$isChecked ? "#72A474" : "#DAEBCA"};
-    color: #FFFFFF;
     margin-bottom: 20px;
 `;
 
-export const SignUpBotten = styled.button`
-    width: 334px;
-    height: 50px;
-    border-radius: 20px;
+export const SignUpBotten = styled(SharedButton)`
     background-color: #ffffff;
     color: #8b8879;
     border: 1px solid #72a474;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { User } from '../../../api/Login/User';
+import { User } from '../../../api/User';
 import {
     Heading,
     SignInBotten,
@@ -9,11 +9,12 @@ import {
     SocialContainer,
     SocialDescription,
 } from './SignIn.styles'; // 에러 메시지를 표시할 컴포넌트 추가
-import { ErrorMessage, LoginContainer, LoginInput } from '../Login.styles';
+import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { useNavigate } from 'react-router-dom';
 import SocialKakao from '../social/SocialKakao';
 import SocialGoogle from '../social/SocialGoogle';
 import { signinApi } from '../../../api/http';
+import { SharedInput } from '../../Shared.styles';
 
 const SignIn: React.FC = () => {
     const navigate = useNavigate();
@@ -50,16 +51,21 @@ const SignIn: React.FC = () => {
             }
             const response = await signinApi.post('api/auth/sign-in', user);
             console.log(response);
-            Cookies.set('AccessToken', response.data.token);
+            Cookies.set('AccessToken', response.data.accessToken);
             Cookies.set('RefreshToken', response.data.refreshToken);
-            if (response.status === 200) {
-                setError(response.data.message);
-                setUser({
-                    email: '',
-                    password: '',
-                });
-                // navigate('/');
-            }
+            setUser({
+                email: '',
+                password: '',
+            });
+            navigate('/service');
+            // if (response.status === 200) {
+            //     setError(response.data.message);
+            //     setUser({
+            //         email: '',
+            //         password: '',
+            //     });
+            //     navigate('/service');
+            // }
         } catch (error: any) {
             // 서버 응답 오류 처리
             if (error.response) {
@@ -84,7 +90,7 @@ const SignIn: React.FC = () => {
                 <Heading>Login</Heading>
                 <div>
                     <p>Email</p>
-                    <LoginInput
+                    <SharedInput
                         type="text"
                         value={user.email}
                         placeholder="예)puleuspuleus@puleus.co.kr"
@@ -93,7 +99,7 @@ const SignIn: React.FC = () => {
                         }
                     />
                     <p>Password</p>
-                    <LoginInput
+                    <SharedInput
                         type="password"
                         value={user.password}
                         placeholder="비밀번호를 5자 이상 입력하세요"

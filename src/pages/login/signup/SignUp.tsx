@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { UserWithConfirmPassword } from '../../../api/Login/User';
-import { ErrorMessage, LoginContainer, LoginInput } from '../Login.styles';
+import { UserWithConfirmPassword } from '../../../api/User';
+import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { SignUpBotten } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
 import { signupApi } from '../../../api/http';
+import { SharedInput } from '../../Shared.styles';
 const SignUp: React.FC = () => {
     const navigate = useNavigate();
     const [isChecked, setIsChecked] = useState(false);
     const [user, setUser] = useState<UserWithConfirmPassword>({
         email: '',
         password: '',
-        confirmpassword: '',
+        confirmPassword: '',
     });
     const [error, setError] = useState('');
     
@@ -40,14 +41,13 @@ const SignUp: React.FC = () => {
                 alert('아이디와 비밀번호를 입력해주세요');
                 return;
             }
-            const response = await signupApi.post('http://localhost:3001/api/auth/sign-up', user);
-
-            if (response.data) {
-                alert(response.data.Message);
+            const response = await signupApi.post('/api/auth/sign-up', user);
+            if (response.message) {
+                alert(response.message);
                 setUser({
                     email: '',
                     password: '',
-                    confirmpassword: '',
+                    confirmPassword: '',
                 });
                 navigate('/');
             } else {
@@ -72,7 +72,7 @@ const SignUp: React.FC = () => {
                 <form onSubmit={onSubmitHandler}>
                     <label>
                         <p>Email</p>
-                        <LoginInput
+                        <SharedInput
                             type="text"
                             value={user.email}
                             placeholder="예)puleuspuleus@puleus.co.kr"
@@ -81,7 +81,7 @@ const SignUp: React.FC = () => {
                     </label>
                     <label>
                         <p>Password</p>
-                        <LoginInput
+                        <SharedInput
                             type="password"
                             value={user.password}
                             placeholder="비밀번호를 5자 이상 입력하세요"
@@ -89,13 +89,13 @@ const SignUp: React.FC = () => {
                         />
                         {user.password.length < 5 && user.password && <ErrorMessage>비밀번호를 5자 이상 입력하세요</ErrorMessage>}
                         <p></p>
-                        <LoginInput 
+                        <SharedInput 
                         type="password"
-                        value={user.confirmpassword}
-                        onChange={(e) => setUser({ ...user, confirmpassword: e.target.value })}
+                        value={user.confirmPassword}
+                        onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
                         placeholder="비밀번호를 재입력하세요" 
                         />
-                        {user.password!==user.confirmpassword && user.confirmpassword && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
+                        {user.password!==user.confirmPassword && user.confirmPassword && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
                     </label>
                     <br />
                     <SignUpBotten $isChecked={isChecked}type="submit">가입하기</SignUpBotten>

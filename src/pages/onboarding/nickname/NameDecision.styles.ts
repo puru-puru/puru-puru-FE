@@ -1,15 +1,8 @@
 import styled from 'styled-components';
-// import { colors } from '../../../styles/colors';
-
-export const NameDecisionInput = styled.input<{ $isError: boolean }>`
-    width: 334px;
-    height: 50px;
+import { SharedInput } from '../../Shared.styles';
+export const NameDecisionInput = styled(SharedInput)<{ $isError: boolean }>`
     font-size: 18px;
-    border-radius: 20px;
-    padding: 0 20px;
-    border-style: solid;
     border-color: ${props => props.$isError ?   '#FF5555' : '#72A474' };
-    outline: none;
     &:focus-visible {
         border-color: ${props => props.$isError ?   '#FF5555' : '#72A474' };
     }

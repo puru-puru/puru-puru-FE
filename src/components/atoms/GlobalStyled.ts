@@ -12,11 +12,19 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
 
         font-family: 'Pretendard';
+        /* letter-spacing: -1.2px; */
     }
-/* body {
-    align-items: center;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-  } */
+
+    /* 어두운 배경 설정 */
+    .dark-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); 
+        z-index: 1; 
+    }
+
 `;
+
