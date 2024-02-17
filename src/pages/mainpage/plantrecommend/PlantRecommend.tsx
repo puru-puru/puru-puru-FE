@@ -28,7 +28,7 @@ const PlantRecommend: React.FC = () => {
         borderRadius: '20px',
         boxShadow: '8px 8px 5px rgba(185, 185, 185, 0.25)',
         fontSize: '10px',
-        marginBottom: '7px',
+        // marginBottom: '7px',
         marginLeft: '120px',
         fontFamily: "'Noto Sans KR', 'sans-serif'",
     };
@@ -59,7 +59,7 @@ const PlantRecommend: React.FC = () => {
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <button
                                     style={{
-                                        background: 'white',
+                                        background: 'none',
                                         fontSize: '10px',
                                         position: 'relative',
                                     }}
@@ -68,7 +68,7 @@ const PlantRecommend: React.FC = () => {
                                 </button>
                                 <button
                                     style={{
-                                        background: 'white',
+                                        background: 'none',
                                         fontSize: '10px',
                                         position: 'relative',
                                     }}

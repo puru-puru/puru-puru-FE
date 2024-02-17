@@ -2,37 +2,31 @@
     {
         "id": 1,
         "keyword": "“상쾌한”",
-        "keywordImgURL": "https://i.pinimg.com/564x/7d/a3/fd/7da3fd2eb36fe5c6f6e396e0c7aa5713.jpg",
-        "boxColor": "rgba(255, 248, 220, 1)"
+        "keywordImgURL": "https://i.pinimg.com/564x/7d/a3/fd/7da3fd2eb36fe5c6f6e396e0c7aa5713.jpg"
     },
     {
         "id": 2,
         "keyword": "“수수한”",
-        "keywordImgURL": "https://i.pinimg.com/564x/e2/9e/11/e29e112a3f9ddc862bff542d1e3dcc9b.jpg",
-        "boxColor": "rgba(242, 255, 224, 1)"
+        "keywordImgURL": "https://i.pinimg.com/564x/e2/9e/11/e29e112a3f9ddc862bff542d1e3dcc9b.jpg"
     },
     {
         "id": 3,
         "keyword": "“다채로운”",
-        "keywordImgURL": "https://i.pinimg.com/564x/e1/38/ff/e138ff4b9db8bb7af14447fbd047fd78.jpg",
-        "boxColor": "rgba(255, 229, 222, 1)"
+        "keywordImgURL": "https://i.pinimg.com/564x/e1/38/ff/e138ff4b9db8bb7af14447fbd047fd78.jpg"
     },
     {
         "id": 4,
         "keyword": "“특별한”",
-        "keywordImgURL": "https://i.pinimg.com/564x/5a/60/26/5a6026c19e6a58749c5dce6cf4cae6ee.jpg",
-        "boxColor": "rgba(249, 250, 255, 1)"
+        "keywordImgURL": "https://i.pinimg.com/564x/5a/60/26/5a6026c19e6a58749c5dce6cf4cae6ee.jpg"
     },
     {
         "id": 5,
         "keyword": "“낭만적인”",
-        "keywordImgURL": "https://i.pinimg.com/564x/76/c2/c6/76c2c62563279fb6a7a8dc6c3d385d3a.jpg",
-        "boxColor": "rgba(254, 247, 248, 1)"
+        "keywordImgURL": "https://i.pinimg.com/564x/76/c2/c6/76c2c62563279fb6a7a8dc6c3d385d3a.jpg"
     },
     {
         "id": 6,
         "keyword": "“향기로운”",
-        "keywordImgURL": "https://i.pinimg.com/564x/48/d1/a1/48d1a1f3b5e40b89319b42cea84c2692.jpg",
-        "boxColor": "rgba(243, 255, 254, 1)"
+        "keywordImgURL": "https://i.pinimg.com/564x/48/d1/a1/48d1a1f3b5e40b89319b42cea84c2692.jpg"
     }
 ]
