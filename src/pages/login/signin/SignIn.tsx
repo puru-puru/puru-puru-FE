@@ -30,6 +30,7 @@ const SignIn: React.FC = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
+    
     // 이메일과 비밀번호가 5자 이상 입력되었을 때 isChecked를 true로 설정
     useEffect(() => {
         const isEmailValid = user.email.length > 0 && validateEmail(user.email);

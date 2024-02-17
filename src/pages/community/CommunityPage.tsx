@@ -16,6 +16,7 @@ import {
     Nickname,
 } from './CommunityPage.styles';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const CommunityPage: React.FC = () => {
     const navigate = useNavigate();
@@ -66,6 +67,8 @@ const CommunityPage: React.FC = () => {
     const handleWriteButtonClick = () => {
         navigate('/communityWrite');
     };
+
+    const name = Cookies.get('Nickname');
     return (
         <>
             <CommunityContainer>
@@ -75,17 +78,17 @@ const CommunityPage: React.FC = () => {
                         <img src="./person.svg" alt="카드 이미지" />
                     </PostProFileImgBox>
                     <PostProFileTitle>
-                        <span>닉네임</span>님
+                        <span>{name}</span>님
                     </PostProFileTitle>
                 </PostProFileBox>
                 <PostButtonBox>
                     <CompositionButton onClick={handleWriteButtonClick}>글쓰기</CompositionButton>
                 </PostButtonBox>
                 <PostContainerScroll>
-                    {post.map((post) => (
+                    {post?.map((post) => (
                         <PostContainer key={post.boardId}>
                             <div>
-                                <Nickname>{post.author.nickname}</Nickname>
+                            {post.author?.nickname && <Nickname>{post.author.nickname}</Nickname>}
                                 <PostImg src={post.image} alt="" />
                             </div>
                             <PostTextContainer>
