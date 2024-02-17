@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
         display: 'flex',
         justifyContent: 'space-between',
         maxWidth: '360px',
-        padding: '12px',
+        padding: '10px',
         gap: '6px',
     };
     const NavbarHomeButtonStyle: CSSProperties = {

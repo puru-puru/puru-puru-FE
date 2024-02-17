@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const BoardResultWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    margin-top: 15px;
+    padding: 15px;
+    /* margin-top: 15px; */
+    margin-right: 30px;
+    margin-bottom: 30px;
 `;
 
 export const BoardResultHeadContent = styled.div`
@@ -58,12 +60,12 @@ export const BoardResultSaveButton = styled.button`
     width: 334px;
     height: 57px;
     padding: 0px;
-    border: 1px solid rgba(114, 164, 116, 1);
+    border: 1px solid rgba(218, 234, 202, 1);
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(114, 164, 116, 1);
+    background-color: rgba(218, 234, 202, 1);
     font-size: 18px;
     line-height: 27.41px;
     font-weight: 700;

@@ -23,7 +23,7 @@ import { DiaryEntry } from '../../api/User';
 // import { useModal } from '../../hook/useModal';
 import { myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
@@ -87,16 +87,17 @@ const MyPage: React.FC = () => {
         if (petPlantDate) {
             console.log(petPlantDate); 
             setPetPlant(petPlantDate[0]);
+
         }
     }, [petPlantDate]);
-    
+
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error occurred.</div>;
 
     const IconAndText = ({ template }) => (
         <PetPlantDetailTextContainer>
             <PetPlantIcon
-            src={`plantimg.png`}
+                src={`plantimg.png`}
                 onClick={() =>
                     handleIconClick(template.id, template.Templelate.question, template.answer)
                 }
@@ -113,8 +114,8 @@ const MyPage: React.FC = () => {
     const currentDate = new Date();
     const petDate = new Date(petPlant?.plantAt);
     const timeDifference = currentDate.getTime() - petDate.getTime();
-        const diffDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
-        if (!petPlant)
+    const diffDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    if (!petPlant)
         return (
             <>
                 <PetPlantHeader>
