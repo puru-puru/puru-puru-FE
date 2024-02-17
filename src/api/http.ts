@@ -45,11 +45,15 @@ axios.interceptors.response.use(
                         return axios(originalRequest); // 재요청
                     } else {
                         console.error('새로운 엑세스 토큰 발급 실패');
+                        window.location.href = '/';
                     }
                 } catch (error) {
                     console.error('오류 발생: ', error);
                     window.location.href = '/';
                 }
+            } else {
+                console.error('리프레시 토큰이 없습니다. 로그인 페이지로 이동합니다.');
+                window.location.href = '/';
             }
         }
         return Promise.reject(error);

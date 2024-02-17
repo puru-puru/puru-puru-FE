@@ -91,7 +91,7 @@ const MyPage: React.FC = () => {
         }
     }, [petPlantDate]);
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div>로딩중</div>;
     if (isError) return <div>Error occurred.</div>;
 
     const IconAndText = ({ template }) => (
