@@ -12,22 +12,22 @@ import {
     PetPlantHeaderImg,
     PetPlantHeader,
     PetPlantHeaderTitle,
-    PlusButton,
-    PhotoButton,
-    PlantButton,
+    // PlusButton,
+    // PhotoButton,
+    // PlantButton,
     PetPlantRegister,
     PetPlantRegisterBotten,
     PetPlantRegisterText,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/User';
-import { useModal } from '../../hook/useModal';
+// import { useModal } from '../../hook/useModal';
 import { myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
-    const { open, modalOpen, modalClose } = useModal();
+    // const { open, modalOpen, modalClose } = useModal();
     const [petPlant, setPetPlant] = useState<DiaryEntry>({
         diaryId: 8,
         image: './plantimg.png',
@@ -76,21 +76,18 @@ const MyPage: React.FC = () => {
         navigate('/plants'); // 등록하기 버튼 클릭 시 /plants로 이동
     };
 
-    // 갤러리 및 추가 버튼
-    const toggleButtons = () => {
-        if (open) modalClose();
-        else modalOpen();
-    };
-    const {
-        data: petPlantDate,
-        isLoading,
-        isError,
-    } = useQuery('petPlant', () => myplantApi.get('/api/diaries'));
+    // // 갤러리 및 추가 버튼
+    // const toggleButtons = () => {
+    //     if (open) modalClose();
+    //     else modalOpen();
+    // };
+    const { data: petPlantDate, isLoading, isError } = useQuery('petPlant', () => myplantApi.get('/api/diaries'));
 
     useEffect(() => {
         if (petPlantDate) {
-            console.log(petPlantDate);
-            setPetPlant(petPlantDate[8]);
+            console.log(petPlantDate); 
+            setPetPlant(petPlantDate[0]);
+
         }
     }, [petPlantDate]);
 

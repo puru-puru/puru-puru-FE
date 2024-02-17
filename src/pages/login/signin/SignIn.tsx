@@ -5,14 +5,14 @@ import {
     Heading,
     SignInBotten,
     SignUpBotten,
-    SocialBotten,
-    SocialContainer,
-    SocialDescription,
+    // SocialBotten,
+    // SocialContainer,
+    // SocialDescription,
 } from './SignIn.styles'; // 에러 메시지를 표시할 컴포넌트 추가
 import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { useNavigate } from 'react-router-dom';
-import SocialKakao from '../social/SocialKakao';
-import SocialGoogle from '../social/SocialGoogle';
+// import SocialKakao from '../social/SocialKakao';
+// import SocialGoogle from '../social/SocialGoogle';
 import { signinApi } from '../../../api/http';
 import { SharedInput } from '../../Shared.styles';
 
@@ -76,13 +76,11 @@ const SignIn: React.FC = () => {
             // 서버 응답 오류 처리
             if (error.response) {
                 const statusCode = error.response.status;
-                const errorMessage = error.response.data.message;
                 if (statusCode === 404) {
-                    setError(errorMessage);
+                    setError('서버주소를 찾을수가 없습니다.');
                 }
             }
-            // 그 외의 오류는 일반적인 알림으로 표시
-            setError(error.toString());
+            setError('회원가입해주세요');
         }
     };
 
@@ -124,13 +122,13 @@ const SignIn: React.FC = () => {
                 <SignUpBotten onClick={handleSignUp} type="button">
                     회원가입하기
                 </SignUpBotten>
-                <SocialContainer>
+                {/* <SocialContainer>
                     <SocialDescription>SNS 계정으로 간편하게 가입하세요</SocialDescription>
                     <SocialBotten>
                         <SocialGoogle />
                         <SocialKakao />
                     </SocialBotten>
-                </SocialContainer>
+                </SocialContainer> */}
             </div>
         </LoginContainer>
     );

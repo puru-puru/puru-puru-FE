@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
             <div style={FooterStyles}>
                 <Link to="/boardtest" style={FooterItemStyles}><img src="./test_img.svg" alt="test" /></Link >
                 <Link to="/myplant" style={FooterItemStyles}><img src="./potted_img.svg" alt="potted" /></Link>
-                <li style={FooterItemStyles}><img src="./diversity_img.svg" alt="diversity" /></li>
+                <Link to="/community" style={FooterItemStyles}><img src="./diversity_img.svg" alt="diversity" /></Link>
                 <Link to="/myprofile" style={FooterItemStyles}><img src="./grid_img.svg" alt="grid" /></Link>
             </div>
         </>
