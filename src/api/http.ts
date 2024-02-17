@@ -1,6 +1,13 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import { ApiResponse, PetPlant, SearchApiResponse, User, UserWithConfirmPassword } from './User';
+import {
+    ApiResponse,
+    DiaryEntry,
+    PlantData,
+    SearchApiResponse,
+    User,
+    UserWithConfirmPassword,
+} from './User';
 export const axios = Axios.create({
     baseURL: 'https://www.purupuru.store/',
 });
@@ -63,7 +70,6 @@ export const http = {
     },
 };
 
-
 // 제네릭 타입을 지정함으로써 코드의 재사용성을 높이고, 함수를 호출할 때 요청과 응답의 타입을 명시적으로 지정하여 타입 안정성을 확보할 수 있습니다.
 // 로그인
 export const signinApi = {
@@ -100,7 +106,7 @@ export const nameApi = {
 
 // 반려식물 페이지
 export const myplantApi = {
-    get: async function myplantApi<Response = PetPlant>(url: string) {
+    get: async function myplantApi<Response = DiaryEntry>(url: string) {
         const res = await axios.get<Response>(url);
         return res.data;
     },
@@ -111,7 +117,7 @@ export const registrationApi = {
     post: async function registrationApiPost(formData: FormData) {
         try {
             const response = await axios.post('/api/diaries', formData);
-            console.log(response)
+            console.log(response);
             return response.data;
         } catch (error: any) {
             // 에러 처리
@@ -119,7 +125,7 @@ export const registrationApi = {
             if (error.response) {
                 console.error('서버 응답 데이터:', error.response.data);
             }
-            throw error; 
+            throw error;
         }
     },
 };
@@ -130,4 +136,36 @@ export const searchApi = {
         const res = await axios.get<Response>(url);
         return res.data;
     },
-}
+};
+
+// 검색 결과 등록
+export const searchresultsApi = {
+    post: async function searchresultsApi<Request = unknown, Response = string>(
+        url: string,
+        data?: Request,
+    ) {
+        const res = await axios.post<Response>(url, data);
+        return res.data;
+    },
+};
+
+// 검색결과 없을때 새로 등록
+export const plantdataApi = {
+    post: async function plantdataApi<Request = PlantData, Response = string>(
+        url: string,
+        data?: Request,
+    ) {
+        const res = await axios.post<Response>(url, data);
+        return res.data;
+    },
+};
+
+export const diariesApi = {
+    patch: async function diariesApi<Request = string, Response = string>(
+        url: string,
+        data?: Request,
+    ) {
+        const res = await axios.patch<Response>(url, data);
+        return res.data;
+    },
+};

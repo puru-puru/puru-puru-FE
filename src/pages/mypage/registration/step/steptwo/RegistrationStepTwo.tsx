@@ -5,28 +5,34 @@ import SearchCompleted from '../searchcompleted/SearchCompleted';
 import { searchApi } from '../../../../../api/http';
 
 export const RegistrationStepTwo: React.FC = () => {
-    const [searchItem, setSearchItem] = useState<string>('');
+    const [searchItem, setSearchItem] = useState('');
 
-    const [selectedCard, setSelectedCard] = useState<string>(); // 선택된 카드를 추적하기 위한 상태
+    const [selectedCard, setSelectedCard] = useState<number>(); // 선택된 카드를 추적하기 위한 상태
     const [searchCompleted, setSearchCompleted] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const itemsPerPage = 6;
     const [plants, setPlants] = useState([
         {
-            plantId: '0',
-            name: '나팔꽃',
-            image: './plantimg.png',
-            content: '물은 몇번 주어야 한다.',
-        },
+            plantsId: 1,
+            plantName: "동백나무",
+            type: "차나무과",
+            image: "https://img.marieclairekorea.com/2021/04/mck_60669511f0aea.jpg",
+            content: "1년이 고비, 관리의 보상으로 꽃망울을 터트려 준다. 물을 충분히 주되, 습하지 않도록 유의할 것.",
+            tag: "#다채로운 #낭만적인 #수수한"
+            },
         
     ]);
 
     const handleSearch = async () => {
         setSearchCompleted(true);
         try {
-            const response = await searchApi.get(`/api/plants/serch?query=${searchItem}`);
-            console.log(response);
-            setPlants(response.data.data);
+            const response = await searchApi.get(`/api/plants/search/${searchItem}`);
+            console.log(response); 
+            if (Array.isArray(response)) {
+                setPlants(response);
+            } else {
+                console.error('서버에서 반환된 데이터가 배열이 아닙니다:', response);
+            }
             
         } catch (error: any) {
             // 에러 처리
@@ -54,7 +60,7 @@ export const RegistrationStepTwo: React.FC = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
 
-    const handleCardClick = (plantId: string) => {
+    const handleCardClick = (plantId: number) => {
         setSelectedCard(plantId); // 선택된 카드 업데이트
     };
 
@@ -82,14 +88,14 @@ export const RegistrationStepTwo: React.FC = () => {
                         .map((plant) => (
                             <div
                                 className={`card ${
-                                    plant.plantId === selectedCard ? 'selected' : ''
+                                    plant.plantsId === selectedCard ? 'selected' : ''
                                 }`}
-                                key={plant.plantId}
-                                onClick={() => handleCardClick(plant.plantId)}
+                                key={plant.plantsId}
+                                onClick={() => handleCardClick(plant.plantsId)}
                             >
                                 <img src={plant.image} className="card-img-top" alt="..." />
                                 <div className="card-body">
-                                    <p className="card-title">{plant.name}</p>
+                                    <p className="card-title">{plant.plantName}</p>
                                 </div>
                             </div>
                         ))}
