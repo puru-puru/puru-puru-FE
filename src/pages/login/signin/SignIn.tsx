@@ -63,7 +63,9 @@ const SignIn: React.FC = () => {
                 email: '',
                 password: '',
             });
-            navigate('/service');
+            if(Cookies.get('Nickname')){
+                navigate('/mainpage')
+            }else navigate('/service');
             // if (response.status === 200) {
             //     setError(response.data.message);
             //     setUser({

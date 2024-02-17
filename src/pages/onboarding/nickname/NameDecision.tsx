@@ -10,6 +10,7 @@ import {
 } from './NameDecision.styles';
 import { useNavigate } from 'react-router-dom';
 import { nameApi } from '../../../api/http';
+import Cookies from 'js-cookie'; 
 
 const NameDecision: React.FC = () => {
     const navigate = useNavigate();
@@ -61,6 +62,8 @@ const NameDecision: React.FC = () => {
                         errorMessage: '',
                     }));
                     console.log('API 요청 성공:', response);
+
+                    Cookies.set('Nickname', nameInfo.name);
                     navigate('/mainpage');
                 } catch (error) {
                     // API 요청 실패 시 처리
