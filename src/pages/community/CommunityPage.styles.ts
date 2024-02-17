@@ -71,7 +71,7 @@ export const PostContainer = styled.div`
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease; 
     &:hover {
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); 
     }
 `;
 export const PostImg = styled.img`
