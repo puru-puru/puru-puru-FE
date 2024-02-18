@@ -2,6 +2,7 @@ import Axios from 'axios';
 import Cookies from 'js-cookie';
 import {
     ApiResponse,
+    CommunityApiResponse,
     DiaryEntry,
     PlantData,
     SearchApiResponse,
@@ -176,3 +177,11 @@ export const diariesApi = {
         return res.data;
     },
 };
+
+export const communityApi = {
+    get: async function searchApi<Response = CommunityApiResponse>(url: string) {
+        const res = await axios.get<Response>(url);
+        return res.data;
+    },
+};
+

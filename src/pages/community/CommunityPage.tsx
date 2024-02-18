@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { axios } from '../../api/http';
+import { communityApi } from '../../api/http';
 import {
     CompositionButton,
     PostButtonBox,
@@ -55,9 +55,9 @@ const CommunityPage: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/api/boards');
+                const response = await communityApi.get('/api/boards');
                 console.log(response);
-                setPost(response.data.data);
+                setPost(response.data);
             } catch (error) {
                 console.error('Error: ', error);
             }
@@ -88,7 +88,7 @@ const CommunityPage: React.FC = () => {
                     {post?.map((post) => (
                         <PostContainer key={post.boardId}>
                             <div>
-                            {post.author?.nickname && <Nickname>{post.author?.nickname}</Nickname>}
+                            {post.author && post.author.nickname && <Nickname>{post.author.nickname}</Nickname>}
                                 <PostImg src={post.image} alt="" />
                             </div>
                             <PostTextContainer>

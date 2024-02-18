@@ -17,7 +17,7 @@ export interface ApiResponse {
 export interface PetPlantFormData {
     name: string;
     plantAt: string;
-    image: File | null; 
+    image: File | null;
 }
 
 export interface SelectedCardProps {
@@ -25,7 +25,7 @@ export interface SelectedCardProps {
 }
 
 export interface SearchInProgressProps {
-    searchCompleted: boolean; 
+    searchCompleted: boolean;
     setSearchCompleted: React.Dispatch<React.SetStateAction<boolean>>;
     searchItem: string;
 }
@@ -34,41 +34,59 @@ export interface SearchInProgressProps {
 interface UserPlant {
     userplantId: number;
     Plant: {
-      plantName: string;
-      type: string;
-      content: string;
+        plantName: string;
+        type: string;
+        content: string;
     };
-  }
-  
-  interface SavedTemplelates {
+}
+
+interface SavedTemplelates {
     id: number;
     answer: string;
     Templelate: {
-      question: string;
+        question: string;
     };
-  } 
-  
-  export interface DiaryEntry {
+}
+
+export interface DiaryEntry {
     diaryId: number;
     image: string;
     name: string;
     plantAt: string;
     UserPlant: UserPlant;
     SavedTemplelates: SavedTemplelates[];
-  }
-  
-  export interface SearchApiResponse {
+}
+
+export interface SearchApiResponse {
     data?: any;
     plantsId: number;
     plantName: string;
     type: string;
     image: string;
-    content:string;
-    tag:string;
-  }
+    content: string;
+    tag: string;
+}
 
-  export interface PlantData{
+export interface PlantData {
     plantName: string;
     type: string;
     content: string;
-  }
+}
+
+// 커뮤니티 페이지
+
+export interface CommunityPost {
+  boardId: number;
+  title: string;
+  image: string;
+  content: string;
+  createdAt: string;
+  author: {
+      nickname: string;
+  };
+}
+
+
+export interface CommunityApiResponse {
+  data: CommunityPost[];
+}
