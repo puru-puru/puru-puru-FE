@@ -10,12 +10,9 @@ export const GlobalStyles = createGlobalStyle`
 }
 * {
         box-sizing: border-box;
-
         font-family: 'Pretendard';
-        /* letter-spacing: -1.2px; */
     }
 
-    /* 어두운 배경 설정 */
     .dark-overlay {
         position: fixed;
         top: 0;

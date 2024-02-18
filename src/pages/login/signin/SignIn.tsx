@@ -30,11 +30,11 @@ const SignIn: React.FC = () => {
         return emailRegex.test(email);
     };
     
-    // 이메일과 비밀번호가 5자 이상 입력되었을 때 isChecked를 true로 설정
+
     useEffect(() => {
         const isEmailValid = user.email.length > 0 && validateEmail(user.email);
         const isPasswordValid = user.password.length >= 5;
-        // 토큰에 대한 만료 되었는지 유효성 검사 필요
+
         const accessTokenExpiration = Cookies.get('AccessToken');
         const nicknameExists = Cookies.get('Nickname');
 
@@ -52,7 +52,6 @@ const SignIn: React.FC = () => {
 
     const handleLogin = async () => {
         try {
-            // 아이디 또는 비밀번호가 빈 경우 에러 메시지 표시
             if (user.email === '' || user.password === '') {
                 setError('아이디와 비밀번호를 입력해주세요');
                 return;
@@ -72,16 +71,8 @@ const SignIn: React.FC = () => {
             } else {
                 navigate('/users');
             }
-            // if (response.status === 200) {
-            //     setError(response.data.message);
-            //     setUser({
-            //         email: '',
-            //         password: '',
-            //     });
-            //     navigate('/service');
-            // }
+
         } catch (error: any) {
-            // 서버 응답 오류 처리
             if (error.response) {
                 const statusCode = error.response.status;
                 if (statusCode === 404) {
@@ -119,7 +110,7 @@ const SignIn: React.FC = () => {
                             setUser({ ...user, password: e.target.value })
                         }
                     />
-                    {/* 에러 메시지를 표시하는 컴포넌트 추가 */}
+
                     {error && <ErrorMessage>{error}</ErrorMessage>}
                 </div>
 

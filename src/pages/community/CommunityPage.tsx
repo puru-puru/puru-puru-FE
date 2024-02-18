@@ -31,26 +31,6 @@ const CommunityPage: React.FC = () => {
                 nickname: 'test',
             },
         },
-        {
-            boardId: 2,
-            title: '테스222',
-            image: 'https://purupuru-bk.s3.ap-northeast-2.amazonaws.com/test/1708117236417.png',
-            content: '테스트222',
-            createdAt: '2024-02-16 21:00:36',
-            author: {
-                nickname: 'test',
-            },
-        },
-        {
-            boardId: 3,
-            title: '테스222',
-            image: 'https://purupuru-bk.s3.ap-northeast-2.amazonaws.com/test/1708117236417.png',
-            content: '테스트222',
-            createdAt: '2024-02-16 21:00:36',
-            author: {
-                nickname: 'test',
-            },
-        },
     ]);
     useEffect(() => {
         const fetchData = async () => {

@@ -20,7 +20,6 @@ const LayoutContent = styled.div`
     overflow-y: auto;
     margin: 0;
     position: relative;
-    /* padding: 20px; */
     border: 1px solid gray;
     box-sizing: border-box;
 `;

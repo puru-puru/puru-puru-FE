@@ -21,7 +21,6 @@ const SearchCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
             await searchresultsApi.post(`/api/plants/${selectedCard}/save`);
             navigate('/myplant');
         } catch (error: any) {
-            // 에러 처리
             console.error('에러 발생:', error);
             if (error.response) {
                 console.error('서버 응답 데이터:', error.response.data);
