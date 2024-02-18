@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import {
     ApiResponse,
     CommunityApiResponse,
+    CommunityFormData,
     DiaryEntry,
     PlantData,
     SearchApiResponse,
@@ -144,10 +145,8 @@ export const searchApi = {
         const res = await axios.get<Response>(url);
         return res.data;
     },
-};
-
+    
 // 검색 결과 등록
-export const searchresultsApi = {
     post: async function searchresultsApi<Request = unknown, Response = string>(
         url: string,
         data?: Request,
@@ -156,6 +155,8 @@ export const searchresultsApi = {
         return res.data;
     },
 };
+
+
 
 // 검색결과 없을때 새로 등록
 export const plantdataApi = {
@@ -168,6 +169,8 @@ export const plantdataApi = {
     },
 };
 
+
+// 일지 수정
 export const diariesApi = {
     patch: async function diariesApi<Request = string, Response = string>(
         url: string,
@@ -178,9 +181,18 @@ export const diariesApi = {
     },
 };
 
+
+// 커뮤니티 페이지
 export const communityApi = {
-    get: async function searchApi<Response = CommunityApiResponse>(url: string) {
+    get: async function communityApi<Response = CommunityApiResponse>(url: string) {
         const res = await axios.get<Response>(url);
+        return res.data;
+    },
+    post: async function communitywriteApi<Request = CommunityFormData, Response = string>(
+        url: string,
+        data?: Request,
+    ) {
+        const res = await axios.post<Response>(url, data);
         return res.data;
     },
 };

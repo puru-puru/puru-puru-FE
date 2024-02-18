@@ -69,7 +69,7 @@ const SignIn: React.FC = () => {
             if (nicknameExists) {
                 navigate('/mainpage');
             } else {
-                navigate('/users');
+                navigate('/service');
             }
 
         } catch (error: any) {

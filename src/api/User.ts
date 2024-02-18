@@ -24,11 +24,6 @@ export interface SelectedCardProps {
     selectedCard: number | undefined;
 }
 
-export interface SearchInProgressProps {
-    searchCompleted: boolean;
-    setSearchCompleted: React.Dispatch<React.SetStateAction<boolean>>;
-    searchItem: string;
-}
 
 // 반려식물 페이지
 interface UserPlant {
@@ -89,4 +84,10 @@ export interface CommunityPost {
 
 export interface CommunityApiResponse {
   data: CommunityPost[];
+}
+
+export interface CommunityFormData {
+  title: string;
+  content: string;
+  image: File | null;
 }

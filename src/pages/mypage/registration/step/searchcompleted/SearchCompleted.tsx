@@ -4,7 +4,7 @@ import { currentStepState } from '../../../../../recoil/atom';
 import { useRecoilState } from 'recoil';
 import { FindOtherPlantsButton, SavePlantsButton, SearchCompletedContainer } from './SearchCompleted.styles';
 import { SelectedCardProps } from '../../../../../api/User';
-import { searchresultsApi } from '../../../../../api/http';
+import { searchApi } from '../../../../../api/http';
 
 
 
@@ -18,7 +18,7 @@ const SearchCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
     const handleSelect = async () => {
         
         try {
-            await searchresultsApi.post(`/api/plants/${selectedCard}/save`);
+            await searchApi.post(`/api/plants/${selectedCard}/save`);
             navigate('/myplant');
         } catch (error: any) {
             console.error('에러 발생:', error);
