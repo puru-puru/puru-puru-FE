@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { SharedButton } from "../../../../Shared.styles";
 
-export const SearchCompletedContainer = styled.div`
+export const SelectionCompletedContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;

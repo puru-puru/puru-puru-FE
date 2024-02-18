@@ -90,11 +90,9 @@ export const RegistrationStepOne: React.FC = () => {
             <SetImgContainer>
                 <p>이미지 업로드</p>
                 <PreviewContainer>
-                    {/* 미리보기 */}
                     {imageBase64 && <PreviewImage src={imageBase64} alt="preview-img" />}
 
                     <form action="">
-                        {/* 파일 선택 input 요소 */}
                         <input
                             type="file"
                             id="profile-upload"
@@ -104,7 +102,6 @@ export const RegistrationStepOne: React.FC = () => {
                             style={{ display: 'none' }}
                         />
 
-                        {/* 업로드 버튼 */}
                         <label htmlFor="profile-upload">
                             <UploadButton type="button" onClick={handleClickFileInput}>
                                 <img src="./Plus_Icon.svg" alt="PlusIcon" />

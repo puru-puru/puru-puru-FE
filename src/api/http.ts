@@ -5,7 +5,7 @@ import {
     CommunityApiResponse,
     CommunityFormData,
     DiaryEntry,
-    PlantData,
+    newPlantData,
     SearchApiResponse,
     User,
     UserWithConfirmPassword,
@@ -169,7 +169,7 @@ export const searchApi = {
 
 // 검색결과 없을때 새로 등록
 export const plantdataApi = {
-    post: async function plantdataApi<Request = PlantData, Response = string>(
+    post: async function plantdataApi<Request = newPlantData, Response = string>(
         url: string,
         data?: Request,
     ) {

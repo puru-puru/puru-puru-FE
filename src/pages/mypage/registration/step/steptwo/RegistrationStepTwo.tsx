@@ -1,30 +1,22 @@
 import React, { useState } from 'react';
 import { PagesContainer, SearchButton, SearchButtonContainer, SearchContainer, SearchInput } from './RegistrationStepTwo.styles';
 import { HomeRecent } from './PlantCard.styles';
-import SearchCompleted from '../searchcompleted/SearchCompleted';
+import SelectionCompleted from '../selection/SelectionCompleted';
 import { searchApi } from '../../../../../api/http';
+import { Plants } from '../../../../../api/model';
 
 export const RegistrationStepTwo: React.FC = () => {
     const [searchItem, setSearchItem] = useState('');
 
     const [selectedCard, setSelectedCard] = useState<number>(); // 선택된 카드를 추적하기 위한 상태
-    const [searchCompleted, setSearchCompleted] = useState<boolean>(false);
+    const [selectionCompleted, setSelectionCompleted] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const itemsPerPage = 6;
-    const [plants, setPlants] = useState([
-        {
-            plantsId: 1,
-            plantName: "동백나무",
-            type: "차나무과",
-            image: "https://img.marieclairekorea.com/2021/04/mck_60669511f0aea.jpg",
-            content: "1년이 고비, 관리의 보상으로 꽃망울을 터트려 준다. 물을 충분히 주되, 습하지 않도록 유의할 것.",
-            tag: "#다채로운 #낭만적인 #수수한"
-            },
-        
-    ]);
+    const [plants, setPlants] = useState<Plants[]>([]);
+    
 
     const handleSearch = async () => {
-        setSearchCompleted(true);
+        setSelectionCompleted(true);
         try {
             const response = await searchApi.get(`/api/plants/search/${searchItem}`);
             console.log(response); 
@@ -66,7 +58,7 @@ export const RegistrationStepTwo: React.FC = () => {
 
     // 재 검색
     const handleReSearch = () => {
-        setSearchCompleted(false);
+        setSelectionCompleted(false);
     };
 
     return (
@@ -118,16 +110,16 @@ export const RegistrationStepTwo: React.FC = () => {
 
 
             <SearchButtonContainer>
-                {!searchCompleted && (
-                    <SearchButton onClick={handleSearch} $isChecked={!searchCompleted}>
+                {!selectionCompleted && (
+                    <SearchButton onClick={handleSearch} $isChecked={!selectionCompleted}>
                         검색
                     </SearchButton>
                 )}
-                {searchCompleted &&<>
+                {selectionCompleted &&<>
                 <PagesContainer>
                 <button onClick={handleReSearch}>재검색</button>
                 </PagesContainer>
-                <SearchCompleted selectedCard={selectedCard} />
+                <SelectionCompleted selectedCard={selectedCard} />
                 </>
                 }
             </SearchButtonContainer>
