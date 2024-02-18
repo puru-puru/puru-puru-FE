@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SharedButton } from '../Shared.styles';
+import { SharedButton } from '../../Shared.styles';
 
 export const CommunityPostContainer = styled.form`
     display: flex;

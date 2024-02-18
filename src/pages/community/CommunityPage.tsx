@@ -1,37 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { communityApi } from '../../api/http';
 import {
-    CompositionButton,
-    PostButtonBox,
     CommunityContainer,
-    PostProFileBox,
-    PostProFileImgBox,
     PostContainer,
     PostImg,
     PostTextContainer,
     PostTitle,
     PostText,
     PostContainerScroll,
-    PostProFileTitle,
     Nickname,
-} from './CommunityPage.styles';
-import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
-
+} from './Community.styles';
+import CommunityHeader from './header/CommunityHeader';
+import { CommunityPost } from '../../api/model';
+import Spinner from '/Spin.gif';
 const CommunityPage: React.FC = () => {
-    const navigate = useNavigate();
-    const [post, setPost] = useState([
-        {
-            boardId: 1,
-            title: '테스333',
-            image: 'https://purupuru-bk.s3.ap-northeast-2.amazonaws.com/test/1708117121490.png',
-            content: '테스트3333',
-            createdAt: '2024-02-16 20:58:42',
-            author: {
-                nickname: 'test',
-            },
-        },
-    ]);
+    const [loading, setLoading] = useState(true);
+    const [post, setPost] = useState<CommunityPost[]>([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -40,43 +24,42 @@ const CommunityPage: React.FC = () => {
                 setPost(response.data);
             } catch (error) {
                 console.error('Error: ', error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchData();
     }, []);
-    const handleWriteButtonClick = () => {
-        navigate('/communityWrite');
-    };
 
-    const name = Cookies.get('Nickname') || "사용자";
     return (
         <>
             <CommunityContainer>
-                <h2>커뮤니티</h2>
-                <PostProFileBox>
-                    <PostProFileImgBox>
-                        <img src="./person.svg" alt="카드 이미지" />
-                    </PostProFileImgBox>
-                    <PostProFileTitle>
-                        <span>{name}</span>님
-                    </PostProFileTitle>
-                </PostProFileBox>
-                <PostButtonBox>
-                    <CompositionButton onClick={handleWriteButtonClick}>글쓰기</CompositionButton>
-                </PostButtonBox>
+                <CommunityHeader />
                 <PostContainerScroll>
-                    {post?.map((post) => (
-                        <PostContainer key={post.boardId}>
-                            <div>
-                            {post.author?.nickname ? <Nickname>{post.author.nickname}</Nickname> : <Nickname>익명</Nickname>}
-                                <PostImg src={post.image} alt="" />
-                            </div>
-                            <PostTextContainer>
-                                <PostTitle>{post.title}</PostTitle>
-                                <PostText>{post.content}</PostText>
-                            </PostTextContainer>
-                        </PostContainer>
-                    ))}
+                    {loading ? (
+                        <img
+                            src={Spinner}
+                            alt="loding"
+                            style={{ width: '100px', height: '100px' }}
+                        />
+                    ) : (
+                        post?.map((post) => (
+                            <PostContainer key={post.boardId}>
+                                <div>
+                                    {post.author?.nickname ? (
+                                        <Nickname>{post.author.nickname}</Nickname>
+                                    ) : (
+                                        <Nickname>익명</Nickname>
+                                    )}
+                                    <PostImg src={post.image} alt="" />
+                                </div>
+                                <PostTextContainer>
+                                    <PostTitle>{post.title}</PostTitle>
+                                    <PostText>{post.content}</PostText>
+                                </PostTextContainer>
+                            </PostContainer>
+                        ))
+                    )}
                 </PostContainerScroll>
             </CommunityContainer>
         </>

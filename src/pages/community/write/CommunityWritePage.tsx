@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { axios } from '../../api/http';
+import { communityApi } from '../../../api/http';
 import {
     CommunityPostContainer,
     CommunityPostHeader,
@@ -15,17 +15,14 @@ import {
     CommunityUploadButton,
     PostButton,
 } from './CommunityWritePage.styles';
-import { SharedInput } from '../Shared.styles';
+import { SharedInput } from '../../Shared.styles';
+import { CommunityFormData } from '../../../api/model';
 
-interface PetPlantFormData {
-    title: string;
-    content: string;
-    image: File | null;
-}
+
 
 const CommunityWritePage: React.FC = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState<PetPlantFormData>({
+    const [formData, setFormData] = useState<CommunityFormData>({
         title: '',
         content: '',
         image: null,
@@ -78,7 +75,7 @@ const CommunityWritePage: React.FC = () => {
             }
             formDataObj.append('content', formData.content);
 
-            await axios.post('/api/boards', formDataObj);
+            await communityApi.post('/api/boards', formDataObj);
 
             navigate(-1);
         } catch (error) {

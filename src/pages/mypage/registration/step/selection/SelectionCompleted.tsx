@@ -2,13 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { currentStepState } from '../../../../../recoil/atom';
 import { useRecoilState } from 'recoil';
-import { FindOtherPlantsButton, SavePlantsButton, SearchCompletedContainer } from './SearchCompleted.styles';
-import { SelectedCardProps } from '../../../../../api/User';
-import { searchresultsApi } from '../../../../../api/http';
+import { FindOtherPlantsButton, SavePlantsButton, SelectionCompletedContainer } from './SelectionCompleted.styles';
+import { SelectedCardProps } from '../../../../../api/model';
+import { searchApi } from '../../../../../api/http';
 
 
 
-const SearchCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
+const SelectionCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
     const navigate = useNavigate();
     const [currentStep, setCurrentStep] = useRecoilState<number>(currentStepState);
     const handleNextStep = () => {
@@ -18,7 +18,7 @@ const SearchCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
     const handleSelect = async () => {
         
         try {
-            await searchresultsApi.post(`/api/plants/${selectedCard}/save`);
+            await searchApi.post(`/api/plants/${selectedCard}/save`);
             navigate('/myplant');
         } catch (error: any) {
             console.error('에러 발생:', error);
@@ -28,7 +28,7 @@ const SearchCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
         }
     };
     return (
-        <SearchCompletedContainer>
+        <SelectionCompletedContainer>
             <FindOtherPlantsButton 
             onClick={handleNextStep}>
                 관련 식물이 없어요
@@ -37,8 +37,8 @@ const SearchCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
             $isChecked={!selectedCard}
             disabled={!selectedCard}
             onClick={handleSelect}>네, 찾았어요</SavePlantsButton>
-        </SearchCompletedContainer>
+        </SelectionCompletedContainer>
     );
 };
 
-export default SearchCompleted;
+export default SelectionCompleted;

@@ -3,12 +3,13 @@ import Cookies from 'js-cookie';
 import {
     ApiResponse,
     CommunityApiResponse,
+    CommunityFormData,
     DiaryEntry,
-    PlantData,
+    newPlantData,
     SearchApiResponse,
     User,
     UserWithConfirmPassword,
-} from './User';
+} from './model';
 export const axios = Axios.create({
     baseURL: 'https://www.purupuru.store/',
 });
@@ -118,7 +119,16 @@ export const myplantApi = {
         const res = await axios.get<Response>(url);
         return res.data;
     },
+    // 일지 수정
+    patch: async function diariesApi<Request = string, Response = string>(
+        url: string,
+        data?: Request,
+    ) {
+        const res = await axios.patch<Response>(url, data);
+        return res.data;
+    },
 };
+
 
 // 반려식물 등록
 export const registrationApi = {
@@ -144,10 +154,8 @@ export const searchApi = {
         const res = await axios.get<Response>(url);
         return res.data;
     },
-};
-
+    
 // 검색 결과 등록
-export const searchresultsApi = {
     post: async function searchresultsApi<Request = unknown, Response = string>(
         url: string,
         data?: Request,
@@ -157,9 +165,11 @@ export const searchresultsApi = {
     },
 };
 
+
+
 // 검색결과 없을때 새로 등록
 export const plantdataApi = {
-    post: async function plantdataApi<Request = PlantData, Response = string>(
+    post: async function plantdataApi<Request = newPlantData, Response = string>(
         url: string,
         data?: Request,
     ) {
@@ -168,19 +178,20 @@ export const plantdataApi = {
     },
 };
 
-export const diariesApi = {
-    patch: async function diariesApi<Request = string, Response = string>(
+
+
+
+// 커뮤니티 페이지
+export const communityApi = {
+    get: async function communityApi<Response = CommunityApiResponse>(url: string) {
+        const res = await axios.get<Response>(url);
+        return res.data;
+    },
+    post: async function communitywriteApi<Request = CommunityFormData, Response = string>(
         url: string,
         data?: Request,
     ) {
-        const res = await axios.patch<Response>(url, data);
-        return res.data;
-    },
-};
-
-export const communityApi = {
-    get: async function searchApi<Response = CommunityApiResponse>(url: string) {
-        const res = await axios.get<Response>(url);
+        const res = await axios.post<Response>(url, data);
         return res.data;
     },
 };

@@ -3,9 +3,10 @@ import { NonExistentContainer, NonExistentNextButton, NonExistentText } from './
 import { SharedInput } from '../../../../Shared.styles';
 import { useNavigate } from 'react-router-dom';
 import { plantdataApi } from '../../../../../api/http';
+import { newPlantData } from '../../../../../api/model';
 
 export const RegistrationListStep: React.FC = () => {
-    const [plantData, setPlantData] = useState({
+    const [plantData, setPlantData] = useState<newPlantData>({
         plantName: '',
         type: '',
         content: ''
