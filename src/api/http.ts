@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 import {
     ApiResponse,
     DiaryEntry,
+    MissionData,
+    MyProfile,
     PlantData,
     SearchApiResponse,
     User,
@@ -169,3 +171,29 @@ export const diariesApi = {
         return res.data;
     },
 };
+
+// 메인 페이지 유저 닉네임 조회
+export const getnameApi = {
+    get: async function getnameApi<Response = MyProfile>(url: string) {
+        const res = await axios.get<Response>(url);
+        return res.data;
+    },
+};
+
+// 메인 페이지 추천 미션
+export const getMissionApi = {
+    get: async function getMissionApi<Response = >(url: string) {
+        const res = await axios.get<Response>(url);
+        return res.data;
+    },
+};
+
+
+// 메인 페이지 추천 식물
+
+export const getRecommendPlantApi = {
+    get: async function getRecommendPlantApi<Response = >(url: string) {
+        const res = await axios.get<Response>(url)
+        return res.data;
+    }
+}

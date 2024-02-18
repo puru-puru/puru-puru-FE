@@ -2,12 +2,10 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import data from './mission.json';
+import mockData from './mission.json';
 import { CSSProperties } from 'styled-components';
-
 const TodayMission: React.FC = () => {
-    // 오늘의 미션 mock data
-    const mission = data;
+    const mission = mockData;
     // 캐러셀 라이브러리 세팅
     const settings = {
         dots: true,

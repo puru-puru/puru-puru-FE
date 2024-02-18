@@ -22,6 +22,7 @@ const PlantRecommend: React.FC = () => {
         cssEase: 'linear',
     };
     const plantCardLayout: CSSProperties = {
+        width: '100%',
         maxWidth: '200px',
         minHeight: '260px',
         border: '1px solid white',
@@ -38,9 +39,14 @@ const PlantRecommend: React.FC = () => {
             {plant.map((item) => {
                 return (
                     <div key={item.id}>
-                        <button style={plantCardLayout}>
+                        <div style={plantCardLayout}>
                             <img
-                                style={{ width: '170px', height: '112px', borderRadius: '15px' }}
+                                style={{
+                                    width: '170px',
+                                    height: '112px',
+                                    borderRadius: '15px',
+                                    margin: '5px 15px',
+                                }}
                                 src={item.plantImg}
                             />
                             <div
@@ -50,12 +56,15 @@ const PlantRecommend: React.FC = () => {
                                     display: 'flex',
                                     justifyContent: 'flex-start',
                                     fontWeight: '700',
-                                    marginTop: '10px',
+                                    // marginTop: '10px',
+                                    margin: '5px 15px',
                                 }}
                             >
                                 {item.plantTitle}
                             </div>
-                            <div>{item.plantContent}</div>
+                            <div style={{ width: '170px', margin: '5px 15px' }}>
+                                {item.plantContent}
+                            </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <button
                                     style={{
@@ -76,7 +85,7 @@ const PlantRecommend: React.FC = () => {
                                     <IoHeartOutline />
                                 </button>
                             </div>
-                        </button>
+                        </div>
                     </div>
                 );
             })}
