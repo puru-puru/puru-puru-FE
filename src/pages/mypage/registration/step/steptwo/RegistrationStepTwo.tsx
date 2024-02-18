@@ -52,15 +52,6 @@ export const RegistrationStepTwo: React.FC = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
 
-    const handleCardClick = (plantId: number) => {
-        setSelectedCard(plantId); // 선택된 카드 업데이트
-    };
-
-    // 재 검색
-    const handleReSearch = () => {
-        setSelectionCompleted(false);
-    };
-
     return (
         <>
             <SearchContainer>
@@ -83,7 +74,7 @@ export const RegistrationStepTwo: React.FC = () => {
                                     plant.plantsId === selectedCard ? 'selected' : ''
                                 }`}
                                 key={plant.plantsId}
-                                onClick={() => handleCardClick(plant.plantsId)}
+                                onClick={() => setSelectedCard(plant.plantsId)}
                             >
                                 <img src={plant.image} className="card-img-top" alt="..." />
                                 <div className="card-body">
@@ -117,7 +108,7 @@ export const RegistrationStepTwo: React.FC = () => {
                 )}
                 {selectionCompleted &&<>
                 <PagesContainer>
-                <button onClick={handleReSearch}>재검색</button>
+                <button onClick={() => setSelectionCompleted(false)}>재검색</button>
                 </PagesContainer>
                 <SelectionCompleted selectedCard={selectedCard} />
                 </>
