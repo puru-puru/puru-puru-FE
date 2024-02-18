@@ -91,3 +91,17 @@ export interface CommunityFormData {
   content: string;
   image: File | null;
 }
+
+// 게시글의 타입 정의
+interface Author {
+    nickname: string;
+}
+
+export interface CommunityPost {
+    boardId: number;
+    title: string;
+    image: string;
+    content: string;
+    createdAt: string;
+    author: Author;
+}

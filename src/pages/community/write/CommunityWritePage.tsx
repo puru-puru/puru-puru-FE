@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { communityApi } from '../../api/http';
+import { communityApi } from '../../../api/http';
 import {
     CommunityPostContainer,
     CommunityPostHeader,
@@ -15,8 +15,8 @@ import {
     CommunityUploadButton,
     PostButton,
 } from './CommunityWritePage.styles';
-import { SharedInput } from '../Shared.styles';
-import { CommunityFormData } from '../../api/User';
+import { SharedInput } from '../../Shared.styles';
+import { CommunityFormData } from '../../../api/model';
 
 
 

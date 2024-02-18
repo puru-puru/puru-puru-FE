@@ -12,7 +12,7 @@ import {
     UploadButton,
 } from './RegistrationStepOne.styles';
 import { registrationApi } from '../../../../../api/http';
-import { PetPlantFormData } from '../../../../../api/User';
+import { PetPlantFormData } from '../../../../../api/model';
 
 export const RegistrationStepOne: React.FC = () => {
     const [currentStep, setCurrentStep] = useRecoilState<number>(currentStepState);

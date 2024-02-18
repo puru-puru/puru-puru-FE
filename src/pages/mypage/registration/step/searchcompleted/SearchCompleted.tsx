@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { currentStepState } from '../../../../../recoil/atom';
 import { useRecoilState } from 'recoil';
 import { FindOtherPlantsButton, SavePlantsButton, SearchCompletedContainer } from './SearchCompleted.styles';
-import { SelectedCardProps } from '../../../../../api/User';
+import { SelectedCardProps } from '../../../../../api/model';
 import { searchApi } from '../../../../../api/http';
 
 

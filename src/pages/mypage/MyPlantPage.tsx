@@ -19,7 +19,7 @@ import {
     PetPlantRegisterBotten,
     PetPlantRegisterText,
 } from './MyPlantPage.styles';
-import { DiaryEntry } from '../../api/User';
+import { DiaryEntry } from '../../api/model';
 // import { useModal } from '../../hook/useModal';
 import { myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';

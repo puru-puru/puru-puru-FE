@@ -9,7 +9,7 @@ import {
     SearchApiResponse,
     User,
     UserWithConfirmPassword,
-} from './User';
+} from './model';
 export const axios = Axios.create({
     baseURL: 'https://www.purupuru.store/',
 });
@@ -119,7 +119,16 @@ export const myplantApi = {
         const res = await axios.get<Response>(url);
         return res.data;
     },
+    // 일지 수정
+    patch: async function diariesApi<Request = string, Response = string>(
+        url: string,
+        data?: Request,
+    ) {
+        const res = await axios.patch<Response>(url, data);
+        return res.data;
+    },
 };
+
 
 // 반려식물 등록
 export const registrationApi = {
@@ -170,16 +179,6 @@ export const plantdataApi = {
 };
 
 
-// 일지 수정
-export const diariesApi = {
-    patch: async function diariesApi<Request = string, Response = string>(
-        url: string,
-        data?: Request,
-    ) {
-        const res = await axios.patch<Response>(url, data);
-        return res.data;
-    },
-};
 
 
 // 커뮤니티 페이지
