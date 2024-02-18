@@ -16,7 +16,7 @@ import {
     Nickname,
 } from './CommunityPage.styles';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+
 
 const CommunityPage: React.FC = () => {
     const navigate = useNavigate();
@@ -68,7 +68,7 @@ const CommunityPage: React.FC = () => {
         navigate('/communityWrite');
     };
 
-    const name = Cookies.get('Nickname');
+    const name = localStorage.getItem('Nickname') || "사용자";
     return (
         <>
             <CommunityContainer>

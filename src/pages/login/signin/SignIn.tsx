@@ -25,7 +25,6 @@ const SignIn: React.FC = () => {
     });
     const [error, setError] = useState<string>(''); // 에러 상태 추가
 
-
     const validateEmail = (email: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -64,7 +63,7 @@ const SignIn: React.FC = () => {
                 email: '',
                 password: '',
             });
-            if(Cookies.get('Nickname')){
+            if(localStorage.getItem('Nickname')){
                 navigate('/mainpage')
             }else navigate('/service');
             // if (response.status === 200) {
