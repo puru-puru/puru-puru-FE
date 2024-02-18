@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
-
 import { OnboardingButton, OnboardingContainer } from '../OnboardingPage.styles';
 import {
     ClearButton,
@@ -11,6 +10,7 @@ import {
 } from './NameDecision.styles';
 import { useNavigate } from 'react-router-dom';
 import { nameApi } from '../../../api/http';
+
 
 const NameDecision: React.FC = () => {
     const navigate = useNavigate();
