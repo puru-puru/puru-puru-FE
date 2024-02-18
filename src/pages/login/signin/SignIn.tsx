@@ -36,10 +36,12 @@ const SignIn: React.FC = () => {
         const isPasswordValid = user.password.length >= 5;
         // 토큰에 대한 만료 되었는지 유효성 검사 필요
         const accessTokenExpiration = Cookies.get('AccessToken');
-        if(accessTokenExpiration){
-            alert('이미 로그인이 되어 있습니다.')
+        const nicknameExists = localStorage.getItem('Nickname') !== null;
+
+        if (accessTokenExpiration && nicknameExists) {
+            alert('이미 로그인되어 있습니다.');
             navigate('/mainpage');
-            return; 
+            return;
         }
         if (isEmailValid && isPasswordValid) {
             setIsChecked(true);
@@ -63,9 +65,13 @@ const SignIn: React.FC = () => {
                 email: '',
                 password: '',
             });
-            if(localStorage.getItem('Nickname') !== null){
-                navigate('/mainpage')
-            }else navigate('/service');
+            const nicknameExists = localStorage.getItem('Nickname') !== null;
+
+            if (nicknameExists) {
+                navigate('/mainpage');
+            } else {
+                navigate('/users');
+            }
             // if (response.status === 200) {
             //     setError(response.data.message);
             //     setUser({
