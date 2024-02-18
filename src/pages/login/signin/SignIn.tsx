@@ -36,7 +36,7 @@ const SignIn: React.FC = () => {
         const isPasswordValid = user.password.length >= 5;
         // 토큰에 대한 만료 되었는지 유효성 검사 필요
         const accessTokenExpiration = Cookies.get('AccessToken');
-        const nicknameExists = localStorage.getItem('Nickname') !== null;
+        const nicknameExists = Cookies.get('Nickname');
 
         if (accessTokenExpiration && nicknameExists) {
             alert('이미 로그인되어 있습니다.');
@@ -65,7 +65,7 @@ const SignIn: React.FC = () => {
                 email: '',
                 password: '',
             });
-            const nicknameExists = localStorage.getItem('Nickname') !== null;
+            const nicknameExists = Cookies.get('Nickname');
 
             if (nicknameExists) {
                 navigate('/mainpage');
