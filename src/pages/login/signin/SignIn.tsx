@@ -63,7 +63,7 @@ const SignIn: React.FC = () => {
                 email: '',
                 password: '',
             });
-            if(localStorage.getItem('Nickname')){
+            if(localStorage.getItem('Nickname') !== null){
                 navigate('/mainpage')
             }else navigate('/service');
             // if (response.status === 200) {
