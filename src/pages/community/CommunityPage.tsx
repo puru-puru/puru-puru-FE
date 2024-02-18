@@ -88,7 +88,7 @@ const CommunityPage: React.FC = () => {
                     {post?.map((post) => (
                         <PostContainer key={post.boardId}>
                             <div>
-                            {post.author && post.author.nickname && <Nickname>{post.author.nickname}</Nickname>}
+                            {post.author && post.author?.nickname && <Nickname>{post.author.nickname}</Nickname>}
                                 <PostImg src={post.image} alt="" />
                             </div>
                             <PostTextContainer>
