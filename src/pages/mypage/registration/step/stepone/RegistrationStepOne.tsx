@@ -131,7 +131,7 @@ export const RegistrationStepOne: React.FC = () => {
             <NextStepButton 
             // FormDataEntryValue | null => boolean 변환
             $isChecked={!!(formData.image && formData.name && formData.plantAt)}
-            // disabled={!formData.image && !formData.name && !formData.plantAt}
+            disabled={!formData.image && !formData.name && !formData.plantAt}
             onClick={handleNextStep}>다음</NextStepButton>
         </StepOneContainer>
     );
