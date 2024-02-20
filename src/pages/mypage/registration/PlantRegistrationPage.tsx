@@ -7,6 +7,7 @@ import { RegistrationStepTwo } from './step/steptwo/RegistrationStepTwo';
 import HorizontalStepper from './stepper/HorizontalStepper';
 import { useNavigate } from 'react-router-dom';
 import { RegistrationListStep } from './step/nonexisten/NonExistentStep';
+import { BackspaceButton } from './PlantRegistrationPage.styles';
 const PlantRegistrationPage: React.FC = () => {
     const [currentStep, setCurrentStep] = useRecoilState<number>(currentStepState);
     const navigate = useNavigate();
@@ -21,7 +22,9 @@ const PlantRegistrationPage: React.FC = () => {
     };
     return (
         <>
-            <button onClick={goToPreviousStep}>&lt;</button>
+            <BackspaceButton onClick={goToPreviousStep}>
+                <img src="./ArrowLeft.svg" alt="Backspace" />
+            </BackspaceButton>
             <PetPlantHeader>
                 <PetPlantHeaderTitle>나의 반려 식물</PetPlantHeaderTitle>
             </PetPlantHeader>
