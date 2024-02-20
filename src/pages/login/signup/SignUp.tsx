@@ -20,7 +20,7 @@ const SignUp: React.FC = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
-    // 이메일과 비밀번호가 5자 이상 입력되었을 때 isChecked를 true로 설정
+
     useEffect(() => {
         const isEmailValid = user.email.length > 0 && validateEmail(user.email);
         const isPasswordValid = user.password.length >= 5;
@@ -84,7 +84,7 @@ const SignUp: React.FC = () => {
                         <SharedInput
                             type="password"
                             value={user.password}
-                            placeholder="비밀번호를 5자 이상 입력하세요"
+                            placeholder="영문/숫자 6자~12자로 입력해 주세요"
                             onChange={(e) => setUser({ ...user, password: e.target.value })}
                         />
                         {user.password.length < 5 && user.password && <ErrorMessage>비밀번호를 5자 이상 입력하세요</ErrorMessage>}

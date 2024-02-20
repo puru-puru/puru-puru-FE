@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const MyProfilepage: React.FC = () => {
     const navigate = useNavigate();
     const [profile, setProfile] = useState({
+        userId: 1,
         nickname: '닉네임닉네임',
         email: 'nickname@naver.com',
     });
@@ -31,7 +32,9 @@ const MyProfilepage: React.FC = () => {
     return (
         <MyProfileContainer>
             <MyProfileHeader>
-            <h2><span style={{ color: '#2197BC' }}>{profile.nickname}</span>님</h2>
+            <h2>
+            {profile.nickname ?<span style={{ color: '#2197BC' }}>{profile.nickname}</span> : <span style={{ color: '#2197BC' }}>{Cookies.get('Nickname')}</span>}
+            님</h2>
             <p>{profile.email}</p>
             </MyProfileHeader>
             <TermsService />
