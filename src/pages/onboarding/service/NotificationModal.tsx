@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useModal } from '../../../hook/useModal';
+import { NotiModalButton, NotiModalContainer } from './NotificationModal.styles';
 
 const NotificationModal: React.FC = () => {
     const { open, modalOpen, modalClose } = useModal();
@@ -43,8 +44,10 @@ const NotificationModal: React.FC = () => {
                         <h2>'푸릇푸릇' 앱 푸시</h2>
                         <p style={{ whiteSpace: 'pre-line' }}>{notificationText}</p>
                     </div>
-                    <button onClick={handleAgree}>예</button>
-                    <button onClick={handleDisagree}>아니요</button>
+                    <NotiModalContainer>
+                    <NotiModalButton onClick={handleAgree}>네</NotiModalButton>
+                    <NotiModalButton onClick={handleDisagree}>아니요</NotiModalButton>
+                    </NotiModalContainer>
                 </div>
             )}
         </>

@@ -81,13 +81,16 @@ const MyPage: React.FC = () => {
     //     if (open) modalClose();
     //     else modalOpen();
     // };
-    const { data: petPlantDate, isLoading, isError } = useQuery(['petPlant'], () => myplantApi.get('/api/diaries'));
+    const {
+        data: petPlantDate,
+        isLoading,
+        isError,
+    } = useQuery(['petPlant'], () => myplantApi.get('/api/diaries'));
 
     useEffect(() => {
         if (petPlantDate) {
-            console.log(petPlantDate); 
+            console.log(petPlantDate);
             setPetPlant(petPlantDate[0]);
-
         }
     }, [petPlantDate]);
 
