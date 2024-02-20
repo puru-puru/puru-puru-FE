@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useModal } from '../../hook/useModal';
 import ModalContent from '../onboarding/service/ModalContent';
-import { CheckboxButton, CheckboxContainer } from '../onboarding/OnboardingPage.styles';
+import { CheckboxButton, CheckboxContainer } from '../onboarding/service/ServicePage.styles';
+
 
 export const TermsService: React.FC = () => {
     const { open, modalOpen, modalClose } = useModal();

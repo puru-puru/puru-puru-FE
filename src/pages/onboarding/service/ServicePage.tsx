@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-    CheckboxButton,
-    CheckboxContainer,
     OnboardingButton,
     OnboardingContainer,
     OnboardingLine,
@@ -10,6 +8,7 @@ import { useModal } from '../../../hook/useModal';
 import ModalContent from './ModalContent';
 import NotificationModal from './NotificationModal';
 import { useNavigate } from 'react-router-dom';
+import { CheckboxButton, CheckboxContainer, SeeMoreButton } from './ServicePage.styles';
 
 const ServicePage: React.FC = () => {
     const navigate = useNavigate();
@@ -103,12 +102,11 @@ const ServicePage: React.FC = () => {
                     &nbsp;
                     <label htmlFor="agree_check_terms">(필수) 서비스 이용약관</label>
                     {/* 화살표 버튼 */}
-                    <button
+                    <SeeMoreButton
                         onClick={() => handleArrowButtonClick('terms')}
-                        style={{ marginLeft: '55px' }}
                     >
-                        ➡
-                    </button>
+                        <img src="./ArrowRight.svg" alt="SeeMore" />
+                    </SeeMoreButton>
                 </CheckboxContainer>
                 <CheckboxContainer>
                     <input
@@ -121,12 +119,12 @@ const ServicePage: React.FC = () => {
                     &nbsp;
                     <label htmlFor="agree_check_privacy">(필수) 개인정보 처리방침</label>
                     {/* 화살표 버튼 */}
-                    <button
+                    <SeeMoreButton
                         onClick={() => handleArrowButtonClick('privacy')}
                         style={{ marginLeft: '40px' }}
                     >
-                        ➡
-                    </button>
+                        <img src="./ArrowRight.svg" alt="SeeMore" />
+                    </SeeMoreButton>
                 </CheckboxContainer>
             </div>
 

@@ -29,11 +29,18 @@ const SignIn: React.FC = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
-    
+
+    const validatePassword = (password: string): boolean => {
+        const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/;
+        return passwordRegex.test(password);
+    };
 
     useEffect(() => {
         const isEmailValid = user.email.length > 0 && validateEmail(user.email);
-        const isPasswordValid = user.password.length >= 5;
+        const isPasswordValid =
+            user.password.length >= 6 &&
+            user.password.length <= 12 &&
+            validatePassword(user.password);
 
         const accessTokenExpiration = Cookies.get('AccessToken');
         const nicknameExists = Cookies.get('Nickname');
@@ -71,7 +78,6 @@ const SignIn: React.FC = () => {
             } else {
                 navigate('/service');
             }
-
         } catch (error: any) {
             if (error.response) {
                 const statusCode = error.response.status;
@@ -105,7 +111,7 @@ const SignIn: React.FC = () => {
                     <SharedInput
                         type="password"
                         value={user.password}
-                        placeholder="비밀번호를 5자 이상 입력하세요"
+                        placeholder="영문/숫자 6자~12자로 입력해 주세요"
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             setUser({ ...user, password: e.target.value })
                         }

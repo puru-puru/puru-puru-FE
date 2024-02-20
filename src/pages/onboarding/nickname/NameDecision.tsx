@@ -98,8 +98,9 @@ const NameDecision: React.FC = () => {
                             type="text"
                             value={nameInfo.name}
                             onChange={handleNameInputChange}
+                            placeholder="공주는행복해"
                         />
-                        {nameInfo.name && <ClearButton onClick={handleClear}>X</ClearButton>}
+                        {nameInfo.name && <ClearButton onClick={handleClear}><img src="./Clear.svg" alt="Clear" /></ClearButton>}
                     </div>
                     {nameInfo.errorMessage && <ErrorText>{nameInfo.errorMessage}</ErrorText>}
                 </div>
@@ -108,7 +109,7 @@ const NameDecision: React.FC = () => {
                     $isChecked={nameInfo.isChecked}
                     onClick={handleNameDecisionButtonClick}
                 >
-                    확인했어요
+                    시작하기
                 </OnboardingButton>
             </OnboardingContainer>
 
