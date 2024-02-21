@@ -1,13 +1,12 @@
-import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import data from './mission.json';
-import { CSSProperties } from 'styled-components';
+import { Content } from '../../../api/main/model';
+import * as St from './TodayMission.styles';
 
-const TodayMission: React.FC = () => {
-    // 오늘의 미션 mock data
-    const mission = data;
+const TodayMission = ({ props }: { props?: Content[] }) => {
+    console.log(props);
+    const mission = props;
     // 캐러셀 라이브러리 세팅
     const settings = {
         dots: true,
@@ -16,35 +15,15 @@ const TodayMission: React.FC = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
     };
-    const missionCardLayout: CSSProperties = {
-        maxWidth: '330px',
-        height: '120px',
-        border: '1px solid rgba(218, 234, 202, 1)',
-        background: 'rgba(218, 234, 202, 1)',
-        borderRadius: '20px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '60px',
-    };
-    const missionCardContent: CSSProperties = {
-        width: '220px',
-        height: '54px',
-        fontFamily: 'sans-serif',
-        fontWeight: 700,
-        lineHeight: '32px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    };
+
     return (
         <Slider {...settings}>
-            {mission.map((item) => {
+            {mission?.map((item, index) => {
                 return (
-                    <div key={item.id}>
-                        <div style={missionCardLayout}>
-                            <div style={missionCardContent}>{item.content}</div>
-                        </div>
+                    <div key={index}>
+                        <St.MissionCardLayout>
+                            <St.MissionCardContent>{item.content}</St.MissionCardContent>
+                        </St.MissionCardLayout>
                     </div>
                 );
             })}
