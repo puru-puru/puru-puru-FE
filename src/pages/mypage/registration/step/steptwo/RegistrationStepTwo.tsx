@@ -143,7 +143,7 @@ export const RegistrationStepTwo: React.FC = () => {
 
             <SearchButtonContainer>
                 {!selectionCompleted && (
-                    <SearchButton onClick={handleSearch} $isChecked={!selectionCompleted}>
+                    <SearchButton onClick={handleSearch} $isChecked={!!searchItem} disabled={!searchItem}>
                         검색
                     </SearchButton>
                 )}

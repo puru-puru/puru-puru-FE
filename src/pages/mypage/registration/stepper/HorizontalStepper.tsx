@@ -12,7 +12,7 @@ const CustomStepper: React.FC<{ currentStep: number }> = ({ currentStep }) => {
                 {/* 불필요한 div 요소를 생성하지 않고도 여러 요소를 렌더링 */}
                 {[...Array(2)].map((_, index) => (
                     <React.Fragment key={index}>
-                        <StepperState $isActive={index + 1 <= currentStep}>{index + 1}</StepperState>
+                        <StepperState $isActive={index + 1 <= currentStep}></StepperState>
                         {index !== 1 && <StepperLine $isActive={index + 1 === currentStep} key={`line-${index}`} />}
                     </React.Fragment>
                 ))}
