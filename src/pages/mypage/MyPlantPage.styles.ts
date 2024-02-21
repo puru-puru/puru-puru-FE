@@ -102,7 +102,7 @@ export const PhotoButton = styled.button`
     position: absolute;
     left: 78.33%;
     right: 8.33%;
-    top: 45.75%;
+    top: 63.45%;
     bottom: 23.25%;
     z-index: 3;
     width: 48px;
@@ -121,7 +121,7 @@ export const PlantButton = styled.button`
     position: absolute;
     left: 78.33%;
     right: 8.33%;
-    top: 61.75%;
+    top: 70.75%;
     bottom: 23.25%;
     z-index: 3;
     width: 48px;
