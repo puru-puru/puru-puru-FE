@@ -6,11 +6,10 @@ export const PetPlantHeader = styled.div`
 `;
 export const PetPlantHeaderTitle = styled.h2`
     margin-left: 10px;
+    margin-top: 0px;
 `;
 export const PetPlantCardContainer = styled.div`
     display: flex;
-    margin-top: 40px;
-    
 `;
 export const PetPlantHeaderImg = styled.img`
     width: 200px;

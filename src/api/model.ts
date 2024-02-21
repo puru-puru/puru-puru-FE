@@ -44,7 +44,7 @@ interface SavedTemplelates {
 }
 
 export interface DiaryEntry {
-    diaryId: number;
+    diaryId: number ;
     image: string;
     name: string;
     plantAt: string;
