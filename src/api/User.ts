@@ -3,14 +3,6 @@ export interface User {
     password: string;
 }
 
-export interface MyProfile {
-    data: {
-        email: string;
-        nickname: string;
-        userId: number;
-    };
-}
-
 export interface UserWithConfirmPassword extends User {
     confirmPassword: string;
 }

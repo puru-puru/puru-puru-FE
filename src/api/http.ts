@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import {
     ApiResponse,
     DiaryEntry,
-    MyProfile,
     PlantData,
     SearchApiResponse,
     User,
@@ -167,14 +166,6 @@ export const diariesApi = {
         data?: Request,
     ) {
         const res = await axios.patch<Response>(url, data);
-        return res.data;
-    },
-};
-
-// 메인 페이지 유저 닉네임 조회
-export const getnameApi = {
-    get: async function getnameApi<Response = MyProfile>(url: string) {
-        const res = await axios.get<Response>(url);
         return res.data;
     },
 };
