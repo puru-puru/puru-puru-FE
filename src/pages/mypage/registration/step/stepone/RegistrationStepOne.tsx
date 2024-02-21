@@ -43,15 +43,15 @@ export const RegistrationStepOne: React.FC = () => {
     // 이미지 추가
     const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-    
+
         const files = e.target.files;
         if (files && files.length > 0) {
             const uploadFile = files[0];
-            setFormData(prevData => ({
+            setFormData((prevData) => ({
                 ...prevData,
-                image: uploadFile
+                image: uploadFile,
             }));
-    
+
             // 이미지 선택 시 바로 미리보기 생성
             encodeFileToBase64(uploadFile);
         }
@@ -75,15 +75,23 @@ export const RegistrationStepOne: React.FC = () => {
         reader.readAsDataURL(fileBlob);
     };
 
+    function formatDate(dateString: string) {
+        const cleanedString = dateString.replace(/[.-]/g, '');
+
+        // 정규식을 사용하여 'YYYYMMDD' 형식을 'YYYY-MM-DD' 형식으로 변환
+        return cleanedString.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+    }
+
     // 반려 식물 이름 및 식물을 만난 날짜 변경 핸들러
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({
+
+        const formattedDate = name === 'plantAt' ? formatDate(value) : value;
+        setFormData((prevData) => ({
             ...prevData,
-            [name]: value
+            [name]: formattedDate,
         }));
     };
-
 
     return (
         <StepOneContainer>
@@ -128,12 +136,14 @@ export const RegistrationStepOne: React.FC = () => {
                     onChange={handleChange}
                 />
             </SetNameContainer>
-            <NextStepButton 
-            // FormDataEntryValue | null => boolean 변환
-            $isChecked={!!(formData.image && formData.name && formData.plantAt)}
-            disabled={!formData.image && !formData.name && !formData.plantAt}
-            onClick={handleNextStep}>다음</NextStepButton>
+            <NextStepButton
+                // FormDataEntryValue | null => boolean 변환
+                $isChecked={!!(formData.image && formData.name && formData.plantAt)}
+                disabled={!formData.image && !formData.name && !formData.plantAt}
+                onClick={handleNextStep}
+            >
+                다음
+            </NextStepButton>
         </StepOneContainer>
     );
 };
-
