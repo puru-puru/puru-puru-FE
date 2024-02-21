@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { User } from '../../../api/User';
+import { User } from '../../../api/model';
 import {
     Heading,
     SignInBotten,
@@ -25,7 +25,6 @@ const SignIn: React.FC = () => {
     });
     const [error, setError] = useState<string>(''); // 에러 상태 추가
 
-
     const validateEmail = (email: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -36,10 +35,10 @@ const SignIn: React.FC = () => {
         const isPasswordValid = user.password.length >= 5;
         // 토큰에 대한 만료 되었는지 유효성 검사 필요
         const accessTokenExpiration = Cookies.get('AccessToken');
-        if(accessTokenExpiration){
-            alert('이미 로그인이 되어 있습니다.')
+        if (accessTokenExpiration) {
+            alert('이미 로그인이 되어 있습니다.');
             navigate('/mainpage');
-            return; 
+            return;
         }
         if (isEmailValid && isPasswordValid) {
             setIsChecked(true);

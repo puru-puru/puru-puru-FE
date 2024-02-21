@@ -7,7 +7,7 @@ import {
     SearchApiResponse,
     User,
     UserWithConfirmPassword,
-} from './User';
+} from './model';
 export const axios = Axios.create({
     baseURL: 'https://www.purupuru.store/',
 });

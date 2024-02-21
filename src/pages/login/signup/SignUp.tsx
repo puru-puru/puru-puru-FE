@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { UserWithConfirmPassword } from '../../../api/User';
+import { UserWithConfirmPassword } from '../../../api/model';
 import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { SignUpBotten } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,6 @@ const SignUp: React.FC = () => {
         confirmPassword: '',
     });
     const [error, setError] = useState('');
-    
 
     const validateEmail = (email: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -24,14 +23,13 @@ const SignUp: React.FC = () => {
     useEffect(() => {
         const isEmailValid = user.email.length > 0 && validateEmail(user.email);
         const isPasswordValid = user.password.length >= 5;
-    
+
         if (isEmailValid && isPasswordValid) {
             setIsChecked(true);
         } else {
             setIsChecked(false);
         }
     }, [user.email, user.password]);
-    
 
     // 회원가입 폼 제출 핸들러
     const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,42 +62,47 @@ const SignUp: React.FC = () => {
         }
     };
 
-
     return (
         <LoginContainer>
-                <h2>회원가입</h2>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <form onSubmit={onSubmitHandler}>
-                    <label>
-                        <p>Email</p>
-                        <SharedInput
-                            type="text"
-                            value={user.email}
-                            placeholder="예)puleuspuleus@puleus.co.kr"
-                            onChange={(e) => setUser({ ...user, email: e.target.value })}
-                        />
-                    </label>
-                    <label>
-                        <p>Password</p>
-                        <SharedInput
-                            type="password"
-                            value={user.password}
-                            placeholder="비밀번호를 5자 이상 입력하세요"
-                            onChange={(e) => setUser({ ...user, password: e.target.value })}
-                        />
-                        {user.password.length < 5 && user.password && <ErrorMessage>비밀번호를 5자 이상 입력하세요</ErrorMessage>}
-                        <p></p>
-                        <SharedInput 
+            <h2>회원가입</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <form onSubmit={onSubmitHandler}>
+                <label>
+                    <p>Email</p>
+                    <SharedInput
+                        type="text"
+                        value={user.email}
+                        placeholder="예)puleuspuleus@puleus.co.kr"
+                        onChange={(e) => setUser({ ...user, email: e.target.value })}
+                    />
+                </label>
+                <label>
+                    <p>Password</p>
+                    <SharedInput
+                        type="password"
+                        value={user.password}
+                        placeholder="비밀번호를 5자 이상 입력하세요"
+                        onChange={(e) => setUser({ ...user, password: e.target.value })}
+                    />
+                    {user.password.length < 5 && user.password && (
+                        <ErrorMessage>비밀번호를 5자 이상 입력하세요</ErrorMessage>
+                    )}
+                    <p></p>
+                    <SharedInput
                         type="password"
                         value={user.confirmPassword}
                         onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
-                        placeholder="비밀번호를 재입력하세요" 
-                        />
-                        {user.password!==user.confirmPassword && user.confirmPassword && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
-                    </label>
-                    <br />
-                    <SignUpBotten $isChecked={isChecked}type="submit">가입하기</SignUpBotten>
-                </form>
+                        placeholder="비밀번호를 재입력하세요"
+                    />
+                    {user.password !== user.confirmPassword && user.confirmPassword && (
+                        <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
+                    )}
+                </label>
+                <br />
+                <SignUpBotten $isChecked={isChecked} type="submit">
+                    가입하기
+                </SignUpBotten>
+            </form>
         </LoginContainer>
     );
 };
