@@ -15,15 +15,13 @@ import {
     // PlusButton,
     // PhotoButton,
     // PlantButton,
-    PetPlantRegister,
-    PetPlantRegisterBotten,
-    PetPlantRegisterText,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
 // import { useModal } from '../../hook/useModal';
 import { myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import EmptyMyPlant from './EmptyMyPlant';
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
@@ -72,9 +70,7 @@ const MyPage: React.FC = () => {
         const { diaryId } = petPlant;
         navigate('/mycomponent', { state: { diaryId, templateId, question, answer } });
     };
-    const handleRegisterClick = () => {
-        navigate('/plants'); // 등록하기 버튼 클릭 시 /plants로 이동
-    };
+
 
     // // 갤러리 및 추가 버튼
     // const toggleButtons = () => {
@@ -119,24 +115,7 @@ const MyPage: React.FC = () => {
     const timeDifference = currentDate.getTime() - petDate.getTime();
     const diffDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
     if (!petPlant)
-        return (
-            <>
-                <PetPlantHeader>
-                    <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
-                    <PetPlantRegisterText>
-                        등록된 식물이 없어요! 식물을 먼저 등록해주세요
-                    </PetPlantRegisterText>
-                </PetPlantHeader>
-                <PetPlantRegister>
-                    <PetPlantHeaderImg
-                        style={{ backgroundImage: `url(plantimg.png)`, marginTop: '100px' }}
-                    />
-                    <PetPlantRegisterBotten onClick={handleRegisterClick}>
-                        등록하기
-                    </PetPlantRegisterBotten>
-                </PetPlantRegister>
-            </>
-        );
+        return <EmptyMyPlant/>
     return (
         <div>
             <PetPlantHeader>

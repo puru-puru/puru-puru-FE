@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PetPlantRegisterText } from '../../../EmptyMyPlant.styles';
 
 // 카드 부분들
 export const HomeRecent = styled.section`
@@ -61,4 +62,19 @@ export const HomeRecent = styled.section`
             border-width: 3px; 
         }
     }
+`;
+
+export const NoneResult = styled.div`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin: auto; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+`;
+
+export const NoneResultText = styled(PetPlantRegisterText)`
+    text-align: center;
 `;

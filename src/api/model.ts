@@ -1,6 +1,7 @@
 export interface User {
     email: string;
     password: string;
+    
 }
 
 export interface UserWithConfirmPassword extends User {
@@ -75,21 +76,6 @@ export interface Plants extends newPlantData{
 
 // 커뮤니티 페이지
 
-export interface CommunityPost {
-    boardId: number;
-    title: string;
-    image: string;
-    content: string;
-    createdAt: string;
-    author: {
-        nickname: string;
-    };
-}
-
-export interface CommunityApiResponse {
-    data: CommunityPost[];
-}
-
 export interface CommunityFormData {
     title: string;
     content: string;
@@ -108,4 +94,9 @@ export interface CommunityPost {
     content: string;
     createdAt: string;
     author: Author;
+}
+
+export interface CommunityData {
+    data: CommunityPost[]; 
+    loginUser: string; 
 }

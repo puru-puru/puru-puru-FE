@@ -11,17 +11,17 @@ import {
     Nickname,
 } from './Community.styles';
 import CommunityHeader from './header/CommunityHeader';
-import { CommunityPost } from '../../api/model';
+import { CommunityData } from '../../api/model';
 import Spinner from '/Spin.gif';
 const CommunityPage: React.FC = () => {
     const [loading, setLoading] = useState(true);
-    const [post, setPost] = useState<CommunityPost[]>([]);
+    const [post, setPost] = useState<CommunityData>({ data: [], loginUser: "" });
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await communityApi.get('/api/boards');
                 console.log(response);
-                setPost(response.data);
+                setPost(response);
             } catch (error) {
                 console.error('Error: ', error);
             } finally {
@@ -43,7 +43,7 @@ const CommunityPage: React.FC = () => {
                             style={{ width: '100px', height: '100px' }}
                         />
                     ) : (
-                        post?.map((post) => (
+                        post.data?.map((post) => (
                             <PostContainer key={post.boardId}>
                                 <div>
                                     {post.author?.nickname ? (

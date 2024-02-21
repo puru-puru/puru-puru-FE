@@ -43,9 +43,8 @@ const SignIn: React.FC = () => {
             validatePassword(user.password);
 
         const accessTokenExpiration = Cookies.get('AccessToken');
-        const nicknameExists = Cookies.get('Nickname');
 
-        if (accessTokenExpiration && nicknameExists) {
+        if (accessTokenExpiration) {
             alert('이미 로그인되어 있습니다.');
             navigate('/mainpage');
             return;
@@ -65,15 +64,15 @@ const SignIn: React.FC = () => {
             }
             const response = await signinApi.post('api/auth/sign-in', user);
             console.log(response);
-            Cookies.set('AccessToken', response.data.accessToken);
-            Cookies.set('RefreshToken', response.data.refreshToken);
+            Cookies.set('AccessToken', response.data.accessToken, { expires: 1 / 24 });
+            Cookies.set('RefreshToken', response.data.refreshToken, { expires: 30 });
+            const hasNickName = response.data.hasNickName;
             setUser({
                 email: '',
                 password: '',
             });
-            const nicknameExists = Cookies.get('Nickname');
 
-            if (nicknameExists) {
+            if (hasNickName === true) {
                 navigate('/mainpage');
             } else {
                 navigate('/service');

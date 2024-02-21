@@ -2,7 +2,7 @@ import Axios from 'axios';
 import Cookies from 'js-cookie';
 import {
     ApiResponse,
-    CommunityApiResponse,
+    CommunityData,
     CommunityFormData,
     DiaryEntry,
     newPlantData,
@@ -183,7 +183,7 @@ export const plantdataApi = {
 
 // 커뮤니티 페이지
 export const communityApi = {
-    get: async function communityApi<Response = CommunityApiResponse>(url: string) {
+    get: async function communityApi<Response = CommunityData>(url: string) {
         const res = await axios.get<Response>(url);
         return res.data;
     },

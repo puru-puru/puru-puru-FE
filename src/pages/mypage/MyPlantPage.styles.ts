@@ -19,6 +19,7 @@ export const PetPlantHeaderImg = styled.img`
     margin: auto;
     z-index: 1;
 
+    background-image: url('plantimg.png');
     background-position: center;
     border-radius: 100px;
     background-repeat: no-repeat;
@@ -136,25 +137,3 @@ export const PlantButton = styled.button`
     background-position: center;
 `;
 
-// 반려식물 등록
-export const PetPlantRegister = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-`
-
-export const PetPlantRegisterText = styled.p`
-    font-size: 14px;
-    letter-spacing: -0.71px;
-    margin-left: 10px;
-`
-export const PetPlantRegisterBotten = styled.button`
-    position: absolute;
-    bottom: 10%;
-    width: 334px;
-    height: 57px;
-    border-radius: 20px;
-    background-color:  #72A474;
-    color: #fff;
-`;

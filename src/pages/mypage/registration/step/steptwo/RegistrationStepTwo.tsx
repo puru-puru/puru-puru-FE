@@ -6,11 +6,12 @@ import {
     SearchContainer,
     SearchInput,
 } from './RegistrationStepTwo.styles';
-import { HomeRecent } from './PlantCard.styles';
+import { HomeRecent, NoneResult, NoneResultText } from './PlantCard.styles';
 import SelectionCompleted from '../selection/SelectionCompleted';
 import { searchApi } from '../../../../../api/http';
 import { Plants } from '../../../../../api/model';
 import Spinner from '/Spin.gif';
+import { PetPlantHeaderImg } from '../../../MyPlantPage.styles';
 
 export const RegistrationStepTwo: React.FC = () => {
     const [searchItem, setSearchItem] = useState('');
@@ -32,12 +33,14 @@ export const RegistrationStepTwo: React.FC = () => {
                 setPlants(response);
             } else {
                 console.error('서버에서 반환된 데이터가 배열이 아닙니다:', response);
+                setPlants([]);
             }
         } catch (error: any) {
             // 에러 처리
             console.error('에러 발생:', error);
             if (error.response) {
                 console.error('서버 응답 데이터:', error.response.data);
+                setPlants([]); // 검색 결과가 없을 경우 빈 배열로 초기화
             }
         } finally {
             setLoading(false);
@@ -74,26 +77,55 @@ export const RegistrationStepTwo: React.FC = () => {
 
             <HomeRecent>
                 {loading ? (
-                    <img src={Spinner} alt="loding" style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',  width: '100px', height: '100px' }} />
+                    <img
+                        src={Spinner}
+                        alt="loding"
+                        style={{
+                            position: 'fixed',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '100px',
+                            height: '100px',
+                        }}
+                    />
                 ) : (
-                    <div className="card-group">
-                        {plants
-                            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-                            .map((plant) => (
-                                <div
-                                    className={`card ${
-                                        plant.plantsId === selectedCard ? 'selected' : ''
-                                    }`}
-                                    key={plant.plantsId}
-                                    onClick={() => setSelectedCard(plant.plantsId)}
-                                >
-                                    <img src={plant.image} className="card-img-top" alt="..." />
-                                    <div className="card-body">
-                                        <p className="card-title">{plant.plantName}</p>
-                                    </div>
-                                </div>
-                            ))}
-                    </div>
+                    <>
+                        {!plants.length ? (
+                            <NoneResult>
+                                <NoneResultText>
+                                    관련된 식물이 없어요! 식물을 먼저 등록해주세요
+                                </NoneResultText>
+                                <PetPlantHeaderImg />
+                            </NoneResult>
+                        ) : (
+                            <div className="card-group">
+                                {plants
+                                    .slice(
+                                        (currentPage - 1) * itemsPerPage,
+                                        currentPage * itemsPerPage,
+                                    )
+                                    .map((plant) => (
+                                        <div
+                                            className={`card ${
+                                                plant.plantsId === selectedCard ? 'selected' : ''
+                                            }`}
+                                            key={plant.plantsId}
+                                            onClick={() => setSelectedCard(plant.plantsId)}
+                                        >
+                                            <img
+                                                src={plant.image}
+                                                className="card-img-top"
+                                                alt="..."
+                                            />
+                                            <div className="card-body">
+                                                <p className="card-title">{plant.plantName}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                            </div>
+                        )}
+                    </>
                 )}
             </HomeRecent>
 
@@ -111,7 +143,7 @@ export const RegistrationStepTwo: React.FC = () => {
 
             <SearchButtonContainer>
                 {!selectionCompleted && (
-                    <SearchButton onClick={handleSearch} $isChecked={!selectionCompleted}>
+                    <SearchButton onClick={handleSearch} $isChecked={!!searchItem} disabled={!searchItem}>
                         검색
                     </SearchButton>
                 )}

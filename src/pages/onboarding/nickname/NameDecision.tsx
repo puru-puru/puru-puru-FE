@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
 import { OnboardingButton, OnboardingContainer } from '../OnboardingPage.styles';
 import {
     ClearButton,
@@ -10,7 +9,6 @@ import {
 } from './NameDecision.styles';
 import { useNavigate } from 'react-router-dom';
 import { nameApi } from '../../../api/http';
-
 
 const NameDecision: React.FC = () => {
     const navigate = useNavigate();
@@ -30,7 +28,9 @@ const NameDecision: React.FC = () => {
             name: newName,
             isChecked: isNameValid(newName),
             isError: !isNameValid(newName),
-            errorMessage: !isNameValid(newName) ? '닉네임은 한글/영문/숫자 2자~8자로 입력해 주세요' : '',
+            errorMessage: !isNameValid(newName)
+                ? '닉네임은 한글/영문/숫자 2자~8자로 입력해 주세요'
+                : '',
         }));
     };
 
@@ -63,20 +63,34 @@ const NameDecision: React.FC = () => {
                     }));
                     console.log('API 요청 성공:', response);
 
-                    Cookies.set('Nickname', nameInfo.name, { expires: 365 });
                     navigate('/mainpage');
-                } catch (error) {
+                } catch (error: any) {
                     // API 요청 실패 시 처리
-                    setNameInfo((prevState) => ({
-                        ...prevState,
-                        errorMessage: '서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
-                    }));
-                    console.error('API 요청 실패:', error);
+                    if (error.response && error.response.status === 409) {
+                        // 닉네임이 중복된 경우
+                        setNameInfo((prevState) => ({
+                            ...prevState,
+                            errorMessage: '이미 사용 중인 닉네임입니다.',
+                        }));
+                    } else {
+                        // 다른 에러 발생한 경우
+                        setNameInfo((prevState) => ({
+                            ...prevState,
+                            errorMessage: '서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
+                        }));
+                        console.error('API 요청 실패:', error);
+                    }
                 }
-                setTimeout(()=>{
+                setTimeout(() => {
                     throttled = false;
-                }, THROTTLE_TIME)
+                }, THROTTLE_TIME);
             }
+        } else {
+            // 닉네임이 유효하지 않은 경우
+            setNameInfo((prevState) => ({
+                ...prevState,
+                errorMessage: '닉네임은 한글/영문/숫자 2자~8자로 입력해 주세요',
+            }));
         }
     };
 
@@ -100,19 +114,21 @@ const NameDecision: React.FC = () => {
                             onChange={handleNameInputChange}
                             placeholder="공주는행복해"
                         />
-                        {nameInfo.name && <ClearButton onClick={handleClear}><img src="./Clear.svg" alt="Clear" /></ClearButton>}
+                        {nameInfo.name && (
+                            <ClearButton onClick={handleClear}>
+                                <img src="./Clear.svg" alt="Clear" />
+                            </ClearButton>
+                        )}
                     </div>
                     {nameInfo.errorMessage && <ErrorText>{nameInfo.errorMessage}</ErrorText>}
                 </div>
                 <OnboardingButton
-
                     $isChecked={nameInfo.isChecked}
                     onClick={handleNameDecisionButtonClick}
                 >
                     시작하기
                 </OnboardingButton>
             </OnboardingContainer>
-
         </>
     );
 };
