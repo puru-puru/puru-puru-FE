@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
 import { OnboardingButton, OnboardingContainer } from '../OnboardingPage.styles';
 import {
     ClearButton,
@@ -63,7 +62,6 @@ const NameDecision: React.FC = () => {
                     }));
                     console.log('API 요청 성공:', response);
 
-                    Cookies.set('Nickname', nameInfo.name, { expires: 365 });
                     navigate('/mainpage');
                 } catch (error) {
                     // API 요청 실패 시 처리
