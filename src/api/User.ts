@@ -80,18 +80,3 @@ export interface PlantData {
     type: string;
     content: string;
 }
-
-// 메인 페이지
-
-interface MissionData {}
-
-interface PlantRecommendData {
-    plant: {
-        id: number;
-        plantName: string;
-        type: string;
-        image: string;
-        content: string;
-        tag: string;
-    };
-}

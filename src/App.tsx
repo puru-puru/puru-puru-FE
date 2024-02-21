@@ -6,7 +6,7 @@ function App() {
     const queryClient = new QueryClient({
         defaultOptions: {
             queries: {
-                retry: 3,
+                retry: 0,
                 suspense: true,
                 refetchOnWindowFocus: false,
             },

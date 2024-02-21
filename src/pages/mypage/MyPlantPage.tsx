@@ -85,7 +85,7 @@ const MyPage: React.FC = () => {
         data: petPlantDate,
         isLoading,
         isError,
-    } = useQuery('petPlant', () => myplantApi.get('/api/diaries'));
+    } = useQuery(['petPlant'], () => myplantApi.get('/api/diaries'));
 
     useEffect(() => {
         if (petPlantDate) {
