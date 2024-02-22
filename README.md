@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+# Puru Puru - FE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Puru Puru
 
-Currently, two official plugins are available:
+## FrontEnd 개발
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 역할 담당
 
-## Expanding the ESLint configuration
+## 주요기능 소개
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 서비스 아키텍처
 
-- Configure the top-level `parserOptions` property like this:
+## FE 기술 선정 ? User Flow ?
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## 기술적 의사결정
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 트러블슈팅
+
+## 최적화
+
+## 유저 피드백 & 반영
