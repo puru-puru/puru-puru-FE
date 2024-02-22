@@ -48,17 +48,17 @@ axios.interceptors.response.use(
                     } else {
                         alert('새로운 엑세스 토큰 발급에 실패했습니다.');
                         Cookies.remove('AccessToken');
-                        window.location.href = '/';
+                        window.location.href = '/signin';
                     }
                 } catch (error) {
                     console.error('오류 발생: ', error);
                     Cookies.remove('AccessToken');
                     alert('알 수 없는 오류가 발생했습니다. 로그아웃됩니다.');
-                    window.location.href = '/';
+                    window.location.href = '/signin';
                 }
             } else {
                 console.error('리프레시 토큰이 없습니다. 로그인 페이지로 이동합니다.');
-                window.location.href = '/';
+                window.location.href = '/signin';
             }
         }
         return Promise.reject(error);

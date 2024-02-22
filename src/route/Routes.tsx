@@ -8,7 +8,7 @@ import {
 import Cookies from 'js-cookie';
 import Layout from '../components/atoms/Layout';
 import { GlobalStyles } from '../components/atoms/GlobalStyled';
-import Spinner from '/Spin.gif'
+import Spinner from '/Spin.gif';
 
 // Lazy-loaded components
 const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
@@ -17,13 +17,16 @@ const ServicePage = lazy(() => import('../pages/onboarding/service/ServicePage')
 const NameDecision = lazy(() => import('../pages/onboarding/nickname/NameDecision'));
 const MyPlantPage = lazy(() => import('../pages/mypage/MyPlantPage'));
 const MyComponent = lazy(() => import('../pages/mypage/MyComponent'));
-const PlantRegistrationPage = lazy(() => import('../pages/mypage/registration/PlantRegistrationPage'));
+const PlantRegistrationPage = lazy(
+    () => import('../pages/mypage/registration/PlantRegistrationPage'),
+);
 const CommunityPage = lazy(() => import('../pages/community/CommunityPage'));
 const CommunityWritePage = lazy(() => import('../pages/community/write/CommunityWritePage'));
 const MyProfile = lazy(() => import('../pages/myprofile/MyProfilepage'));
 const MainPage = lazy(() => import('../pages/mainpage/MainPage'));
 const BoardTest = lazy(() => import('../pages/boardtest/boardtestpage/BoardTest'));
 const BoardResult = lazy(() => import('../pages/boardtest/boardresultpage/BoardResult'));
+const SplashGuidePage = lazy(() => import('../pages/onboarding/guide/SplashGuidePage'));
 
 // RouterInfo 배열
 const RouterInfo = [
@@ -31,8 +34,8 @@ const RouterInfo = [
     { path: '/myprofile', element: <MyProfile />, withAuthorization: true },
     { path: '/plants', element: <PlantRegistrationPage />, withAuthorization: true },
     { path: '/mainpage', element: <MainPage />, withAuthorization: true },
-    { path: '/service', element: <ServicePage />, withAuthorization: false },
-    { path: '/users', element: <NameDecision />, withAuthorization: false },
+    { path: '/service', element: <ServicePage />, withAuthorization: true },
+    { path: '/users', element: <NameDecision />, withAuthorization: true },
     { path: '/mycomponent', element: <MyComponent />, withAuthorization: true },
     { path: '/community', element: <CommunityPage />, withAuthorization: true },
     { path: '/communitywrite', element: <CommunityWritePage />, withAuthorization: true },
@@ -54,23 +57,40 @@ export const Routes = () => {
     return (
         <Router>
             <GlobalStyles />
-            <Suspense fallback={<div  style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}> <img src={Spinner} alt="Loding" /></div>}>
+            <Suspense
+                fallback={
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                        }}
+                    >
+                        {' '}
+                        <img src={Spinner} alt="Loding" />
+                    </div>
+                }
+            >
                 <ReactRouterRoutes>
                     <Route element={<Layout />}>
                         {RouterInfo.map(({ path, element, withAuthorization }) => (
                             <Route
                                 key={path}
                                 path={path}
-                                element={withAuthorization ? (
-                                    <Authorization redirectTo="/" children={element} />
-                                ) : (
-                                    element
-                                )}
+                                element={
+                                    withAuthorization ? (
+                                        <Authorization redirectTo="/" children={element} />
+                                    ) : (
+                                        element
+                                    )
+                                }
                             />
                         ))}
-                        <Route path="/" element={<SignIn />} />
+                        <Route path="/signin" element={<SignIn />} />
+                        <Route path="/" element={<SplashGuidePage />} />
                         <Route path="/signup" element={<SignUp />} />
-                        <Route path="*" element={<Navigate replace to="/" />} />
+                        <Route path="*" element={<Navigate replace to="/signin" />} />
                     </Route>
                 </ReactRouterRoutes>
             </Suspense>
