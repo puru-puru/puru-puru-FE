@@ -5,45 +5,8 @@ import Splash from '../../../components/splash/Splash';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
-const SlideContainer = styled.div`
-    height: 100%;
-    width: 100%;
-    background-color: #72a474;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`;
-
-const StyledSlider = styled(Slider)`
-    width: 100%;
-
-    .slick-slide {
-        height: 100%;
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-    }
-`;
-
-const Button = styled.button`
-    padding: 10px 20px;
-    margin-top: 50px;
-    background-color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-
-    &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-`;
+import { SlideContainer, SliderButton, StyledSlider } from './SplashGuidePage.styles';
 
 const SplashGuidePage: React.FC = () => {
     const [isSplash, setIsSplash] = useRecoilState(isSplashState);
@@ -89,9 +52,9 @@ const SplashGuidePage: React.FC = () => {
                     <div>자신의 반려식물을 자랑해주세요</div>
                 </StyledSlider>
                 {currentSlide === 2 ? (
-                    <Button onClick={handleLoginButtonClick}>로그인</Button>
+                    <SliderButton onClick={handleLoginButtonClick}>로그인</SliderButton>
                 ) : (
-                    <Button onClick={handleNextButtonClick}>다음</Button>
+                    <SliderButton onClick={handleNextButtonClick}>다음</SliderButton>
                     
                 )}
             </SlideContainer>
