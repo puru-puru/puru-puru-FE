@@ -9,7 +9,7 @@ const QUERY_KEY = {
 
 /* 보드 테스트 페이지 Data GET */
 export const useGetBoardTestPageData = () => {
-    const URL = '/api/tests';
+    const URL = '/api/test-result/:boardNum';
     const fetchBoardTestPageData = () => {
         return http.get<BoardTestPageData>(URL).then((res) => res);
     };

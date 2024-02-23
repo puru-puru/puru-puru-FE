@@ -2,23 +2,12 @@ import * as St from './BoardTest.styles';
 import arrow from '../../../assets/arrow.svg';
 import boardTestData from './Test.json';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { axios } from '../../../api/http';
-import { useGetBoardTestPageData } from '../../../api/boardtest/BoardTest';
+import { useState } from 'react';
+// import { useGetBoardTestPageData } from '../../../api/boardtest/BoardTest';
 
 const BoardTest = () => {
+    const [boardId, setBoardId] = useState(0);
     const navigate = useNavigate();
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/tests');
-                console.log('response data 확인 => ', response);
-            } catch (error) {
-                console.error('Error: ', error);
-            }
-        };
-        fetchData();
-    }, []);
     // const pageData = useGetBoardTestPageData();
     // console.log(pageData);
     const testData = boardTestData;
@@ -29,12 +18,13 @@ const BoardTest = () => {
         navigate('/mainpage');
     };
     // 키워드 클릭 handler
-    const boardItemHandler = () => {
+    const boardItemHandler = (id: number) => {
         setIsSelected((prevState) => !prevState);
+        setBoardId(id);
     };
     // 결과 확인하기 버튼 클릭 후 보드 결과 페이지 이동
-    const selectedButtonHandler = (data: []) => {
-        navigate('/boardresult', { state: { data } });
+    const selectedButtonHandler = (boardId: number) => {
+        navigate('/boardresult', { state: { boardId } });
     };
 
     return (
@@ -78,7 +68,7 @@ const BoardTest = () => {
                     return (
                         <div key={testItem.id} style={{ marginTop: '20px' }}>
                             <St.BoardTestMainItem
-                                onClick={boardItemHandler}
+                                onClick={() => boardItemHandler(testItem.id)}
                                 $isSelected={isSelected}
                                 style={{ backgroundColor }}
                             >
@@ -96,7 +86,7 @@ const BoardTest = () => {
             </St.BoardTestMain>
             <St.BoardTestMainSelectButtonStyle>
                 <St.BoardTestMainSelectButton
-                    onClick={() => selectedButtonHandler()}
+                    onClick={() => selectedButtonHandler(boardId)}
                     $isSelected={isSelected}
                 >
                     결과 확인하기
