@@ -52,12 +52,12 @@ axios.interceptors.response.use(
                         return axios(originalRequest); // 재요청
                     } else {
                         alert('새로운 엑세스 토큰 발급에 실패했습니다.');
-                        // Cookies.remove('AccessToken');
-                        // window.location.href = '/signin';
+                        Cookies.remove('AccessToken');
+                        window.location.href = '/signin';
                     }
                 } catch (error) {
                     console.error('오류 발생: ', error);
-                    // Cookies.remove('AccessToken');
+                    Cookies.remove('AccessToken');
                     alert('알 수 없는 오류가 발생했습니다. 로그아웃됩니다.');
                     window.location.href = '/signin';
                 }

@@ -20,6 +20,10 @@ const MyComponent: React.FC = () => {
 
     // 수정을 저장할 때 PATCH 요청을 보냅니다.
     const saveChanges = async () => {
+        if(editedEntry && editedEntry.length >= 5 && editedEntry.length <=25){
+            alert('5자 이상 25자 이내로 작성해주세요')
+            return;
+        }
         try {
             const response = await myplantApi.patch(`/api/random/templates/${templateId}`, {
                 answer: editedEntry, 
@@ -34,7 +38,7 @@ const MyComponent: React.FC = () => {
     return (
         <MyComponentContainer>
             <h3>{question}</h3>
-            <SharedInput value={editedEntry} onChange={handleEdit} />
+            <SharedInput value={editedEntry} placeholder="5자 이상 25자 이내로 입력해주세요 :)" onChange={handleEdit} />
 
             {/* 저장 버튼 */}
             <MyComponentButton onClick={saveChanges}>저장</MyComponentButton>
