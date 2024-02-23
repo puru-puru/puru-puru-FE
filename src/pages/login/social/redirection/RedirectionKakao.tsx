@@ -8,9 +8,8 @@ const RedirectionKakao: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('https:///localhost:3000/api/auth/kakao/sign-in');
         axios
-            .post(`http://localhost:3000/api/auth/kakao/sign-in`, {code}) // 객체로 보내야함
+            .get(`https://purupuru.store/api/auth/login/kakao/return?code=${code}`) 
             .then((r) => {
                 console.log(r.data);
 

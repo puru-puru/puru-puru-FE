@@ -1,5 +1,5 @@
 import React from 'react';
-import { PetPlantHeader, PetPlantHeaderImg, PetPlantHeaderTitle } from './MyPlantPage.styles';
+import { PetPlantHeader, PetPlantHeaderImg, PetPlantHeaderTitle } from '../MyPlantPage.styles';
 import { PetPlantRegister, PetPlantRegisterButton, PetPlantRegisterText } from './EmptyMyPlant.styles';
 import { useNavigate } from 'react-router-dom';
 

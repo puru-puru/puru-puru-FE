@@ -18,6 +18,7 @@ import { SharedInput } from '../../Shared.styles';
 
 const SignIn: React.FC = () => {
     const navigate = useNavigate();
+    const [hasNickname, setHasNickName] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [user, setUser] = useState<User>({
         email: '',
@@ -45,16 +46,17 @@ const SignIn: React.FC = () => {
         const accessTokenExpiration = Cookies.get('AccessToken');
 
         if (accessTokenExpiration) {
-            alert('이미 로그인되어 있습니다.');
+            if (hasNickname) alert('이미 로그인되어 있습니다.');
             navigate('/mainpage');
             return;
         }
+
         if (isEmailValid && isPasswordValid) {
             setIsChecked(true);
         } else {
             setIsChecked(false);
         }
-    }, [user.email, user.password, navigate]);
+    }, [user.email, user.password, navigate, hasNickname]);
 
     const handleLogin = async () => {
         try {
@@ -66,17 +68,14 @@ const SignIn: React.FC = () => {
             console.log(response);
             Cookies.set('AccessToken', response.data.accessToken, { expires: 1 / 24 });
             Cookies.set('RefreshToken', response.data.refreshToken, { expires: 30 });
-            const hasNickName = response.data.hasNickName;
+            setHasNickName(response.data.hasNickname);
             setUser({
                 email: '',
                 password: '',
             });
-
-            if (hasNickName === true) {
+            if (response.data.hasNickname) {
                 navigate('/mainpage');
-            } else {
-                navigate('/service');
-            }
+            } else navigate('/service');
         } catch (error: any) {
             if (error.response) {
                 const statusCode = error.response.status;
@@ -91,7 +90,6 @@ const SignIn: React.FC = () => {
     const handleSignUp = () => {
         navigate('/signup');
     };
-
     return (
         <LoginContainer>
             <div>

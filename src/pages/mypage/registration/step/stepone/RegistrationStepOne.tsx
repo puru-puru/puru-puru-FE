@@ -24,12 +24,16 @@ export const RegistrationStepOne: React.FC = () => {
     });
     const handleNextStep = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
+        if (!(formData.name && formData.name.length >= 2 && formData.name.length <= 10)) {
+            alert('반려 식물 이름을 2자 이상 10자 이내로 입력해주세요');
+            return;
+        }
         if (formData.image && formData.name && formData.plantAt) {
             const formDataToSend = new FormData();
             formDataToSend.append('image', formData.image);
             formDataToSend.append('name', formData.name);
             formDataToSend.append('plantAt', formData.plantAt);
-
+            console.log(formDataToSend.append);
             try {
                 await registrationApi.post(formDataToSend);
                 setCurrentStep(currentStep + 1);
@@ -75,21 +79,46 @@ export const RegistrationStepOne: React.FC = () => {
         reader.readAsDataURL(fileBlob);
     };
 
-    function formatDate(dateString: string) {
-        const cleanedString = dateString.replace(/[.-]/g, '');
+    function formatplantAtInput(dateString: string) {
+        const cleanedString = dateString.replace(/[^\d]/g, '');
 
         // 정규식을 사용하여 'YYYYMMDD' 형식을 'YYYY-MM-DD' 형식으로 변환
-        return cleanedString.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+        let formattedString = cleanedString.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+
+        formattedString = formattedString.slice(0, 10);
+        return formattedString;
+    }
+    function formatNameInput(value: string) {
+        // 입력값이 공백인 경우 처리
+        if (!value.trim()) {
+            return '';
+        }
+        let formattedValue = value.trim();
+
+        formattedValue = value.replace(/[^\sA-Za-zㄱ-힣]/g, '');
+
+        // 길이를 10자로 제한
+        formattedValue = formattedValue.slice(0, 10);
+
+        return formattedValue;
     }
 
     // 반려 식물 이름 및 식물을 만난 날짜 변경 핸들러
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        let formattedValue = value;
 
-        const formattedDate = name === 'plantAt' ? formatDate(value) : value;
+        if (name === 'name') {
+            formattedValue = formatNameInput(value);
+        }
+
+        if (name === 'plantAt') {
+            formattedValue = formatplantAtInput(value);
+        }
+
         setFormData((prevData) => ({
             ...prevData,
-            [name]: formattedDate,
+            [name]: formattedValue,
         }));
     };
 
@@ -121,7 +150,7 @@ export const RegistrationStepOne: React.FC = () => {
             <SetNameContainer>
                 <p>반려 식물 이름을 설정해주세요</p>
                 <SharedInput
-                    placeholder="오월이 행복해"
+                    placeholder="오월이 행복해 - 한글과 영어로 입력해주세요 :)"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
@@ -139,7 +168,7 @@ export const RegistrationStepOne: React.FC = () => {
             <NextStepButton
                 // FormDataEntryValue | null => boolean 변환
                 $isChecked={!!(formData.image && formData.name && formData.plantAt)}
-                disabled={!formData.image && !formData.name && !formData.plantAt}
+                disabled={!formData.image || !formData.name || !formData.plantAt}
                 onClick={handleNextStep}
             >
                 다음

@@ -54,7 +54,7 @@ const SignUp: React.FC = () => {
                 modalOpen();
                 setTimeout(() => {
                     modalClose();
-                    navigate('/');
+                    navigate('/signin');
                 }, 1500);
             } else {
                 setError('회원가입 실패');
@@ -101,7 +101,7 @@ const SignUp: React.FC = () => {
                     <StyledInput
                         type="password"
                         value={user.confirmPassword}
-                        $invalid={user.password !== user.confirmPassword}
+                        $invalid={!!( !user.password || user.password !== user.confirmPassword)}
                         onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
                         placeholder="비밀번호를 재입력하세요"
                     />

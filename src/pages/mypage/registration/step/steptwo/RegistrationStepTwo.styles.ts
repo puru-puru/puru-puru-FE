@@ -26,8 +26,3 @@ export const SearchButton = styled(SharedButton)<{ $isChecked: boolean }>`
     background-color: ${(props) => (props.$isChecked ? '#72A474' : '#DAEBCA')};
 `;
 
-export const PagesContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`

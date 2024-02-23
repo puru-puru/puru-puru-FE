@@ -6,11 +6,10 @@ export const PetPlantHeader = styled.div`
 `;
 export const PetPlantHeaderTitle = styled.h2`
     margin-left: 10px;
+    margin-top: 0px;
 `;
 export const PetPlantCardContainer = styled.div`
     display: flex;
-    margin-top: 40px;
-    
 `;
 export const PetPlantHeaderImg = styled.img`
     width: 200px;
@@ -103,7 +102,7 @@ export const PhotoButton = styled.button`
     position: absolute;
     left: 78.33%;
     right: 8.33%;
-    top: 45.75%;
+    top: 63.45%;
     bottom: 23.25%;
     z-index: 3;
     width: 48px;
@@ -122,7 +121,7 @@ export const PlantButton = styled.button`
     position: absolute;
     left: 78.33%;
     right: 8.33%;
-    top: 61.75%;
+    top: 70.75%;
     bottom: 23.25%;
     z-index: 3;
     width: 48px;

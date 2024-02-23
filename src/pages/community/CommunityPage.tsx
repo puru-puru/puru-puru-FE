@@ -34,7 +34,7 @@ const CommunityPage: React.FC = () => {
     return (
         <>
             <CommunityContainer>
-                <CommunityHeader />
+                <CommunityHeader username={post.loginUser}/>
                 <PostContainerScroll>
                     {loading ? (
                         <img

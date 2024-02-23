@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-    PagesContainer,
     SearchButton,
     SearchButtonContainer,
     SearchContainer,
@@ -12,6 +11,7 @@ import { searchApi } from '../../../../../api/http';
 import { Plants } from '../../../../../api/model';
 import Spinner from '/Spin.gif';
 import { PetPlantHeaderImg } from '../../../MyPlantPage.styles';
+import { PagesContainer } from './PageNation';
 
 export const RegistrationStepTwo: React.FC = () => {
     const [searchItem, setSearchItem] = useState('');

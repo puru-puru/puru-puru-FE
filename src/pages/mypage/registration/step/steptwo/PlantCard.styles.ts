@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PetPlantRegisterText } from '../../../EmptyMyPlant.styles';
+import { PetPlantRegisterText } from '../../EmptyMyPlant.styles';
 
 // 카드 부분들
 export const HomeRecent = styled.section`
