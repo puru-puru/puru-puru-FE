@@ -23,6 +23,12 @@ export const StyledSlider = styled(Slider)`
     }
 `;
 
+export const SlideItem = styled.div`
+    color: white;
+    text-align: center;
+    font-size: 14px;
+`;
+
 export const SliderButton = styled.button`
     padding: 10px 20px;
     margin-top: 50px;

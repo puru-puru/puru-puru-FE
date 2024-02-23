@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
-import { SlideContainer, SliderButton, StyledSlider } from './SplashGuidePage.styles';
+import { SlideContainer, SlideItem, SliderButton, StyledSlider } from './SplashGuidePage.styles';
 
 const SplashGuidePage: React.FC = () => {
     const [isSplash, setIsSplash] = useRecoilState(isSplashState);
@@ -26,10 +26,11 @@ const SplashGuidePage: React.FC = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setIsSplash(false);
+            navigate('/signin');
         }, 1500);
 
         return () => clearTimeout(timeout);
-    }, [setIsSplash]);
+    }, [navigate, setIsSplash]);
 
     const handleLoginButtonClick = () => {
         navigate('/signin');
@@ -37,7 +38,7 @@ const SplashGuidePage: React.FC = () => {
 
     const handleNextButtonClick = () => {
         if (sliderRef.current) {
-            sliderRef.current.slickNext(); 
+            sliderRef.current.slickNext();
         }
     };
 
@@ -46,16 +47,22 @@ const SplashGuidePage: React.FC = () => {
     } else
         return (
             <SlideContainer>
+                <img src="./SplashIcon.svg" alt="" />
                 <StyledSlider {...settings} ref={sliderRef}>
-                    <div>지친 일상 반려식물과 함께해요</div>
-                    <div>반려 식물 테스트와 함께 반려 식물을 구경해요</div>
-                    <div>자신의 반려식물을 자랑해주세요</div>
+                    <SlideItem>
+                        <p>일상의 지친 순간, 힐링을 위한 반려식물과 함께하세요</p>
+                    </SlideItem>
+                    <SlideItem>
+                        <p>테스트를 통해 원하는 반려식물을 찾아보세요</p>
+                    </SlideItem>
+                    <SlideItem>
+                        <p>당신의 특별한 반려식물을 자랑해보세요</p>
+                    </SlideItem>
                 </StyledSlider>
                 {currentSlide === 2 ? (
                     <SliderButton onClick={handleLoginButtonClick}>로그인</SliderButton>
                 ) : (
                     <SliderButton onClick={handleNextButtonClick}>다음</SliderButton>
-                    
                 )}
             </SlideContainer>
         );

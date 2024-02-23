@@ -11,7 +11,7 @@ import {
     StepOneContainer,
     UploadButton,
 } from './RegistrationStepOne.styles';
-import { registrationApi } from '../../../../../api/http';
+import { registrationApi } from '../../../../../api/myplant/StepOne';
 import { PetPlantFormData } from '../../../../../api/model';
 
 export const RegistrationStepOne: React.FC = () => {

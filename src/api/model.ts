@@ -35,15 +35,7 @@ export interface DiaryEntry {
     SavedTemplelates: SavedTemplelates[];
 }
 
-export interface SearchApiResponse {
-    data?: any;
-    plantsId: number;
-    plantName: string;
-    type: string;
-    image: string;
-    content: string;
-    tag: string;
-}
+
 
 export interface newPlantData {
     plantName: string;
