@@ -1,11 +1,24 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import * as St from './BoardResult.styles';
 import buttonImg from '../../../assets/catalogButton.svg';
 import BoardResultPlantRecommend from './recommend/BoardResultPlantRecommend';
+import BoardResultModal from './BoardResultModal';
+import { useModal } from '../../../hook/useModal';
 
-const BoardResult: React.FC = () => {
+const BoardResult = () => {
+    // useModal hook
+    const { open, modalOpen, modalClose } = useModal();
     // 첫 렌더링때 3초간 모달 렌더링
-    useEffect((): void => {});
+    useEffect(() => {
+        modalOpen();
+        const timeOut = setTimeout(() => {
+            modalClose();
+        }, 3000);
+        return () => clearTimeout(timeOut);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    // useQuery로 서버에서 BoardTest 페이지 데이터 받기
+
     return (
         <St.BoardResultWrapper>
             <h2>반려 식물 추천</h2>
@@ -39,7 +52,7 @@ const BoardResult: React.FC = () => {
                     <BoardResultPlantRecommend />
                 </St.BoardResultMainSliderLayout>
             </St.BoardResultMainLayout>
-
+            {open && <BoardResultModal />}
             <St.BoardResultSaveButton>저장</St.BoardResultSaveButton>
         </St.BoardResultWrapper>
     );

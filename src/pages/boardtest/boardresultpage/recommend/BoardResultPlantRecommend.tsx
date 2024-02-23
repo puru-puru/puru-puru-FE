@@ -1,4 +1,3 @@
-import React from 'react';
 import Slider from 'react-slick';
 import '../../../../components/slickcss/slick.css';
 import '../../../../components/slickcss/slick-theme.css';
@@ -6,7 +5,7 @@ import data from '../Result.json';
 import * as St from './Recommend.Styles';
 import basket from '../../../../assets/basket.svg';
 
-const BoardResultPlantRecommend: React.FC = () => {
+const BoardResultPlantRecommend = () => {
     const myPlant = data;
     const settings = {
         dots: true,

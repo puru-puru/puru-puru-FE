@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 export const BoardResultWrapper = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 15px;
     /* margin-top: 15px; */
     margin-right: 30px;
     margin-bottom: 30px;
+    position: absolute;
+    overflow-x: hidden;
 `;
 
 export const BoardResultHeadContent = styled.div`

@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const BoardTestWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     padding: 15px;
@@ -26,7 +30,7 @@ export const BoardTestMainTitle = styled.div`
     color: rgba(149, 149, 149, 1);
 `;
 
-export const BoardTestMainItem = styled.button`
+export const BoardTestMainItem = styled.button<{ $isSelected: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,9 +40,15 @@ export const BoardTestMainItem = styled.button`
     border-radius: 20px;
     border: 2px solid white;
     box-shadow: 8px 8px 5px rgba(152, 152, 152, 0.25);
-    background-color: rgba(218, 234, 202, 1);
     &:hover {
-        border-color: rgba(114, 164, 116, 1);
+        border-color: rgba(218, 234, 202, 1);
+    }
+    &:focus {
+        ${({ $isSelected }) =>
+            $isSelected &&
+            css`
+                border-color: rgba(114, 164, 116, 1);
+            `}
     }
 `;
 
@@ -52,14 +62,23 @@ export const BoardTestMainItemContent = styled.div`
     margin-top: 10px;
 `;
 
-export const BoardTestMainSelectButton = styled.button`
+export const BoardTestMainSelectButtonStyle = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 5px;
+    margin-top: 30px;
+`;
+
+export const BoardTestMainSelectButton = styled.button<{ $isSelected: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 334px;
     height: 57px;
     border-radius: 20px;
-    background-color: rgba(218, 234, 202, 1);
+    background-color: ${(props) =>
+        props.$isSelected ? 'rgba(114, 164, 116, 1)' : 'rgba(218, 234, 202, 1)'};
     box-shadow: 0px 10px 30px rgba(202, 66, 17, 0.1);
     font-weight: 800;
     font-size: 18px;
