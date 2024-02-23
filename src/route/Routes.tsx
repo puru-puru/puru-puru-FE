@@ -43,10 +43,9 @@ const RouterInfo = [
     { path: '/boardresult', element: <BoardResult />, withAuthorization: true },
 ];
 
-// Authorization 컴포넌트
-const Authorization = ({ redirectTo, children }) => {
-    const isAuthenticated = Cookies.get('AccessToken');
-    if (isAuthenticated) {
+const Authorization  = ({ redirectTo, children }) => {
+    const refreshToken = Cookies.get('RefreshToken');
+    if (refreshToken) {
         return <>{children}</>;
     } else {
         return <Navigate to={redirectTo} />;
@@ -80,7 +79,7 @@ export const Routes = () => {
                                 path={path}
                                 element={
                                     withAuthorization ? (
-                                        <Authorization redirectTo="/" children={element} />
+                                        <Authorization  redirectTo="/signin" children={element} />
                                     ) : (
                                         element
                                     )

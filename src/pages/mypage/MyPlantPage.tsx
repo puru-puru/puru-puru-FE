@@ -103,7 +103,7 @@ const MyPage: React.FC = () => {
     const petDate = new Date(petPlant[currentPage-1]?.plantAt);
     const timeDifference = currentDate.getTime() - petDate.getTime();
     const diffDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
-    if (!petPlant) return <EmptyMyPlant />;
+    if (petPlant.length === 0) return <EmptyMyPlant />;
     return (
         <div>
             <PagesContainer>

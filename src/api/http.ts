@@ -33,31 +33,36 @@ axios.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
-        if (error.response.status === 401 || error.response.status === 419) {
+        if (error.response.status === 401) {
             // 엑세스 토큰이 만료되었고 인증되지 않았을 경우
             originalRequest._retry = true;
             const refreshToken = Cookies.get('RefreshToken'); // 쿠키에서 리프레시 토큰을 가져옴
             if (refreshToken) {
                 try {
-                    const res = await axios.post('/refresh', {refreshToken}); // 리프레시 토큰을 이용하여 새로운 엑세스 토큰 발급 요청
+                    const res = await axios.get('/api/refresh', {
+                        headers: {
+                            refresh: `Bearer ${refreshToken}`,
+                        }
+                    }); // 리프레시 토큰을 이용하여 새로운 엑세스 토큰 발급 요청
                     console.log(res);
-                    if (res.data.newAccessToken) {
-                        Cookies.set('AccessToken', res.data.newAccessToken); // 발급받은 새로운 엑세스 토큰을 저장
-                        originalRequest.headers.Authorization = `${res.data.newAccessToken}`; // 새로운 엑세스 토큰으로 재요청
+                    if (res.data.data.newAccessToken) {
+                        Cookies.set('AccessToken', res.data.data.newAccessToken); // 발급받은 새로운 엑세스 토큰을 저장
+                        Cookies.set('RefreshToken', res.data.data.newRefreshToken);
+                        originalRequest.headers.Authorization = `Bearer ${res.data.data.newAccessToken}`; // 새로운 엑세스 토큰으로 재요청
                         return axios(originalRequest); // 재요청
                     } else {
                         alert('새로운 엑세스 토큰 발급에 실패했습니다.');
-                        Cookies.remove('AccessToken');
-                        window.location.href = '/signin';
+                        // Cookies.remove('AccessToken');
+                        // window.location.href = '/signin';
                     }
                 } catch (error) {
                     console.error('오류 발생: ', error);
-                    Cookies.remove('AccessToken');
+                    // Cookies.remove('AccessToken');
                     alert('알 수 없는 오류가 발생했습니다. 로그아웃됩니다.');
                     window.location.href = '/signin';
                 }
             } else {
-                console.error('리프레시 토큰이 없습니다. 로그인 페이지로 이동합니다.');
+                alert('리프레시 토큰이 없습니다. 로그인 페이지로 이동합니다.');
                 window.location.href = '/signin';
             }
         }
