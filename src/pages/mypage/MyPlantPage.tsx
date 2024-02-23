@@ -13,7 +13,7 @@ import {
     PetPlantHeader,
     PetPlantHeaderTitle,
     PlusButton,
-    PhotoButton,
+    // PhotoButton,
     PlantButton,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
@@ -163,7 +163,7 @@ const MyPage: React.FC = () => {
             {open && (
                 <>
                     <div className="dark-overlay"></div>
-                    <PhotoButton />
+                    {/* <PhotoButton /> */}
                     <PlantButton onClick={handleRegisterClick} />
                 </>
             )}

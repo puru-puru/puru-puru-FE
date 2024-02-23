@@ -1,22 +1,23 @@
 import { http } from '../http';
 import { useMutation } from '@tanstack/react-query';
 import { useInvalidateQueries } from '../../hook/useInvaildQueries';
-import { UserWithConfirmPassword } from './model';
+import { User } from './model';
+
 
 const MUTATION_KEY = {
-    SIGNUP: 'SIGNUP',
+    SIGN_IN: 'SIGN_IN',
 };
 
-export const usePostSignUpData = () => {
-    const URL = '/api/auth/sign-up';
+export const usePostSignInData = () => {
+    const URL = '/api/auth/sign-in';
     const invalidate = useInvalidateQueries();
 
     return useMutation(
-        async (body: UserWithConfirmPassword) => {
+        async (body: User) => {
             return http.post(URL, body).then((res) => res);
         },
         {
-            onSuccess: () => invalidate([MUTATION_KEY.SIGNUP]),
+            onSuccess: () => invalidate([MUTATION_KEY.SIGN_IN]),
         },
     );
 };

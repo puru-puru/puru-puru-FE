@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { User } from '../../../api/model';
+import { User } from '../../../api/login/model';
 import {
     Heading,
     SignInBotten,
@@ -13,10 +13,11 @@ import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { useNavigate } from 'react-router-dom';
 // import SocialKakao from '../social/SocialKakao';
 // import SocialGoogle from '../social/SocialGoogle';
-import { signinApi } from '../../../api/http';
 import { SharedInput } from '../../Shared.styles';
+import { usePostSignInData } from '../../../api/login/SignIn';
 
 const SignIn: React.FC = () => {
+    const { mutate, isLoading } = usePostSignInData();
     const navigate = useNavigate();
     const [hasNickname, setHasNickName] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
@@ -58,24 +59,31 @@ const SignIn: React.FC = () => {
         }
     }, [user.email, user.password, navigate, hasNickname]);
 
-    const handleLogin = async () => {
+    const handleSuccess = (response) => {
+        const data = response.data;
+        Cookies.set('AccessToken', data.accessToken, { expires: 1 / 24 });
+        Cookies.set('RefreshToken', data.refreshToken, { expires: 30 });
+        setHasNickName(data.hasNickname);
+        setUser({
+            email: '',
+            password: '',
+        });
+        if (data.hasNickname) {
+            navigate('/mainpage');
+        } else {
+            navigate('/service');
+        }
+    };
+
+    const handleLogin = () => {
         try {
             if (user.email === '' || user.password === '') {
                 setError('아이디와 비밀번호를 입력해주세요');
                 return;
             }
-            const response = await signinApi.post('api/auth/sign-in', user);
-            console.log(response);
-            Cookies.set('AccessToken', response.data.accessToken, { expires: 1 / 24 });
-            Cookies.set('RefreshToken', response.data.refreshToken, { expires: 30 });
-            setHasNickName(response.data.hasNickname);
-            setUser({
-                email: '',
-                password: '',
+            mutate(user, {
+                onSuccess: handleSuccess,
             });
-            if (response.data.hasNickname) {
-                navigate('/mainpage');
-            } else navigate('/service');
         } catch (error: any) {
             if (error.response) {
                 const statusCode = error.response.status;
@@ -94,6 +102,7 @@ const SignIn: React.FC = () => {
         <LoginContainer>
             <div>
                 <Heading>Login</Heading>
+                {isLoading && <p>로그인 중입니다...</p>}
                 <div>
                     <p>Email</p>
                     <SharedInput
