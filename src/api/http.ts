@@ -1,15 +1,12 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import {
-    ApiResponse,
     CommunityData,
     CommunityFormData,
     DiaryEntry,
     newPlantData,
-    SearchApiResponse,
-    User,
-    UserWithConfirmPassword,
 } from './model';
+import { SearchApiResponse } from './myplant/model';
 export const axios = Axios.create({
     baseURL: 'https://www.purupuru.store/',
 });
@@ -52,14 +49,14 @@ axios.interceptors.response.use(
                         return axios(originalRequest); // 재요청
                     } else {
                         alert('새로운 엑세스 토큰 발급에 실패했습니다.');
-                        Cookies.remove('AccessToken');
-                        window.location.href = '/signin';
+                        // Cookies.remove('AccessToken');
+                        // window.location.href = '/signin';
                     }
                 } catch (error) {
                     console.error('오류 발생: ', error);
-                    Cookies.remove('AccessToken');
+                    // Cookies.remove('AccessToken');
                     alert('알 수 없는 오류가 발생했습니다. 로그아웃됩니다.');
-                    window.location.href = '/signin';
+                    // window.location.href = '/signin';
                 }
             } else {
                 alert('리프레시 토큰이 없습니다. 로그인 페이지로 이동합니다.');
@@ -77,46 +74,17 @@ export const http = {
         return axios.get<Response>(url).then((res) => res.data);
     },
     post: function httpPost<Request = any, Response = unknown>(url: string, data?: Request) {
-        return axios.post<Response>(url, { data }).then((res) => res.data);
+        return axios.post<Response>(url, data).then((res) => res.data);
     },
     put: function httpPut<Request = any, Response = unknown>(url: string, data?: Request) {
         return axios.put<Response>(url, data).then((res) => res.data);
     },
+    patch: function httpPatch<Request = any, Response = unknown>(url: string, data?: Request) {
+        return axios.patch<Response>(url, data).then((res) => res.data);
+    },
 };
 
 // 제네릭 타입을 지정함으로써 코드의 재사용성을 높이고, 함수를 호출할 때 요청과 응답의 타입을 명시적으로 지정하여 타입 안정성을 확보할 수 있습니다.
-// 로그인
-export const signinApi = {
-    post: async function signinApiPost<Request = User, Response = ApiResponse>(
-        url: string,
-        data?: Request,
-    ) {
-        const res = await axios.post<Response>(url, data);
-        return res.data;
-    },
-};
-
-// 회원가입
-export const signupApi = {
-    post: async function signupApiPost<Request = UserWithConfirmPassword, Response = ApiResponse>(
-        url: string,
-        data?: Request,
-    ) {
-        const res = await axios.post<Response>(url, data);
-        return res.data;
-    },
-};
-
-// 닉네임 설정
-export const nameApi = {
-    post: async function nameApiPost<Request = string, Response = string>(
-        url: string,
-        data?: Request,
-    ) {
-        const res = await axios.post<Response>(url, data);
-        return res.data;
-    },
-};
 
 // 반려식물 페이지
 export const myplantApi = {
@@ -135,23 +103,7 @@ export const myplantApi = {
 };
 
 
-// 반려식물 등록
-export const registrationApi = {
-    post: async function registrationApiPost(formData: FormData) {
-        try {
-            const response = await axios.post('/api/diaries', formData);
-            console.log(response);
-            return response.data;
-        } catch (error: any) {
-            // 에러 처리
-            console.error('에러 발생:', error);
-            if (error.response) {
-                console.error('서버 응답 데이터:', error.response.data);
-            }
-            throw error;
-        }
-    },
-};
+
 
 // 반려식물 검색
 export const searchApi = {

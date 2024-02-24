@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Navbar from './Navbar';
+import BackGround from './BackGround';
 
 const LayoutContainer = styled.div`
     width: 100vw;
@@ -10,20 +11,18 @@ const LayoutContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-    padding: 0;
 `;
 
 const LayoutContent = styled.div`
     width: 360px;
     height: 728px;
+    border-radius: 20px;
     overflow-y: auto;
     margin: 0;
     position: relative;
     border: 1px solid gray;
     box-sizing: border-box;
 `;
-  
 
 const Layout: React.FC = () => {
     const { pathname } = useLocation();
@@ -32,11 +31,12 @@ const Layout: React.FC = () => {
     const isMain = pathname === '/mainpage';
     const isMyprofile = pathname === '/myprofile';
     const isCommunity = pathname === '/community';
-  
+
     return (
         <>
-            <LayoutContainer>
-                <LayoutContent>
+            <LayoutContainer style={{ backgroundColor: '#DAEACA' }}>
+                <BackGround/>
+                <LayoutContent style={{ backgroundColor: '#fff' }}>
                     {(isMain || isMyPlant || isMyprofile || isCommunity) && <Navbar />}
                     <Outlet />
                     {(isMain || isMyPlant || isMyprofile || isCommunity) && <Footer />}

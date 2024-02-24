@@ -13,8 +13,9 @@ import {
     PetPlantHeader,
     PetPlantHeaderTitle,
     PlusButton,
-    PhotoButton,
+    // PhotoButton,
     PlantButton,
+    PetPlantHeaderImgContainer,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
 import { useModal } from '../../hook/useModal';
@@ -26,18 +27,20 @@ import { PagesButton, PagesContainer } from './registration/step/steptwo/PageNat
 import { useRecoilState } from 'recoil';
 import { myplantPageState } from '../../recoil/atom';
 
-
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
     const { open, modalOpen, modalClose } = useModal();
     const [currentPage, setCurrentPage] = useRecoilState(myplantPageState);
     const itemsPerPage = 1;
 
-    
-
     const [petPlant, setPetPlant] = useState<DiaryEntry[]>([]);
 
-    const handleIconClick = (diaryId: string, templateId: string, question: string, answer: string) => {
+    const handleIconClick = (
+        diaryId: string,
+        templateId: string,
+        question: string,
+        answer: string,
+    ) => {
         // 아이콘을 클릭하여 MyComponent 페이지로 이동
         navigate('/mycomponent', { state: { diaryId, templateId, question, answer } });
     };
@@ -55,7 +58,6 @@ const MyPage: React.FC = () => {
 
     useEffect(() => {
         if (petPlantDate) {
-            console.log(petPlantDate);
             if (Array.isArray(petPlantDate)) {
                 setPetPlant(petPlantDate);
             }
@@ -87,7 +89,12 @@ const MyPage: React.FC = () => {
             <PetPlantIcon
                 src={`plantimg.png`}
                 onClick={() =>
-                    handleIconClick(template.diaryId, template.id, template.Templelate.question, template.answer)
+                    handleIconClick(
+                        template.diaryId,
+                        template.id,
+                        template.Templelate.question,
+                        template.answer,
+                    )
                 }
             />
             <PetPlantDetailText>
@@ -100,7 +107,7 @@ const MyPage: React.FC = () => {
 
     // 현재 날짜에서 입력받은 날짜를 뺀 d+day값 계산
     const currentDate = new Date();
-    const petDate = new Date(petPlant[currentPage-1]?.plantAt);
+    const petDate = new Date(petPlant[currentPage - 1]?.plantAt);
     const timeDifference = currentDate.getTime() - petDate.getTime();
     const diffDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
     if (petPlant.length === 0) return <EmptyMyPlant />;
@@ -123,10 +130,12 @@ const MyPage: React.FC = () => {
                         <PetPlantHeader>
                             <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
                             <PetPlantCardContainer>
-                                <PetPlantHeaderImg src={plant.image} />
+                                <PetPlantHeaderImgContainer>
+                                    <PetPlantHeaderImg src={plant.image} />
+                                </PetPlantHeaderImgContainer>
                                 <PetPlantHeaderDetail>
                                     <img src="./calendar_clock.svg" />
-                                    {` +  ${diffDays}`} 
+                                    {` +  ${diffDays}`}
                                     {plant.UserPlant?.Plant?.plantName} <br />
                                     {plant.UserPlant?.Plant?.type} <br />
                                     {plant.UserPlant?.Plant?.content}
@@ -163,7 +172,7 @@ const MyPage: React.FC = () => {
             {open && (
                 <>
                     <div className="dark-overlay"></div>
-                    <PhotoButton />
+                    {/* <PhotoButton /> */}
                     <PlantButton onClick={handleRegisterClick} />
                 </>
             )}

@@ -9,6 +9,8 @@ import Cookies from 'js-cookie';
 import Layout from '../components/atoms/Layout';
 import { GlobalStyles } from '../components/atoms/GlobalStyled';
 import Spinner from '/Spin.gif';
+// import RedirectionKakao from '../pages/login/social/redirection/RedirectionKakao';
+import RouteChangeTracker from '../components/RouteChangeTracker';
 
 // Lazy-loaded components
 const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
@@ -71,6 +73,7 @@ export const Routes = () => {
                     </div>
                 }
             >
+                <RouteChangeTracker />
                 <ReactRouterRoutes>
                     <Route element={<Layout />}>
                         {RouterInfo.map(({ path, element, withAuthorization }) => (
@@ -87,6 +90,7 @@ export const Routes = () => {
                             />
                         ))}
                         <Route path="/signin" element={<SignIn />} />
+                        {/* <Route path="/api/auth/login/kakao/return" element={<RedirectionKakao />} /> */}
                         <Route path="/" element={<SplashGuidePage />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="*" element={<Navigate replace to="/signin" />} />

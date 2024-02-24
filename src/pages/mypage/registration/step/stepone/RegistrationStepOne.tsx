@@ -6,12 +6,13 @@ import {
     NextStepButton,
     PreviewContainer,
     PreviewImage,
+    PreviewImageBox,
     SetImgContainer,
     SetNameContainer,
     StepOneContainer,
     UploadButton,
 } from './RegistrationStepOne.styles';
-import { registrationApi } from '../../../../../api/http';
+import { registrationApi } from '../../../../../api/myplant/StepOne';
 import { PetPlantFormData } from '../../../../../api/model';
 
 export const RegistrationStepOne: React.FC = () => {
@@ -33,7 +34,6 @@ export const RegistrationStepOne: React.FC = () => {
             formDataToSend.append('image', formData.image);
             formDataToSend.append('name', formData.name);
             formDataToSend.append('plantAt', formData.plantAt);
-            console.log(formDataToSend.append);
             try {
                 await registrationApi.post(formDataToSend);
                 setCurrentStep(currentStep + 1);
@@ -45,7 +45,7 @@ export const RegistrationStepOne: React.FC = () => {
     };
 
     // 이미지 추가
-    const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         const files = e.target.files;
@@ -55,7 +55,7 @@ export const RegistrationStepOne: React.FC = () => {
                 ...prevData,
                 image: uploadFile,
             }));
-
+            
             // 이미지 선택 시 바로 미리보기 생성
             encodeFileToBase64(uploadFile);
         }
@@ -64,6 +64,7 @@ export const RegistrationStepOne: React.FC = () => {
     // 이미지 선택
     const fileInputRef = useRef<HTMLInputElement>(null);
     const handleClickFileInput = () => {
+        
         fileInputRef.current?.click();
     };
 
@@ -78,6 +79,8 @@ export const RegistrationStepOne: React.FC = () => {
 
         reader.readAsDataURL(fileBlob);
     };
+
+    
 
     function formatplantAtInput(dateString: string) {
         const cleanedString = dateString.replace(/[^\d]/g, '');
@@ -127,7 +130,11 @@ export const RegistrationStepOne: React.FC = () => {
             <SetImgContainer>
                 <p>이미지 업로드</p>
                 <PreviewContainer>
-                    {imageBase64 && <PreviewImage src={imageBase64} alt="preview-img" />}
+                    {imageBase64 && (
+                        <PreviewImageBox>
+                            <PreviewImage src={imageBase64} alt="preview-img" />
+                        </PreviewImageBox>
+                    )}
 
                     <form action="">
                         <input

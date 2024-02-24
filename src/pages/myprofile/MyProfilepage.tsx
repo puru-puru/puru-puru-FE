@@ -16,7 +16,6 @@ const MyProfilepage: React.FC = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('/api/users');
-                console.log(response);
                 setProfile(response.data.data);
             } catch (error) {
                 console.error('Error fetching data:', error);

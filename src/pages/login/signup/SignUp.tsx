@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { UserWithConfirmPassword } from '../../../api/model';
+import { UserWithConfirmPassword } from '../../../api/loginapi/model';
 import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { SignUpBotten, SignUpToggle, StyledInput } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
-import { signupApi } from '../../../api/http';
 import { useModal } from '../../../hook/useModal';
+import { usePostSignUpData } from '../../../api/loginapi/SignUp';
 
 const SignUp: React.FC = () => {
+    const { mutate } = usePostSignUpData();
     const navigate = useNavigate();
     const { open, modalOpen, modalClose } = useModal();
     const [isChecked, setIsChecked] = useState(false);
@@ -26,7 +27,7 @@ const SignUp: React.FC = () => {
         return passwordRegex.test(password);
     };
     const isEmailValid = user.email.length > 0 && validateEmail(user.email);
-    const isPasswordValid =  validatePassword(user.password);
+    const isPasswordValid = validatePassword(user.password);
 
     useEffect(() => {
         if (isEmailValid && isPasswordValid) {
@@ -36,6 +37,28 @@ const SignUp: React.FC = () => {
         }
     }, [isEmailValid, isPasswordValid]);
 
+    const handleSuccess = () => {
+        setUser({
+            email: '',
+            password: '',
+            confirmPassword: '',
+        });
+        modalOpen();
+        setTimeout(() => {
+            modalClose();
+            navigate('/signin');
+        }, 1500);
+    };
+
+    const handleError = (error: any) => {
+        if (error.response) {
+            if (error.response.status === 409) {
+                setError('회원가입 실패: 이미 존재하는 아이디입니다.');
+            } else {
+                setError('회원가입 실패: 서버 오류가 발생했습니다.');
+            }
+        }
+    };
     // 회원가입 폼 제출 핸들러
     const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -44,29 +67,12 @@ const SignUp: React.FC = () => {
                 alert('아이디와 비밀번호를 입력해주세요');
                 return;
             }
-            const response = await signupApi.post('/api/auth/sign-up', user);
-            if (response.message) {
-                setUser({
-                    email: '',
-                    password: '',
-                    confirmPassword: '',
-                });
-                modalOpen();
-                setTimeout(() => {
-                    modalClose();
-                    navigate('/signin');
-                }, 1500);
-            } else {
-                setError('회원가입 실패');
-            }
+            mutate(user, {
+                onSuccess: handleSuccess,
+                onError: handleError,
+            });
         } catch (error: any) {
-            if (error.response) {
-                if (error.response.status === 409) {
-                    setError('회원가입 실패: 이미 존재하는 아이디입니다.');
-                } else {
-                    setError('회원가입 실패: 서버 오류가 발생했습니다.');
-                }
-            }
+            handleError(error);
         }
     };
 
@@ -101,7 +107,7 @@ const SignUp: React.FC = () => {
                     <StyledInput
                         type="password"
                         value={user.confirmPassword}
-                        $invalid={!!( !user.password || user.password !== user.confirmPassword)}
+                        $invalid={!!(!user.password || user.password !== user.confirmPassword)}
                         onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
                         placeholder="비밀번호를 재입력하세요"
                     />

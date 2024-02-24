@@ -1,20 +1,3 @@
-export interface User {
-    email: string;
-    password: string;
-    
-}
-
-export interface UserWithConfirmPassword extends User {
-    confirmPassword: string;
-}
-
-export interface ApiResponse {
-    status: number;
-    data: any;
-    message: string;
-    token?: string;
-    // 기타 필요한 속성들...
-}
 export interface PetPlantFormData {
     name: string;
     plantAt: string;
@@ -52,15 +35,7 @@ export interface DiaryEntry {
     SavedTemplelates: SavedTemplelates[];
 }
 
-export interface SearchApiResponse {
-    data?: any;
-    plantsId: number;
-    plantName: string;
-    type: string;
-    image: string;
-    content: string;
-    tag: string;
-}
+
 
 export interface newPlantData {
     plantName: string;

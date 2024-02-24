@@ -8,9 +8,10 @@ import {
     NameDecisionText,
 } from './NameDecision.styles';
 import { useNavigate } from 'react-router-dom';
-import { nameApi } from '../../../api/http';
+import { usePostNameData } from '../../../api/loginapi/Name';
 
 const NameDecision: React.FC = () => {
+    const { mutate } = usePostNameData();
     const navigate = useNavigate();
     const [nameInfo, setNameInfo] = useState({
         name: '',
@@ -52,18 +53,16 @@ const NameDecision: React.FC = () => {
                 throttled = true;
                 try {
                     // API 요청 보내기
-                    const response = await nameApi.post(`/api/users/set-name`, {
-                        nickname: nameInfo.name,
+                    mutate(nameInfo.name, {
+                        onSuccess:()=> {
+                            setNameInfo((prevState) => ({
+                                ...prevState,
+                                errorMessage: '',
+                            }));
+                            navigate('/mainpage');
+                        }
                     });
-
-                    // API 요청 성공 시 처리
-                    setNameInfo((prevState) => ({
-                        ...prevState,
-                        errorMessage: '',
-                    }));
-                    console.log('API 요청 성공:', response);
-
-                    navigate('/mainpage');
+                    
                 } catch (error: any) {
                     // API 요청 실패 시 처리
                     if (error.response && error.response.status === 409) {
