@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { UserWithConfirmPassword } from '../../../api/login/loginmodel';
+import { UserWithConfirmPassword } from '../../../api/loginmodel';
 import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { SignUpBotten, SignUpToggle, StyledInput } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
