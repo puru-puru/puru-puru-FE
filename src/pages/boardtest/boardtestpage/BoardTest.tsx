@@ -1,15 +1,37 @@
-import React from 'react';
 import * as St from './BoardTest.styles';
 import arrow from '../../../assets/arrow.svg';
-import data from './Test.json';
+import boardTestData from './Test.json';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+// import { useGetBoardTestPageData } from '../../../api/boardtest/BoardTest';
 
-const BoardTest: React.FC = () => {
-    const testData = data;
+const BoardTest = () => {
+    const [boardId, setBoardId] = useState(0);
+    const navigate = useNavigate();
+    // const pageData = useGetBoardTestPageData();
+    // console.log(pageData);
+    const testData = boardTestData;
+    // 키워드 선택 state
+    const [isSelected, setIsSelected] = useState(false);
+    // skip 버튼 클릭시 MainPage 이동
+    const skipButtonHandler = () => {
+        navigate('/mainpage');
+    };
+    // 키워드 클릭 handler
+    const boardItemHandler = (id: number) => {
+        setIsSelected((prevState) => !prevState);
+        setBoardId(id);
+    };
+    // 결과 확인하기 버튼 클릭 후 보드 결과 페이지 이동
+    const selectedButtonHandler = (boardId: number) => {
+        navigate('/boardresult', { state: { boardId } });
+    };
+
     return (
         <St.BoardTestWrapper>
             <div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <St.BoardTestSkipButton>
+                    <St.BoardTestSkipButton onClick={skipButtonHandler}>
                         Skip
                         <img style={{ marginLeft: '5px' }} src={arrow} />
                     </St.BoardTestSkipButton>
@@ -44,8 +66,12 @@ const BoardTest: React.FC = () => {
                             backgroundColor = 'rgba(243, 255, 254, 1))'; // Default color
                     }
                     return (
-                        <div style={{ marginTop: '20px' }}>
-                            <St.BoardTestMainItem style={{ backgroundColor }}>
+                        <div key={testItem.id} style={{ marginTop: '20px' }}>
+                            <St.BoardTestMainItem
+                                onClick={() => boardItemHandler(testItem.id)}
+                                $isSelected={isSelected}
+                                style={{ backgroundColor }}
+                            >
                                 <img
                                     style={{ width: '50px', height: '50px' }}
                                     src={testItem.keywordImgURL}
@@ -58,16 +84,14 @@ const BoardTest: React.FC = () => {
                     );
                 })}
             </St.BoardTestMain>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginTop: '30px',
-                }}
-            >
-                <St.BoardTestMainSelectButton>결과 확인하기</St.BoardTestMainSelectButton>
-            </div>
+            <St.BoardTestMainSelectButtonStyle>
+                <St.BoardTestMainSelectButton
+                    onClick={() => selectedButtonHandler(boardId)}
+                    $isSelected={isSelected}
+                >
+                    결과 확인하기
+                </St.BoardTestMainSelectButton>
+            </St.BoardTestMainSelectButtonStyle>
         </St.BoardTestWrapper>
     );
 };
