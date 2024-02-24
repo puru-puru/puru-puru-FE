@@ -68,6 +68,7 @@ export const NoneResult = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: auto; 
     top: 0;
     right: 0;

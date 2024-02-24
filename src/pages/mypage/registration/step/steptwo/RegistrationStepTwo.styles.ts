@@ -26,3 +26,8 @@ export const SearchButton = styled(SharedButton)<{ $isChecked: boolean }>`
     background-color: ${(props) => (props.$isChecked ? '#72A474' : '#DAEBCA')};
 `;
 
+export const StepTwoNoneIcon = styled.img`
+    width: 150px;
+    height: 150px;
+    margin-top: 40px;
+`

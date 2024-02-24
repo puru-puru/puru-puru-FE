@@ -4,13 +4,14 @@ import {
     SearchButtonContainer,
     SearchContainer,
     SearchInput,
+    StepTwoNoneIcon,
 } from './RegistrationStepTwo.styles';
 import { HomeRecent, NoneResult, NoneResultText } from './PlantCard.styles';
 import SelectionCompleted from '../selection/SelectionCompleted';
 import { searchApi } from '../../../../../api/http';
 import { Plants } from '../../../../../api/model';
 import Spinner from '/Spin.gif';
-import { PetPlantHeaderImg } from '../../../MyPlantPage.styles';
+
 import { PagesContainer } from './PageNation';
 
 export const RegistrationStepTwo: React.FC = () => {
@@ -95,7 +96,7 @@ export const RegistrationStepTwo: React.FC = () => {
                                 <NoneResultText>
                                     관련된 식물이 없어요! 식물을 먼저 등록해주세요
                                 </NoneResultText>
-                                <PetPlantHeaderImg />
+                                <StepTwoNoneIcon src="TitleIcon.svg" alt="Register Icon" />
                             </NoneResult>
                         ) : (
                             <div className="card-group">
@@ -142,7 +143,11 @@ export const RegistrationStepTwo: React.FC = () => {
 
             <SearchButtonContainer>
                 {!selectionCompleted && (
-                    <SearchButton onClick={handleSearch} $isChecked={!!searchItem} disabled={!searchItem}>
+                    <SearchButton
+                        onClick={handleSearch}
+                        $isChecked={!!searchItem}
+                        disabled={!searchItem}
+                    >
                         검색
                     </SearchButton>
                 )}
