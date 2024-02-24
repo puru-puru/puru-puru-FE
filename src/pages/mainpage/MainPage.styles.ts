@@ -4,4 +4,5 @@ export const MainWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 12px;
+    overflow: hidden;
 `;
