@@ -1,6 +1,6 @@
 import React from 'react';
-import { PetPlantHeader, PetPlantHeaderImg, PetPlantHeaderTitle } from '../MyPlantPage.styles';
-import { PetPlantRegister, PetPlantRegisterButton, PetPlantRegisterText } from './EmptyMyPlant.styles';
+import { PetPlantHeader,  PetPlantHeaderTitle } from '../MyPlantPage.styles';
+import { PetPlantRegister, PetPlantRegisterButton, PetPlantRegisterImg, PetPlantRegisterText } from './EmptyMyPlant.styles';
 import { useNavigate } from 'react-router-dom';
 
 const EmptyMyPlant: React.FC = () => {
@@ -17,8 +17,7 @@ const EmptyMyPlant: React.FC = () => {
                 </PetPlantRegisterText>
             </PetPlantHeader>
             <PetPlantRegister>
-                <PetPlantHeaderImg
-                    style={{ marginTop: '100px' }}
+                <PetPlantRegisterImg src='TitleIcon.svg' alt="Register Icon"
                 />
                 <PetPlantRegisterButton onClick={handleRegisterClick}>
                     등록하기
