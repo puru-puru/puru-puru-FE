@@ -27,7 +27,7 @@ export default function ScrollToTop(props) {
         const currentPath = window.location.pathname;
         const route = RouterInfo.find((route) => route.path === currentPath);
         if (route) {
-            titleElement.innerHTML = route.title;
+            titleElement.innerHTML = `puru-puru - ${route.title}`;
         }
     }, [pathname]);
 
