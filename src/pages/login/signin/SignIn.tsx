@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 // import SocialKakao from '../social/SocialKakao';
 // import SocialGoogle from '../social/SocialGoogle';
 import { SharedInput } from '../../Shared.styles';
-import { usePostSignInData } from '../../../api/login/SignIn';
+import { usePostSignInData } from '../../../api/loginapi/SignIn';
 
 const SignIn: React.FC = () => {
     const { mutate, isLoading } = usePostSignInData();

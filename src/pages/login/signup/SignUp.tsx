@@ -4,7 +4,7 @@ import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { SignUpBotten, SignUpToggle, StyledInput } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../../hook/useModal';
-import { usePostSignUpData } from '../../../api/login/SignUp';
+import { usePostSignUpData } from '../../../api/loginapi/SignUp';
 
 const SignUp: React.FC = () => {
     const { mutate } = usePostSignUpData();

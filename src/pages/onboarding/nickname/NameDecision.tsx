@@ -8,7 +8,7 @@ import {
     NameDecisionText,
 } from './NameDecision.styles';
 import { useNavigate } from 'react-router-dom';
-import { usePostNameData } from '../../../api/login/Name';
+import { usePostNameData } from '../../../api/loginapi/Name';
 
 const NameDecision: React.FC = () => {
     const { mutate } = usePostNameData();
