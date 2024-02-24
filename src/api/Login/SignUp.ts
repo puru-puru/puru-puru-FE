@@ -1,7 +1,7 @@
 import { http } from '../http';
 import { useMutation } from '@tanstack/react-query';
 import { useInvalidateQueries } from '../../hook/useInvaildQueries';
-import { UserWithConfirmPassword } from './model';
+import { UserWithConfirmPassword } from './loginmodel';
 
 const MUTATION_KEY = {
     SIGNUP: 'SIGNUP',

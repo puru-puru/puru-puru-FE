@@ -6,7 +6,7 @@ import {
     DiaryEntry,
     newPlantData,
 } from './model';
-import { SearchApiResponse } from './myplant/model';
+import { SearchApiResponse } from './myplant/myplantmodel';
 export const axios = Axios.create({
     baseURL: 'https://www.purupuru.store/',
 });
