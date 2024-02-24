@@ -1,6 +1,6 @@
 import { http } from '../http';
 import { useQuery } from '@tanstack/react-query';
-import { SearchApiResponse } from '../myplantmodel';
+import { SearchApiResponse } from './model';
 
 const QUERY_KEY = {
     STEPTWO: 'STEPTWO',
