@@ -11,6 +11,7 @@ import { GlobalStyles } from '../components/atoms/GlobalStyled';
 import Spinner from '/Spin.gif';
 // import RedirectionKakao from '../pages/login/social/redirection/RedirectionKakao';
 import RouteChangeTracker from '../components/RouteChangeTracker';
+import ScrollToTop from '../components/scrollToTop';
 
 // Lazy-loaded components
 const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
@@ -32,20 +33,43 @@ const SplashGuidePage = lazy(() => import('../pages/onboarding/guide/SplashGuide
 
 // RouterInfo 배열
 const RouterInfo = [
-    { path: '/myplant', element: <MyPlantPage />, withAuthorization: true },
-    { path: '/myprofile', element: <MyProfile />, withAuthorization: true },
-    { path: '/plants', element: <PlantRegistrationPage />, withAuthorization: true },
-    { path: '/mainpage', element: <MainPage />, withAuthorization: true },
-    { path: '/service', element: <ServicePage />, withAuthorization: true },
-    { path: '/users', element: <NameDecision />, withAuthorization: true },
-    { path: '/mycomponent', element: <MyComponent />, withAuthorization: true },
-    { path: '/community', element: <CommunityPage />, withAuthorization: true },
-    { path: '/communitywrite', element: <CommunityWritePage />, withAuthorization: true },
-    { path: '/boardtest', element: <BoardTest />, withAuthorization: true },
-    { path: '/boardresult', element: <BoardResult />, withAuthorization: true },
+    { path: '/signin', title: '로그인', element: <SignIn />, withAuthorization: false },
+    { path: '/', title: '홈', element: <SplashGuidePage />, withAuthorization: false },
+    { path: '/signup', title: '회원가입', element: <SignUp />, withAuthorization: false },
+    { path: '/myplant', title: '나의 반려식물', element: <MyPlantPage />, withAuthorization: true },
+    { path: '/myprofile', title: '나의 프로필', element: <MyProfile />, withAuthorization: true },
+    {
+        path: '/plants',
+        title: '식물 등록',
+        element: <PlantRegistrationPage />,
+        withAuthorization: true,
+    },
+    { path: '/mainpage', title: '메인 페이지', element: <MainPage />, withAuthorization: true },
+    { path: '/service', title: '서비스 페이지', element: <ServicePage />, withAuthorization: true },
+    { path: '/users', title: '닉네임 등록', element: <NameDecision />, withAuthorization: true },
+    {
+        path: '/mycomponent',
+        title: '반려식물 일지',
+        element: <MyComponent />,
+        withAuthorization: true,
+    },
+    { path: '/community', title: '커뮤니티', element: <CommunityPage />, withAuthorization: true },
+    {
+        path: '/communitywrite',
+        title: '커뮤니티 작성',
+        element: <CommunityWritePage />,
+        withAuthorization: true,
+    },
+    { path: '/boardtest', title: '게시판 테스트', element: <BoardTest />, withAuthorization: true },
+    {
+        path: '/boardresult',
+        title: '게시판 결과',
+        element: <BoardResult />,
+        withAuthorization: true,
+    },
 ];
 
-const Authorization  = ({ redirectTo, children }) => {
+const Authorization = ({ redirectTo, children }) => {
     const refreshToken = Cookies.get('RefreshToken');
     if (refreshToken) {
         return <>{children}</>;
@@ -55,6 +79,7 @@ const Authorization  = ({ redirectTo, children }) => {
 };
 
 export const Routes = () => {
+
     return (
         <Router>
             <GlobalStyles />
@@ -73,6 +98,7 @@ export const Routes = () => {
                     </div>
                 }
             >
+                <ScrollToTop/>
                 <RouteChangeTracker />
                 <ReactRouterRoutes>
                     <Route element={<Layout />}>
@@ -82,17 +108,14 @@ export const Routes = () => {
                                 path={path}
                                 element={
                                     withAuthorization ? (
-                                        <Authorization  redirectTo="/signin" children={element} />
+                                        <Authorization redirectTo="/signin" children={element} />
                                     ) : (
                                         element
                                     )
                                 }
                             />
                         ))}
-                        <Route path="/signin" element={<SignIn />} />
                         {/* <Route path="/api/auth/login/kakao/return" element={<RedirectionKakao />} /> */}
-                        <Route path="/" element={<SplashGuidePage />} />
-                        <Route path="/signup" element={<SignUp />} />
                         <Route path="*" element={<Navigate replace to="/signin" />} />
                     </Route>
                 </ReactRouterRoutes>
