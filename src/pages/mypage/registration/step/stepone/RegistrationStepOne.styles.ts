@@ -28,14 +28,26 @@ export const PreviewContainer = styled.div`
     border-radius: 18px;
     position: relative;
 `;
-
-export const PreviewImage = styled.img`
+export const PreviewImageBox = styled.div`
+    width: 145px;
+    height: 145px;
+    background-color: #daeaca;
+    border-radius: 100px;
+    overflow: hidden;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-height: 145px;
-    max-width: 326px;
+`;
+
+export const PreviewImage = styled.img`
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
 
 export const UploadButton = styled.button`

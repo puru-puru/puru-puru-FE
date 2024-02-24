@@ -18,8 +18,6 @@ import {
 import { SharedInput } from '../../Shared.styles';
 import { CommunityFormData } from '../../../api/model';
 
-
-
 const CommunityWritePage: React.FC = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState<CommunityFormData>({
@@ -66,6 +64,17 @@ const CommunityWritePage: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!formData.title || formData.title.length < 2 || formData.title.length > 10) {
+            alert('제목을 2자 이상 10자 이내로 입력해주세요');
+            return;
+        } else if (
+            !formData.content ||
+            formData.content.length < 5 ||
+            formData.content.length > 100
+        ) {
+            alert('내용을 5자 이상 100자 이내로 입력해주세요');
+            return;
+        }
 
         try {
             const formDataObj = new FormData();
@@ -83,6 +92,36 @@ const CommunityWritePage: React.FC = () => {
         }
     };
 
+    function formatPlantTitleInput(value: string) {
+        const regex = /[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]/g;
+        let formattedValue = value.trim();
+        formattedValue = value.replace(regex, '');
+        formattedValue = formattedValue.slice(0, 10);
+        return formattedValue;
+    }
+
+    function formatPlantContentInput(value: string) {
+        const regex = /[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]/g;
+        let formattedValue = value.trim();
+        formattedValue = value.replace(regex, '');
+        formattedValue = formattedValue.slice(0, 100);
+        return formattedValue;
+    }
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        let formattedValue = value;
+        if (name === 'title') {
+            formattedValue = formatPlantTitleInput(value);
+        } else if (name === 'content') {
+            formattedValue = formatPlantContentInput(value);
+        } 
+
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: formattedValue,
+        }));
+    };
+
     const goBack = () => {
         navigate(-1);
     };
@@ -91,23 +130,26 @@ const CommunityWritePage: React.FC = () => {
 
     return (
         <div>
-            <button onClick={goBack}>
+            <button style={{background: 'none'}}onClick={goBack}>
                 <span role="img" aria-label="back">
                     {'<'}
                 </span>
             </button>
             <CommunityPostHeader>
                 <CommunityPostHeaderTitle>게시글 작성</CommunityPostHeaderTitle>
-                <CommunityPostHeaderText>반려 식물 글을 작성하고 공유해보세요</CommunityPostHeaderText>
+                <CommunityPostHeaderText>
+                    반려 식물 글을 작성하고 공유해보세요
+                </CommunityPostHeaderText>
             </CommunityPostHeader>
             <CommunityPostContainer onSubmit={handleSubmit}>
                 <CommunityPostTitleContainer>
                     <CommunityPostlabel>제목을 작성해주세요</CommunityPostlabel>
                     <SharedInput
-                        placeholder="5자 이상 제목을 작성해주세요"
+                        placeholder="2자 이상 10자 이내 제목을 작성해주세요"
                         type="text"
+                        name='title'
                         value={title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        onChange={handleChange}
                     />
                 </CommunityPostTitleContainer>
 
@@ -115,8 +157,9 @@ const CommunityWritePage: React.FC = () => {
                     <CommunityPostlabel>자세한 내용을 작성해주세요</CommunityPostlabel>
                     <CommunityPostTextTextarea
                         value={content}
-                        placeholder="최소 10자 이상 입력해 주세요"
-                        onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                        name='content'
+                        onChange={handleChange}
+                        placeholder="최소 5자 이상 100자 이내로  입력해 주세요"
                     />
                 </CommunityPostTextContainer>
                 <CommunityPostlabel>이미지 업로드</CommunityPostlabel>
@@ -133,10 +176,13 @@ const CommunityWritePage: React.FC = () => {
                         <img src="./Plus_Icon.svg" alt="PlusIcon" />
                     </CommunityUploadButton>
                 </CommunityPreviewContainer>
-                <PostButton 
-                $isChecked={!!(formData.image && formData.title && formData.content)}
-                disabled={!formData.image || !formData.title || !formData.content}
-                type="submit">제출</PostButton>
+                <PostButton
+                    $isChecked={!!(formData.image && formData.title && formData.content)}
+                    disabled={!formData.image || !formData.title || !formData.content}
+                    type="submit"
+                >
+                    제출
+                </PostButton>
             </CommunityPostContainer>
         </div>
     );

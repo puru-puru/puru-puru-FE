@@ -12,22 +12,28 @@ export const PetPlantCardContainer = styled.div`
     display: flex;
 `;
 export const PetPlantHeaderImg = styled.img`
-    width: 200px;
-    height: 200px;
+    width: 100%; 
+    height: 100%;
+    display: block; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+`;
+export const PetPlantHeaderImgContainer = styled.div`
+    width: 200px; 
+    height: 200px; 
     background-color: #DAEACA;
     margin: auto;
     z-index: 1;
-
-    background-image: url('plantimg.png');
-    background-position: center;
     border-radius: 100px;
-    background-repeat: no-repeat;
-    background-size: cover;
-`;
+    overflow: hidden;
+    position: relative;
+`
 export const PetPlantHeaderDetail = styled.div`
     width: 116px;
     height: 150px;
-
     margin: auto;
     font-size: 12px;
     font-weight: 600;

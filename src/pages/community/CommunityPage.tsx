@@ -20,7 +20,6 @@ const CommunityPage: React.FC = () => {
         const fetchData = async () => {
             try {
                 const response = await communityApi.get('/api/boards');
-                console.log(response);
                 setPost(response);
             } catch (error) {
                 console.error('Error: ', error);

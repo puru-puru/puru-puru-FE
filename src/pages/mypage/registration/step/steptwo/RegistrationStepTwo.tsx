@@ -27,7 +27,6 @@ export const RegistrationStepTwo: React.FC = () => {
         setLoading(true);
         try {
             const response = await searchApi.get(`/api/plants/search/${searchItem}`);
-            console.log(response);
 
             if (Array.isArray(response)) {
                 setPlants(response);

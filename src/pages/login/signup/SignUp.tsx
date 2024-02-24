@@ -67,12 +67,10 @@ const SignUp: React.FC = () => {
                 alert('아이디와 비밀번호를 입력해주세요');
                 return;
             }
-            console.log('회원가입 요청 전:', user);
             mutate(user, {
                 onSuccess: handleSuccess,
                 onError: handleError,
             });
-            console.log('회원가입 요청 후:', user);
         } catch (error: any) {
             handleError(error);
         }

@@ -4,7 +4,7 @@ const Splash = () => {
     return (
         <>
             <SplashBackground>
-                <img src="./SplashIcon.svg" alt="" />
+                <img src="./Logo.svg" alt="" />
                 <BottomText>VERSION : 10.1.1</BottomText>
             </SplashBackground>
             
