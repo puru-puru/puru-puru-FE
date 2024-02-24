@@ -1,12 +1,12 @@
 import Slider from 'react-slick';
 import '../../../../components/slickcss/slick.css';
 import '../../../../components/slickcss/slick-theme.css';
-import data from '../Result.json';
+// import data from '../Result.json';
 import * as St from './Recommend.Styles';
 import basket from '../../../../assets/basket.svg';
 
-const BoardResultPlantRecommend = () => {
-    const myPlant = data;
+const BoardResultPlantRecommend = ({ plantData }) => {
+    const myPlant = plantData;
     const settings = {
         dots: true,
         infinite: true,
@@ -16,9 +16,9 @@ const BoardResultPlantRecommend = () => {
     };
     return (
         <Slider {...settings}>
-            {myPlant.map((item) => {
+            {myPlant.map((item: any) => {
                 return (
-                    <St.RecommendLayout key={item.id}>
+                    <St.RecommendLayout key={item.plantsId}>
                         <St.RecommendImageLayout>
                             <img
                                 style={{
@@ -29,7 +29,7 @@ const BoardResultPlantRecommend = () => {
                                     height: '150px',
                                     borderRadius: '20px',
                                 }}
-                                src={item.plantImgURL}
+                                src={item.image}
                             />
                             <St.RecommendImageButtonLayout>
                                 <St.RecommendImageButton>
@@ -47,7 +47,7 @@ const BoardResultPlantRecommend = () => {
                             </St.RecommendImageButtonLayout>
                         </St.RecommendImageLayout>
                         <St.RecommendTitleLayout>{item.plantName}</St.RecommendTitleLayout>
-                        <St.RecommendContentLayout>{item.plantContent}</St.RecommendContentLayout>
+                        <St.RecommendContentLayout>{item.content}</St.RecommendContentLayout>
                     </St.RecommendLayout>
                 );
             })}
