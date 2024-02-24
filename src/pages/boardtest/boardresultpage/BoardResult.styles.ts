@@ -22,42 +22,18 @@ export const BoardResultHeadContent = styled.div`
 `;
 
 export const BoardResultMainLayout = styled.div`
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
-`;
-
-export const BoardResultMainCatalogButton = styled.button`
-    display: flex;
+    justify-content: center;
     align-items: center;
-    font-size: 12px;
-    font-weight: 900;
-    line-height: 18.28px;
-    width: 94.74px;
-    height: 30px;
-    padding: 0px;
-    border: 1px solid transparent;
-    border-radius: 30px;
-    background-image: linear-gradient(#fff, #fff),
-        linear-gradient(to right, rgba(249, 136, 31, 1) 0%, rgba(255, 119, 76, 1) 100%);
-    background-origin: padding-box;
-    background-clip: content-box, border-box;
-    &:focus,
-    :focus-visible {
-        outline: none;
-    }
-    &:hover {
-        border: 1px solid transparent;
-        border-radius: 30px;
-        background-image: linear-gradient(#fff, #fff),
-            linear-gradient(to right, rgba(249, 136, 31, 1) 0%, rgba(255, 119, 76, 1) 100%);
-        background-origin: padding-box;
-        background-clip: content-box, border-box;
-    }
 `;
 
 export const BoardResultMainSliderLayout = styled.div`
-    width: 320px;
-    height: 450px;
+    width: 100%;
+    height: 100%;
 `;
 
 export const BoardResultSaveButton = styled.button`
@@ -74,5 +50,5 @@ export const BoardResultSaveButton = styled.button`
     line-height: 27.41px;
     font-weight: 700;
     color: white;
-    margin-top: 15px;
+    /* margin-top: -30px; */
 `;

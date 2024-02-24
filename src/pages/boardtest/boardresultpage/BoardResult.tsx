@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import * as St from './BoardResult.styles';
-import buttonImg from '../../../assets/catalogButton.svg';
 import BoardResultPlantRecommend from './recommend/BoardResultPlantRecommend';
 import BoardResultModal from './BoardResultModal';
 import { useModal } from '../../../hook/useModal';
@@ -45,34 +44,6 @@ const BoardResult = () => {
                 실내 공기를 개선하여 건강에 도움을 줍니다
             </St.BoardResultHeadContent>
             <St.BoardResultMainLayout>
-                <div
-                    style={{
-                        marginTop: '20px',
-                        marginBottom: '15px',
-                        fontSize: '10px',
-                        fontWeight: '600',
-                        lineHeight: '9.55px',
-                        color: 'rgba(125, 125, 125, 1)',
-                    }}
-                >
-                    Catalog
-                </div>
-                <div style={{ display: 'flex', gap: '5px' }}>
-                    {tagData.map((item) => {
-                        return (
-                            <div>
-                                <St.BoardResultMainCatalogButton>
-                                    <img
-                                        style={{ marginLeft: '10px', marginRight: '10px' }}
-                                        src={buttonImg}
-                                    />
-                                    {item.tag.split('#')[1]}
-                                </St.BoardResultMainCatalogButton>
-                            </div>
-                        );
-                    })}
-                </div>
-
                 {/* 추천 식물 슬라이드 */}
                 <St.BoardResultMainSliderLayout>
                     <BoardResultPlantRecommend plantData={tagData} />
