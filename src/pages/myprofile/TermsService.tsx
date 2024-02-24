@@ -21,7 +21,7 @@ export const TermsService: React.FC = () => {
                 {/* 화살표 버튼 */}
                 <button
                     onClick={() => handleArrowButtonClick('terms')}
-                    style={{ marginLeft: '55px' }}
+                    style={{ marginLeft: '55px', background:'none' }}
                 >
                     ➡
                 </button>
@@ -32,7 +32,7 @@ export const TermsService: React.FC = () => {
                 {/* 화살표 버튼 */}
                 <button
                     onClick={() => handleArrowButtonClick('privacy')}
-                    style={{ marginLeft: '40px' }}
+                    style={{ marginLeft: '40px', background:'none' }}
                 >
                     ➡
                 </button>

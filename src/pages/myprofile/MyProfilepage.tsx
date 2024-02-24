@@ -23,21 +23,26 @@ const MyProfilepage: React.FC = () => {
         };
         fetchData();
     }, []);
-    const handleLogout =() =>{
+    const handleLogout = () => {
         Cookies.remove('AccessToken');
         Cookies.remove('RefreshToken');
         navigate('/');
-    }
+    };
     return (
         <MyProfileContainer>
             <MyProfileHeader>
-            <h2>
-            {profile.nickname ?<span style={{ color: '#2197BC' }}>{profile.nickname}</span> : <span style={{ color: '#2197BC' }}>{Cookies.get('Nickname')}</span>}
-            님</h2>
-            <p>{profile.email}</p>
+                <h2>
+                    {profile.nickname ? (
+                        <span style={{ color: '#2197BC' }}>{profile.nickname}</span>
+                    ) : (
+                        <span style={{ color: '#2197BC' }}>{Cookies.get('Nickname')}</span>
+                    )}
+                    님
+                </h2>
+                <p>{profile.email}</p>
             </MyProfileHeader>
             <TermsService />
-                <p>앱 버전 정보 &nbsp;V1.0.0 최신버전</p>
+            <p>앱 버전 정보 &nbsp;V1.0.0 최신버전</p>
 
             <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
         </MyProfileContainer>
