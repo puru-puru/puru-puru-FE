@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { axios } from '../../../api/http';
 
 const BoardResult = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     // BoardTest로 부터 받아온 요소 Id
     const { boardId } = location.state;
