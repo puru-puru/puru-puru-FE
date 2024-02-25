@@ -3,7 +3,7 @@ import * as St from './BoardResult.styles';
 import BoardResultPlantRecommend from './recommend/BoardResultPlantRecommend';
 import BoardResultModal from './BoardResultModal';
 import { useModal } from '../../../hook/useModal';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { axios } from '../../../api/http';
 
 const BoardResult = () => {
@@ -35,6 +35,10 @@ const BoardResult = () => {
     }, []);
     console.log('tagData => ', tagData);
 
+const handleMainButtonClick = () => {
+        navigate('/mainpage');
+    };
+
     return (
         <St.BoardResultWrapper>
             <h2>반려 식물 추천</h2>
@@ -51,7 +55,7 @@ const BoardResult = () => {
             </St.BoardResultMainLayout>
 
             {open && <BoardResultModal />}
-            <St.BoardResultSaveButton>저장</St.BoardResultSaveButton>
+            <St.BoardResultSaveButton onClick={handleMainButtonClick}>메인으로</St.BoardResultSaveButton>
         </St.BoardResultWrapper>
     );
 };
