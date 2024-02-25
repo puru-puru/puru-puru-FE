@@ -101,9 +101,7 @@ const CommunityWritePage: React.FC = () => {
     }
 
     function formatPlantContentInput(value: string) {
-        const regex = /[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]/g;
         let formattedValue = value.trim();
-        formattedValue = value.replace(regex, '');
         formattedValue = formattedValue.slice(0, 100);
         return formattedValue;
     }
