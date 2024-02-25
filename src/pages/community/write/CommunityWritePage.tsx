@@ -101,7 +101,6 @@ const CommunityWritePage: React.FC = () => {
     }
 
     function formatPlantContentInput(value: string) {
-        let formattedValue = value.trim();
         formattedValue = formattedValue.slice(0, 100);
         return formattedValue;
     }
