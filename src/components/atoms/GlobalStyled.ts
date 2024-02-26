@@ -14,6 +14,7 @@ export const GlobalStyles = createGlobalStyle`
         color: #000;
     }
 
+  
     .dark-overlay {
         position: fixed;
         top: 0;

@@ -21,7 +21,7 @@ import {
     ButtonContainer,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
-import { axios, myplantApi } from '../../api/http';
+import {  myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import EmptyMyPlant from './registration/EmptyMyPlant';
@@ -101,14 +101,13 @@ const MyPage: React.FC = () => {
         </PetPlantDetailTextContainer>
     );
 
-    const handleDeleteClick = async (diaryId: number) => {
-        try {
-            const response = await axios.patch(`/diaries/${diaryId}`);
-            console.log('Delete successful:', response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    // const handleDeleteClick = async (diaryId: number) => {
+    //     try {
+    //         await axios.patch(`/diaries/${diaryId}`);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
 
     // 현재 날짜에서 입력받은 날짜를 뺀 d+day값 계산
     const currentDate = new Date();
@@ -128,9 +127,9 @@ const MyPage: React.FC = () => {
                                 <div></div>
                                 <ButtonContainer>
                                     <PlantButton onClick={handleRegisterClick} />
-                                    <DeleteButton
+                                    {/* <DeleteButton
                                         onClick={() => handleDeleteClick(petPlant[index].diaryId)}
-                                    />
+                                    /> */}
                                 </ButtonContainer>
                             </PlantUpdateContainer>
                             <PetPlantCardContainer>
