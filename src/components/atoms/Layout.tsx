@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import BackGround from './BackGround';
-
+import { colors } from '../../styles/colors';
 const LayoutContainer = styled.div`
     width: 100vw;
     height: 100vh;
@@ -34,9 +34,9 @@ const Layout: React.FC = () => {
 
     return (
         <>
-            <LayoutContainer style={{ backgroundColor: '#DAEACA' }}>
+            <LayoutContainer style={{ backgroundColor: colors.green50 }}>
                 <BackGround/>
-                <LayoutContent style={{ backgroundColor: 'white' }}>
+                <LayoutContent style={{ backgroundColor: colors.white }}>
                     {(isMain || isMyPlant || isMyprofile || isCommunity) && <Navbar />}
                     <Outlet />
                     {(isMain || isMyPlant || isMyprofile || isCommunity) && <Footer />}
