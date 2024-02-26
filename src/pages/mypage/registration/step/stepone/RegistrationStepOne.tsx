@@ -23,12 +23,22 @@ export const RegistrationStepOne: React.FC = () => {
         plantAt: '',
         image: null,
     });
+    const dateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-([0-2][1-9]|3[01])$/;
     const handleNextStep = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
+        if (!formData.image) {
+            alert('이미지를 추가해주세요');
+            return;
+        }
+        if (!formData.plantAt || !dateRegex.test(formData.plantAt)) {
+            alert('올바른 날짜 형식을 입력해주세요. YYYYMMDD');
+            return;
+        }
         if (!(formData.name && formData.name.length >= 2 && formData.name.length <= 10)) {
             alert('반려 식물 이름을 2자 이상 10자 이내로 입력해주세요');
             return;
         }
+
         if (formData.image && formData.name && formData.plantAt) {
             const formDataToSend = new FormData();
             formDataToSend.append('image', formData.image);
@@ -41,7 +51,6 @@ export const RegistrationStepOne: React.FC = () => {
                 console.error('반려식물 등록 에러:', error);
             }
         }
-        setCurrentStep(currentStep + 1);
     };
 
     // 이미지 추가
@@ -55,7 +64,7 @@ export const RegistrationStepOne: React.FC = () => {
                 ...prevData,
                 image: uploadFile,
             }));
-            
+
             // 이미지 선택 시 바로 미리보기 생성
             encodeFileToBase64(uploadFile);
         }
@@ -64,7 +73,6 @@ export const RegistrationStepOne: React.FC = () => {
     // 이미지 선택
     const fileInputRef = useRef<HTMLInputElement>(null);
     const handleClickFileInput = () => {
-        
         fileInputRef.current?.click();
     };
 
@@ -80,14 +88,14 @@ export const RegistrationStepOne: React.FC = () => {
         reader.readAsDataURL(fileBlob);
     };
 
-    
-
     function formatplantAtInput(dateString: string) {
         const cleanedString = dateString.replace(/[^\d]/g, '');
 
         // 정규식을 사용하여 'YYYYMMDD' 형식을 'YYYY-MM-DD' 형식으로 변환
-        let formattedString = cleanedString.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
-
+        let formattedString = cleanedString.replace(
+            /^((19|20)\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/,
+            '$1-$3-$4',
+        );
         formattedString = formattedString.slice(0, 10);
         return formattedString;
     }
@@ -109,14 +117,14 @@ export const RegistrationStepOne: React.FC = () => {
     // 반려 식물 이름 및 식물을 만난 날짜 변경 핸들러
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        let formattedValue = value;
+        let formattedValue = '';
 
         if (name === 'name') {
             formattedValue = formatNameInput(value);
         }
 
         if (name === 'plantAt') {
-            formattedValue = formatplantAtInput(value);
+                formattedValue = formatplantAtInput(value);
         }
 
         setFormData((prevData) => ({
@@ -155,9 +163,9 @@ export const RegistrationStepOne: React.FC = () => {
                 </PreviewContainer>
             </SetImgContainer>
             <SetNameContainer>
-                <p>반려 식물 이름을 설정해주세요</p>
+                <p>나만의 반려 식물 이름을 설정해주세요</p>
                 <SharedInput
-                    placeholder="오월이 행복해 - 한글과 영어로 입력해주세요 :)"
+                    placeholder="한글과 영어로 2~10자 이내 입력해주세요 :)"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
@@ -166,7 +174,7 @@ export const RegistrationStepOne: React.FC = () => {
             <SetNameContainer>
                 <p>반려 식물을 만난 날은 언제 인가요?</p>
                 <SharedInput
-                    placeholder="YYYY-MM-DD"
+                    placeholder="YYYYMMDD"
                     name="plantAt"
                     value={formData.plantAt}
                     onChange={handleChange}
@@ -175,7 +183,7 @@ export const RegistrationStepOne: React.FC = () => {
             <NextStepButton
                 // FormDataEntryValue | null => boolean 변환
                 $isChecked={!!(formData.image && formData.name && formData.plantAt)}
-                disabled={!formData.image || !formData.name || !formData.plantAt}
+                // disabled={!formData.image || !formData.name || !formData.plantAt}
                 onClick={handleNextStep}
             >
                 다음

@@ -91,10 +91,10 @@ export const RegistrationStepTwo: React.FC = () => {
                     />
                 ) : (
                     <>
-                        {!plants.length ? (
+                        {selectionCompleted && !plants.length ? (
                             <NoneResult>
                                 <NoneResultText>
-                                    관련된 식물이 없어요! 식물을 먼저 등록해주세요
+                                    관련된 식물이 없어요! 관련 식물을 먼저 등록해주세요
                                 </NoneResultText>
                                 <StepTwoNoneIcon src="TitleIcon.svg" alt="Register Icon" />
                             </NoneResult>
@@ -128,18 +128,18 @@ export const RegistrationStepTwo: React.FC = () => {
                     </>
                 )}
             </HomeRecent>
-
-            <PagesContainer>
-                <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-                    이전
-                </button>
-                {currentPage} / {totalPages}
-                {/* 다음 페이지로 이동하는 버튼 */}
-                <button onClick={goToNextPage} disabled={currentPage === totalPages}>
-                    다음
-                </button>
-            </PagesContainer>
-            {/* 이전 페이지로 이동하는 버튼 */}
+            {plants.length !== 0 && (
+                <PagesContainer>
+                    <button onClick={goToPreviousPage} disabled={currentPage === 1}>
+                        이전
+                    </button>
+                    {currentPage} / {totalPages}
+                    {/* 다음 페이지로 이동하는 버튼 */}
+                    <button onClick={goToNextPage} disabled={currentPage === totalPages}>
+                        다음
+                    </button>
+                </PagesContainer>
+            )}
 
             <SearchButtonContainer>
                 {!selectionCompleted && (

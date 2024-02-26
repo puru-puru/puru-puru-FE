@@ -33,13 +33,13 @@ export const RegistrationListStep: React.FC = () => {
         const regex = /[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]/g;
         let formattedValue = value.trim();
         formattedValue = value.replace(regex, '');
-        formattedValue = formattedValue.slice(0, 6);
+        formattedValue = formattedValue.slice(0, 10);
         return formattedValue;
     }
 
     function formatContentInput(value: string) {
         let formattedValue = value;
-        formattedValue = formattedValue.slice(0, 25);
+        formattedValue = formattedValue.slice(0, 50);
         return formattedValue;
     }
 
@@ -69,12 +69,12 @@ export const RegistrationListStep: React.FC = () => {
     // 식물 종류 유효성 검사 함수
     const isValidType = (type: string): boolean => {
         const regex = /[^\w\s]/g;
-        return type.length >= 2 && type.length <= 6 && regex.test(type);
+        return type.length >= 2 && type.length <= 10 && regex.test(type);
     };
 
     // 식물 정보 유효성 검사 함수
     const isValidContent = (content: string): boolean => {
-        return content.length >= 2 && content.length <= 25;
+        return content.length >= 2 && content.length <= 50;
     };
 
     const handleSubmit = async () => {
@@ -82,10 +82,10 @@ export const RegistrationListStep: React.FC = () => {
             alert('반려 식물 이름을 2자 이상 10자 이내로 입력해주세요');
             return;
         } else if (!plantData.type || !isValidType(plantData.type)) { 
-            alert('식물 종류를 2자 이상 6자 이내로 입력해주세요');
+            alert('식물 종류를 2자 이상 10자 이내로 입력해주세요');
             return;
         } else if (!plantData.content || !isValidContent(plantData.content)) { 
-            alert('식물 정보를 2자 이상 25자 이내로 입력해주세요'); 
+            alert('식물 정보를 2자 이상 50자 이내로 입력해주세요'); 
             return;
         }
         try {
@@ -112,7 +112,7 @@ export const RegistrationListStep: React.FC = () => {
                     value={plantData.plantName}
                     onChange={handleChange}
                 />
-                <p>식물 종류 입력</p>
+                <p>식물 분류 입력</p>
                 <SharedInput
                     placeholder="조록나무과 - 2~6자 이내로 입력해주세요 :)"
                     name="type"

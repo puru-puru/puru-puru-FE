@@ -16,6 +16,6 @@ export const isSplashState = atom({
 });
 
 export const myplantPageState = atom({
-  key: 'currentPageState',
-  default: 1,
+  key: 'myplantPageState',
+  default: 0,
 });

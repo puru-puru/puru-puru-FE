@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import Slider from 'react-slick';
 // 반려식물 내용 style
 export const PetPlantHeader = styled.div`
     letter-spacing: -1.2px;
@@ -47,12 +47,15 @@ export const JournalContainer = styled.div`
     height: 280px;
     border-top-left-radius: 16px;
     border-top-left-radius: 16px;
-    padding: 10px;
+    padding: 15px;
     background-color: #fafff4;
+    position: relative;
 `;
 export const JournalHeader = styled.div``;
 
-export const JournalBody = styled.div``;
+export const JournalBody = styled.div`
+    margin-top: 20px;
+`;
 export const PetPlantDetailTitle = styled.p`
     font-size: 28px;
     margin: 30px 15px 0px;
@@ -93,13 +96,13 @@ export const VerticalDivider = styled.table`
 export const ButtonContainer = styled.div`
     width: 70px;
     display: flex;
-    gap: 5px; 
+    gap: 5px;
 `;
 
 export const DeleteButton = styled.button`
     width: 24px;
     height: 24px;
-    background: #FAFFF4;
+    background: #fafff4;
     padding: 0;
     border-radius: 50%;
 
@@ -114,7 +117,7 @@ export const PlantButton = styled.button`
     width: 24px;
     height: 24px;
     padding: 0;
-    background: #FAFFF4;
+    background: #fafff4;
     border-radius: 50%;
 
     background-image: url('./Plus_Icon.svg');
@@ -127,4 +130,21 @@ export const PlantButton = styled.button`
 export const PlantUpdateContainer = styled.div`
     display: flex;
     justify-content: space-between;
+`;
+
+export const PlantSlickCustom = styled(Slider)`
+    width: 100%;
+    overflow: hidden;
+`;
+
+export const DotsCustom = styled.ul`
+    li button::before {
+        content: '' !important;
+        background: green !important; 
+        color: transparent !important; 
+
+        height: 12px !important;
+        width: 12px !important;
+        border-radius: 100%;
+    }
 `;
