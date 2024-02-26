@@ -11,8 +11,17 @@ export const GlobalStyles = createGlobalStyle`
 * {
         box-sizing: border-box;
         font-family: 'Pretendard';
+        /* color: #000; */
     }
 
+    body {
+    color: #000; 
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #fff; 
+    }
+}
     .dark-overlay {
         position: fixed;
         top: 0;
@@ -24,4 +33,3 @@ export const GlobalStyles = createGlobalStyle`
     }
 
 `;
-
