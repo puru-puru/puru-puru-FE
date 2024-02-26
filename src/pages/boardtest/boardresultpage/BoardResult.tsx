@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import * as St from './BoardResult.styles';
 import BoardResultPlantRecommend from './recommend/BoardResultPlantRecommend';
-import BoardResultModal from './BoardResultModal';
-import { useModal } from '../../../hook/useModal';
+// import BoardResultModal from './BoardResultModal';
+// import { useModal } from '../../../hook/useModal';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { axios } from '../../../api/http';
 
@@ -14,7 +14,7 @@ const BoardResult = () => {
     // 서버로 받은 data state
     const [tagData, setTagData] = useState<any[]>([]);
     // useModal hook
-    const { open, modalOpen, modalClose } = useModal();
+    // const { open, modalOpen, modalClose } = useModal();
     // 첫 렌더링때 3초간 모달 렌더링
     useEffect(() => {
         const fetchData = async () => {
@@ -27,16 +27,16 @@ const BoardResult = () => {
             }
         };
         fetchData();
-        modalOpen();
-        const timeOut = setTimeout(() => {
-            modalClose();
-        }, 3000);
-        return () => clearTimeout(timeOut);
+        // modalOpen();
+        // const timeOut = setTimeout(() => {
+        //     modalClose();
+        // }, 3000);
+        // return () => clearTimeout(timeOut);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     console.log('tagData => ', tagData);
 
-const handleMainButtonClick = () => {
+    const handleMainButtonClick = () => {
         navigate('/mainpage');
     };
 
@@ -55,8 +55,10 @@ const handleMainButtonClick = () => {
                 </St.BoardResultMainSliderLayout>
             </St.BoardResultMainLayout>
 
-            {open && <BoardResultModal />}
-            <St.BoardResultSaveButton onClick={handleMainButtonClick}>메인으로</St.BoardResultSaveButton>
+            {/* {open && <BoardResultModal />} */}
+            <St.BoardResultSaveButton onClick={handleMainButtonClick}>
+                메인으로
+            </St.BoardResultSaveButton>
         </St.BoardResultWrapper>
     );
 };
