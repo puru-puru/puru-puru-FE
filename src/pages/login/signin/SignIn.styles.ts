@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { SharedButton } from '../../Shared.styles';
-
+import { colors } from '../../../styles/colors';
 export const Heading = styled.h1`
     width: 334px;
     height: 106px;
@@ -16,7 +16,7 @@ export const SignInnContainer = styled.div`
 `;
 
 export const SignInBotten = styled(SharedButton)<{ $isChecked: boolean }>`
-    background-color: ${props => props.$isChecked ? "#72A474" : "#DAEBCA"};
+    background-color: ${props => props.$isChecked ?  colors.green100 :  colors.green50};
     margin-bottom: 20px;
 `;
 
@@ -24,7 +24,6 @@ export const SignUpBotten = styled(SharedButton)`
     background-color: #ffffff;
     color: #8b8879;
     border: 1px solid #72a474;
-
 `;
 
 export const SocialContainer = styled.div`

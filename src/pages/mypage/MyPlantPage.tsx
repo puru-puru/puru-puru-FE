@@ -12,14 +12,16 @@ import {
     PetPlantHeaderImg,
     PetPlantHeader,
     PetPlantHeaderTitle,
-    PlusButton,
-    // PhotoButton,
     PlantButton,
     PetPlantHeaderImgContainer,
+    JournalHeader,
+    JournalBody,
+    PlantUpdateContainer,
+    DeleteButton,
+    ButtonContainer,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
-import { useModal } from '../../hook/useModal';
-import { myplantApi } from '../../api/http';
+import { axios, myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import EmptyMyPlant from './registration/EmptyMyPlant';
@@ -29,7 +31,7 @@ import { myplantPageState } from '../../recoil/atom';
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
-    const { open, modalOpen, modalClose } = useModal();
+
     const [currentPage, setCurrentPage] = useRecoilState(myplantPageState);
     const itemsPerPage = 1;
 
@@ -45,11 +47,6 @@ const MyPage: React.FC = () => {
         navigate('/mycomponent', { state: { diaryId, templateId, question, answer } });
     };
 
-    // 갤러리 및 추가 버튼
-    const toggleButtons = () => {
-        if (open) modalClose();
-        else modalOpen();
-    };
     const {
         data: petPlantDate,
         isLoading,
@@ -85,25 +82,33 @@ const MyPage: React.FC = () => {
     };
 
     const IconAndText = ({ template }) => (
-        <PetPlantDetailTextContainer>
-            <PetPlantIcon
-                src={`plantimg.png`}
-                onClick={() =>
-                    handleIconClick(
-                        template.diaryId,
-                        template.id,
-                        template.Templelate.question,
-                        template.answer,
-                    )
-                }
-            />
+        <PetPlantDetailTextContainer
+            onClick={() =>
+                handleIconClick(
+                    template.diaryId,
+                    template.id,
+                    template.Templelate.question,
+                    template.answer,
+                )
+            }
+        >
+            <PetPlantIcon src={`plantimg.png`} />
             <PetPlantDetailText>
                 {template.Templelate.question}
                 <br />
-                <span style={{ opacity: '0.5' }}>{template.answer}</span>
+                {template.answer && <span style={{ opacity: '0.5' }}>{template.answer}</span>}
             </PetPlantDetailText>
         </PetPlantDetailTextContainer>
     );
+
+    const handleDeleteClick = async (diaryId: number) => {
+        try {
+            const response = await axios.patch(`/diaries/${diaryId}`);
+            console.log('Delete successful:', response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     // 현재 날짜에서 입력받은 날짜를 뺀 d+day값 계산
     const currentDate = new Date();
@@ -113,22 +118,19 @@ const MyPage: React.FC = () => {
     if (petPlant.length === 0) return <EmptyMyPlant />;
     return (
         <div>
-            <PagesContainer>
-                <PagesButton onClick={goToPreviousPage} disabled={currentPage === 1}>
-                    이전
-                </PagesButton>
-                {currentPage} / {totalPages}
-                {/* 다음 페이지로 이동하는 버튼 */}
-                <PagesButton onClick={goToNextPage} disabled={currentPage === totalPages}>
-                    다음
-                </PagesButton>
-            </PagesContainer>
             {petPlant
                 .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
                 .map((plant, index) => (
                     <div key={index}>
                         <PetPlantHeader>
                             <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
+                            <PlantUpdateContainer>
+                                <div></div>
+                                <ButtonContainer>
+                                    <PlantButton onClick={handleRegisterClick} />
+                                    <DeleteButton onClick={()=>handleDeleteClick(petPlant[index].diaryId)}/>
+                                </ButtonContainer>
+                            </PlantUpdateContainer>
                             <PetPlantCardContainer>
                                 <PetPlantHeaderImgContainer>
                                     <PetPlantHeaderImg src={plant.image} />
@@ -141,42 +143,50 @@ const MyPage: React.FC = () => {
                                     {plant.UserPlant?.Plant?.content}
                                 </PetPlantHeaderDetail>
                             </PetPlantCardContainer>
+                            <JournalHeader>
+                                <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
+                                <PetPlantDetailLine />
+                            </JournalHeader>
                         </PetPlantHeader>
-
                         <JournalContainer>
-                            <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
-                            <PetPlantDetailLine />
-                            <hr style={{ opacity: '30%' }} />
-                            <div style={{ margin: '20px 10px' }}>
-                                {plant.SavedTemplelates?.length > 0 && (
-                                    <>
-                                        <IconAndText template={plant.SavedTemplelates[0]} />
-                                        <VerticalDivider />
-                                    </>
-                                )}
-                                {plant.SavedTemplelates?.length > 1 && (
-                                    <>
-                                        <IconAndText template={plant.SavedTemplelates[1]} />
-                                        <VerticalDivider />
-                                    </>
-                                )}
-                                {plant.SavedTemplelates?.length > 2 && (
-                                    <IconAndText template={plant.SavedTemplelates[2]} />
-                                )}
-                            </div>
+                            <JournalBody>
+                                <div>
+                                    {plant.SavedTemplelates?.length > 0 && (
+                                        <>
+                                            <IconAndText template={plant.SavedTemplelates[0]} />
+                                            <VerticalDivider />
+                                        </>
+                                    )}
+                                    {plant.SavedTemplelates?.length > 1 && (
+                                        <>
+                                            <IconAndText template={plant.SavedTemplelates[1]} />
+                                            <VerticalDivider />
+                                        </>
+                                    )}
+                                    {plant.SavedTemplelates?.length > 2 && (
+                                        <IconAndText template={plant.SavedTemplelates[2]} />
+                                    )}
+                                </div>
+                            </JournalBody>
+                            <PagesContainer>
+                                <PagesButton
+                                    onClick={goToPreviousPage}
+                                    disabled={currentPage === 1}
+                                >
+                                    이전
+                                </PagesButton>
+                                {currentPage} / {totalPages}
+                                {/* 다음 페이지로 이동하는 버튼 */}
+                                <PagesButton
+                                    onClick={goToNextPage}
+                                    disabled={currentPage === totalPages}
+                                >
+                                    다음
+                                </PagesButton>
+                            </PagesContainer>
                         </JournalContainer>
                     </div>
                 ))}
-
-            {/* 플러스 버튼(갤러리, 식물추가) */}
-            {open && (
-                <>
-                    <div className="dark-overlay"></div>
-                    {/* <PhotoButton /> */}
-                    <PlantButton onClick={handleRegisterClick} />
-                </>
-            )}
-            <PlusButton $isChecked={open} onClick={toggleButtons}></PlusButton>
         </div>
     );
 };
