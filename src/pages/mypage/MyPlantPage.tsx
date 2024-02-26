@@ -128,7 +128,9 @@ const MyPage: React.FC = () => {
                                 <div></div>
                                 <ButtonContainer>
                                     <PlantButton onClick={handleRegisterClick} />
-                                    <DeleteButton onClick={()=>handleDeleteClick(petPlant[index].diaryId)}/>
+                                    <DeleteButton
+                                        onClick={() => handleDeleteClick(petPlant[index].diaryId)}
+                                    />
                                 </ButtonContainer>
                             </PlantUpdateContainer>
                             <PetPlantCardContainer>
@@ -172,6 +174,7 @@ const MyPage: React.FC = () => {
                                 <PagesButton
                                     onClick={goToPreviousPage}
                                     disabled={currentPage === 1}
+                                    style={{ opacity: currentPage === 1 ? 0.5 : 1 }}
                                 >
                                     이전
                                 </PagesButton>
@@ -180,6 +183,7 @@ const MyPage: React.FC = () => {
                                 <PagesButton
                                     onClick={goToNextPage}
                                     disabled={currentPage === totalPages}
+                                    style={{ opacity: currentPage === totalPages ? 0.5 : 1 }}
                                 >
                                     다음
                                 </PagesButton>
