@@ -7,11 +7,10 @@ export const HomeRecent = styled.section`
     height: 302px;
     position: relative;
     margin: 10px auto;
-    
+
     .card-group {
         display: flex;
         flex-wrap: wrap;
-
     }
 
     .card {
@@ -32,7 +31,7 @@ export const HomeRecent = styled.section`
             height: 110px;
             object-fit: cover;
             background-color: #f8f9fa;
-            filter: grayscale(100%);
+            filter: grayscale(50%);
             transition: filter 0.3s ease;
         }
 
@@ -59,7 +58,7 @@ export const HomeRecent = styled.section`
             img {
                 filter: grayscale(0%);
             }
-            border-width: 3px; 
+            border-width: 3px;
         }
     }
 `;
@@ -69,7 +68,7 @@ export const NoneResult = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto; 
+    margin: auto;
     top: 0;
     right: 0;
     bottom: 0;
@@ -77,5 +76,6 @@ export const NoneResult = styled.div`
 `;
 
 export const NoneResultText = styled(PetPlantRegisterText)`
+    font-size: 13px;
     text-align: center;
 `;
