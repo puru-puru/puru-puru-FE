@@ -148,7 +148,7 @@ export const RegistrationStepOne: React.FC = () => {
 
                         <label htmlFor="profile-upload">
                             <UploadButton type="button" onClick={handleClickFileInput}>
-                                <img src="./Plus_Icon.svg" alt="PlusIcon" />
+                                <img src="./Plus.svg" alt="PlusIcon" />
                             </UploadButton>
                         </label>
                     </form>

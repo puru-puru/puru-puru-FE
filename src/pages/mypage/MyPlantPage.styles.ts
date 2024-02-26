@@ -7,30 +7,30 @@ export const PetPlantHeader = styled.div`
 export const PetPlantHeaderTitle = styled.h2`
     margin-left: 10px;
     margin-top: 0px;
+    margin-bottom: 0px;
 `;
 export const PetPlantCardContainer = styled.div`
     display: flex;
 `;
 export const PetPlantHeaderImg = styled.img`
-    width: 100%; 
+    width: 100%;
     height: 100%;
-    display: block; 
+    display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
 `;
 export const PetPlantHeaderImgContainer = styled.div`
-    width: 200px; 
-    height: 200px; 
-    background-color: #DAEACA;
+    width: 200px;
+    height: 200px;
+    background-color: #daeaca;
     margin: auto;
     z-index: 1;
     border-radius: 100px;
     overflow: hidden;
     position: relative;
-`
+`;
 export const PetPlantHeaderDetail = styled.div`
     width: 116px;
     height: 150px;
@@ -43,15 +43,16 @@ export const PetPlantHeaderDetail = styled.div`
 // 일지 style
 export const JournalContainer = styled.div`
     letter-spacing: -1.2px;
-    position: absolute;
-    bottom: 48px;
     width: 100%;
-    height: 330px;
+    height: 280px;
     border-top-left-radius: 16px;
     border-top-left-radius: 16px;
+    padding: 10px;
     background-color: #fafff4;
 `;
+export const JournalHeader = styled.div``;
 
+export const JournalBody = styled.div``;
 export const PetPlantDetailTitle = styled.p`
     font-size: 28px;
     margin: 30px 15px 0px;
@@ -61,13 +62,16 @@ export const PetPlantDetailTitle = styled.p`
 export const PetPlantDetailLine = styled.div`
     border-top: 3px solid #ff655b;
     opacity: 30%;
-    margin: 3px 15px 2em;
+    margin: 0px 15px;
     width: 153px;
 `;
 export const PetPlantDetailTextContainer = styled.div`
     width: 320px;
     display: flex;
     margin: 3px;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 export const PetPlantDetailText = styled.p`
     margin: 0 10px;
@@ -86,59 +90,41 @@ export const VerticalDivider = styled.table`
     height: 24px;
     margin: 0 22px;
 `;
-
-export const PlusButton = styled.button<{$isChecked:boolean}>`
-    position: absolute;
-    left: 78.06%;
-    right: 8.61%;
-    top: 78%;
-    width: 48px;
-    height: 48px;
-    z-index: 3;
-    background: #72a474;
-    border-radius: 95px;
-
-    background-image: url(${props => (props.$isChecked ? './Close_Icon.svg' : './Plus_Icon.svg')});
-    background-repeat: no-repeat;
-    background-size: 24px;
-    background-position: center;
+export const ButtonContainer = styled.div`
+    width: 70px;
+    display: flex;
+    gap: 5px; 
 `;
 
-export const PhotoButton = styled.button`
-    position: absolute;
-    left: 78.33%;
-    right: 8.33%;
-    top: 63.45%;
-    bottom: 23.25%;
-    z-index: 3;
-    width: 48px;
-    height: 48px;
+export const DeleteButton = styled.button`
+    width: 24px;
+    height: 24px;
+    background: #FAFFF4;
+    padding: 0;
+    border-radius: 50%;
 
-    background: #FFFFFF;
-    border-radius: 95px;
-
-    background-image: url('./Photo_Library.svg');
+    background-image: url('./Delete_Icon.svg');
     background-repeat: no-repeat;
-    background-size: 24px;
+    background-size: 12px;
     background-position: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const PlantButton = styled.button`
-    position: absolute;
-    left: 78.33%;
-    right: 8.33%;
-    top: 70.75%;
-    bottom: 23.25%;
-    z-index: 3;
-    width: 48px;
-    height: 48px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: #FAFFF4;
+    border-radius: 50%;
 
-    background: #FFFFFF;
-    border-radius: 95px;
-
-    background-image: url('./Group_Plant.svg');
+    background-image: url('./Plus_Icon.svg');
     background-repeat: no-repeat;
-    background-size: 24px;
+    background-size: 12px;
     background-position: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
+export const PlantUpdateContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;

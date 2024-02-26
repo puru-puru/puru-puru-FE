@@ -36,7 +36,7 @@ const Layout: React.FC = () => {
         <>
             <LayoutContainer style={{ backgroundColor: '#DAEACA' }}>
                 <BackGround/>
-                <LayoutContent style={{ backgroundColor: '#fff' }}>
+                <LayoutContent style={{ backgroundColor: 'white' }}>
                     {(isMain || isMyPlant || isMyprofile || isCommunity) && <Navbar />}
                     <Outlet />
                     {(isMain || isMyPlant || isMyprofile || isCommunity) && <Footer />}

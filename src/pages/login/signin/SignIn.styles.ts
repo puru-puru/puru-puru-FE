@@ -24,7 +24,6 @@ export const SignUpBotten = styled(SharedButton)`
     background-color: #ffffff;
     color: #8b8879;
     border: 1px solid #72a474;
-
 `;
 
 export const SocialContainer = styled.div`
