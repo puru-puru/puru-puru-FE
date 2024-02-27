@@ -45,8 +45,8 @@ const NotificationModal: React.FC = () => {
                         <p style={{ whiteSpace: 'pre-line' }}>{notificationText}</p>
                     </div>
                     <NotiModalContainer>
-                    <NotiModalButton onClick={handleAgree}>네</NotiModalButton>
-                    <NotiModalButton onClick={handleDisagree}>아니요</NotiModalButton>
+                    <NotiModalButton $isChecked={true} onClick={handleAgree}>네</NotiModalButton>
+                    <NotiModalButton $isChecked={false} onClick={handleDisagree}>아니요</NotiModalButton>
                     </NotiModalContainer>
                 </div>
             )}

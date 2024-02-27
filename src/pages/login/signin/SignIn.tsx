@@ -74,25 +74,29 @@ const SignIn: React.FC = () => {
             navigate('/service');
         }
     };
-
+    const handleError = (error: any) => {
+        if (error.response) {
+            const statusCode = error.response.status;
+            if (statusCode === 401) {
+                setError('이메일이 존재하지 않습니다.');
+            } else if (statusCode === 409 ) {
+                setError('비밀번호가 틀렸습니다.');
+            }
+        } else {
+            setError('회원가입해주세요');
+        }
+    };
     const handleLogin = () => {
-        try {
             if (user.email === '' || user.password === '') {
                 setError('아이디와 비밀번호를 입력해주세요');
                 return;
             }
             mutate(user, {
                 onSuccess: handleSuccess,
+                onError: handleError,
             });
-        } catch (error: any) {
-            if (error.response) {
-                const statusCode = error.response.status;
-                if (statusCode === 404) {
-                    setError('서버주소를 찾을수가 없습니다.');
-                }
-            }
-            setError('회원가입해주세요');
-        }
+            
+        
     };
 
     const handleSignUp = () => {

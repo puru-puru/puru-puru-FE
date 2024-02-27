@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
 * {
         box-sizing: border-box;
         font-family: 'Pretendard';
-        color: #000;
+        color: black;
     }
 
   

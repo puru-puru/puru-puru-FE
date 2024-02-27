@@ -5,6 +5,7 @@ import { SignUpBotten, SignUpToggle, StyledInput } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../../hook/useModal';
 import { usePostSignUpData } from '../../../api/loginapi/SignUp';
+import { BackspaceButton } from '../../../components/atoms/button/BackspaceButton';
 
 const SignUp: React.FC = () => {
     const { mutate } = usePostSignUpData();
@@ -52,10 +53,11 @@ const SignUp: React.FC = () => {
 
     const handleError = (error: any) => {
         if (error.response) {
-            if (error.response.status === 409) {
-                setError('회원가입 실패: 이미 존재하는 아이디입니다.');
-            } else {
-                setError('회원가입 실패: 서버 오류가 발생했습니다.');
+            const statusCode = error.response.status;
+            if (statusCode === 409) {
+                setError('회원가입 실패: 이미 존재하는 이메일입니다.');
+            } else if (statusCode === 400) {
+                setError('회원가입 실패: 데이터 형식 오류가 발생했습니다.');
             }
         }
     };
@@ -77,56 +79,59 @@ const SignUp: React.FC = () => {
     };
 
     return (
-        <LoginContainer>
-            <h2>회원가입</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={onSubmitHandler}>
-                <label>
-                    <p>Email</p>
-                    <StyledInput
-                        type="text"
-                        value={user.email}
-                        $invalid={!isEmailValid}
-                        placeholder="예)puleuspuleus@puleus.co.kr"
-                        onChange={(e) => setUser({ ...user, email: e.target.value })}
-                    />
-                </label>
-                <label>
-                    <p>Password</p>
-                    <StyledInput
-                        type="password"
-                        value={user.password}
-                        $invalid={!isPasswordValid}
-                        placeholder="영문 + 숫자 6자~12자로 입력해 주세요"
-                        onChange={(e) => setUser({ ...user, password: e.target.value })}
-                    />
-                    {!isPasswordValid && user.password && (
-                        <ErrorMessage>영문 + 숫자 6자~12자로 입력해 주세요</ErrorMessage>
-                    )}
-                    <p></p>
-                    <StyledInput
-                        type="password"
-                        value={user.confirmPassword}
-                        $invalid={!!(!user.password || user.password !== user.confirmPassword)}
-                        onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
-                        placeholder="비밀번호를 재입력하세요"
-                    />
-                    {user.password !== user.confirmPassword && user.confirmPassword && (
-                        <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
-                    )}
-                </label>
-                <br />
-                <SignUpBotten $isChecked={isChecked} type="submit">
-                    가입하기
-                </SignUpBotten>
-            </form>
-            {open && (
-                <>
-                    <div className="dark-overlay" />
-                    <SignUpToggle>회원가입 완료</SignUpToggle>
-                </>
-            )}
-        </LoginContainer>
+        <>
+            <BackspaceButton onClick={() => navigate('/signin')} />
+            <LoginContainer>
+                <h2>회원가입</h2>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <form onSubmit={onSubmitHandler}>
+                    <label>
+                        <p>Email</p>
+                        <StyledInput
+                            type="text"
+                            value={user.email}
+                            $invalid={!isEmailValid}
+                            placeholder="예)puleuspuleus@puleus.co.kr"
+                            onChange={(e) => setUser({ ...user, email: e.target.value })}
+                        />
+                    </label>
+                    <label>
+                        <p>Password</p>
+                        <StyledInput
+                            type="password"
+                            value={user.password}
+                            $invalid={!isPasswordValid}
+                            placeholder="영문 + 숫자 6자~12자로 입력해 주세요"
+                            onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        />
+                        {!isPasswordValid && user.password && (
+                            <ErrorMessage>영문 + 숫자 6자~12자로 입력해 주세요</ErrorMessage>
+                        )}
+                        <p></p>
+                        <StyledInput
+                            type="password"
+                            value={user.confirmPassword}
+                            $invalid={!!(!user.password || user.password !== user.confirmPassword)}
+                            onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
+                            placeholder="비밀번호를 재입력하세요"
+                        />
+                        {user.password !== user.confirmPassword && user.confirmPassword && (
+                            <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
+                        )}
+                    </label>
+                    <br />
+                    <SignUpBotten $isChecked={isChecked} type="submit">
+                        가입하기
+                    </SignUpBotten>
+                </form>
+                {open && (
+                    <>
+                        <div className="dark-overlay" />
+                        <SignUpToggle>회원가입 완료</SignUpToggle>
+                    </>
+                )}
+            </LoginContainer>
+        </>
     );
 };
 

@@ -7,6 +7,7 @@ import {
     PreviewContainer,
     PreviewImage,
     PreviewImageBox,
+    ReUploadButton,
     SetImgContainer,
     SetNameContainer,
     StepOneContainer,
@@ -23,6 +24,14 @@ export const RegistrationStepOne: React.FC = () => {
         plantAt: '',
         image: null,
     });
+
+    // 현재 날짜를 얻기 위한 Date 객체 생성
+    const today = new Date();
+    // 오늘 날짜의 연, 월, 일을 가져옴
+    const year = today.getFullYear().toString();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+    const day = today.getDate().toString().padStart(2, '0');
+    const todayString = `${year}${month}${day}`;
     const dateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-([0-2][1-9]|3[01])$/;
     const handleNextStep = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
@@ -30,14 +39,19 @@ export const RegistrationStepOne: React.FC = () => {
             alert('이미지를 추가해주세요');
             return;
         }
-        if (!formData.plantAt || !dateRegex.test(formData.plantAt)) {
-            alert('올바른 날짜 형식을 입력해주세요. YYYYMMDD');
-            return;
-        }
         if (!(formData.name && formData.name.length >= 2 && formData.name.length <= 10)) {
             alert('반려 식물 이름을 2자 이상 10자 이내로 입력해주세요');
             return;
         }
+        if (parseInt(formData.plantAt) > parseInt(todayString)) {
+            alert('날짜는 오늘 날짜를 넘어갈 수 없습니다.');
+            return;
+        }
+        if (!formData.plantAt || !dateRegex.test(formData.plantAt)) {
+            alert('올바른 날짜 형식을 입력해주세요. YYYYMMDD');
+            return;
+        }
+
 
         if (formData.image && formData.name && formData.plantAt) {
             const formDataToSend = new FormData();
@@ -93,7 +107,7 @@ export const RegistrationStepOne: React.FC = () => {
 
         // 정규식을 사용하여 'YYYYMMDD' 형식을 'YYYY-MM-DD' 형식으로 변환
         let formattedString = cleanedString.replace(
-            /^((19|20)\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/,
+            /^((19\d{2}|20[0-1]\d|202[0-4])(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))$/,
             '$1-$3-$4',
         );
         formattedString = formattedString.slice(0, 10);
@@ -124,7 +138,7 @@ export const RegistrationStepOne: React.FC = () => {
         }
 
         if (name === 'plantAt') {
-                formattedValue = formatplantAtInput(value);
+            formattedValue = formatplantAtInput(value);
         }
 
         setFormData((prevData) => ({
@@ -155,9 +169,18 @@ export const RegistrationStepOne: React.FC = () => {
                         />
 
                         <label htmlFor="profile-upload">
-                            <UploadButton type="button" onClick={handleClickFileInput}>
-                                <img src="./Plus.svg" alt="PlusIcon" />
-                            </UploadButton>
+                            {formData.image ? (
+                                // 이미지가 있는 경우
+                                <ReUploadButton
+                                    type="button"
+                                    onClick={handleClickFileInput}
+                                ></ReUploadButton>
+                            ) : (
+                                // 이미지가 없는 경우
+                                <UploadButton type="button" onClick={handleClickFileInput}>
+                                    <img src="./Plus.svg" alt="PlusIcon" />
+                                </UploadButton>
+                            )}
                         </label>
                     </form>
                 </PreviewContainer>
