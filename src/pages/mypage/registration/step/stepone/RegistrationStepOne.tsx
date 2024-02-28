@@ -74,9 +74,7 @@ export const RegistrationStepOne: React.FC = () => {
         const files = e.target.files;
         if (files && files.length > 0) {
             const uploadFile = files[0];
-            console.log(uploadFile)
             const compressedImage = await ImageCompressor(uploadFile);
-            console.log(compressedImage)
             if (compressedImage) {
                 setFormData((prevData) => ({
                     ...prevData,

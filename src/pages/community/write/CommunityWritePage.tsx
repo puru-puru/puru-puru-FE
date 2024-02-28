@@ -17,6 +17,7 @@ import {
 } from './CommunityWritePage.styles';
 import { SharedInput } from '../../Shared.styles';
 import { CommunityFormData } from '../../../api/model';
+import ImageCompressor from '../../../components/ImageCompressor';
 
 const CommunityWritePage: React.FC = () => {
     const navigate = useNavigate();
@@ -28,19 +29,21 @@ const CommunityWritePage: React.FC = () => {
     const [imagePreview, setImagePreview] = useState<string | null>(null);
 
     // 이미지 추가
-    const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         const files = e.target.files;
         if (files && files.length > 0) {
             const uploadFile = files[0];
-            setFormData((prevData) => ({
-                ...prevData,
-                image: uploadFile,
-            }));
-
-            // 이미지 선택 시 바로 미리보기 생성
-            encodeFileToBase64(uploadFile);
+            const compressedImage = await ImageCompressor(uploadFile);
+            if (compressedImage) {
+                setFormData((prevData) => ({
+                    ...prevData,
+                    image: compressedImage,
+                }));
+                
+                encodeFileToBase64(compressedImage);
+            } 
         }
     };
 
