@@ -9,9 +9,9 @@ import Cookies from 'js-cookie';
 import Layout from '../components/atoms/Layout';
 import { GlobalStyles } from '../components/atoms/GlobalStyled';
 import Spinner from '/Spin.gif';
-// import RedirectionKakao from '../pages/login/social/redirection/RedirectionKakao';
 import RouteChangeTracker from '../components/RouteChangeTracker';
 import ScrollToTop from '../components/DocumentTitle';
+import RedirectionKakao from '../pages/login/social/redirection/RedirectionKakao';
 
 // Lazy-loaded components
 const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
@@ -95,7 +95,7 @@ export const Routes = () => {
                                 }
                             />
                         ))}
-                        {/* <Route path="/api/auth/login/kakao/return" element={<RedirectionKakao />} /> */}
+                        <Route path="/api/auth/login/kakao/return" element={<RedirectionKakao />} />
                         <Route path="*" element={<Navigate replace to="/signin" />} />
                     </Route>
                 </ReactRouterRoutes>

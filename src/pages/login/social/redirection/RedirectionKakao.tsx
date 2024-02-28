@@ -8,21 +8,23 @@ const RedirectionKakao: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log(code);
         axios
-            .get(`https://purupuru.store/api/auth/login/kakao/return?code=${code}`) 
-            .then((r) => {
-                console.log(r.data);
-
-                // 토큰을 받아서 localStorage같은 곳에 저장하는 코드를 여기에 쓴다.
-                Cookies.set('token', r.data.token); // 일단 이름만 저장했다.
-
-                navigate('/');
+            .post(`https://purupuru.store/api/auth/login/kakao`, { code })
+            .then((response) => {
+                Cookies.set('AccessToken', response.data.accessToken);
+                Cookies.set('RefreshToken', response.data.refreshToken);
+                if (response.data.hasNickname) {
+                    navigate('/mainpage');
+                } else {
+                    navigate('/service');
+                }
             })
-            .catch((error: any) => {
+            .catch((error) => {
                 // 요청이 실패한 경우 실행될 코드
                 console.error('Error:', error);
             });
-    }, []);
+    }, [code, navigate]);
 
     return <div>로그인 중입니다.</div>;
 };

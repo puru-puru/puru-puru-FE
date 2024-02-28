@@ -53,7 +53,7 @@ axios.interceptors.response.use(
                     }
                 } catch (error) {
                     Cookies.remove('AccessToken');
-                    alert('알 수 없는 오류가 발생했습니다. 로그아웃됩니다.');
+                    alert('로그인 인증이 만료 되었습니다. 로그아웃됩니다.');
                     window.location.href = '/signin';
                 }
             } else {

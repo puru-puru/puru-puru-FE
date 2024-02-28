@@ -5,13 +5,13 @@ import {
     Heading,
     SignInBotten,
     SignUpBotten,
-    // SocialBotten,
-    // SocialContainer,
-    // SocialDescription,
+    SocialBotten,
+    SocialContainer,
+    SocialDescription,
 } from './SignIn.styles'; // 에러 메시지를 표시할 컴포넌트 추가
 import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { useNavigate } from 'react-router-dom';
-// import SocialKakao from '../social/SocialKakao';
+import SocialKakao from '../social/SocialKakao';
 // import SocialGoogle from '../social/SocialGoogle';
 import { SharedInput } from '../../Shared.styles';
 import { usePostSignInData } from '../../../api/loginapi/SignIn';
@@ -137,13 +137,13 @@ const SignIn: React.FC = () => {
                 <SignUpBotten onClick={handleSignUp} type="button">
                     회원가입하기
                 </SignUpBotten>
-                {/* <SocialContainer>
+                <SocialContainer>
                     <SocialDescription>SNS 계정으로 간편하게 가입하세요</SocialDescription>
                     <SocialBotten>
-                        <SocialGoogle />
+                        {/* <SocialGoogle /> */}
                         <SocialKakao />
                     </SocialBotten>
-                </SocialContainer> */}
+                </SocialContainer>
             </div>
         </LoginContainer>
     );
