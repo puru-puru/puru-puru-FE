@@ -15,6 +15,7 @@ import {
 } from './RegistrationStepOne.styles';
 import { registrationApi } from '../../../../../api/myplant/StepOne';
 import { PetPlantFormData } from '../../../../../api/model';
+import ImageCompressor from '../../../../../components/ImageCompressor';
 
 export const RegistrationStepOne: React.FC = () => {
     const [currentStep, setCurrentStep] = useRecoilState<number>(currentStepState);
@@ -73,13 +74,17 @@ export const RegistrationStepOne: React.FC = () => {
         const files = e.target.files;
         if (files && files.length > 0) {
             const uploadFile = files[0];
-            setFormData((prevData) => ({
-                ...prevData,
-                image: uploadFile,
-            }));
-
-            // 이미지 선택 시 바로 미리보기 생성
-            encodeFileToBase64(uploadFile);
+            console.log(uploadFile)
+            const compressedImage = await ImageCompressor(uploadFile);
+            console.log(compressedImage)
+            if (compressedImage) {
+                setFormData((prevData) => ({
+                    ...prevData,
+                    image: compressedImage,
+                }));
+                
+                encodeFileToBase64(compressedImage);
+            } 
         }
     };
 
