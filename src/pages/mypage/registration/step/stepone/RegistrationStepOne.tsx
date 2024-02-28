@@ -43,15 +43,14 @@ export const RegistrationStepOne: React.FC = () => {
             alert('반려 식물 이름을 2자 이상 10자 이내로 입력해주세요');
             return;
         }
-        if (parseInt(formData.plantAt) > parseInt(todayString)) {
-            alert('날짜는 오늘 날짜를 넘어갈 수 없습니다.');
-            return;
-        }
         if (!formData.plantAt || !dateRegex.test(formData.plantAt)) {
             alert('올바른 날짜 형식을 입력해주세요. YYYYMMDD');
             return;
         }
-
+        if (parseInt(formData.plantAt) > parseInt(todayString)) {
+            alert('날짜는 오늘 날짜를 넘어갈 수 없습니다.');
+            return;
+        }
 
         if (formData.image && formData.name && formData.plantAt) {
             const formDataToSend = new FormData();
@@ -107,7 +106,7 @@ export const RegistrationStepOne: React.FC = () => {
 
         // 정규식을 사용하여 'YYYYMMDD' 형식을 'YYYY-MM-DD' 형식으로 변환
         let formattedString = cleanedString.replace(
-            /^((19\d{2}|20[0-1]\d|202[0-4])(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))$/,
+            /^((19|20)\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/,
             '$1-$3-$4',
         );
         formattedString = formattedString.slice(0, 10);

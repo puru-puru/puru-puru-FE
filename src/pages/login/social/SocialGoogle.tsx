@@ -1,17 +1,26 @@
 import React from 'react';
 import { SocialButton } from './SocialButton.styles';
 
-const SocialKakao:React.FC = () => {
-    const REST_API_KEY = '구글키';
-    const REDIRECT_URI = '구글URI';
-    const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+const SocialKakao: React.FC = () => {
+    const GMAIL_OAUTH_CLIENT_ID = `214149105868-8h686c0pdnk0cvscof9qr24604t5rdh8.apps.googleusercontent.com`;
+    const GMAIL_OAUTH_CLIENT_SECRET = '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';
+
+    const link = `https://accounts.google.com/o/oauth2/v2/auth?
+    client_id=${GMAIL_OAUTH_CLIENT_ID}
+    &redirect_uri=${GMAIL_OAUTH_CLIENT_SECRET}
+    &response_type=code
+    &scope=email+profile`;
 
     const loginHandler = () => {
         window.location.href = link;
     };
 
     return (
-        <SocialButton type="button" onClick={loginHandler} style={{ backgroundImage: `url('/btn_google.svg')` }}/>
+        <SocialButton
+            type="button"
+            onClick={loginHandler}
+            style={{ backgroundImage: `url('/btn_google.svg')` }}
+        />
     );
 };
 

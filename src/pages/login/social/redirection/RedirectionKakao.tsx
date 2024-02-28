@@ -8,7 +8,6 @@ const RedirectionKakao: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(code);
         axios
             .post(`https://purupuru.store/api/auth/login/kakao`, { code })
             .then((response) => {

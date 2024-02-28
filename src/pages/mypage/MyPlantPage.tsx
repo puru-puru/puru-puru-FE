@@ -3,7 +3,7 @@ import {
     VerticalDivider,
     JournalContainer,
     PetPlantCardContainer,
-    PetPlantHeaderDetail,
+    PetPlantHeaderContainer,
     PetPlantDetailLine,
     PetPlantDetailText,
     PetPlantDetailTextContainer,
@@ -21,6 +21,7 @@ import {
     ButtonContainer,
     PlantSlickCustom,
     DotsCustom,
+    PetPlantHeaderSubTitle,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
 import { axios, myplantApi } from '../../api/http';
@@ -66,11 +67,7 @@ const MyPage: React.FC = () => {
 
     const [petPlant, setPetPlant] = useState<DiaryEntry[]>([]);
 
-    const handleIconClick = (
-        templateId: string,
-        question: string,
-        answer: string,
-    ) => {
+    const handleIconClick = (templateId: string, question: string, answer: string) => {
         // 아이콘을 클릭하여 MyComponent 페이지로 이동
         navigate('/mycomponent', { state: { templateId, question, answer } });
     };
@@ -112,11 +109,7 @@ const MyPage: React.FC = () => {
     const IconAndText = ({ template }) => (
         <PetPlantDetailTextContainer
             onClick={() =>
-                handleIconClick(
-                    template.id,
-                    template.Templelate.question,
-                    template.answer,
-                )
+                handleIconClick(template.id, template.Templelate.question, template.answer)
             }
         >
             <PetPlantIcon src={`plantimg.png`} />
@@ -166,12 +159,15 @@ const MyPage: React.FC = () => {
                                 <PetPlantHeaderImgContainer>
                                     <PetPlantHeaderImg src={plant.image} />
                                 </PetPlantHeaderImgContainer>
-                                <PetPlantHeaderDetail>
+                                <PetPlantHeaderContainer>
                                     <img src="./calendar_clock.svg" /> {` +  ${diffDays}`}
+                                    <PetPlantHeaderSubTitle>이름</PetPlantHeaderSubTitle>
                                     {plant.UserPlant?.Plant?.plantName} <br />
+                                    <PetPlantHeaderSubTitle>종류</PetPlantHeaderSubTitle>
                                     {plant.UserPlant?.Plant?.type} <br />
+                                    <PetPlantHeaderSubTitle>정보</PetPlantHeaderSubTitle>
                                     {plant.UserPlant?.Plant?.content}
-                                </PetPlantHeaderDetail>
+                                </PetPlantHeaderContainer>
                             </PetPlantCardContainer>
                             <JournalHeader>
                                 <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
@@ -240,12 +236,12 @@ const MyPage: React.FC = () => {
                             <PetPlantHeaderImgContainer>
                                 <PetPlantHeaderImg src={plant.image} />
                             </PetPlantHeaderImgContainer>
-                            <PetPlantHeaderDetail>
+                            <PetPlantHeaderContainer>
                                 <img src="./calendar_clock.svg" /> {` +  ${diffDays}`}
                                 {plant.UserPlant?.Plant?.plantName} <br />
                                 {plant.UserPlant?.Plant?.type} <br />
                                 {plant.UserPlant?.Plant?.content}
-                            </PetPlantHeaderDetail>
+                            </PetPlantHeaderContainer>
                         </PetPlantCardContainer>
                         <JournalHeader>
                             <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>

@@ -6,4 +6,5 @@ export const colors = {
   green100: "#72A474",
   green50: "#DAEBCA",
   gray50: "#EDEDED",
+  pink100: "#FED1CC",
 }as const;

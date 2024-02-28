@@ -1,16 +1,15 @@
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { axios } from '../../../../api/http';
 
 const RedirectionGoogle: React.FC = () => {
     const code = new URL(document.location.toString()).searchParams.get('code');
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('https:///localhost:3000/api/auth/google/sign-in');
         axios
-            .post(`http://localhost:3000/api/auth/google/sign-in`, {code})
+            .post('google/auth/send-email', { code })
             .then((r) => {
                 console.log(r.data);
 
@@ -19,7 +18,7 @@ const RedirectionGoogle: React.FC = () => {
 
                 navigate('/');
             })
-            .catch((error: any) => {
+            .catch((error) => {
                 // 요청이 실패한 경우 실행될 코드
                 console.error('Error:', error);
             });
