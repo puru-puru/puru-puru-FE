@@ -5,44 +5,42 @@ export const PlantCardLayout = styled.div`
     height: 260px;
     max-width: 200px;
     border: 1px solid white;
-    border-radius: 20px;
-    box-shadow: 8px 8px 5px rgba(185, 185, 185, 0.25);
-    font-size: 10px;
+    border-radius: 30px;
+    box-shadow: 12px 12px 5px rgba(185, 185, 185, 0.25);
     margin: 0px 120px;
     margin-bottom: 15px;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 `;
 
 export const PlantCardImg = styled.img`
-    width: 170px;
-    height: 112px;
-    border-radius: 15px;
-    margin: 5px 15px;
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 134px;
+    border-radius: 20px 20px 0px 0px;
 `;
 
 export const PlantCardName = styled.div`
-    width: 128px;
-    height: 21px;
+    width: 100%;
+    height: 100%;
+    max-height: 19px;
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
+    font-size: 16px;
     font-weight: 700;
-    margin: 5px 15px;
+    font-family: 'Pretendard-Regular';
+    color: rgba(114, 164, 116, 1);
+    margin: 10px 5px;
 `;
 
 export const PlantCardContent = styled.div`
-    width: 170px;
-    margin: 5px 15px;
-`;
-
-export const PlantCardButtonLayout = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-
-export const PlantCardButtonStyle = styled.button`
-    background: none;
-    font-size: 10px;
+    width: 100%;
+    height: 100%;
+    max-width: 172px;
+    max-height: 54px;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Pretendard-Regular';
+    margin: 0px 8px;
 `;
