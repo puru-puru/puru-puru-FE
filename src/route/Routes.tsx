@@ -12,6 +12,7 @@ import Spinner from '/Spin.gif';
 import RouteChangeTracker from '../components/RouteChangeTracker';
 import ScrollToTop from '../components/DocumentTitle';
 import RedirectionKakao from '../pages/login/social/redirection/RedirectionKakao';
+import RedirectionGoogle from '../pages/login/social/redirection/RedirectionGoogle';
 
 // Lazy-loaded components
 const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
@@ -95,6 +96,7 @@ export const Routes = () => {
                                 }
                             />
                         ))}
+                        <Route path="/api/auth/login/google/return" element={<RedirectionGoogle />} />
                         <Route path="/api/auth/login/kakao/return" element={<RedirectionKakao />} />
                         <Route path="*" element={<Navigate replace to="/signin" />} />
                     </Route>

@@ -59,23 +59,7 @@ const NameDecision: React.FC = () => {
                             errorMessage: '',
                         }));
                         navigate('/mainpage');
-                    },
-                    onError: (error: any) => {
-                        if (error.response && error.response.status === 409) {
-                            // 이미 사용 중인 닉네임입니다.
-                            setNameInfo((prevState) => ({
-                                ...prevState,
-                                errorMessage: '이미 사용 중인 닉네임입니다.',
-                            }));
-                        } else {
-                            // 다른 에러 발생한 경우
-                            setNameInfo((prevState) => ({
-                                ...prevState,
-                                errorMessage:
-                                    '서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
-                            }));
-                        }
-                    },
+                    }
                 });
 
                 setTimeout(() => {
@@ -117,7 +101,7 @@ const NameDecision: React.FC = () => {
                             </ClearButton>
                         )}
                     </div>
-                    {nameInfo.errorMessage&&<ErrorText>{nameInfo.errorMessage}</ErrorText>}
+                    {nameInfo.errorMessage && <ErrorText>{nameInfo.errorMessage}</ErrorText>}
                 </div>
                 <OnboardingButton
                     $isChecked={nameInfo.isChecked}

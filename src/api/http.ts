@@ -47,7 +47,7 @@ axios.interceptors.response.use(
                         originalRequest.headers.Authorization = `Bearer ${res.data.data.newAccessToken}`; // 새로운 엑세스 토큰으로 재요청
                         return axios(originalRequest); // 재요청
                     } else {
-                        alert('로그인 인증이 만료 되었습니다. 재 로그인 해주세요');
+                        alert('사용자 인증에 실패했습니다. 재 로그인 해주세요');
                         Cookies.remove('AccessToken');
                         window.location.href = '/signin';
                     }

@@ -237,7 +237,7 @@ const MyPage: React.FC = () => {
                                 <PetPlantHeaderImg src={plant.image} />
                             </PetPlantHeaderImgContainer>
                             <PetPlantHeaderContainer>
-                                <img src="./calendar_clock.svg" /> {` +  ${diffDays}`}
+                                <><img src="./calendar_clock.svg" /> {` +  ${diffDays}`}</>
                                 <PetPlantHeaderSubTitle>이름</PetPlantHeaderSubTitle>
                                 {plant.UserPlant?.Plant?.plantName} <br />
                                 <PetPlantHeaderSubTitle>종류</PetPlantHeaderSubTitle>

@@ -11,8 +11,8 @@ const RedirectionKakao: React.FC = () => {
         axios
             .post(`https://purupuru.store/api/auth/login/kakao`, { code })
             .then((response) => {
-                Cookies.set('AccessToken', response.data.accessToken);
-                Cookies.set('RefreshToken', response.data.refreshToken);
+                Cookies.set('AccessToken', response.data.accessToken, { expires: 1 / 24 });
+                Cookies.set('RefreshToken', response.data.refreshToken, { expires: 30 });
                 if (response.data.hasNickname) {
                     navigate('/mainpage');
                 } else {

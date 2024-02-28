@@ -12,7 +12,7 @@ import {
 import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { useNavigate } from 'react-router-dom';
 import SocialKakao from '../social/SocialKakao';
-// import SocialGoogle from '../social/SocialGoogle';
+import SocialGoogle from '../social/SocialGoogle';
 import { SharedInput } from '../../Shared.styles';
 import { usePostSignInData } from '../../../api/loginapi/SignIn';
 
@@ -140,7 +140,7 @@ const SignIn: React.FC = () => {
                 <SocialContainer>
                     <SocialDescription>SNS 계정으로 간편하게 가입하세요</SocialDescription>
                     <SocialBotten>
-                        {/* <SocialGoogle /> */}
+                        <SocialGoogle />
                         <SocialKakao />
                     </SocialBotten>
                 </SocialContainer>
