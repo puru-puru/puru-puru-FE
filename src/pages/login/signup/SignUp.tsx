@@ -88,12 +88,10 @@ const SignUp: React.FC = () => {
     //         handleError(error);
     //     }
     // }
-    const goToPreviousStep = ()=>{
-        navigate(-1)
-    }
+
     return (
         <>
-            <BackspaceButton onClick={goToPreviousStep} />
+            <BackspaceButton onClick={()=>navigate(-1)} />
             <LoginContainer>
                 <h2>회원가입</h2>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

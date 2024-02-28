@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { SharedInput } from '../Shared.styles';
 import { MyComponentButton, MyComponentContainer } from './MyComponent.styles';
 import { usePatchMyComponentData } from '../../api/myplant/MyComponent';
+import { BackspaceButton } from '../../components/atoms/button/BackspaceButton';
 
 const MyComponent: React.FC = () => {
     const navigate = useNavigate();
@@ -32,17 +33,20 @@ const MyComponent: React.FC = () => {
     };
 
     return (
-        <MyComponentContainer>
-            <h3>{question}</h3>
-            <SharedInput
-                value={editedEntry}
-                placeholder="5자 이상 25자 이내로 입력해주세요 :)"
-                onChange={handleEdit}
-            />
+        <>
+            <BackspaceButton onClick={()=>navigate(-1)} />
+            <MyComponentContainer>
+                <h3>{question}</h3>
+                <SharedInput
+                    value={editedEntry}
+                    placeholder="5자 이상 25자 이내로 입력해주세요 :)"
+                    onChange={handleEdit}
+                />
 
-            {/* 저장 버튼 */}
-            <MyComponentButton onClick={saveChanges}>저장</MyComponentButton>
-        </MyComponentContainer>
+                {/* 저장 버튼 */}
+                <MyComponentButton onClick={saveChanges}>저장</MyComponentButton>
+            </MyComponentContainer>
+        </>
     );
 };
 
