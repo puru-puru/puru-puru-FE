@@ -75,14 +75,22 @@ export const RegistrationStepOne: React.FC = () => {
         if (files && files.length > 0) {
             const uploadFile = files[0];
             const compressedImage = await ImageCompressor(uploadFile);
+            const fileName = 'compressed_image.jpg';
+
             if (compressedImage) {
-                setFormData((prevData) => ({
-                    ...prevData,
-                    image: compressedImage,
-                }));
-                
-                encodeFileToBase64(compressedImage);
-            } 
+                // Blob 객체에서 File 객체로 변환합니다.
+                const resizingFile = new File([compressedImage], fileName, {
+                    type: compressedImage.type,
+                });
+                if (compressedImage) {
+                    setFormData((prevData) => ({
+                        ...prevData,
+                        image: resizingFile,
+                    }));
+
+                    encodeFileToBase64(resizingFile);
+                }
+            }
         }
     };
 

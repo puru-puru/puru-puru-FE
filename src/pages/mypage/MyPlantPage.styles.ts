@@ -1,44 +1,48 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import { colors } from '../../styles/colors';
-// 반려식물 내용 style
+
+export const PetPlantContainer = styled.div`
+    width: 320px;
+    height: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 10px;
+`;
+export const PetPlantBorder = styled.div`
+    width: 100%;
+    max-width: 320px;
+    height: 100%;
+    max-height: 520px;
+    margin: 0 auto;
+    border: 1px solid white;
+    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    position: relative;
+`;
+
+// 상단
 export const PetPlantHeader = styled.div`
     letter-spacing: -1.2px;
+    flex-direction: column;
 `;
 export const PetPlantHeaderTitle = styled.h2`
     margin-left: 10px;
     margin-top: 0px;
     margin-bottom: 0px;
 `;
-export const PetPlantCardContainer = styled.div`
-    display: flex;
-`;
+
 export const PetPlantHeaderImg = styled.img`
     width: 100%;
     height: 100%;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 `;
 export const PetPlantHeaderImgContainer = styled.div`
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 180px;
     background-color: ${colors.green50};
-    margin: auto;
-    z-index: 1;
-    border-radius: 100px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
     overflow: hidden;
-    position: relative;
-`;
-export const PetPlantHeaderContainer = styled.div`
-    width: 116px;
-    height: 150px;
-    margin: auto;
-    font-size: 12px;
-    font-weight: 600;
-    color: ${colors.green100};
 `;
 
 export const PetPlantHeaderSubTitle = styled.div`
@@ -53,59 +57,6 @@ export const PetPlantHeaderSubTitle = styled.div`
     background-color: ${colors.pink100};
 `;
 
-// 일지 style
-export const JournalContainer = styled.div`
-    letter-spacing: -1.2px;
-    width: 100%;
-    height: 280px;
-    border-top-left-radius: 16px;
-    border-top-left-radius: 16px;
-    padding: 15px;
-    background-color: #fafff4;
-    position: relative;
-`;
-export const JournalHeader = styled.div``;
-
-export const JournalBody = styled.div`
-    margin-top: 20px;
-`;
-export const PetPlantDetailTitle = styled.p`
-    font-size: 28px;
-    margin: 30px 15px 0px;
-    font-weight: bold;
-`;
-
-export const PetPlantDetailLine = styled.div`
-    border-top: 3px solid #ff655b;
-    opacity: 30%;
-    margin: 0px 15px;
-    width: 153px;
-`;
-export const PetPlantDetailTextContainer = styled.div`
-    width: 320px;
-    display: flex;
-    margin: 3px;
-    &:hover {
-        cursor: pointer;
-    }
-`;
-export const PetPlantDetailText = styled.p`
-    margin: 0 10px;
-    font-weight: 600;
-    font-size: 12px;
-    width: 215px;
-`;
-export const PetPlantIcon = styled.img`
-    width: 40px;
-    height: 40px;
-    background: #fffaeb;
-    border-radius: 10px;
-`;
-export const VerticalDivider = styled.table`
-    border-left: 2px dashed #ffa451;
-    height: 24px;
-    margin: 0 22px;
-`;
 export const ButtonContainer = styled.div`
     width: 70px;
     display: flex;
@@ -142,25 +93,112 @@ export const PlantButton = styled.button`
 
 export const PlantUpdateContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    position: absolute;
+    top: 20px;
+    right: 0;
 `;
 
 export const PlantSlickCustom = styled(Slider)`
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 `;
 
-export const DotsCustom = styled.ul`
-    li button::before {
-        content: '' !important;
-        background: green !important;
-        color: transparent !important;
 
-        height: 12px !important;
-        width: 12px !important;
-        border-radius: 100%;
+// 중간
+export const StyledWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+`;
+
+export const StyledImageContainer = styled.div`
+    display: flex;
+    align-items: center;
+    color: ${colors.green100};
+
+`;
+export const PetPlantDetailContainer = styled.div`
+    height: 140px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: ${colors.green100};
+`;
+export const PetPlantDetailTitle = styled.p`
+    font-size: 16px;
+    margin: 5px 0px;
+    font-weight: bold;
+    color: ${colors.green100};
+`;
+export const PlantName = styled.div`
+    font-weight: 600;
+    font-size: 10px;
+    margin: 5px 0px;
+    color: #3D3D3D;
+`;
+export const PlantContent = styled.div`
+    font-size: 12px;
+    color: #3D3D3D;
+`;
+
+// 일지 부분
+export const JournalContainer = styled.div`
+    height: 190px;
+    letter-spacing: -1.2px;
+    padding: 15px;
+    position: relative;
+`;
+export const JournalHeaderContainer = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+export const JournalTitle = styled.p`
+    font-size: 12px;
+    margin: 0px;
+    margin-left: 5px;
+    color: ${colors.green100};
+    font-weight: 600;
+`
+export const JournalBody = styled.div`
+    padding: 15px;
+`;
+
+export const PetPlantDetailTextContainer = styled.div`
+    width: 320px;
+    display: flex;
+
+    &:hover {
+        cursor: pointer;
     }
 `;
+
+export const PetPlantDetailText = styled.p`
+    margin: 0 15px;
+    font-weight: 600;
+    font-size: 10px;
+    width: 215px;
+`;
+export const AnswerTextWrapper = styled.div`
+    opacity: 0.3;
+    margin: 5px 5px 10px;
+`;
+export const PetPlantIcon = styled.img`
+    width: 18px;
+    height: 18px;
+    background: #fffaeb;
+    border-radius: 10px;
+`;
+export const VerticalDivider = styled.table`
+    border-left: 2px dashed ${colors.green50};
+    height: 100px;
+    margin: 0 8px;
+    z-index: -1;
+    position: absolute;
+`;
+
+
+
 
 export const MyPlantToggle = styled.div`
     display: flex;
@@ -187,8 +225,28 @@ export const MyPlantToggleDetail = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-export const MyPlantToggleButton = styled.button<{$isChecked: boolean}>`
+export const MyPlantToggleButton = styled.button<{ $isChecked: boolean }>`
     width: 90px;
-    background-color: ${(props)=>(props.$isChecked ? colors.green100 : colors.green50)};
+    background-color: ${(props) => (props.$isChecked ? colors.green100 : colors.green50)};
     color: ${colors.white};
-`
+`;
+
+//-------------------------------------------------
+export const PetPlantDetailLine = styled.div`
+    border-top: 3px solid #ff655b;
+    opacity: 30%;
+    margin: 0px 15px;
+    width: 153px;
+`;
+
+export const DotsCustom = styled.ul`
+    li button::before {
+        content: '' !important;
+        background: green !important;
+        color: transparent !important;
+
+        height: 12px !important;
+        width: 12px !important;
+        border-radius: 100%;
+    }
+`;

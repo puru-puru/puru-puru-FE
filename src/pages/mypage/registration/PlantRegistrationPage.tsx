@@ -23,7 +23,7 @@ const PlantRegistrationPage: React.FC = () => {
     };
     return (
         <>
-                <BackspaceButton onClick={goToPreviousStep} />
+            <BackspaceButton onClick={goToPreviousStep} />
             <PetPlantHeader>
                 <PetPlantHeaderTitle>나의 반려 식물</PetPlantHeaderTitle>
             </PetPlantHeader>

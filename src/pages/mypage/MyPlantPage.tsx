@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
     VerticalDivider,
     JournalContainer,
-    PetPlantCardContainer,
-    PetPlantHeaderContainer,
-    PetPlantDetailLine,
     PetPlantDetailText,
     PetPlantDetailTextContainer,
     PetPlantDetailTitle,
@@ -14,18 +11,25 @@ import {
     PetPlantHeaderTitle,
     PlantButton,
     PetPlantHeaderImgContainer,
-    JournalHeader,
     JournalBody,
     PlantUpdateContainer,
     DeleteButton,
     ButtonContainer,
     PlantSlickCustom,
-    DotsCustom,
-    PetPlantHeaderSubTitle,
     MyPlantToggle,
     MyPlantToggleDetail,
     MyPlantToggleContainer,
     MyPlantToggleButton,
+    PetPlantContainer,
+    PetPlantBorder,
+    PetPlantDetailContainer,
+    StyledImageContainer,
+    StyledWrapper,
+    PlantName,
+    PlantContent,
+    JournalTitle,
+    JournalHeaderContainer,
+    AnswerTextWrapper,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
 import { axios, myplantApi } from '../../api/http';
@@ -35,8 +39,6 @@ import EmptyMyPlant from './registration/EmptyMyPlant';
 // import { PagesButton, PagesContainer } from './registration/step/steptwo/PageNation';
 import { useRecoilState } from 'recoil';
 import { myplantPageState } from '../../recoil/atom';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { useModal } from '../../hook/useModal';
 
 const MyPage: React.FC = () => {
@@ -49,24 +51,25 @@ const MyPage: React.FC = () => {
     };
 
     const settings = {
-        dots: true,
-        infinite: true,
+        dots: false,
+        infinite: false,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: currentPage,
-        appendDots: (dots: any) => (
-            <div
-                style={{
-                    position: 'absolute',
-                    left: '-5%',
-                    bottom: '0%',
-                    width: '100%',
-                }}
-            >
-                <DotsCustom> {dots} </DotsCustom>
-            </div>
-        ),
+
+        // appendDots: (dots: any) => (
+        //     <div
+        //         style={{
+        //             position: 'absolute',
+        //             left: '-5%',
+        //             bottom: '0%',
+        //             width: '100%',
+        //         }}
+        //     >
+        //         <DotsCustom> {dots} </DotsCustom>
+        //     </div>
+        // ),
         afterChange: handleBeforeChange,
     };
 
@@ -75,7 +78,6 @@ const MyPage: React.FC = () => {
     const [petPlant, setPetPlant] = useState<DiaryEntry[]>([]);
 
     const handleIconClick = (templateId: string, question: string, answer: string) => {
-        // 아이콘을 클릭하여 MyComponent 페이지로 이동
         navigate('/mycomponent', { state: { templateId, question, answer } });
     };
 
@@ -103,19 +105,6 @@ const MyPage: React.FC = () => {
         navigate('/plants');
     };
 
-    // // 전체 페이지 수 계산
-    // const totalPages = Math.ceil(petPlant.length / itemsPerPage);
-
-    // // 이전 페이지로 이동하는 함수
-    // const goToPreviousPage = () => {
-    //     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-    // };
-
-    // // 다음 페이지로 이동하는 함수
-    // const goToNextPage = () => {
-    //     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-    // };
-
     const IconAndText = ({ template }) => (
         <PetPlantDetailTextContainer
             onClick={() =>
@@ -126,7 +115,9 @@ const MyPage: React.FC = () => {
             <PetPlantDetailText>
                 {template.Templelate.question}
                 <br />
-                {template.answer && <span style={{ opacity: '0.5' }}>{template.answer}</span>}
+                <AnswerTextWrapper>
+                    {template.answer ? <span>{template.answer}</span> : '질문에 답 해주세요'}
+                </AnswerTextWrapper>
             </PetPlantDetailText>
         </PetPlantDetailTextContainer>
     );
@@ -158,85 +149,101 @@ const MyPage: React.FC = () => {
     if (petPlant.length === 1) {
         return (
             <div>
-                {petPlant.map((plant, index) => (
-                    <div key={index}>
-                        <PetPlantHeader>
-                            <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
-                            <PlantUpdateContainer>
-                                <div></div>
-                                <ButtonContainer>
-                                    <PlantButton onClick={handleRegisterClick} />
-                                    <DeleteButton
-                                        onClick={() => handleModalOpen(petPlant[index].diaryId)}
-                                    />
-                                </ButtonContainer>
-                            </PlantUpdateContainer>
-                            <PetPlantCardContainer>
-                                <PetPlantHeaderImgContainer>
-                                    <PetPlantHeaderImg src={plant.image} />
-                                </PetPlantHeaderImgContainer>
-                                <PetPlantHeaderContainer>
-                                    <img src="./calendar_clock.svg" /> {` +  ${diffDays}`}
-                                    <PetPlantHeaderSubTitle>이름</PetPlantHeaderSubTitle>
-                                    {plant.UserPlant?.Plant?.plantName} <br />
-                                    <PetPlantHeaderSubTitle>종류</PetPlantHeaderSubTitle>
-                                    {plant.UserPlant?.Plant?.type} <br />
-                                    <PetPlantHeaderSubTitle>정보</PetPlantHeaderSubTitle>
-                                    {plant.UserPlant?.Plant?.content}
-                                </PetPlantHeaderContainer>
-                            </PetPlantCardContainer>
-                            <JournalHeader>
-                                <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
-                                <PetPlantDetailLine />
-                            </JournalHeader>
-                        </PetPlantHeader>
-                        <JournalContainer>
-                            <JournalBody>
-                                <div>
-                                    {plant.SavedTemplelates?.length > 0 && (
-                                        <>
-                                            <IconAndText template={plant.SavedTemplelates[0]} />
+                <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
+                {petPlant.map((plant, index) => {
+                    return (
+                        <PetPlantContainer>
+                            <PetPlantBorder key={index}>
+                                <PetPlantHeader>
+                                    <PlantUpdateContainer>
+                                        <div></div>
+                                        <ButtonContainer>
+                                            <PlantButton onClick={handleRegisterClick} />
+                                            <DeleteButton
+                                                onClick={() =>
+                                                    handleModalOpen(petPlant[index].diaryId)
+                                                }
+                                            />
+                                        </ButtonContainer>
+                                    </PlantUpdateContainer>
+                                    <PetPlantHeaderImgContainer>
+                                        <PetPlantHeaderImg src={plant.image} />
+                                    </PetPlantHeaderImgContainer>
+                                </PetPlantHeader>
+
+                                <PetPlantDetailContainer>
+                                    <StyledWrapper>
+                                        <div></div>
+                                        <StyledImageContainer>
+                                            <img
+                                                src="./calendar_clock.svg"
+                                                style={{ marginRight: '5px' }}
+                                            />{' '}
+                                            {` +  ${diffDays}`}
+                                        </StyledImageContainer>
+                                    </StyledWrapper>
+                                    <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
+                                    <PlantName>{plant.UserPlant?.Plant?.plantName}</PlantName>
+                                    {/* <div>{plant.UserPlant?.Plant?.type}</div> */}
+                                    <PlantContent>{plant.UserPlant?.Plant?.content}</PlantContent>
+                                </PetPlantDetailContainer>
+
+                                <JournalContainer>
+                                    <JournalHeaderContainer>
+                                        <img src="./JournalTitleImg.svg" />
+                                        <JournalTitle>반려 식물 일지</JournalTitle>
+                                    </JournalHeaderContainer>
+                                    <JournalBody>
+                                        <div>
                                             <VerticalDivider />
-                                        </>
-                                    )}
-                                    {plant.SavedTemplelates?.length > 1 && (
-                                        <>
-                                            <IconAndText template={plant.SavedTemplelates[1]} />
-                                            <VerticalDivider />
-                                        </>
-                                    )}
-                                    {plant.SavedTemplelates?.length > 2 && (
-                                        <IconAndText template={plant.SavedTemplelates[2]} />
-                                    )}
-                                </div>
-                            </JournalBody>
-                        </JournalContainer>
-                        {open && (
-                            <div>
-                                <div className="dark-overlay" />
-                                <MyPlantToggle>
-                                    <MyPlantToggleContainer>
-                                        반려식물을 삭제하시겠습니까?
-                                        <MyPlantToggleDetail>
-                                            <MyPlantToggleButton
-                                                $isChecked={true}
-                                                onClick={() => modalClose()}
-                                            >
-                                                아니오
-                                            </MyPlantToggleButton>
-                                            <MyPlantToggleButton
-                                                $isChecked={false}
-                                                onClick={() => handleDeleteClick()}
-                                            >
-                                                예
-                                            </MyPlantToggleButton>
-                                        </MyPlantToggleDetail>
-                                    </MyPlantToggleContainer>
-                                </MyPlantToggle>
-                            </div>
-                        )}
+                                            {plant.SavedTemplelates?.length > 0 && (
+                                                <>
+                                                    <IconAndText
+                                                        template={plant.SavedTemplelates[0]}
+                                                    />
+                                                </>
+                                            )}
+                                            {plant.SavedTemplelates?.length > 1 && (
+                                                <>
+                                                    <IconAndText
+                                                        template={plant.SavedTemplelates[1]}
+                                                    />
+                                                </>
+                                            )}
+                                            {plant.SavedTemplelates?.length > 2 && (
+                                                <IconAndText template={plant.SavedTemplelates[2]} />
+                                            )}
+                                        </div>
+                                    </JournalBody>
+                                </JournalContainer>
+                            </PetPlantBorder>
+                        </PetPlantContainer>
+                    );
+                })}
+                {open && (
+                    <div>
+                        <div className="dark-overlay" />
+                        <MyPlantToggle>
+                            <MyPlantToggleContainer>
+                                반려식물을 삭제하시겠습니까?
+                                <MyPlantToggleDetail>
+                                    <MyPlantToggleButton
+                                        $isChecked={true}
+                                        onClick={() => modalClose()}
+                                    >
+                                        아니오
+                                    </MyPlantToggleButton>
+                                    <MyPlantToggleButton
+                                        $isChecked={false}
+                                        onClick={() => handleDeleteClick()}
+                                    >
+                                        예
+                                    </MyPlantToggleButton>
+                                </MyPlantToggleDetail>
+                            </MyPlantToggleContainer>
+                        </MyPlantToggle>
                     </div>
-                ))}
+                )}
             </div>
         );
     }
@@ -263,64 +270,78 @@ const MyPage: React.FC = () => {
                     </MyPlantToggle>
                 </div>
             )}
+            <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
             <PlantSlickCustom {...settings}>
-                {petPlant.map((plant, index) => (
-                    <div key={index}>
-                        <PetPlantHeader>
-                            <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
-                            <PlantUpdateContainer>
-                                <div></div>
-                                <ButtonContainer>
-                                    <PlantButton onClick={handleRegisterClick} />
-                                    <DeleteButton
-                                        onClick={() => handleModalOpen(petPlant[index].diaryId)}
-                                    />
-                                </ButtonContainer>
-                            </PlantUpdateContainer>
-                            <PetPlantCardContainer>
-                                <PetPlantHeaderImgContainer>
-                                    <PetPlantHeaderImg src={plant.image} />
-                                </PetPlantHeaderImgContainer>
-                                <PetPlantHeaderContainer>
-                                    <>
-                                        <img src="./calendar_clock.svg" /> {` +  ${diffDays}`}
-                                    </>
-                                    <PetPlantHeaderSubTitle>이름</PetPlantHeaderSubTitle>
-                                    {plant.UserPlant?.Plant?.plantName} <br />
-                                    <PetPlantHeaderSubTitle>종류</PetPlantHeaderSubTitle>
-                                    {plant.UserPlant?.Plant?.type} <br />
-                                    <PetPlantHeaderSubTitle>정보</PetPlantHeaderSubTitle>
-                                    {plant.UserPlant?.Plant?.content}
-                                </PetPlantHeaderContainer>
-                            </PetPlantCardContainer>
-                            <JournalHeader>
-                                <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
-                                <PetPlantDetailLine />
-                            </JournalHeader>
-                        </PetPlantHeader>
-                        <JournalContainer>
-                            <JournalBody>
-                                <div>
-                                    {plant.SavedTemplelates?.length > 0 && (
-                                        <>
-                                            <IconAndText template={plant.SavedTemplelates[0]} />
+                {petPlant.map((plant, index) => {
+                    return (
+                        <PetPlantContainer>
+                            <PetPlantBorder key={index}>
+                                <PetPlantHeader>
+                                    <PlantUpdateContainer>
+                                        <div></div>
+                                        <ButtonContainer>
+                                            <PlantButton onClick={handleRegisterClick} />
+                                            <DeleteButton
+                                                onClick={() =>
+                                                    handleModalOpen(petPlant[index].diaryId)
+                                                }
+                                            />
+                                        </ButtonContainer>
+                                    </PlantUpdateContainer>
+                                    <PetPlantHeaderImgContainer>
+                                        <PetPlantHeaderImg src={plant.image} />
+                                    </PetPlantHeaderImgContainer>
+                                </PetPlantHeader>
+
+                                <PetPlantDetailContainer>
+                                    <StyledWrapper>
+                                        <div></div>
+                                        <StyledImageContainer>
+                                            <img
+                                                src="./calendar_clock.svg"
+                                                style={{ marginRight: '5px' }}
+                                            />{' '}
+                                            {` +  ${diffDays}`}
+                                        </StyledImageContainer>
+                                    </StyledWrapper>
+                                    <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
+                                    <PlantName>{plant.UserPlant?.Plant?.plantName}</PlantName>
+                                    {/* <div>{plant.UserPlant?.Plant?.type}</div> */}
+                                    <PlantContent>{plant.UserPlant?.Plant?.content}</PlantContent>
+                                </PetPlantDetailContainer>
+
+                                <JournalContainer>
+                                    <JournalHeaderContainer>
+                                        <img src="./JournalTitleImg.svg" />
+                                        <JournalTitle>반려 식물 일지</JournalTitle>
+                                    </JournalHeaderContainer>
+                                    <JournalBody>
+                                        <div>
                                             <VerticalDivider />
-                                        </>
-                                    )}
-                                    {plant.SavedTemplelates?.length > 1 && (
-                                        <>
-                                            <IconAndText template={plant.SavedTemplelates[1]} />
-                                            <VerticalDivider />
-                                        </>
-                                    )}
-                                    {plant.SavedTemplelates?.length > 2 && (
-                                        <IconAndText template={plant.SavedTemplelates[2]} />
-                                    )}
-                                </div>
-                            </JournalBody>
-                        </JournalContainer>
-                    </div>
-                ))}
+                                            {plant.SavedTemplelates?.length > 0 && (
+                                                <>
+                                                    <IconAndText
+                                                        template={plant.SavedTemplelates[0]}
+                                                    />
+                                                </>
+                                            )}
+                                            {plant.SavedTemplelates?.length > 1 && (
+                                                <>
+                                                    <IconAndText
+                                                        template={plant.SavedTemplelates[1]}
+                                                    />
+                                                </>
+                                            )}
+                                            {plant.SavedTemplelates?.length > 2 && (
+                                                <IconAndText template={plant.SavedTemplelates[2]} />
+                                            )}
+                                        </div>
+                                    </JournalBody>
+                                </JournalContainer>
+                            </PetPlantBorder>
+                        </PetPlantContainer>
+                    );
+                })}
             </PlantSlickCustom>
         </>
     );
