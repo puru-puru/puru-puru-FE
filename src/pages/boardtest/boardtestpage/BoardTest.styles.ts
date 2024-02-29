@@ -30,7 +30,7 @@ export const BoardTestMainTitle = styled.div`
     color: rgba(149, 149, 149, 1);
 `;
 
-export const BoardTestMainItem = styled.button<{ $isSelected: boolean }>`
+export const BoardTestMainItem = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,13 +43,14 @@ export const BoardTestMainItem = styled.button<{ $isSelected: boolean }>`
     &:hover {
         border-color: rgba(218, 234, 202, 1);
     }
-    &:focus {
+    /*&:focus {
         ${({ $isSelected }) =>
-            $isSelected &&
-            css`
-                border-color: rgba(114, 164, 116, 1);
-            `}
-    }
+        $isSelected &&
+        css`
+            border-color: rgba(114, 164, 116, 1);
+        `}
+            <{ $isSelected: boolean }>
+    }*/
 `;
 
 export const BoardTestMainItemContent = styled.div`
