@@ -22,6 +22,10 @@ import {
     PlantSlickCustom,
     DotsCustom,
     PetPlantHeaderSubTitle,
+    MyPlantToggle,
+    MyPlantToggleDetail,
+    MyPlantToggleContainer,
+    MyPlantToggleButton,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
 import { axios, myplantApi } from '../../api/http';
@@ -33,9 +37,12 @@ import { useRecoilState } from 'recoil';
 import { myplantPageState } from '../../recoil/atom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useModal } from '../../hook/useModal';
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
+    const { open, modalOpen, modalClose } = useModal();
+    const [selectedDiaryId, setSelectedDiaryId] = useState<number>();
     const [currentPage, setCurrentPage] = useRecoilState(myplantPageState);
     const handleBeforeChange = (newIndex: number) => {
         setCurrentPage(newIndex);
@@ -84,6 +91,9 @@ const MyPage: React.FC = () => {
                 setPetPlant(petPlantDate);
             }
         }
+        return () => {
+            setPetPlant([]);
+        };
     }, [petPlantDate, setPetPlant]);
 
     if (isLoading) return <div>로딩중</div>;
@@ -121,16 +131,22 @@ const MyPage: React.FC = () => {
         </PetPlantDetailTextContainer>
     );
 
-    const handleDeleteClick = async (diaryId: number) => {
+    const handleDeleteClick = async () => {
         try {
-            await axios.delete(`/api/diaries/${diaryId}`);
+            await axios.delete(`/api/diaries/${selectedDiaryId}`);
             setPetPlant((prevPetPlant) =>
-                prevPetPlant.filter((plant) => plant.diaryId !== diaryId),
+                prevPetPlant.filter((plant) => plant.diaryId !== selectedDiaryId),
             );
             alert('삭제되었습니다.');
         } catch (error) {
             console.error(error);
         }
+        setSelectedDiaryId(undefined);
+        modalClose();
+    };
+    const handleModalOpen = (diaryId: number) => {
+        setSelectedDiaryId(diaryId); // 선택된 다이어리 아이디 설정
+        modalOpen();
     };
 
     // 현재 날짜에서 입력받은 날짜를 뺀 d+day값 계산
@@ -151,7 +167,7 @@ const MyPage: React.FC = () => {
                                 <ButtonContainer>
                                     <PlantButton onClick={handleRegisterClick} />
                                     <DeleteButton
-                                        onClick={() => handleDeleteClick(petPlant[index].diaryId)}
+                                        onClick={() => handleModalOpen(petPlant[index].diaryId)}
                                     />
                                 </ButtonContainer>
                             </PlantUpdateContainer>
@@ -194,104 +210,119 @@ const MyPage: React.FC = () => {
                                     )}
                                 </div>
                             </JournalBody>
-                            {/* <PagesContainer>
-                        <PagesButton
-                            onClick={goToPreviousPage}
-                            disabled={currentPage === 1}
-                            style={{ opacity: currentPage === 1 ? 0.5 : 1 }}
-                        >
-                            이전
-                        </PagesButton>
-                        {currentPage} / {totalPages}
-                        <PagesButton
-                            onClick={goToNextPage}
-                            disabled={currentPage === totalPages}
-                            style={{ opacity: currentPage === totalPages ? 0.5 : 1 }}
-                        >
-                            다음
-                        </PagesButton>
-                    </PagesContainer> */}
                         </JournalContainer>
+                        {open && (
+                            <div>
+                                <div className="dark-overlay" />
+                                <MyPlantToggle>
+                                    <MyPlantToggleContainer>
+                                        반려식물을 삭제하시겠습니까?
+                                        <MyPlantToggleDetail>
+                                            <MyPlantToggleButton
+                                                $isChecked={true}
+                                                onClick={() => modalClose()}
+                                            >
+                                                아니오
+                                            </MyPlantToggleButton>
+                                            <MyPlantToggleButton
+                                                $isChecked={false}
+                                                onClick={() => handleDeleteClick()}
+                                            >
+                                                예
+                                            </MyPlantToggleButton>
+                                        </MyPlantToggleDetail>
+                                    </MyPlantToggleContainer>
+                                </MyPlantToggle>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
         );
     }
     return (
-        <PlantSlickCustom {...settings}>
-            {petPlant.map((plant, index) => (
-                <div key={index}>
-                    <PetPlantHeader>
-                        <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
-                        <PlantUpdateContainer>
-                            <div></div>
-                            <ButtonContainer>
-                                <PlantButton onClick={handleRegisterClick} />
-                                <DeleteButton
-                                    onClick={() => handleDeleteClick(petPlant[index].diaryId)}
-                                />
-                            </ButtonContainer>
-                        </PlantUpdateContainer>
-                        <PetPlantCardContainer>
-                            <PetPlantHeaderImgContainer>
-                                <PetPlantHeaderImg src={plant.image} />
-                            </PetPlantHeaderImgContainer>
-                            <PetPlantHeaderContainer>
-                                <><img src="./calendar_clock.svg" /> {` +  ${diffDays}`}</>
-                                <PetPlantHeaderSubTitle>이름</PetPlantHeaderSubTitle>
-                                {plant.UserPlant?.Plant?.plantName} <br />
-                                <PetPlantHeaderSubTitle>종류</PetPlantHeaderSubTitle>
-                                {plant.UserPlant?.Plant?.type} <br />
-                                <PetPlantHeaderSubTitle>정보</PetPlantHeaderSubTitle>
-                                {plant.UserPlant?.Plant?.content}
-                            </PetPlantHeaderContainer>
-                        </PetPlantCardContainer>
-                        <JournalHeader>
-                            <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
-                            <PetPlantDetailLine />
-                        </JournalHeader>
-                    </PetPlantHeader>
-                    <JournalContainer>
-                        <JournalBody>
-                            <div>
-                                {plant.SavedTemplelates?.length > 0 && (
-                                    <>
-                                        <IconAndText template={plant.SavedTemplelates[0]} />
-                                        <VerticalDivider />
-                                    </>
-                                )}
-                                {plant.SavedTemplelates?.length > 1 && (
-                                    <>
-                                        <IconAndText template={plant.SavedTemplelates[1]} />
-                                        <VerticalDivider />
-                                    </>
-                                )}
-                                {plant.SavedTemplelates?.length > 2 && (
-                                    <IconAndText template={plant.SavedTemplelates[2]} />
-                                )}
-                            </div>
-                        </JournalBody>
-                        {/* <PagesContainer>
-                            <PagesButton
-                                onClick={goToPreviousPage}
-                                disabled={currentPage === 1}
-                                style={{ opacity: currentPage === 1 ? 0.5 : 1 }}
-                            >
-                                이전
-                            </PagesButton>
-                            {currentPage} / {totalPages}
-                            <PagesButton
-                                onClick={goToNextPage}
-                                disabled={currentPage === totalPages}
-                                style={{ opacity: currentPage === totalPages ? 0.5 : 1 }}
-                            >
-                                다음
-                            </PagesButton>
-                        </PagesContainer> */}
-                    </JournalContainer>
+        <>
+            {open && (
+                <div>
+                    <div className="dark-overlay" />
+                    <MyPlantToggle>
+                        <MyPlantToggleContainer>
+                            반려식물을 삭제하시겠습니까?
+                            <MyPlantToggleDetail>
+                                <MyPlantToggleButton $isChecked={true} onClick={() => modalClose()}>
+                                    아니오
+                                </MyPlantToggleButton>
+                                <MyPlantToggleButton
+                                    $isChecked={false}
+                                    onClick={() => handleDeleteClick()}
+                                >
+                                    예
+                                </MyPlantToggleButton>
+                            </MyPlantToggleDetail>
+                        </MyPlantToggleContainer>
+                    </MyPlantToggle>
                 </div>
-            ))}
-        </PlantSlickCustom>
+            )}
+            <PlantSlickCustom {...settings}>
+                {petPlant.map((plant, index) => (
+                    <div key={index}>
+                        <PetPlantHeader>
+                            <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
+                            <PlantUpdateContainer>
+                                <div></div>
+                                <ButtonContainer>
+                                    <PlantButton onClick={handleRegisterClick} />
+                                    <DeleteButton
+                                        onClick={() => handleModalOpen(petPlant[index].diaryId)}
+                                    />
+                                </ButtonContainer>
+                            </PlantUpdateContainer>
+                            <PetPlantCardContainer>
+                                <PetPlantHeaderImgContainer>
+                                    <PetPlantHeaderImg src={plant.image} />
+                                </PetPlantHeaderImgContainer>
+                                <PetPlantHeaderContainer>
+                                    <>
+                                        <img src="./calendar_clock.svg" /> {` +  ${diffDays}`}
+                                    </>
+                                    <PetPlantHeaderSubTitle>이름</PetPlantHeaderSubTitle>
+                                    {plant.UserPlant?.Plant?.plantName} <br />
+                                    <PetPlantHeaderSubTitle>종류</PetPlantHeaderSubTitle>
+                                    {plant.UserPlant?.Plant?.type} <br />
+                                    <PetPlantHeaderSubTitle>정보</PetPlantHeaderSubTitle>
+                                    {plant.UserPlant?.Plant?.content}
+                                </PetPlantHeaderContainer>
+                            </PetPlantCardContainer>
+                            <JournalHeader>
+                                <PetPlantDetailTitle>{plant.name}</PetPlantDetailTitle>
+                                <PetPlantDetailLine />
+                            </JournalHeader>
+                        </PetPlantHeader>
+                        <JournalContainer>
+                            <JournalBody>
+                                <div>
+                                    {plant.SavedTemplelates?.length > 0 && (
+                                        <>
+                                            <IconAndText template={plant.SavedTemplelates[0]} />
+                                            <VerticalDivider />
+                                        </>
+                                    )}
+                                    {plant.SavedTemplelates?.length > 1 && (
+                                        <>
+                                            <IconAndText template={plant.SavedTemplelates[1]} />
+                                            <VerticalDivider />
+                                        </>
+                                    )}
+                                    {plant.SavedTemplelates?.length > 2 && (
+                                        <IconAndText template={plant.SavedTemplelates[2]} />
+                                    )}
+                                </div>
+                            </JournalBody>
+                        </JournalContainer>
+                    </div>
+                ))}
+            </PlantSlickCustom>
+        </>
     );
 };
 

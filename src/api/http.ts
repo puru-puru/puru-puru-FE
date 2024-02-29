@@ -42,8 +42,8 @@ axios.interceptors.response.use(
                         }
                     }); // 리프레시 토큰을 이용하여 새로운 엑세스 토큰 발급 요청
                     if (res.data.data.newAccessToken) {
-                        Cookies.set('AccessToken', res.data.data.newAccessToken); // 발급받은 새로운 엑세스 토큰을 저장
-                        Cookies.set('RefreshToken', res.data.data.newRefreshToken);
+                        Cookies.set('AccessToken', res.data.data.newAccessToken, { expires: 1 / 24 }); // 발급받은 새로운 엑세스 토큰을 저장
+                        Cookies.set('RefreshToken', res.data.data.newRefreshToken, { expires: 30 });
                         originalRequest.headers.Authorization = `Bearer ${res.data.data.newAccessToken}`; // 새로운 엑세스 토큰으로 재요청
                         return axios(originalRequest); // 재요청
                     } else {
@@ -52,7 +52,7 @@ axios.interceptors.response.use(
                         window.location.href = '/signin';
                     }
                 } catch (error) {
-                    Cookies.remove('AccessToken');
+                    // Cookies.remove('AccessToken');
                     alert('로그인 인증이 만료 되었습니다. 로그아웃됩니다.');
                     window.location.href = '/signin';
                 }

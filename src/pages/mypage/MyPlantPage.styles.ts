@@ -48,10 +48,10 @@ export const PetPlantHeaderSubTitle = styled.div`
     border-radius: 20px;
     color: ${colors.white};
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     background-color: ${colors.pink100};
-`
+`;
 
 // 일지 style
 export const JournalContainer = styled.div`
@@ -153,11 +153,42 @@ export const PlantSlickCustom = styled(Slider)`
 export const DotsCustom = styled.ul`
     li button::before {
         content: '' !important;
-        background: green !important; 
-        color: transparent !important; 
+        background: green !important;
+        color: transparent !important;
 
         height: 12px !important;
         width: 12px !important;
         border-radius: 100%;
     }
 `;
+
+export const MyPlantToggle = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    width: 310px;
+    height: auto;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+`;
+export const MyPlantToggleContainer = styled.div`
+    margin: 10px;
+`;
+export const MyPlantToggleDetail = styled.div`
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+`;
+export const MyPlantToggleButton = styled.button<{$isChecked: boolean}>`
+    width: 90px;
+    background-color: ${(props)=>(props.$isChecked ? colors.green100 : colors.green50)};
+    color: ${colors.white};
+`

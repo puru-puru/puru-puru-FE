@@ -25,7 +25,7 @@ const SignUp: React.FC = () => {
         return emailRegex.test(email);
     };
     const validatePassword = (password: string): boolean => {
-        const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/;
+        const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,16}$/;
         return passwordRegex.test(password);
     };
     const isEmailValid = user.email.length > 0 && validateEmail(user.email);
@@ -114,11 +114,11 @@ const SignUp: React.FC = () => {
                             type="password"
                             value={user.password}
                             $invalid={!isPasswordValid}
-                            placeholder="영문 + 숫자 6자~12자로 입력해 주세요"
+                            placeholder="비밀번호(8 ~ 16자의 영문, 숫자, 특수문자 포함)"
                             onChange={(e) => setUser({ ...user, password: e.target.value })}
                         />
                         {!isPasswordValid && user.password && (
-                            <ErrorMessage>영문 + 숫자 6자~12자로 입력해 주세요</ErrorMessage>
+                            <ErrorMessage>8 ~ 16자의 영문, 숫자, 특수문자 포함으로 입력해 주세요</ErrorMessage>
                         )}
                         <p></p>
                         <StyledInput

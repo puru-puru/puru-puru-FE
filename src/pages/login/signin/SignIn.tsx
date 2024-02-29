@@ -121,7 +121,7 @@ const SignIn: React.FC = () => {
                     <SharedInput
                         type="password"
                         value={user.password}
-                        placeholder="영문/숫자 6자~12자로 입력해 주세요"
+                        placeholder="비밀번호(8 ~ 16자의 영문, 숫자, 특수문자 포함)"
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             setUser({ ...user, password: e.target.value })
                         }

@@ -18,6 +18,8 @@ import {
 import { SharedInput } from '../../Shared.styles';
 import { CommunityFormData } from '../../../api/model';
 import ImageCompressor from '../../../components/ImageCompressor';
+import { ReUploadButton } from '../../mypage/registration/step/stepone/RegistrationStepOne.styles';
+import { BackspaceButton } from '../../../components/atoms/button/BackspaceButton';
 
 const CommunityWritePage: React.FC = () => {
     const navigate = useNavigate();
@@ -41,9 +43,9 @@ const CommunityWritePage: React.FC = () => {
                     ...prevData,
                     image: compressedImage,
                 }));
-                
+
                 encodeFileToBase64(compressedImage);
-            } 
+            }
         }
     };
 
@@ -115,7 +117,7 @@ const CommunityWritePage: React.FC = () => {
             formattedValue = formatPlantTitleInput(value);
         } else if (name === 'content') {
             formattedValue = formatPlantContentInput(value);
-        } 
+        }
 
         setFormData((prevData) => ({
             ...prevData,
@@ -123,19 +125,12 @@ const CommunityWritePage: React.FC = () => {
         }));
     };
 
-    const goBack = () => {
-        navigate(-1);
-    };
 
     const { title, content } = formData;
 
     return (
         <div>
-            <button style={{background: 'none'}}onClick={goBack}>
-                <span role="img" aria-label="back">
-                    {'<'}
-                </span>
-            </button>
+            <BackspaceButton onClick={()=>navigate(-1)} />
             <CommunityPostHeader>
                 <CommunityPostHeaderTitle>게시글 작성</CommunityPostHeaderTitle>
                 <CommunityPostHeaderText>
@@ -148,7 +143,7 @@ const CommunityWritePage: React.FC = () => {
                     <SharedInput
                         placeholder="2자 이상 10자 이내 제목을 작성해주세요"
                         type="text"
-                        name='title'
+                        name="title"
                         value={title}
                         onChange={handleChange}
                     />
@@ -158,7 +153,7 @@ const CommunityWritePage: React.FC = () => {
                     <CommunityPostlabel>자세한 내용을 작성해주세요</CommunityPostlabel>
                     <CommunityPostTextTextarea
                         value={content}
-                        name='content'
+                        name="content"
                         onChange={handleChange}
                         placeholder="최소 5자 이상 100자 이내로  입력해 주세요"
                     />
@@ -173,13 +168,20 @@ const CommunityWritePage: React.FC = () => {
                         style={{ display: 'none' }}
                     />
                     {imagePreview && <CommunityPreviewImage src={imagePreview} alt="preview-img" />}
-                    <CommunityUploadButton type="button" onClick={handleClickFileInput}>
-                        <img src="./Plus_Icon.svg" alt="PlusIcon" />
-                    </CommunityUploadButton>
+                    {!formData.image ? (
+                        <CommunityUploadButton type="button" onClick={handleClickFileInput}>
+                            <img src="./Plus_Icon.svg" alt="PlusIcon" />
+                        </CommunityUploadButton>
+                    ) : (
+                        <ReUploadButton
+                            type="button"
+                            onClick={handleClickFileInput}
+                        ></ReUploadButton>
+                    )}
                 </CommunityPreviewContainer>
                 <PostButton
                     $isChecked={!!(formData.image && formData.title && formData.content)}
-                    disabled={!formData.image || !formData.title || !formData.content}
+                    // disabled={!formData.image || !formData.title || !formData.content}
                     type="submit"
                 >
                     제출
