@@ -25,7 +25,7 @@ const TodayMission = ({ props }: { props?: Content[] }) => {
                 {mission?.map((item, index) => {
                     return (
                         <div key={index}>
-                            <div style={{ padding: '15px 10px 10px 0px' }}>
+                            <div style={{ padding: '17px 0px 10px 1px' }}>
                                 <St.MissionCardBanner src={missionBanner} />
                                 <St.MissionCardLayout>
                                     <St.MissionCardContent>{item.content}</St.MissionCardContent>

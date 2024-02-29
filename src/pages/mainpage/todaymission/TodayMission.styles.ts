@@ -28,8 +28,7 @@ export const MissionCardContent = styled.div`
 `;
 
 export const MissionCardBanner = styled.img`
-    top: -20px;
-    bottom: 10%;
+    top: 0px;
     background: none;
     overflow: visible;
     position: fixed;

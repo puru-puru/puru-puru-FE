@@ -14,14 +14,13 @@ export const MainMissionTitleWrapper = styled.div`
 `;
 
 export const MainMissionTitle = styled.div`
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 22px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Pretendard';
     line-height: 31.25px;
-    font-weight: 800;
+    font-weight: 700;
     gap: 10px;
 `;
 
@@ -44,14 +43,13 @@ export const MainPlantRecommendTitleWrapper = styled.div`
 `;
 
 export const MainPlantRecommendTitle = styled.div`
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 22px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Pretendard';
     line-height: 31.25px;
-    font-weight: 800;
+    font-weight: 700;
     gap: 10px;
 `;
 
