@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
+import './recommendslick/slick.css';
+import './recommendslick/slick-theme.css';
 import { colors } from '../../styles/colors';
 
 export const PetPlantContainer = styled.div`
@@ -99,8 +101,11 @@ export const PlantUpdateContainer = styled.div`
 `;
 
 export const PlantSlickCustom = styled(Slider)`
-    width: 100%;
+    /* width: 100%; */
     overflow-x: hidden;
+    .slick-prev {
+        display: none; /* 이전 버튼 숨기기 */
+    }
 `;
 
 
@@ -173,7 +178,7 @@ export const PetPlantDetailTextContainer = styled.div`
     }
 `;
 
-export const PetPlantDetailText = styled.p`
+export const PetPlantDetailText = styled.div`
     margin: 0 15px;
     font-weight: 600;
     font-size: 10px;
