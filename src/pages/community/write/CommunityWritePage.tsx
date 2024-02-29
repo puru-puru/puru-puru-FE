@@ -180,7 +180,7 @@ const CommunityWritePage: React.FC = () => {
                     )}
                 </CommunityPreviewContainer>
                 <PostButton
-                    $isChecked={!!(formData.image && formData.title && formData.content)}
+                    $isChecked={!!(formData.title && formData.content)}
                     // disabled={!formData.image || !formData.title || !formData.content}
                     type="submit"
                 >

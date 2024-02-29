@@ -50,7 +50,7 @@ const CommunityPage: React.FC = () => {
                                     ) : (
                                         <Nickname>익명</Nickname>
                                     )}
-                                    <PostImg src={post.image} alt="" />
+                                    <PostImg src={post.image? post.image: '/plantimg.png'} alt="" />
                                 </div>
                                 <PostTextContainer>
                                     <PostTitle>{post.title}</PostTitle>
