@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
+import { colors } from '../../styles/colors';
 // 반려식물 내용 style
 export const PetPlantHeader = styled.div`
     letter-spacing: -1.2px;
@@ -24,20 +25,32 @@ export const PetPlantHeaderImg = styled.img`
 export const PetPlantHeaderImgContainer = styled.div`
     width: 200px;
     height: 200px;
-    background-color: #daeaca;
+    background-color: ${colors.green50};
     margin: auto;
     z-index: 1;
     border-radius: 100px;
     overflow: hidden;
     position: relative;
 `;
-export const PetPlantHeaderDetail = styled.div`
+export const PetPlantHeaderContainer = styled.div`
     width: 116px;
     height: 150px;
     margin: auto;
     font-size: 12px;
     font-weight: 600;
-    color: #72a474;
+    color: ${colors.green100};
+`;
+
+export const PetPlantHeaderSubTitle = styled.div`
+    width: 39px;
+    height: 12px;
+    font-size: 8px;
+    border-radius: 20px;
+    color: ${colors.white};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${colors.pink100};
 `;
 
 // 일지 style
@@ -140,11 +153,42 @@ export const PlantSlickCustom = styled(Slider)`
 export const DotsCustom = styled.ul`
     li button::before {
         content: '' !important;
-        background: green !important; 
-        color: transparent !important; 
+        background: green !important;
+        color: transparent !important;
 
         height: 12px !important;
         width: 12px !important;
         border-radius: 100%;
     }
 `;
+
+export const MyPlantToggle = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    width: 310px;
+    height: auto;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+`;
+export const MyPlantToggleContainer = styled.div`
+    margin: 10px;
+`;
+export const MyPlantToggleDetail = styled.div`
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+`;
+export const MyPlantToggleButton = styled.button<{$isChecked: boolean}>`
+    width: 90px;
+    background-color: ${(props)=>(props.$isChecked ? colors.green100 : colors.green50)};
+    color: ${colors.white};
+`

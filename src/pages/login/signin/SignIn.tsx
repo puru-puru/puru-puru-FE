@@ -5,14 +5,14 @@ import {
     Heading,
     SignInBotten,
     SignUpBotten,
-    // SocialBotten,
-    // SocialContainer,
-    // SocialDescription,
+    SocialBotten,
+    SocialContainer,
+    SocialDescription,
 } from './SignIn.styles'; // 에러 메시지를 표시할 컴포넌트 추가
 import { ErrorMessage, LoginContainer } from '../Login.styles';
 import { useNavigate } from 'react-router-dom';
-// import SocialKakao from '../social/SocialKakao';
-// import SocialGoogle from '../social/SocialGoogle';
+import SocialKakao from '../social/SocialKakao';
+import SocialGoogle from '../social/SocialGoogle';
 import { SharedInput } from '../../Shared.styles';
 import { usePostSignInData } from '../../../api/loginapi/SignIn';
 
@@ -74,25 +74,29 @@ const SignIn: React.FC = () => {
             navigate('/service');
         }
     };
-
+    const handleError = (error: any) => {
+        if (error.response) {
+            const statusCode = error.response.status;
+            if (statusCode === 401) {
+                setError('이메일이 존재하지 않습니다.');
+            } else if (statusCode === 409 ) {
+                setError('비밀번호가 틀렸습니다.');
+            }
+        } else {
+            setError('회원가입해주세요');
+        }
+    };
     const handleLogin = () => {
-        try {
             if (user.email === '' || user.password === '') {
                 setError('아이디와 비밀번호를 입력해주세요');
                 return;
             }
             mutate(user, {
                 onSuccess: handleSuccess,
+                onError: handleError,
             });
-        } catch (error: any) {
-            if (error.response) {
-                const statusCode = error.response.status;
-                if (statusCode === 404) {
-                    setError('서버주소를 찾을수가 없습니다.');
-                }
-            }
-            setError('회원가입해주세요');
-        }
+            
+        
     };
 
     const handleSignUp = () => {
@@ -117,7 +121,7 @@ const SignIn: React.FC = () => {
                     <SharedInput
                         type="password"
                         value={user.password}
-                        placeholder="영문/숫자 6자~12자로 입력해 주세요"
+                        placeholder="비밀번호(8 ~ 16자의 영문, 숫자, 특수문자 포함)"
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             setUser({ ...user, password: e.target.value })
                         }
@@ -133,13 +137,13 @@ const SignIn: React.FC = () => {
                 <SignUpBotten onClick={handleSignUp} type="button">
                     회원가입하기
                 </SignUpBotten>
-                {/* <SocialContainer>
+                <SocialContainer>
                     <SocialDescription>SNS 계정으로 간편하게 가입하세요</SocialDescription>
                     <SocialBotten>
                         <SocialGoogle />
                         <SocialKakao />
                     </SocialBotten>
-                </SocialContainer> */}
+                </SocialContainer>
             </div>
         </LoginContainer>
     );

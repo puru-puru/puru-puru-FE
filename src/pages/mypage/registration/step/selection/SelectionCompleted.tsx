@@ -24,7 +24,7 @@ const SelectionCompleted: React.FC<SelectedCardProps> =  ({ selectedCard }) => {
             if (error.response) {
                 console.error('서버 응답 데이터:', error.response.data);
             }
-        } 
+        }
     };
     return (
         <SelectionCompletedContainer>

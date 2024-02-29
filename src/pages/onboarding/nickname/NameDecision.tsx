@@ -51,35 +51,33 @@ const NameDecision: React.FC = () => {
         if (nameInfo.isChecked) {
             if (!throttled) {
                 throttled = true;
-                try {
-                    // API 요청 보내기
-                    mutate(nameInfo.name, {
-                        onSuccess:()=> {
+                // API 요청 보내기
+                mutate(nameInfo.name, {
+                    onSuccess: () => {
+                        setNameInfo((prevState) => ({
+                            ...prevState,
+                            errorMessage: '',
+                        }));
+                        navigate('/mainpage');
+                    },
+                    onError: (error: any) => {
+                        if (error.response && error.response.status === 409) {
+                            // 이미 사용 중인 닉네임입니다.
                             setNameInfo((prevState) => ({
                                 ...prevState,
-                                errorMessage: '',
+                                errorMessage: '이미 사용 중인 닉네임입니다.',
                             }));
-                            navigate('/mainpage');
+                        } else {
+                            // 다른 에러 발생한 경우
+                            setNameInfo((prevState) => ({
+                                ...prevState,
+                                errorMessage:
+                                    '서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
+                            }));
                         }
-                    });
-                    
-                } catch (error: any) {
-                    // API 요청 실패 시 처리
-                    if (error.response && error.response.status === 409) {
-                        // 닉네임이 중복된 경우
-                        setNameInfo((prevState) => ({
-                            ...prevState,
-                            errorMessage: '이미 사용 중인 닉네임입니다.',
-                        }));
-                    } else {
-                        // 다른 에러 발생한 경우
-                        setNameInfo((prevState) => ({
-                            ...prevState,
-                            errorMessage: '서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
-                        }));
-                        console.error('API 요청 실패:', error);
-                    }
-                }
+                    },
+                });
+
                 setTimeout(() => {
                     throttled = false;
                 }, THROTTLE_TIME);

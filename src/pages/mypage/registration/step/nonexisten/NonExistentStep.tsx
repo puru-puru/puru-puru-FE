@@ -81,23 +81,24 @@ export const RegistrationListStep: React.FC = () => {
         if (!plantData.plantName || !isValidPlantName(plantData.plantName)) {
             alert('반려 식물 이름을 2자 이상 10자 이내로 입력해주세요');
             return;
-        } else if (!plantData.type || !isValidType(plantData.type)) { 
-            alert('식물 종류를 2자 이상 10자 이내로 입력해주세요');
+        } else if (!plantData.type || !isValidType(plantData.type)) {
+            alert('식물 분류를 2자 이상 10자 이내로 입력해주세요');
             return;
-        } else if (!plantData.content || !isValidContent(plantData.content)) { 
-            alert('식물 정보를 2자 이상 50자 이내로 입력해주세요'); 
+        } else if (!plantData.content || !isValidContent(plantData.content)) {
+            alert('식물 정보를 2자 이상 50자 이내로 입력해주세요');
             return;
         }
         try {
-            const response = await plantdataApi.post('/api/newplants', plantData);
-            console.log(response);
+            await plantdataApi.post('/api/newplants', plantData);
             navigate('/myplant');
             setCurrentStep(1);
-        } catch (error) {
-            console.error('Error occurred:', error);
-        } 
+        } catch (error: any) {
+            if (error.response && error.response.status === 409) {
+                const errorMessage = error.response.data.errorMessage;
+                alert(errorMessage);
+            }
+        }
     };
-
     return (
         <>
             <NonExistentContainer>
@@ -114,7 +115,7 @@ export const RegistrationListStep: React.FC = () => {
                 />
                 <p>식물 분류 입력</p>
                 <SharedInput
-                    placeholder="조록나무과 - 2~6자 이내로 입력해주세요 :)"
+                    placeholder="조록나무과 - 2~10자 이내로 입력해주세요 :)"
                     name="type"
                     value={plantData.type}
                     onChange={handleChange}
@@ -122,7 +123,7 @@ export const RegistrationListStep: React.FC = () => {
                 <p>식물 정보 입력</p>
                 <NonExistentTextArea
                     style={{ width: '100%', height: '100px' }}
-                    placeholder="물을 일주일에 세번 주어도 잘 자란다.&#13;&#10;2~25자 이내로 입력해주세요 :)"
+                    placeholder="물을 일주일에 세번 주어도 잘 자란다.&#13;&#10;2~50자 이내로 입력해주세요 :)"
                     name="content"
                     value={plantData.content}
                     onChange={handleChange}

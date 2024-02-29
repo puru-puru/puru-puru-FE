@@ -6,14 +6,15 @@ import { RegistrationStepOne } from './step/stepone/RegistrationStepOne';
 import { RegistrationStepTwo } from './step/steptwo/RegistrationStepTwo';
 import HorizontalStepper from './stepper/HorizontalStepper';
 import { useNavigate } from 'react-router-dom';
+import { BackspaceButton } from '../../../components/atoms/button/BackspaceButton';
 import { RegistrationListStep } from './step/nonexisten/NonExistentStep';
-import { BackspaceButton } from './PlantRegistrationPage.styles';
+
 const PlantRegistrationPage: React.FC = () => {
     const [currentStep, setCurrentStep] = useRecoilState<number>(currentStepState);
     const navigate = useNavigate();
 
     const goToPreviousStep = () => {
-        if (currentStep === 1) { 
+        if (currentStep === 1) {
             navigate('/myplant');
             setCurrentStep(1);
         } else {
@@ -22,9 +23,7 @@ const PlantRegistrationPage: React.FC = () => {
     };
     return (
         <>
-            <BackspaceButton onClick={goToPreviousStep}>
-                <img src="./ArrowLeft.svg" alt="Backspace" />
-            </BackspaceButton>
+                <BackspaceButton onClick={goToPreviousStep} />
             <PetPlantHeader>
                 <PetPlantHeaderTitle>나의 반려 식물</PetPlantHeaderTitle>
             </PetPlantHeader>
@@ -43,7 +42,7 @@ const PlantRegistrationPage: React.FC = () => {
             )}
             {currentStep === 3 && (
                 <>
-                <RegistrationListStep/>
+                    <RegistrationListStep />
                 </>
             )}
         </>

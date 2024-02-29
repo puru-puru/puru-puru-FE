@@ -11,7 +11,7 @@ export const StepStateTextContainer = styled.div`
     font-weight: bold;
 `
 
-export const BackspaceButton = styled.button`
-    background: none;
-    margin-top: 10px;
-`
+// export const BackspaceButton = styled.button`
+//     background: none;
+//     margin-top: 10px;
+// `

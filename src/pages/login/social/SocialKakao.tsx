@@ -2,8 +2,8 @@ import React from 'react';
 import { SocialButton } from './SocialButton.styles';
 
 const SocialKakao:React.FC = () => {
-    const REST_API_KEY = '19449fa93915b6797984debf2dada7a3';
-    const REDIRECT_URI = 'https://purupuru.store/api/auth/login/kakao/return';
+    const REST_API_KEY = `${import.meta.env.VITE_KAKAO_REST_API_KEY}`;
+    const REDIRECT_URI =`${import.meta.env.VITE_KAKAO_REDIRECT_URI}`;
     const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
     const loginHandler = () => {

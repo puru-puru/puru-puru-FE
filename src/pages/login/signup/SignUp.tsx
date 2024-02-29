@@ -5,6 +5,8 @@ import { SignUpBotten, SignUpToggle, StyledInput } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../../hook/useModal';
 import { usePostSignUpData } from '../../../api/loginapi/SignUp';
+import { BackspaceButton } from '../../../components/atoms/button/BackspaceButton';
+// import { axios } from '../../../api/http';
 
 const SignUp: React.FC = () => {
     const { mutate } = usePostSignUpData();
@@ -23,7 +25,7 @@ const SignUp: React.FC = () => {
         return emailRegex.test(email);
     };
     const validatePassword = (password: string): boolean => {
-        const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/;
+        const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,16}$/;
         return passwordRegex.test(password);
     };
     const isEmailValid = user.email.length > 0 && validateEmail(user.email);
@@ -54,6 +56,8 @@ const SignUp: React.FC = () => {
         if (error.response) {
             if (error.response.status === 409) {
                 setError('회원가입 실패: 이미 존재하는 아이디입니다.');
+            } else if (error.response.status === 400) {
+                setError('회원가입 실패: 알맞은 이메일 형식을 입력해 주세요');
             } else {
                 setError('회원가입 실패: 서버 오류가 발생했습니다.');
             }
@@ -75,58 +79,73 @@ const SignUp: React.FC = () => {
             handleError(error);
         }
     };
+    // 이메일 인증
+    // const EmailTest = async()=>{
+    //     try {
+    //         const response = await axios.post('/api/test/auth/send-email', {email:user.email});
+    //         console.log(response)
+    //     } catch (error: any) {
+    //         handleError(error);
+    //     }
+    // }
 
     return (
-        <LoginContainer>
-            <h2>회원가입</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={onSubmitHandler}>
-                <label>
-                    <p>Email</p>
-                    <StyledInput
-                        type="text"
-                        value={user.email}
-                        $invalid={!isEmailValid}
-                        placeholder="예)puleuspuleus@puleus.co.kr"
-                        onChange={(e) => setUser({ ...user, email: e.target.value })}
-                    />
-                </label>
-                <label>
-                    <p>Password</p>
-                    <StyledInput
-                        type="password"
-                        value={user.password}
-                        $invalid={!isPasswordValid}
-                        placeholder="영문 + 숫자 6자~12자로 입력해 주세요"
-                        onChange={(e) => setUser({ ...user, password: e.target.value })}
-                    />
-                    {!isPasswordValid && user.password && (
-                        <ErrorMessage>영문 + 숫자 6자~12자로 입력해 주세요</ErrorMessage>
-                    )}
-                    <p></p>
-                    <StyledInput
-                        type="password"
-                        value={user.confirmPassword}
-                        $invalid={!!(!user.password || user.password !== user.confirmPassword)}
-                        onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
-                        placeholder="비밀번호를 재입력하세요"
-                    />
-                    {user.password !== user.confirmPassword && user.confirmPassword && (
-                        <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
-                    )}
-                </label>
-                <br />
-                <SignUpBotten $isChecked={isChecked} type="submit">
-                    가입하기
-                </SignUpBotten>
-            </form>
-            {open && (
-                <>
-                    <div className="dark-overlay" />
-                    <SignUpToggle>회원가입 완료</SignUpToggle>
-                </>
-            )}
-        </LoginContainer>
+        <>
+            <BackspaceButton onClick={()=>navigate(-1)} />
+            <LoginContainer>
+                <h2>회원가입</h2>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+
+                <form onSubmit={onSubmitHandler}>
+                    <label>
+                        <p>Email</p>
+                        <StyledInput
+                            type="text"
+                            value={user.email}
+                            $invalid={!isEmailValid}
+                            placeholder="예)puleuspuleus@puleus.co.kr"
+                            onChange={(e) => setUser({ ...user, email: e.target.value })}
+                        />
+                    </label>
+
+                    <label>
+                        <p>Password</p>
+                        <StyledInput
+                            type="password"
+                            value={user.password}
+                            $invalid={!isPasswordValid}
+                            placeholder="비밀번호(8 ~ 16자의 영문, 숫자, 특수문자 포함)"
+                            onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        />
+                        {!isPasswordValid && user.password && (
+                            <ErrorMessage>8 ~ 16자의 영문, 숫자, 특수문자 포함으로 입력해 주세요</ErrorMessage>
+                        )}
+                        <p></p>
+                        <StyledInput
+                            type="password"
+                            value={user.confirmPassword}
+                            $invalid={!!(!user.password || user.password !== user.confirmPassword)}
+                            onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
+                            placeholder="비밀번호를 재입력하세요"
+                        />
+                        {user.password !== user.confirmPassword && user.confirmPassword && (
+                            <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
+                        )}
+                    </label>
+                    <br />
+                    <SignUpBotten $isChecked={isChecked} type="submit">
+                        가입하기
+                    </SignUpBotten>
+                </form>
+                {/* <button onClick={EmailTest}>인증</button> */}
+                {open && (
+                    <>
+                        <div className="dark-overlay" />
+                        <SignUpToggle>회원가입 완료</SignUpToggle>
+                    </>
+                )}
+            </LoginContainer>
+        </>
     );
 };
 

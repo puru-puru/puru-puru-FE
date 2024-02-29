@@ -17,7 +17,7 @@ const LayoutContent = styled.div`
     width: 360px;
     height: 728px;
     border-radius: 20px;
-    overflow-y: auto;
+    overflow-y: hidden;
     margin: 0;
     position: relative;
     border: 1px solid gray;
