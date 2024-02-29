@@ -1,8 +1,6 @@
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { BsStar } from 'react-icons/bs';
-import { IoHeartOutline } from 'react-icons/io5';
+import './recommendslick/slick.css';
+import './recommendslick/slick-theme.css';
 import { PlantRecommendData } from '../../../api/main/model';
 import * as St from './PlantRecommend.styles';
 
@@ -11,12 +9,13 @@ const PlantRecommend = ({ data }: { data?: PlantRecommendData[] }) => {
     const plant = data;
     // 캐러셀 라이브러리 세팅
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
-        speed: 500,
+        speed: 300,
         slidesToShow: 1.5,
         slidesToScroll: 1,
         cssEase: 'linear',
+        arrows: false,
     };
 
     return (
@@ -28,14 +27,6 @@ const PlantRecommend = ({ data }: { data?: PlantRecommendData[] }) => {
                             <St.PlantCardImg src={item.image} />
                             <St.PlantCardName>{item.plantName}</St.PlantCardName>
                             <St.PlantCardContent>{item.content}</St.PlantCardContent>
-                            <St.PlantCardButtonLayout>
-                                <St.PlantCardButtonStyle>
-                                    <BsStar />
-                                </St.PlantCardButtonStyle>
-                                <St.PlantCardButtonStyle>
-                                    <IoHeartOutline />
-                                </St.PlantCardButtonStyle>
-                            </St.PlantCardButtonLayout>
                         </St.PlantCardLayout>
                     </div>
                 );

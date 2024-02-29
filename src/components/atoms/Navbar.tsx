@@ -1,7 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
 import home from '../../assets/home.svg';
-import { useNavigate } from 'react-router-dom';
+import mainLogo from '../../assets/mainlogo.svg';
 // import search from '../../assets/search.svg';
 // import store from '../../assets/storefront.svg';
 
@@ -14,12 +15,13 @@ const Navbar: React.FC = () => {
     const NavbarWrapper: CSSProperties = {
         display: 'flex',
         justifyContent: 'space-between',
+        width: '100%',
         maxWidth: '360px',
         padding: '10px',
         gap: '6px',
     };
     const NavbarHomeButtonStyle: CSSProperties = {
-        boxShadow: '2px 2px 5px rgba(185, 185, 185, 0.25)',
+        boxShadow: '8px 8px 5px rgba(185, 185, 185, 0.25)',
         width: '48px',
         height: '48px',
         display: 'flex',
@@ -53,9 +55,9 @@ const Navbar: React.FC = () => {
     // };
     return (
         <nav style={NavbarWrapper}>
-            <button onClick={handleHomeButton} style={NavbarHomeButtonStyle}>
-                <img src={home} />
-            </button>
+            <div style={{ padding: '10px 10px' }}>
+                <img src={mainLogo} />
+            </div>
             {/* MVP 이후 구현 */}
             {/*<div>
                 <button style={NavbarSearchButtonStyle}>
@@ -65,6 +67,9 @@ const Navbar: React.FC = () => {
                     <img src={store} />
                 </button>
             </div> */}
+            <button onClick={handleHomeButton} style={NavbarHomeButtonStyle}>
+                <img src={home} />
+            </button>
         </nav>
     );
 };
