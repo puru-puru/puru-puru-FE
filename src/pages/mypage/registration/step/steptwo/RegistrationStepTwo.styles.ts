@@ -17,11 +17,12 @@ export const SearchIcon = styled.img`
 `
 export const SearchInput = styled(SharedInput)`
     background-color: #fff8f8;
-    color: #86869e;
+    color: black;
     outline: none;
     font-size: 11px;
     padding-left: 40px;
     &:focus{
+        font-weight: bold;
         background-color:none;
     }
 `;
@@ -86,7 +87,7 @@ export const FindOtherPlantsButton = styled.button`
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
+    font-weight: bold;
     &:hover {
         background-color: ${colors.green100};
         color: ${colors.green50};

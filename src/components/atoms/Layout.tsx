@@ -18,7 +18,7 @@ const LayoutContent = styled.div`
     height: 728px;
     border-radius: 20px;
     overflow-y: hidden;
-    margin: 0;
+    margin-left: 500px;
     position: relative;
     border: 1px solid gray;
     box-sizing: border-box;
@@ -35,7 +35,7 @@ const Layout: React.FC = () => {
     return (
         <>
             <LayoutContainer style={{ backgroundColor: colors.green50 }}>
-                <BackGround/>
+                <BackGround />
                 <LayoutContent style={{ backgroundColor: colors.white }}>
                     {(isMain || isMyPlant || isMyprofile || isCommunity) && <Navbar />}
                     <Outlet />

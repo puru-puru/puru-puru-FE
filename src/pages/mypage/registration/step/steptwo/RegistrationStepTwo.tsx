@@ -17,7 +17,7 @@ import { searchApi } from '../../../../../api/http';
 import { Plants } from '../../../../../api/model';
 import Spinner from '/Spin.gif';
 
-import { PagesContainer } from './PageNation';
+import { PagesButton, PagesContainer } from './PageNation';
 import { currentStepState } from '../../../../../recoil/atom';
 import { useRecoilState } from 'recoil';
 
@@ -39,7 +39,7 @@ export const RegistrationStepTwo: React.FC = () => {
         setLoading(true);
         try {
             const response = await searchApi.get(`/api/plants/search/${searchItem}`);
-            console.log(response)
+            console.log(response);
             if (Array.isArray(response)) {
                 setPlants(response);
             } else {
@@ -54,6 +54,7 @@ export const RegistrationStepTwo: React.FC = () => {
                 setPlants([]); // 검색 결과가 없을 경우 빈 배열로 초기화
             }
         } finally {
+            
             setLoading(false);
         }
     };
@@ -163,6 +164,7 @@ export const RegistrationStepTwo: React.FC = () => {
                                                 />
                                                 <div className="card-body">
                                                     <p className="card-title">{plant.plantName}</p>
+                                                    <p className="card-text">{plant.type}</p>
                                                 </div>
                                             </div>
                                         ))}
@@ -171,20 +173,19 @@ export const RegistrationStepTwo: React.FC = () => {
                         )}
                     </>
                 )}
-                {plants.length !== 0 && (
+
+            </HomeRecent>
+            {plants.length !== 0 && (
                     <PagesContainer>
-                        <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-                            이전
-                        </button>
+                        <PagesButton onClick={goToPreviousPage} disabled={currentPage === 1}>
+                            <img src="./ArrowLeft.svg" alt="ArrowLeft" />
+                        </PagesButton>
                         {currentPage} / {totalPages}
-                        {/* 다음 페이지로 이동하는 버튼 */}
-                        <button onClick={goToNextPage} disabled={currentPage === totalPages}>
-                            다음
-                        </button>
+                        <PagesButton onClick={goToNextPage} disabled={currentPage === totalPages}>
+                            <img src="./ArrowRight.svg" alt="ArrowLeft" />
+                        </PagesButton>
                     </PagesContainer>
                 )}
-            </HomeRecent>
-
             <SearchButtonContainer>
                 {!selectionCompleted && (
                     <SearchButton
