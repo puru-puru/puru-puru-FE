@@ -63,6 +63,7 @@ export const HomeRecent = styled.section`
     }
 `;
 
+
 export const NoneResult = styled.div`
     position: absolute;
     display: flex;

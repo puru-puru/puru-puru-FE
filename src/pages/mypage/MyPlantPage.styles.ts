@@ -104,7 +104,7 @@ export const PlantSlickCustom = styled(Slider)`
     /* width: 100%; */
     overflow-x: hidden;
     .slick-prev {
-        display: none; /* 이전 버튼 숨기기 */
+        display: none; 
     }
 `;
 

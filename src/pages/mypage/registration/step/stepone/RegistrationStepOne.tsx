@@ -33,7 +33,7 @@ export const RegistrationStepOne: React.FC = () => {
     const month = (today.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
     const day = today.getDate().toString().padStart(2, '0');
     const todayString = `${year}${month}${day}`;
-    const dateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-([0-2][1-9]|3[01])$/;
+    const dateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
     const handleNextStep = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
         if (!formData.image) {
