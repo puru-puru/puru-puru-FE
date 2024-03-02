@@ -2,42 +2,37 @@ import * as St from './BoardTest.styles';
 import arrow from '../../../assets/arrow.svg';
 import boardTestData from './Test.json';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import BoardTestTagItem from './BoardTestTagItem';
 // import { useGetBoardTestPageData } from '../../../api/boardtest/BoardTest';
 
 const BoardTest = () => {
     const [boardId, setBoardId] = useState<number>(0);
-    const [isSelected, setIsSelected] = useState<boolean>(false);
     const navigate = useNavigate();
     // const pageData = useGetBoardTestPageData();
     // console.log(pageData);
     const testData = boardTestData;
-    // 키워드 선택 state
-
     // skip 버튼 클릭시 MainPage 이동
     const skipButtonHandler = () => {
         navigate('/mainpage');
     };
     // 키워드 클릭 handler
     const boardItemHandler = (id: number) => {
-        console.log('id => ', id);
-        setBoardId(id);
-
-        // setBoardId((prevId: number) => {
-        //     if (prevId === id) {
-        //         setIsSelected((prevState) => !prevState);
-        //     }
-        // });
+        if (id === boardId) {
+            setBoardId(0);
+        } else {
+            setBoardId(id);
+        }
     };
-    // console.log('boardId => ', boardId);
+
     // 결과 확인하기 버튼 클릭 후 보드 결과 페이지 이동
     const selectedButtonHandler = (boardId: number) => {
-        navigate('/boardresult', { state: { boardId } });
+        // console.log('boardId => ', boardId);
+        if (boardId !== 0) {
+            navigate('/boardresult', { state: { boardId } });
+        }
     };
-    // useEffect(() => {
-    //     console.log('isSelected => ', isSelected);
-    // });
+
     return (
         <St.BoardTestWrapper>
             <div>
@@ -60,6 +55,7 @@ const BoardTest = () => {
                             keyword={testItem.keyword}
                             keywordImgURL={testItem.keywordImgURL}
                             boardItemHandler={boardItemHandler}
+                            isSelected={testItem.id === boardId}
                         />
                     );
                 })}
@@ -67,7 +63,7 @@ const BoardTest = () => {
             <St.BoardTestMainSelectButtonStyle>
                 <St.BoardTestMainSelectButton
                     onClick={() => selectedButtonHandler(boardId)}
-                    $isSelected={isSelected}
+                    $isSelected={boardId !== 0}
                 >
                     결과 확인하기
                 </St.BoardTestMainSelectButton>
