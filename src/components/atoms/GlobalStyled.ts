@@ -15,8 +15,9 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'Pretendard';
         color: black;
     }
-
-  
+input {
+  background-color: white; 
+}
     .dark-overlay {
         position: fixed;
         top: 0;

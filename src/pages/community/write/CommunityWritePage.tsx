@@ -38,13 +38,21 @@ const CommunityWritePage: React.FC = () => {
         if (files && files.length > 0) {
             const uploadFile = files[0];
             const compressedImage = await ImageCompressor(uploadFile);
-            if (compressedImage) {
-                setFormData((prevData) => ({
-                    ...prevData,
-                    image: compressedImage,
-                }));
+            const fileName = 'compressed_image.jpg';
 
-                encodeFileToBase64(compressedImage);
+            if (compressedImage) {
+                // Blob 객체에서 File 객체로 변환합니다.
+                const resizingFile = new File([compressedImage], fileName, {
+                    type: compressedImage.type,
+                });
+                if (compressedImage) {
+                    setFormData((prevData) => ({
+                        ...prevData,
+                        image: resizingFile,
+                    }));
+
+                    encodeFileToBase64(resizingFile);
+                }
             }
         }
     };

@@ -61,8 +61,16 @@ const SignIn: React.FC = () => {
 
     const handleSuccess = (response) => {
         const data = response.data;
-        Cookies.set('AccessToken', data.accessToken, { expires: 1 / 24 });
-        Cookies.set('RefreshToken', data.refreshToken, { expires: 30 });
+        Cookies.set('AccessToken', data.accessToken, {
+            expires: 1 / 24,
+            sameSite: 'strict',
+            overwrite: true,
+        });
+        Cookies.set('RefreshToken', data.refreshToken, {
+            expires: 30,
+            sameSite: 'strict',
+            overwrite: true,
+        });
         setHasNickName(data.hasNickname);
         setUser({
             email: '',
@@ -79,7 +87,7 @@ const SignIn: React.FC = () => {
             const statusCode = error.response.status;
             if (statusCode === 401) {
                 setError('이메일이 존재하지 않습니다.');
-            } else if (statusCode === 409 ) {
+            } else if (statusCode === 409) {
                 setError('비밀번호가 틀렸습니다.');
             }
         } else {
@@ -87,16 +95,14 @@ const SignIn: React.FC = () => {
         }
     };
     const handleLogin = () => {
-            if (user.email === '' || user.password === '') {
-                setError('아이디와 비밀번호를 입력해주세요');
-                return;
-            }
-            mutate(user, {
-                onSuccess: handleSuccess,
-                onError: handleError,
-            });
-            
-        
+        if (user.email === '' || user.password === '') {
+            setError('아이디와 비밀번호를 입력해주세요');
+            return;
+        }
+        mutate(user, {
+            onSuccess: handleSuccess,
+            onError: handleError,
+        });
     };
 
     const handleSignUp = () => {

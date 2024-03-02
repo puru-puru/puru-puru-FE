@@ -1,7 +1,7 @@
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { axios } from '../../../../api/http';
 
 const RedirectionKakao: React.FC = () => {
     const code = new URL(document.location.toString()).searchParams.get('code');
@@ -9,10 +9,18 @@ const RedirectionKakao: React.FC = () => {
 
     useEffect(() => {
         axios
-            .post(`https://purupuru.store/api/auth/login/kakao`, { code })
+            .post(`/api/auth/login/kakao`, { code })
             .then((response) => {
-                Cookies.set('AccessToken', response.data.accessToken, { expires: 1 / 24 });
-                Cookies.set('RefreshToken', response.data.refreshToken, { expires: 30 });
+                Cookies.set('AccessToken', response.data.accessToken, {
+                    expires: 1 / 24,
+                    sameSite: 'strict',
+                    overwrite: true,
+                });
+                Cookies.set('RefreshToken', response.data.refreshToken, {
+                    expires: 30,
+                    sameSite: 'strict',
+                    overwrite: true,
+                });
                 if (response.data.hasNickname) {
                     navigate('/mainpage');
                 } else {

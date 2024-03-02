@@ -1,27 +1,35 @@
 import React, { useState } from 'react';
 import {
+    FindOtherPlantsButton,
+    FindOtherPlantsContainer,
     RecommendedSearchWords,
     RecommendedSearchWordsContainer,
     RecommendedSearchWordsText,
     SearchButton,
     SearchButtonContainer,
     SearchContainer,
+    SearchIcon,
     SearchInput,
-    StepTwoNoneIcon,
 } from './RegistrationStepTwo.styles';
-import { HomeRecent, NoneResult, NoneResultText } from './PlantCard.styles';
+import { HomeRecent } from './PlantCard.styles';
 import SelectionCompleted from '../selection/SelectionCompleted';
 import { searchApi } from '../../../../../api/http';
 import { Plants } from '../../../../../api/model';
 import Spinner from '/Spin.gif';
 
-import { PagesContainer } from './PageNation';
+import { PagesButton, PagesContainer } from './PageNation';
+import { currentStepState } from '../../../../../recoil/atom';
+import { useRecoilState } from 'recoil';
 
 export const RegistrationStepTwo: React.FC = () => {
     const [searchItem, setSearchItem] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
     const [selectedCard, setSelectedCard] = useState<number>(); // 선택된 카드를 추적하기 위한 상태
     const [selectionCompleted, setSelectionCompleted] = useState<boolean>(false);
+    const [currentStep, setCurrentStep] = useRecoilState<number>(currentStepState);
+    const handleNextStep = () => {
+        setCurrentStep(currentStep + 1);
+    };
     const [currentPage, setCurrentPage] = useState<number>(1);
     const itemsPerPage = 6;
     const [plants, setPlants] = useState<Plants[]>([]);
@@ -31,7 +39,7 @@ export const RegistrationStepTwo: React.FC = () => {
         setLoading(true);
         try {
             const response = await searchApi.get(`/api/plants/search/${searchItem}`);
-
+            console.log(response);
             if (Array.isArray(response)) {
                 setPlants(response);
             } else {
@@ -46,6 +54,7 @@ export const RegistrationStepTwo: React.FC = () => {
                 setPlants([]); // 검색 결과가 없을 경우 빈 배열로 초기화
             }
         } finally {
+            
             setLoading(false);
         }
     };
@@ -70,6 +79,7 @@ export const RegistrationStepTwo: React.FC = () => {
     return (
         <>
             <SearchContainer>
+                <SearchIcon src="./SearchIcon.svg" alt="SearchIcon" onClick={handleSearch} />
                 <SearchInput
                     placeholder="식물 관련 키워드(이름/종류)를 검색해주세요"
                     name="plantAt"
@@ -94,77 +104,88 @@ export const RegistrationStepTwo: React.FC = () => {
                     />
                 ) : (
                     <>
-                        {selectionCompleted && !plants.length ? (
-                            <NoneResult>
-                                <NoneResultText>
-                                    관련된 식물이 없어요! 관련 식물을 먼저 등록해주세요
-                                </NoneResultText>
-                                <StepTwoNoneIcon src="TitleIcon.svg" alt="Register Icon" />
-                            </NoneResult>
-                        ) : !plants.length ? ( // 검색어가 없을 때만 추천 검색어 표시
+                        {!plants.length ? ( // 검색어가 없을 때만 추천 검색어 표시
                             <>
-                                <div style={{ marginTop: '30px',borderTop: '2px solid rgba(128, 128, 128, 0.2)', }}>
-                                <RecommendedSearchWordsText>추천 검색어</RecommendedSearchWordsText>
-                                <RecommendedSearchWordsContainer>
-                                    {[
-                                        '관엽식물',
-                                        '스투키',
-                                        '몬스테라',
-                                        '동백나무',
-                                        '히아신스',
-                                        '틸란드시아',
-                                        '필로덴드론',
-                                    ].map((recommendation, index) => (
-                                        <RecommendedSearchWords key={index}>
-                                            {recommendation}
-                                        </RecommendedSearchWords>
-                                    ))}
-                                </RecommendedSearchWordsContainer>
+                                <div
+                                    style={{
+                                        marginTop: '30px',
+                                        borderTop: '2px solid rgba(128, 128, 128, 0.2)',
+                                    }}
+                                >
+                                    <RecommendedSearchWordsText>
+                                        추천 검색어
+                                    </RecommendedSearchWordsText>
+                                    <RecommendedSearchWordsContainer>
+                                        {[
+                                            '관엽식물',
+                                            '스투키',
+                                            '몬스테라',
+                                            '동백나무',
+                                            '히아신스',
+                                            '틸란드시아',
+                                            '필로덴드론',
+                                        ].map((recommendation, index) => (
+                                            <RecommendedSearchWords key={index}>
+                                                {recommendation}
+                                            </RecommendedSearchWords>
+                                        ))}
+                                    </RecommendedSearchWordsContainer>
                                 </div>
                             </>
                         ) : (
-                            <div className="card-group">
-                                {plants
-                                    .slice(
-                                        (currentPage - 1) * itemsPerPage,
-                                        currentPage * itemsPerPage,
-                                    )
-                                    .map((plant) => (
-                                        <div
-                                            className={`card ${
-                                                plant.plantsId === selectedCard ? 'selected' : ''
-                                            }`}
-                                            key={plant.plantsId}
-                                            onClick={() => setSelectedCard(plant.plantsId)}
-                                        >
-                                            <img
-                                                src={plant.image}
-                                                className="card-img-top"
-                                                alt="..."
-                                            />
-                                            <div className="card-body">
-                                                <p className="card-title">{plant.plantName}</p>
+                            <>
+                                <FindOtherPlantsContainer>
+                                    <div></div>
+                                    <FindOtherPlantsButton onClick={handleNextStep}>
+                                        관련 식물이 없어요
+                                    </FindOtherPlantsButton>
+                                </FindOtherPlantsContainer>
+
+                                <div className="card-group">
+                                    {plants
+                                        .slice(
+                                            (currentPage - 1) * itemsPerPage,
+                                            currentPage * itemsPerPage,
+                                        )
+                                        .map((plant) => (
+                                            <div
+                                                className={`card ${
+                                                    plant.plantsId === selectedCard
+                                                        ? 'selected'
+                                                        : ''
+                                                }`}
+                                                key={plant.plantsId}
+                                                onClick={() => setSelectedCard(plant.plantsId)}
+                                            >
+                                                <img
+                                                    src={plant.image}
+                                                    className="card-img-top"
+                                                    alt="..."
+                                                />
+                                                <div className="card-body">
+                                                    <p className="card-title">{plant.plantName}</p>
+                                                    <p className="card-text">{plant.type}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                            </div>
+                                        ))}
+                                </div>
+                            </>
                         )}
                     </>
                 )}
+
             </HomeRecent>
             {plants.length !== 0 && (
-                <PagesContainer>
-                    <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-                        이전
-                    </button>
-                    {currentPage} / {totalPages}
-                    {/* 다음 페이지로 이동하는 버튼 */}
-                    <button onClick={goToNextPage} disabled={currentPage === totalPages}>
-                        다음
-                    </button>
-                </PagesContainer>
-            )}
-
+                    <PagesContainer>
+                        <PagesButton onClick={goToPreviousPage} disabled={currentPage === 1}>
+                            <img src="./ArrowLeft.svg" alt="ArrowLeft" />
+                        </PagesButton>
+                        {currentPage} / {totalPages}
+                        <PagesButton onClick={goToNextPage} disabled={currentPage === totalPages}>
+                            <img src="./ArrowRight.svg" alt="ArrowLeft" />
+                        </PagesButton>
+                    </PagesContainer>
+                )}
             <SearchButtonContainer>
                 {!selectionCompleted && (
                     <SearchButton
@@ -177,9 +198,6 @@ export const RegistrationStepTwo: React.FC = () => {
                 )}
                 {selectionCompleted && (
                     <>
-                        <PagesContainer>
-                            <button onClick={() => setSelectionCompleted(false)}>재검색</button>
-                        </PagesContainer>
                         <SelectionCompleted selectedCard={selectedCard} />
                     </>
                 )}

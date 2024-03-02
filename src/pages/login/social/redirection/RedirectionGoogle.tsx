@@ -11,8 +11,16 @@ const RedirectionGoogle: React.FC = () => {
         axios
             .post('/api/auth/login/google', { code })
             .then((response) => {
-                Cookies.set('AccessToken', response.data.accessToken, { expires: 1 / 24 });
-                Cookies.set('RefreshToken', response.data.refreshToken, { expires: 30 });
+                Cookies.set('AccessToken', response.data.accessToken, {
+                    expires: 1 / 24,
+                    sameSite: 'strict',
+                    overwrite: true,
+                });
+                Cookies.set('RefreshToken', response.data.refreshToken, {
+                    expires: 30,
+                    sameSite: 'strict',
+                    overwrite: true,
+                });
                 if (response.data.hasNickname) {
                     navigate('/mainpage');
                 } else {

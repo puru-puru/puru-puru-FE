@@ -9,11 +9,22 @@ export const SearchContainer = styled.div`
     align-items: center;
     position: relative;
 `;
+export const SearchIcon = styled.img`
+    position: absolute;
+    padding-left: 10px;
+    z-index: 1;
+    cursor: pointer;
+`
 export const SearchInput = styled(SharedInput)`
     background-color: #fff8f8;
-    color: #86869e;
+    color: black;
     outline: none;
     font-size: 11px;
+    padding-left: 40px;
+    &:focus{
+        font-weight: bold;
+        background-color:none;
+    }
 `;
 
 export const SearchButtonContainer = styled.div`
@@ -32,11 +43,11 @@ export const StepTwoNoneIcon = styled.img`
     margin-top: 40px;
 `;
 export const RecommendedSearchWordsText = styled.div`
-     font-size: 10px;
+    font-size: 10px;
     font-weight: bold;
-    color: #7D7D7D;
+    color: #7d7d7d;
     margin: 10px 0px;
-`
+`;
 
 export const RecommendedSearchWordsContainer = styled.div`
     display: flex;
@@ -49,12 +60,36 @@ export const RecommendedSearchWords = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #F4F1F1;
+    border: 1px solid #f4f1f1;
     border-radius: 3px;
 
     font-size: 8px;
     font-weight: bold;
-    
-    color: #A4A4A4;
+
+    color: #a4a4a4;
     background-color: ${colors.gray100};
+`;
+
+export const FindOtherPlantsContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+`;
+
+export const FindOtherPlantsButton = styled.button`
+    width: 120px;
+    height: 30px;
+    background-color: ${colors.green50};
+    color: ${colors.green100};
+    font-size: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    &:hover {
+        background-color: ${colors.green100};
+        color: ${colors.green50};
+    }
 `;

@@ -30,3 +30,4 @@ export const PetPlantRegisterImg = styled.img`
     pointer-events: none; 
     user-select: none;
 `;
+

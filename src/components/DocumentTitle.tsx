@@ -15,7 +15,7 @@ const RouterInfo = [
     { path: '/mycomponent', title: '반려식물 일지' },
     { path: '/community', title: '커뮤니티' },
     { path: '/communitywrite', title: '커뮤니티 작성' },
-    { path: '/boardtest', title: '게시판 테스트' },
+    { path: '/boardtest', title: '게시판' },
     { path: '/boardresult', title: '게시판 결과' },
 ];
 

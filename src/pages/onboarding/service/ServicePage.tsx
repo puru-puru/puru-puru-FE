@@ -148,7 +148,7 @@ const ServicePage: React.FC = () => {
                     {/* Modal */}
                     <div
                         style={{
-                            position: 'fixed',
+                            position: 'absolute',
                             top: '50%',
                             left: '50%',
                             transform: 'translate(-50%, -50%)',

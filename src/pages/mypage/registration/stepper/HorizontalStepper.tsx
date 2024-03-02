@@ -1,5 +1,5 @@
 import React from 'react';
-import { StepStateTextContainer } from '../PlantRegistrationPage.styles';
+import { StepStateTextContainer } from './HorizontalStepper.styles';
 import { StepperLine, StepperState, StepperContainer } from './HorizontalStepper.styles';
 
 
