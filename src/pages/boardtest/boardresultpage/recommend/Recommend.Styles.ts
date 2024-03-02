@@ -5,13 +5,15 @@ export const BoardResultMainCatalog = styled.div`
     align-items: center;
     font-size: 12px;
     font-weight: 900;
-    line-height: 18.28px;
+    line-height: 21.32px;
     width: 94.74px;
     height: 30px;
     padding: 0px;
-    border: 1px solid transparent;
+    color: rgba(114, 164, 116, 1);
+    border: 1px solid rgba(114, 164, 116, 1);
     border-radius: 30px;
-    background-image: linear-gradient(#fff, #fff),
+    background-color: rgba(252, 255, 249, 1);
+    /* background-image: linear-gradient(#fff, #fff),
         linear-gradient(to right, rgba(249, 136, 31, 1) 0%, rgba(255, 119, 76, 1) 100%);
     background-origin: padding-box;
     background-clip: content-box, border-box;
@@ -26,7 +28,14 @@ export const BoardResultMainCatalog = styled.div`
             linear-gradient(to right, rgba(249, 136, 31, 1) 0%, rgba(255, 119, 76, 1) 100%);
         background-origin: padding-box;
         background-clip: content-box, border-box;
-    }
+    } */
+`;
+
+export const BoardResultMainContent = styled.div`
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: rgba(149, 149, 149, 1);
 `;
 
 export const RecommendLayout = styled.div`

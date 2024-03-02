@@ -21,7 +21,7 @@ export const BoardTestMain = styled.div`
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 5px;
 `;
 
 export const BoardTestMainTitle = styled.div`
@@ -39,7 +39,7 @@ export const BoardTestMainItem = styled.button<{ $isSelected: boolean }>`
     height: 140px;
     border-radius: 20px;
     border: 2px solid white;
-    box-shadow: 8px 8px 5px rgba(152, 152, 152, 0.25);
+    box-shadow: 0px 8px 5px rgba(152, 152, 152, 0.25);
     &:hover {
         border-color: rgba(218, 234, 202, 1);
     }
@@ -67,7 +67,7 @@ export const BoardTestMainSelectButtonStyle = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0px 5px;
-    margin-top: 30px;
+    margin-top: 15px;
 `;
 
 export const BoardTestMainSelectButton = styled.button<{ $isSelected: boolean }>`

@@ -6,19 +6,43 @@ export const BoardResultWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 15px;
-    /* margin-top: 15px; */
-    margin-right: 30px;
-    margin-bottom: 30px;
     position: absolute;
     overflow-x: hidden;
 `;
+export const BoardResultHeadWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    max-height: 112px;
+    padding: 8px;
+`;
 
-export const BoardResultHeadContent = styled.div`
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    color: rgba(149, 149, 149, 1);
-    margin-top: -10px;
+export const BoardResultHeadContentWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    max-height: 88px;
+`;
+
+export const BoardResultHeadContent1 = styled.div`
+    width: 100%;
+    height: 100%;
+    max-height: 40px;
+`;
+
+export const BoardResultHeadContent2Layout = styled.div`
+    width: 100%;
+    height: 100%;
+    max-height: 42px;
+    padding: 10px 10px 0px 0px;
+`;
+
+export const BoardResultHeadContent2 = styled.div`
+    width: 100%;
+    height: 100%;
+    max-height: 32px;
+    font-family: 'Pretendard';
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
 `;
 
 export const BoardResultMainLayout = styled.div`
@@ -29,6 +53,7 @@ export const BoardResultMainLayout = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: -20px 0px;
 `;
 
 export const BoardResultMainSliderLayout = styled.div`

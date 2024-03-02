@@ -4,18 +4,25 @@ import boardTestData from './Test.json';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import BoardTestTagItem from './BoardTestTagItem';
-// import { useGetBoardTestPageData } from '../../../api/boardtest/BoardTest';
 
 const BoardTest = () => {
-    const [boardId, setBoardId] = useState<number>(0);
     const navigate = useNavigate();
-    // const pageData = useGetBoardTestPageData();
-    // console.log(pageData);
+
+    // 선택한 태그 id state
+    const [boardId, setBoardId] = useState<number>(0);
+
+    // 태그 mock data
     const testData = boardTestData;
+
+    // tag img URL
+    const tagImg = testData.map((img) => img.keywordImgURL);
+    console.log('tagImg => ', tagImg);
+
     // skip 버튼 클릭시 MainPage 이동
     const skipButtonHandler = () => {
         navigate('/mainpage');
     };
+
     // 키워드 클릭 handler
     const boardItemHandler = (id: number) => {
         if (id === boardId) {
@@ -23,13 +30,15 @@ const BoardTest = () => {
         } else {
             setBoardId(id);
         }
+        // console.log('id => ', id);
     };
+    // console.log('boardId => ', boardId);
 
     // 결과 확인하기 버튼 클릭 후 보드 결과 페이지 이동
     const selectedButtonHandler = (boardId: number) => {
         // console.log('boardId => ', boardId);
         if (boardId !== 0) {
-            navigate('/boardresult', { state: { boardId } });
+            navigate('/boardresult', { state: { boardId, tagImg } });
         }
     };
 
