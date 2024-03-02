@@ -52,6 +52,7 @@ axios.interceptors.response.use(
                     } else {
                         alert('사용자 인증에 실패했습니다. 재 로그인 해주세요');
                         Cookies.remove('AccessToken');
+                        Cookies.remove('RefreshToken');
                         window.location.href = '/signin';
                     }
                 } catch (error) {

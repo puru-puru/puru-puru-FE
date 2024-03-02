@@ -28,7 +28,7 @@ const NotificationModal: React.FC = () => {
             {open && (
                 <div
                     style={{
-                        position: 'fixed',
+                        position: 'absolute',
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',

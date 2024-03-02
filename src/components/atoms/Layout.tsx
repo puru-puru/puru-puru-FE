@@ -11,6 +11,10 @@ const LayoutContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('BackGround.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 `;
 
 const LayoutContent = styled.div`
@@ -18,7 +22,6 @@ const LayoutContent = styled.div`
     height: 728px;
     border-radius: 20px;
     overflow-y: hidden;
-    margin-left: 500px;
     position: relative;
     border: 1px solid gray;
     box-sizing: border-box;
@@ -34,7 +37,7 @@ const Layout: React.FC = () => {
 
     return (
         <>
-            <LayoutContainer style={{ backgroundColor: colors.green50 }}>
+            <LayoutContainer>
                 <BackGround />
                 <LayoutContent style={{ backgroundColor: colors.white }}>
                     {(isMain || isMyPlant || isMyprofile || isCommunity) && <Navbar />}

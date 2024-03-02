@@ -1,7 +1,3 @@
-/* Slider */
-.slick-loading .slick-list {
-    background: #fff url('/fonts/ajax-loader.gif') center center no-repeat;
-}
 
 
 /* Arrows */
@@ -50,7 +46,6 @@
 
 .slick-prev:before,
 .slick-next:before {
-    font-family: 'slick';
     font-size: 20px;
     line-height: 1;
 
@@ -146,7 +141,6 @@
     opacity: 1;
 }
 .slick-dots li button:before {
-    font-family: 'slick';
     font-size: 6px;
     line-height: 20px;
 
