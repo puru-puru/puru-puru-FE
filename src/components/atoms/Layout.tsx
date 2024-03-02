@@ -11,7 +11,7 @@ const LayoutContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('BackGround.jpg');
+    background-image: url('/BackGround.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
