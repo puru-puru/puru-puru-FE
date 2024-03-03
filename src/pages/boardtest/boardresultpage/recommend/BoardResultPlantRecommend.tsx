@@ -8,7 +8,7 @@ import tagImgURL from '../../boardtestpage/Test.json';
 const BoardResultPlantRecommend = ({ plantData, tagQuote, boardId }) => {
     // props로 받은 데이터
     const myPlant = plantData;
-    console.log('myplant => ', myPlant);
+    // console.log('myplant => ', myPlant);
     // catalog tag split
     const splitWord = myPlant.map((item: any) => {
         return item.tag.split('#').filter((word: any) => word !== '');
