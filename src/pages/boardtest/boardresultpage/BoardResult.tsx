@@ -4,7 +4,6 @@ import BoardResultPlantRecommend from './recommend/BoardResultPlantRecommend';
 // import BoardResultModal from './BoardResultModal';
 // import { useModal } from '../../../hook/useModal';
 import { useLocation, useNavigate } from 'react-router-dom';
-// import { axios } from '../../../api/http';
 import { useGetBoardTestPageData } from '../../../api/boardtest/BoardTest';
 
 const BoardResult = () => {
@@ -12,28 +11,14 @@ const BoardResult = () => {
     const location = useLocation();
 
     // BoardTest로 부터 받아온 요소 Id
-    const { boardId, tagImg } = location.state;
-    console.log('tageImg =>', tagImg);
+    const { boardId } = location.state;
     // 서버로 부터 받아온 데이터 값
     const pageData = useGetBoardTestPageData({ boardId });
-    // console.log(pageData.data?.data);
-    // console.log(pageData.data?.data.selectQuotes);
-    // console.log(pageData.data?.data.slicedDB);
 
     // useModal hook
     // const { open, modalOpen, modalClose } = useModal();
     // 첫 렌더링때 3초간 모달 렌더링
     // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get(`api/test-result/${boardId}`);
-    //             console.log('response => ', response);
-    //             // setTagData(response.data);
-    //         } catch (error) {
-    //             console.error('Error =>', error);
-    //         }
-    //     };
-    //     fetchData();
     //     modalOpen();
     //     const timeOut = setTimeout(() => {
     //         modalClose();
@@ -64,6 +49,7 @@ const BoardResult = () => {
                     <BoardResultPlantRecommend
                         plantData={pageData.data?.data.slicedDB}
                         tagQuote={pageData.data?.data.selectQuotes}
+                        boardId={boardId}
                     />
                 </St.BoardResultMainSliderLayout>
             </St.BoardResultMainLayout>

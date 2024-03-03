@@ -14,10 +14,6 @@ const BoardTest = () => {
     // 태그 mock data
     const testData = boardTestData;
 
-    // tag img URL
-    const tagImg = testData.map((img) => img.keywordImgURL);
-    console.log('tagImg => ', tagImg);
-
     // skip 버튼 클릭시 MainPage 이동
     const skipButtonHandler = () => {
         navigate('/mainpage');
@@ -38,7 +34,7 @@ const BoardTest = () => {
     const selectedButtonHandler = (boardId: number) => {
         // console.log('boardId => ', boardId);
         if (boardId !== 0) {
-            navigate('/boardresult', { state: { boardId, tagImg } });
+            navigate('/boardresult', { state: { boardId } });
         }
     };
 

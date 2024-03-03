@@ -54,6 +54,7 @@ export const BoardResultMainLayout = styled.div`
     justify-content: center;
     align-items: center;
     margin: -20px 0px;
+    margin-bottom: 50px;
 `;
 
 export const BoardResultMainSliderLayout = styled.div`
@@ -65,15 +66,14 @@ export const BoardResultSaveButton = styled.button`
     width: 334px;
     height: 57px;
     padding: 0px;
-    border: 1px solid rgba(218, 234, 202, 1);
+    border: 1px solid rgba(114, 164, 116, 1);
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(218, 234, 202, 1);
+    background-color: rgba(114, 164, 116, 1);
     font-size: 18px;
     line-height: 27.41px;
     font-weight: 700;
     color: white;
-    /* margin-top: -30px; */
 `;

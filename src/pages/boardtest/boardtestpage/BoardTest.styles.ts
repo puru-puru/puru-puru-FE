@@ -67,7 +67,7 @@ export const BoardTestMainSelectButtonStyle = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0px 5px;
-    margin-top: 15px;
+    margin-top: 25px;
 `;
 
 export const BoardTestMainSelectButton = styled.button<{ $isSelected: boolean }>`

@@ -1,20 +1,24 @@
 import Slider from 'react-slick';
 import '../../../../components/slickcss/slick.css';
 import '../../../../components/slickcss/slick-theme.css';
-// import data from '../Result.json';
 import * as St from './Recommend.Styles';
-import basket from '../../../../assets/basket.svg';
-import buttonImg from '../../../../assets/catalogButton.svg';
 import plantType from '../../../../assets/planttype.svg';
+import tagImgURL from '../../boardtestpage/Test.json';
 
-const BoardResultPlantRecommend = ({ plantData, tagQuote }) => {
+const BoardResultPlantRecommend = ({ plantData, tagQuote, boardId }) => {
     // props로 받은 데이터
     const myPlant = plantData;
+    console.log('myplant => ', myPlant);
     // catalog tag split
     const splitWord = myPlant.map((item: any) => {
         return item.tag.split('#').filter((word: any) => word !== '');
     });
-    // console.log('splitWord =>', splitWord); // ['다채로운 ', '낭만적인 ', '수수한']
+    // console.log('splitWord =>', splitWord); // ['다채로운 ', '낭만적인 ', '수수한']'
+
+    // tag img URL
+    const tagImg = tagImgURL.map((img) => img.keywordImgURL);
+    // console.log('tagImg => ', tagImg);
+    // console.log('boardId tagImg => ', tagImg[boardId - 1]);
 
     // 데이터가 한개일때 슬라이드 하나만 보여주기
     if (myPlant.length === 1) {
@@ -23,7 +27,7 @@ const BoardResultPlantRecommend = ({ plantData, tagQuote }) => {
     }
 
     const settings = {
-        dots: false,
+        dots: true,
         arrows: false,
         infinite: true,
         speed: 500,
@@ -34,81 +38,35 @@ const BoardResultPlantRecommend = ({ plantData, tagQuote }) => {
         <Slider {...settings}>
             {myPlant.map((item: any, index: number) => {
                 return (
-                    <div key={item.plantsId}>
-                        <div
-                            style={{
-                                marginTop: '20px',
-                                marginBottom: '15px',
-                                fontSize: '10px',
-                                fontWeight: '400',
-                                lineHeight: '9.55px',
-                                color: 'rgba(125, 125, 125, 1)',
-                            }}
-                        >
-                            Key Word
-                        </div>
+                    <St.BoardResultMainLayout key={item.plantsId}>
+                        <St.BoardResultMainKeyWord>Key Word</St.BoardResultMainKeyWord>
                         <div style={{ display: 'flex', gap: '5px' }}>
                             {splitWord[index].map((tag: string, index: number) => {
                                 return (
-                                    <St.BoardResultMainCatalog key={index}>
-                                        <img
-                                            style={{
-                                                marginLeft: '10px',
-                                                marginRight: '10px',
-                                            }}
-                                            src={buttonImg}
+                                    <St.BoardResultMainKeyWordTag key={index}>
+                                        <St.BoardResultMainKeyWordTagImg
+                                            src={tagImg[boardId - 1]}
                                         />
                                         {tag}
-                                    </St.BoardResultMainCatalog>
+                                    </St.BoardResultMainKeyWordTag>
                                 );
                             })}
                         </div>
-                        <St.BoardResultMainContent>{tagQuote}</St.BoardResultMainContent>
+                        <St.BoardResultMainTagQuote>{tagQuote}</St.BoardResultMainTagQuote>
                         <St.RecommendLayout>
-                            <St.RecommendImageLayout>
-                                <img
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        width: '229px',
-                                        height: '150px',
-                                        borderRadius: '20px',
-                                    }}
-                                    src={item.image}
-                                />
-                                <St.RecommendImageButtonLayout>
-                                    <St.RecommendSaveButton>
-                                        <img
-                                            style={{
-                                                display: 'flex',
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                width: '19.2px',
-                                                height: '19.2px',
-                                            }}
-                                            src={basket}
-                                        />
-                                    </St.RecommendSaveButton>
-                                </St.RecommendImageButtonLayout>
-                            </St.RecommendImageLayout>
-                            <St.RecommendTitleLayout>{item.plantName}</St.RecommendTitleLayout>
-                            <St.RecommendPlantTypeLayout>
-                                <img
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        width: '20px',
-                                        height: '25px',
-                                    }}
-                                    src={plantType}
-                                />
-                                {item.type}
-                            </St.RecommendPlantTypeLayout>
+                            <St.RecommendPlantImg src={item.image} alt={item.plantName} />
+                            <St.RecommendPlantHeadLayout>
+                                <St.RecommendPlantTitle>{item.plantName}</St.RecommendPlantTitle>
+
+                                <St.RecommendPlantTypeLayout>
+                                    <St.RecommendPlantTypeImg src={plantType} />
+                                    {item.type}
+                                </St.RecommendPlantTypeLayout>
+                            </St.RecommendPlantHeadLayout>
+
                             <St.RecommendContentLayout>{item.content}</St.RecommendContentLayout>
                         </St.RecommendLayout>
-                    </div>
+                    </St.BoardResultMainLayout>
                 );
             })}
         </Slider>
