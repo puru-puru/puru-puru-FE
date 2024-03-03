@@ -24,7 +24,7 @@ const PlantRecommend = ({ data }: { data?: PlantRecommendData[] }) => {
                 return (
                     <div key={item.plantsId}>
                         <St.PlantCardLayout>
-                            <St.PlantCardImg src={item.image} />
+                            <St.PlantCardImg src={item.image} alt={item.plantName} />
                             <St.PlantCardName>{item.plantName}</St.PlantCardName>
                             <St.PlantCardContent>{item.content}</St.PlantCardContent>
                         </St.PlantCardLayout>

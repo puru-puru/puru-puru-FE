@@ -1,12 +1,15 @@
-export interface BoardTestPageData {
+export interface SlicedDB {
+    content: string;
+    image: string;
+    plantName: string;
     plantsId: number;
     tag: string;
-    name: string;
     type: string;
-    image: string;
-    content: string;
 }
 
-export interface NickName {
-    nickname: string;
+export interface BoardTestData {
+    data: {
+        selectQuotes: string;
+        slicedDB: SlicedDB[];
+    };
 }

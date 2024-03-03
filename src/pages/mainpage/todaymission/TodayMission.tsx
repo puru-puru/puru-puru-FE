@@ -7,7 +7,7 @@ import missionBanner from '../../../assets/missionbanner.svg';
 import missionLogo from '../../../assets/missionplant.svg';
 
 const TodayMission = ({ props }: { props?: Content[] }) => {
-    console.log(props);
+    // console.log(props);
     const mission = props;
     // 캐러셀 라이브러리 세팅
     const settings = {
