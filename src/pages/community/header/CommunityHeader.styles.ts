@@ -31,21 +31,4 @@ export const PostProFileTitle = styled.p`
     font-size: 10px;
 `;
 
-export const PostButtonBox = styled.div`
-    width: 321px;
-    height: 20px;
-    margin: 15px;
-    display: flex;
-`;
-
-export const CompositionButton = styled.button`
-    width: 72px;
-    height: 20px;
-    background-color: #72A474;
-    color: #fff;
-    font-size: 12px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-`;
 

@@ -9,13 +9,17 @@ import {
     PostText,
     PostContainerScroll,
     Nickname,
+    PostButtonBox,
+    CompositionButton,
 } from './Community.styles';
 import CommunityHeader from './header/CommunityHeader';
 import { CommunityData } from '../../api/model';
+import { useNavigate } from 'react-router-dom';
 import Spinner from '/Spin.gif';
 const CommunityPage: React.FC = () => {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    const [post, setPost] = useState<CommunityData>({ data: [], loginUser: "" });
+    const [post, setPost] = useState<CommunityData>({ data: [], loginUser: '' });
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -29,11 +33,19 @@ const CommunityPage: React.FC = () => {
         };
         fetchData();
     }, []);
-
+    const handleWriteButtonClick = () => {
+        navigate('/communityWrite');
+    };
     return (
         <>
             <CommunityContainer>
-                <CommunityHeader username={post.loginUser}/>
+                <CommunityHeader username={post.loginUser} />
+                <PostButtonBox>
+                    <div>
+                        <CompositionButton>전체</CompositionButton>
+                    </div>
+                    <CompositionButton onClick={handleWriteButtonClick}>글쓰기</CompositionButton>
+                </PostButtonBox>
                 <PostContainerScroll>
                     {loading ? (
                         <img
@@ -50,7 +62,10 @@ const CommunityPage: React.FC = () => {
                                     ) : (
                                         <Nickname>익명</Nickname>
                                     )}
-                                    <PostImg src={post.image? post.image: '/plantimg.png'} alt="" />
+                                    <PostImg
+                                        src={post.image ? post.image : '/plantimg.png'}
+                                        alt=""
+                                    />
                                 </div>
                                 <PostTextContainer>
                                     <PostTitle>{post.title}</PostTitle>

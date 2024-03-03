@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { SharedButton } from '../../Shared.styles';
+import { colors } from '../../../styles/colors';
 
 export const CommunityPostContainer = styled.form`
     display: flex;
@@ -46,6 +47,10 @@ export const CommunityPostTextTextarea = styled.textarea`
     padding: 15px;
     border: 2px solid rgba(128, 128, 128, 0.5);
     border-radius: 20px;
+    &:focus {
+        border-color: ${colors.green100};
+        outline: none; 
+    }
 `;
 //이미지
 export const CommunityUploadButton = styled.button`

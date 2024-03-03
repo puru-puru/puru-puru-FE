@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { CommunityData, CommunityFormData, DiaryEntry, newPlantData } from './model';
 import { SearchApiResponse } from './myplant/model';
 export const axios = Axios.create({
-    baseURL: 'https://www.purupuru.store/',
+    baseURL: `${import.meta.env.VITE_REACT_APP_SERVER_URL}`,
 });
 
 // Request 인터셉터
@@ -84,6 +84,9 @@ export const http = {
     patch: function httpPatch<Request = any, Response = unknown>(url: string, data?: Request) {
         return axios.patch<Response>(url, data).then((res) => res.data);
     },
+    delete: function httpDelete< Response = unknown>(url: string){
+        return axios.delete<Response>(url).then((res)=> res.data);
+    }
 };
 
 // 제네릭 타입을 지정함으로써 코드의 재사용성을 높이고, 함수를 호출할 때 요청과 응답의 타입을 명시적으로 지정하여 타입 안정성을 확보할 수 있습니다.

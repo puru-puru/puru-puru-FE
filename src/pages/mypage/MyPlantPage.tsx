@@ -32,7 +32,7 @@ import {
     AnswerTextWrapper,
 } from './MyPlantPage.styles';
 import { DiaryEntry } from '../../api/model';
-import { axios, myplantApi } from '../../api/http';
+import { http, myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import EmptyMyPlant from './registration/EmptyMyPlant';
@@ -110,7 +110,7 @@ const MyPage: React.FC = () => {
 
     const handleDeleteClick = async () => {
         try {
-            await axios.delete(`/api/diaries/${selectedDiaryId}`);
+            await http.delete(`/api/diaries/${selectedDiaryId}`);
             setPetPlant((prevPetPlant) =>
                 prevPetPlant.filter((plant) => plant.diaryId !== selectedDiaryId),
             );
