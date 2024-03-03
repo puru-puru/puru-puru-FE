@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../../hook/useModal';
 import { usePostSignUpData } from '../../../api/loginapi/SignUp';
 import { BackspaceButton } from '../../../components/atoms/button/BackspaceButton';
-// import { axios } from '../../../api/http';
 
 const SignUp: React.FC = () => {
     const { mutate } = usePostSignUpData();
@@ -79,15 +78,7 @@ const SignUp: React.FC = () => {
             handleError(error);
         }
     };
-    // 이메일 인증
-    // const EmailTest = async()=>{
-    //     try {
-    //         const response = await axios.post('/api/test/auth/send-email', {email:user.email});
-    //         console.log(response)
-    //     } catch (error: any) {
-    //         handleError(error);
-    //     }
-    // }
+
 
     return (
         <>
@@ -137,7 +128,6 @@ const SignUp: React.FC = () => {
                         가입하기
                     </SignUpBotten>
                 </form>
-                {/* <button onClick={EmailTest}>인증</button> */}
                 {open && (
                     <>
                         <div className="dark-overlay" />

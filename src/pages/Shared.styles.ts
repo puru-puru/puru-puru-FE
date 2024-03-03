@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../styles/colors';
 
 export const SharedInput = styled.input`
     width: 334px;
@@ -10,7 +11,7 @@ export const SharedInput = styled.input`
     transition: border-color 0.3s ease;
     opacity: 70%;
     &:focus {
-        border-color: #72a474;
+        border-color: ${colors.green100};
     }
 `;
 

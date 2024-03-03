@@ -6,6 +6,26 @@ export const CommunityContainer = styled.div`
     flex-direction: column;
 `
 
+export const PostButtonBox = styled.div`
+    width: 321px;
+    height: 20px;
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+`;
+export const CompositionButton = styled.button`
+    width: 72px;
+    height: 20px;
+    background-color: #72A474;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+`;
+
+
+
 
 // 카드
 export const PostContainerScroll = styled.div`
@@ -55,3 +75,5 @@ export const Nickname = styled.div`
     margin-left: 10px;
     opacity: 75%;
 `;
+
+
