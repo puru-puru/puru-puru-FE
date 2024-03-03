@@ -13,13 +13,13 @@ import {
 } from './RegistrationStepTwo.styles';
 import { HomeRecent } from './PlantCard.styles';
 import SelectionCompleted from '../selection/SelectionCompleted';
-import { searchApi } from '../../../../../api/http';
 import { Plants } from '../../../../../api/model';
 import Spinner from '/Spin.gif';
 
 import { PagesButton, PagesContainer } from './PageNation';
 import { currentStepState } from '../../../../../recoil/atom';
 import { useRecoilState } from 'recoil';
+import { useSearchPlants } from '../../../../../api/myplant/StepTwo';
 
 export const RegistrationStepTwo: React.FC = () => {
     const [searchItem, setSearchItem] = useState('');
@@ -32,31 +32,19 @@ export const RegistrationStepTwo: React.FC = () => {
     };
     const [currentPage, setCurrentPage] = useState<number>(1);
     const itemsPerPage = 6;
-    const [plants, setPlants] = useState<Plants[]>([]);
-
-    const handleSearch = async () => {
-        setSelectionCompleted(true);
-        setLoading(true);
-        try {
-            const response = await searchApi.get(`/api/plants/search/${searchItem}`);
-            console.log(response);
-            if (Array.isArray(response)) {
-                setPlants(response);
-            } else {
-                console.error('서버에서 반환된 데이터가 배열이 아닙니다:', response);
-                setPlants([]);
-            }
-        } catch (error: any) {
-            // 에러 처리
-            console.error('에러 발생:', error);
-            if (error.response) {
-                console.error('서버 응답 데이터:', error.response.data);
-                setPlants([]); // 검색 결과가 없을 경우 빈 배열로 초기화
-            }
-        } finally {
-            
-            setLoading(false);
+    const [, setPlants] = useState<Plants[]>([]);
+    const {data: plantsData,isLoading, refetch: refetchPlants } = useSearchPlants(searchItem);
+    const plants = Array.isArray(plantsData) ? plantsData : [];
+    
+    const handleSearch =  () => {
+        if (!searchItem) {
+            setPlants([]);
+            return;
         }
+        setSelectionCompleted(true);
+        setLoading(isLoading);
+        refetchPlants(); 
+        setLoading(false)
     };
 
     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +52,7 @@ export const RegistrationStepTwo: React.FC = () => {
     };
 
     // 전체 페이지 수 계산
-    const totalPages = Math.ceil(plants.length / itemsPerPage);
+    const totalPages = Math.ceil(plants?.length / itemsPerPage);
 
     // 이전 페이지로 이동하는 함수
     const goToPreviousPage = () => {
