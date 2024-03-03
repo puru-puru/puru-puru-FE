@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { PetPlantRegisterText } from '../../EmptyMyPlant.styles';
-import { colors } from '../../../../../styles/colors';
+import { PetPlantRegisterText } from '../../../EmptyMyPlant.styles';
+import { colors } from '../../../../../../styles/colors';
 
 // 카드 부분들
 export const HomeRecent = styled.section`
