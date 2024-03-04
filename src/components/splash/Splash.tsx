@@ -5,7 +5,7 @@ const Splash = () => {
         <>
             <SplashBackground>
                 <img src="./Logo.svg" alt="" />
-                <BottomText>VERSION : 10.1.1</BottomText>
+                <BottomText>VERSION : V1.0.0 최신버전</BottomText>
             </SplashBackground>
             
         </>

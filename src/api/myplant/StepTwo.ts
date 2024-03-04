@@ -6,21 +6,21 @@ const QUERY_KEY = {
     STEPTWO: 'STEPTWO',
 };
 
-export const useGetPlantStepTwoData = ({ searchItem }, options = {}) => {
+export const useSearchPlants = (searchItem: string) => {
     const URL = `/api/plants/search/${searchItem}`;
-    const GetStepTwoData = () => {
-        return http.get<SearchApiResponse>(URL).then((res) => res);
-    };
-
+    
     return useQuery<SearchApiResponse>(
-        [QUERY_KEY.STEPTWO],
+        [QUERY_KEY.STEPTWO, searchItem],
         async () => {
-            const data = await GetStepTwoData();
-            return data;
+            try {
+                const response = await http.get<SearchApiResponse>(URL);
+                return response;
+            } catch {
+                throw new Error('데이터를 불러오는 중에 문제가 발생했습니다.');
+            }
         },
         {
-            ...options,
-            enabled: !!searchItem, // 검색어가 있을 때에만 쿼리를 실행
+            enabled: false, // 검색어가 있을 때에만 쿼리를 실행
         }
     );
 };

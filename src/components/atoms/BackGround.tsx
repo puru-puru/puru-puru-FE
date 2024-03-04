@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const BackGroundText = styled.div`
@@ -7,7 +7,7 @@ const BackGroundText = styled.div`
         width: 100%;
     }
     @media (max-width: 1080px) {
-            display: none;
+        display: none;
     }
 `;
 const LeafContainer = styled.div`
@@ -47,18 +47,48 @@ const LeftImg = styled.img`
     bottom: 0;
     left: 0;
 `;
-const BackGround: React.FC = () => {
+const preloadImageUrls = [
+    '/BackGroundText.webp',
+    '/leaf_1.svg',
+    '/leaf_2.svg',
+    '/leaf_3.svg',
+    '/RightImg.svg',
+    '/LeftImg.svg',
+    '/Spin.gif',
+];
+const BackGround = () => {
+    const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>([]);
+
+    const preloadImages = () => {
+        const images: HTMLImageElement[] = [];
+        preloadImageUrls.forEach(url => {
+            const img = new Image();
+            img.src = url;
+            img.onload = () => {
+                images.push(img);
+                setPreloadedImages([...images]); // 이미지가 로드될 때마다 상태 업데이트
+            };
+        });
+    };
+
+    useEffect(() => {
+        preloadImages();
+    }, []);
     return (
         <>
             <BackGroundText>
-                <img src="/BackGroundText.png" alt="BackGroundText" />
+                <img
+                    src={preloadedImages.find(image => image.src.includes('BackGroundText'))?.src}
+                    alt="BackGroundText"
+                    style={{ width: '100%', height: 'auto' }}
+                />
             </BackGroundText>
             <LeafContainer>
-                <Leaf1 src="/leaf_1.svg" alt="leaf_1" />
-                <Leaf2 src="/leaf_2.svg" alt="leaf_2" />
-                <Leaf3 src="/leaf_3.svg" alt="leaf_3" />
-                <RightImg src="/RightImg.svg" alt="RightImg" />
-                <LeftImg src="/LeftImg.svg" alt="LeftImg" />
+                <Leaf1 src="/leaf_1.svg" alt="leaf_1" loading="lazy" />
+                <Leaf2 src="/leaf_2.svg" alt="leaf_2" loading="lazy" />
+                <Leaf3 src="/leaf_3.svg" alt="leaf_3" loading="lazy" />
+                <RightImg src="/RightImg.svg" alt="RightImg" loading="lazy" />
+                <LeftImg src="/LeftImg.svg" alt="LeftImg" loading="lazy" />
             </LeafContainer>
         </>
     );

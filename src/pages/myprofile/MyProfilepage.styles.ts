@@ -11,6 +11,14 @@ export const MyProfileHeader = styled.div`
     margin: 0 auto;
 `
 export const LogoutButton = styled(SharedButton)`
+    margin-top: 20px;
     background-color: #72a474;
 `;
 
+export const ProfileSideButton = styled.button`
+    background: none;
+`
+
+export const ProfileSideContainer = styled.div`
+    margin-top: 20px;
+`
