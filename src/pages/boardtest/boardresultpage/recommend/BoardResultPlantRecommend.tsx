@@ -3,7 +3,7 @@ import '../../../../components/slickcss/slick.css';
 import '../../../../components/slickcss/slick-theme.css';
 import * as St from './Recommend.Styles';
 import plantType from '../../../../assets/planttype.svg';
-import tagImgURL from '../../boardtestpage/Test.json';
+import tagImgURL from '/Users/User/Desktop/project/puru-puru-FE/src/pages/boardtest/boardtestpage/Test.json';
 
 const BoardResultPlantRecommend = ({ plantData, tagQuote, boardId }) => {
     // props로 받은 데이터
