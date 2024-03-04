@@ -1,7 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-
+@font-face {
+    font-family: 'TTHakgyoansimMonggeulmonggeulR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimMonggeulmonggeulR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -12,7 +17,7 @@ export const GlobalStyles = createGlobalStyle`
 
 * {
         box-sizing: border-box;
-        font-family: 'Pretendard';
+        font-family: 'TTHakgyoansimMonggeulmonggeulR';
         color: black;
     }
 input {

@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const BackGroundText = styled.div`
@@ -7,7 +6,7 @@ const BackGroundText = styled.div`
         width: 100%;
     }
     @media (max-width: 1080px) {
-            display: none;
+        display: none;
     }
 `;
 const LeafContainer = styled.div`
@@ -47,18 +46,23 @@ const LeftImg = styled.img`
     bottom: 0;
     left: 0;
 `;
-const BackGround: React.FC = () => {
+const BackGround = () => {
     return (
         <>
             <BackGroundText>
-                <img src="/BackGroundText.png" alt="BackGroundText" />
+                    <img
+                        src="/BackGroundText.webp"
+                        alt="BackGroundText"
+                        style={{ width: '100%', height: 'auto' }}
+                        loading="lazy"
+                    />
             </BackGroundText>
             <LeafContainer>
-                <Leaf1 src="/leaf_1.svg" alt="leaf_1" />
-                <Leaf2 src="/leaf_2.svg" alt="leaf_2" />
-                <Leaf3 src="/leaf_3.svg" alt="leaf_3" />
-                <RightImg src="/RightImg.svg" alt="RightImg" />
-                <LeftImg src="/LeftImg.svg" alt="LeftImg" />
+                <Leaf1 src="/leaf_1.svg" alt="leaf_1" loading="lazy"/>
+                <Leaf2 src="/leaf_2.svg" alt="leaf_2" loading="lazy"/>
+                <Leaf3 src="/leaf_3.svg" alt="leaf_3" loading="lazy"/>
+                <RightImg src="/RightImg.svg" alt="RightImg"loading="lazy" />
+                <LeftImg src="/LeftImg.svg" alt="LeftImg"loading="lazy" />
             </LeafContainer>
         </>
     );

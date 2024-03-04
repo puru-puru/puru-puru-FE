@@ -12,6 +12,7 @@ const LayoutContainer = styled.div`
     justify-content: center;
     align-items: center;
     background-image: url('/BackGround.jpg');
+    object-fit: cover;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

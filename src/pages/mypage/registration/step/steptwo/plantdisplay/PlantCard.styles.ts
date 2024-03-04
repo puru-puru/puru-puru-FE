@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PetPlantRegisterText } from '../../../EmptyMyPlant.styles';
+import { PetPlantRegisterText } from '../../../../empty/EmptyMyPlant.styles';
 import { colors } from '../../../../../../styles/colors';
 
 // 카드 부분들

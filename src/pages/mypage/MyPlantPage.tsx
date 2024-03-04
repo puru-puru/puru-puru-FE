@@ -16,10 +16,6 @@ import {
     DeleteButton,
     ButtonContainer,
     PlantSlickCustom,
-    MyPlantToggle,
-    MyPlantToggleDetail,
-    MyPlantToggleContainer,
-    MyPlantToggleButton,
     PetPlantContainer,
     PetPlantBorder,
     PetPlantDetailContainer,
@@ -35,12 +31,12 @@ import { DiaryEntry } from '../../api/model';
 import { http, myplantApi } from '../../api/http';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import EmptyMyPlant from './registration/EmptyMyPlant';
+import EmptyMyPlant from './empty/EmptyMyPlant';
 // import { PagesButton, PagesContainer } from './registration/step/steptwo/PageNation';
 import { useRecoilState } from 'recoil';
 import { myplantPageState } from '../../recoil/atom';
 import { useModal } from '../../hook/useModal';
-
+import DeletePlantModal from './plantmodal/DeletePlantModal';
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
@@ -97,12 +93,12 @@ const MyPage: React.FC = () => {
                 handleIconClick(template.id, template.Templelate.question, template.answer)
             }
         >
-            <PetPlantIcon src={`plantimg.png`} />
+            <PetPlantIcon src={`plantimg.png`} style={{width: '18px', height: '18px'}}/>
             <PetPlantDetailText>
                 {template.Templelate.question}
                 <br />
                 <AnswerTextWrapper>
-                    {template.answer ? <span>{template.answer}</span> : '질문에 답 해주세요'}
+                    <span>{template.answer}</span>
                 </AnswerTextWrapper>
             </PetPlantDetailText>
         </PetPlantDetailTextContainer>
@@ -135,27 +131,7 @@ const MyPage: React.FC = () => {
 
     return (
         <>
-            {open && (
-                <div>
-                    <div className="dark-overlay" />
-                    <MyPlantToggle>
-                        <MyPlantToggleContainer>
-                            반려식물을 삭제하시겠습니까?
-                            <MyPlantToggleDetail>
-                                <MyPlantToggleButton $isChecked={true} onClick={() => modalClose()}>
-                                    아니오
-                                </MyPlantToggleButton>
-                                <MyPlantToggleButton
-                                    $isChecked={false}
-                                    onClick={() => handleDeleteClick()}
-                                >
-                                    예
-                                </MyPlantToggleButton>
-                            </MyPlantToggleDetail>
-                        </MyPlantToggleContainer>
-                    </MyPlantToggle>
-                </div>
-            )}
+            {open && <DeletePlantModal handleDeleteClick={handleDeleteClick} modalClose={modalClose} />}
             <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
             <PlantSlickCustom {...settings}>
                 {petPlant.map((plant, index) => {
@@ -185,7 +161,7 @@ const MyPage: React.FC = () => {
                                         <StyledImageContainer>
                                             <img
                                                 src="./calendar_clock.svg"
-                                                style={{ marginRight: '5px' }}
+                                                style={{ marginRight: '5px', width: '16px', height:'17px' }}
                                             />{' '}
                                             {` +  ${diffDays}`}
                                         </StyledImageContainer>
@@ -198,7 +174,7 @@ const MyPage: React.FC = () => {
 
                                 <JournalContainer>
                                     <JournalHeaderContainer>
-                                        <img src="./JournalTitleImg.svg" />
+                                        <img src="/JournalTitleImg.svg" style={{width: '18px', height: '18px'}} />
                                         <JournalTitle>반려 식물 일지</JournalTitle>
                                     </JournalHeaderContainer>
                                     <JournalBody>

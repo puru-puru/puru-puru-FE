@@ -26,38 +26,36 @@ export const RegistrationStepOne: React.FC = () => {
         image: null,
     });
 
-    // 현재 날짜를 얻기 위한 Date 객체 생성
     const today = new Date();
-    // 오늘 날짜의 연, 월, 일을 가져옴
-    const year = today.getFullYear().toString();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
-    const day = today.getDate().toString().padStart(2, '0');
-    const todayString = `${year}${month}${day}`;
+    const todayString = `${today.getFullYear()}${(today.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}${today.getDate().toString().padStart(2, '0')}`;
     const dateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
     const handleNextStep = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-        if (!formData.image) {
+        const { image, name, plantAt } = formData;
+        if (!image) {
             alert('이미지를 추가해주세요');
             return;
         }
-        if (!(formData.name && formData.name.length >= 2 && formData.name.length <= 10)) {
+        if (!(name && name.length >= 2 && name.length <= 10)) {
             alert('반려 식물 이름을 2자 이상 10자 이내로 입력해주세요');
             return;
         }
-        if (!formData.plantAt || !dateRegex.test(formData.plantAt)) {
+        if (!plantAt || !dateRegex.test(plantAt)) {
             alert('올바른 날짜 형식을 입력해주세요. YYYYMMDD');
             return;
         }
-        if (parseInt(formData.plantAt) > parseInt(todayString)) {
+        if (parseInt(plantAt) > parseInt(todayString)) {
             alert('날짜는 오늘 날짜를 넘어갈 수 없습니다.');
             return;
         }
 
-        if (formData.image && formData.name && formData.plantAt) {
+        if (image && name && plantAt) {
             const formDataToSend = new FormData();
-            formDataToSend.append('image', formData.image);
-            formDataToSend.append('name', formData.name);
-            formDataToSend.append('plantAt', formData.plantAt);
+            formDataToSend.append('image', image);
+            formDataToSend.append('name', name);
+            formDataToSend.append('plantAt', plantAt);
             try {
                 await registrationApi.post(formDataToSend);
                 setCurrentStep(currentStep + 1);
@@ -75,19 +73,12 @@ export const RegistrationStepOne: React.FC = () => {
         if (files && files.length > 0) {
             const uploadFile = files[0];
             const compressedImage = await ImageCompressor(uploadFile);
-            const fileName = 'compressed_image.jpg';
-
             if (compressedImage) {
-                // Blob 객체에서 File 객체로 변환합니다.
-                const resizingFile = new File([compressedImage], fileName, {
+                const resizingFile = new File([compressedImage], 'compressed_image.jpg', {
                     type: compressedImage.type,
                 });
                 if (compressedImage) {
-                    setFormData((prevData) => ({
-                        ...prevData,
-                        image: resizingFile,
-                    }));
-
+                    setFormData((prevData) => ({ ...prevData, image: resizingFile }));
                     encodeFileToBase64(resizingFile);
                 }
             }
@@ -103,12 +94,7 @@ export const RegistrationStepOne: React.FC = () => {
     // 이미지 미리보기
     const encodeFileToBase64 = (fileBlob: File) => {
         const reader = new FileReader();
-
-        reader.onload = () => {
-            const base64String = reader.result as string;
-            setImageBase64(base64String);
-        };
-
+        reader.onload = () => setImageBase64(reader.result as string);
         reader.readAsDataURL(fileBlob);
     };
 
@@ -216,7 +202,6 @@ export const RegistrationStepOne: React.FC = () => {
             <NextStepButton
                 // FormDataEntryValue | null => boolean 변환
                 $isChecked={!!(formData.image && formData.name && formData.plantAt)}
-                // disabled={!formData.image || !formData.name || !formData.plantAt}
                 onClick={handleNextStep}
             >
                 다음

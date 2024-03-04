@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { UserWithConfirmPassword } from '../../../api/loginapi/model';
 import { ErrorMessage, LoginContainer } from '../Login.styles';
-import { SignUpBotten, SignUpToggle, StyledInput } from './SignUp.styles';
+import { SignUpBotten, StyledInput } from './SignUp.styles';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../../hook/useModal';
 import { usePostSignUpData } from '../../../api/loginapi/SignUp';
 import { BackspaceButton } from '../../../components/atoms/button/BackspaceButton';
+import { CompleteToggle } from '../../../components/atoms/toggle/Togle.styles';
 
 const SignUp: React.FC = () => {
     const { mutate } = usePostSignUpData();
@@ -131,7 +132,7 @@ const SignUp: React.FC = () => {
                 {open && (
                     <>
                         <div className="dark-overlay" />
-                        <SignUpToggle>회원가입 완료</SignUpToggle>
+                        <CompleteToggle>회원가입 완료</CompleteToggle>
                     </>
                 )}
             </LoginContainer>

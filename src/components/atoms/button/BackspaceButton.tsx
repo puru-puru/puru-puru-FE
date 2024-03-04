@@ -15,7 +15,7 @@ const StyledBackspaceButton = styled.button`
 export const BackspaceButton: React.FC<BackspaceButtonProps> = ({ onClick }) => {
     return (
         <StyledBackspaceButton onClick={onClick}>
-            <img src="./ArrowLeft.svg" alt="Backspace" />
+            <img src="./ArrowLeft.svg" alt="Backspace" style={{width: '8px', height: '13px'}}/>
         </StyledBackspaceButton>
     );
 };

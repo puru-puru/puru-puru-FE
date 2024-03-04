@@ -56,8 +56,9 @@ axios.interceptors.response.use(
                         window.location.href = '/signin';
                     }
                 } catch (error) {
-                    // Cookies.remove('AccessToken');
                     alert('로그인 인증이 만료 되었습니다. 로그아웃됩니다.');
+                    Cookies.remove('AccessToken');
+                    Cookies.remove('RefreshToken');
                     window.location.href = '/signin';
                 }
             } else {
