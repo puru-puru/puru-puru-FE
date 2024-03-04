@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
     SearchButton,
     SearchButtonContainer,
@@ -25,24 +25,29 @@ export const RegistrationStepTwo: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const itemsPerPage = 6;
     const [, setPlants] = useState<Plants[]>([]);
-    const { data: plantsData, isLoading, refetch: refetchPlants } = useSearchPlants(searchItem);
+    const { data: plantsData, refetch: refetchPlants } = useSearchPlants(searchItem);
     const plants = Array.isArray(plantsData) ? plantsData : [];
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         if (!searchItem) {
             setPlants([]);
             return;
         }
-        setSelectionCompleted(true);
-        setLoading(isLoading);
-        refetchPlants();
-        setLoading(false);
+        setLoading(true);
+        try {
+            await refetchPlants();
+            setSelectionCompleted(true); 
+        } catch (error) {
+            console.error('검색 중 오류 발생:', error);
+        } finally {
+            setLoading(false);
+        }
     };
+    
 
-    const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchItem(event.currentTarget.value);
-    };
-
+    }, []);
     // 전체 페이지 수 계산
     const totalPages = Math.ceil(plants?.length / itemsPerPage);
 
@@ -55,7 +60,7 @@ export const RegistrationStepTwo: React.FC = () => {
     const goToNextPage = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
-
+    const MemoizedPlantDisplay = React.memo(PlantDisplay);
     return (
         <>
             <SearchContainer>
@@ -68,7 +73,7 @@ export const RegistrationStepTwo: React.FC = () => {
                 />
             </SearchContainer>
 
-            <PlantDisplay
+            <MemoizedPlantDisplay
                 loading={loading}
                 plants={plants}
                 selectedCard={selectedCard}

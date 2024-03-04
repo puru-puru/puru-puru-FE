@@ -36,9 +36,12 @@ export const PetPlantHeaderTitle = styled.h2`
 
 export const PetPlantHeaderImg = styled.img`
     width: 100%;
-    height: 100%;
+    height: auto;
 `;
 export const PetPlantHeaderImgContainer = styled.div`
+    display: flex;
+    justify-content: center; 
+    align-items: center;
     width: 318px;
     height: 180px;
     background-color: ${colors.green50};
@@ -104,10 +107,9 @@ export const PlantSlickCustom = styled(Slider)`
     /* width: 100%; */
     overflow-x: hidden;
     .slick-prev {
-        display: none; 
+        display: none;
     }
 `;
-
 
 // 중간
 export const StyledWrapper = styled.div`
@@ -120,7 +122,6 @@ export const StyledImageContainer = styled.div`
     display: flex;
     align-items: center;
     color: ${colors.green100};
-
 `;
 export const PetPlantDetailContainer = styled.div`
     height: 140px;
@@ -139,11 +140,11 @@ export const PlantName = styled.div`
     font-weight: 600;
     font-size: 10px;
     margin: 5px 0px;
-    color: #3D3D3D;
+    color: #3d3d3d;
 `;
 export const PlantContent = styled.div`
     font-size: 12px;
-    color: #3D3D3D;
+    color: #3d3d3d;
 `;
 
 // 일지 부분
@@ -164,7 +165,7 @@ export const JournalTitle = styled.p`
     margin-left: 5px;
     color: ${colors.green100};
     font-weight: 600;
-`
+`;
 export const JournalBody = styled.div`
     padding: 15px;
 `;

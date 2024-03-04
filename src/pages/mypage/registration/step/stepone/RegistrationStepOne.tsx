@@ -73,14 +73,10 @@ export const RegistrationStepOne: React.FC = () => {
         if (files && files.length > 0) {
             const uploadFile = files[0];
             const compressedImage = await ImageCompressor(uploadFile);
+
             if (compressedImage) {
-                const resizingFile = new File([compressedImage], 'compressed_image.jpg', {
-                    type: compressedImage.type,
-                });
-                if (compressedImage) {
-                    setFormData((prevData) => ({ ...prevData, image: resizingFile }));
-                    encodeFileToBase64(resizingFile);
-                }
+                setFormData((prevData) => ({ ...prevData, image: compressedImage }));
+                encodeFileToBase64(compressedImage);
             }
         }
     };
@@ -174,7 +170,7 @@ export const RegistrationStepOne: React.FC = () => {
                             ) : (
                                 // 이미지가 없는 경우
                                 <UploadButton type="button" onClick={handleClickFileInput}>
-                                    <img src="./Plus.svg" alt="PlusIcon" />
+                                    <img src="./Plus.svg" alt="PlusIcon" style={{width: '26px', height: '26px'}}/>
                                 </UploadButton>
                             )}
                         </label>
