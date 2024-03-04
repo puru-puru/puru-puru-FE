@@ -1,6 +1,6 @@
 import * as St from './BoardTest.styles';
 import arrow from '../../../assets/arrow.svg';
-import boardTestData from '/Users/User/Desktop/project/puru-puru-FE/src/pages/boardtest/boardtestpage/Test.json';
+import boardTestData from './Test.json';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import BoardTestTagItem from './BoardTestTagItem';
