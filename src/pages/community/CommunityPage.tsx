@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { communityApi } from '../../api/http';
+import { communityApi } from '../../api/community/Community';
 import {
     CommunityContainer,
     PostContainer,
@@ -8,14 +8,26 @@ import {
     PostTitle,
     PostText,
     PostContainerScroll,
+    PostBottomContainer,
+    PostLikeCommentContainer,
+    LikeCommentButtonContainer,
+    LikeCommentButton,
+    LikeCommentImg,
+    LikeCommentCount,
+    PostDateContainer,
+    PostDate,
     Nickname,
     PostButtonBox,
-    CompositionButton,
+    CompositionSortButton,
+    CompositionWriteButton,
 } from './Community.styles';
 import CommunityHeader from './header/CommunityHeader';
-import { CommunityData } from '../../api/model';
+import { CommunityData } from '../../api/community/model';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '/Spin.gif';
+import likeImg from '../../assets/favorite.svg';
+import commentImg from '../../assets/chat.svg';
+
 const CommunityPage: React.FC = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -33,6 +45,7 @@ const CommunityPage: React.FC = () => {
         };
         fetchData();
     }, []);
+    // console.log('post => ', post.data[0]?.createdAt.split(' ')[0]);
     const handleWriteButtonClick = () => {
         navigate('/communityWrite');
     };
@@ -41,10 +54,14 @@ const CommunityPage: React.FC = () => {
             <CommunityContainer>
                 <CommunityHeader username={post.loginUser} />
                 <PostButtonBox>
-                    <div>
-                        <CompositionButton>전체</CompositionButton>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                        <CompositionSortButton>전체</CompositionSortButton>
+                        <CompositionSortButton>최신순</CompositionSortButton>
+                        <CompositionSortButton>인기순</CompositionSortButton>
                     </div>
-                    <CompositionButton onClick={handleWriteButtonClick}>글쓰기</CompositionButton>
+                    <CompositionWriteButton onClick={handleWriteButtonClick}>
+                        글쓰기
+                    </CompositionWriteButton>
                 </PostButtonBox>
                 <PostContainerScroll>
                     {loading ? (
@@ -64,13 +81,40 @@ const CommunityPage: React.FC = () => {
                                     )}
                                     <PostImg
                                         src={post.image ? post.image : '/plantimg.png'}
-                                        alt=""
+                                        alt="이미지 없음"
                                     />
                                 </div>
-                                <PostTextContainer>
-                                    <PostTitle>{post.title}</PostTitle>
-                                    <PostText>{post.content}</PostText>
-                                </PostTextContainer>
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <PostTextContainer>
+                                        <PostTitle>{post.title}</PostTitle>
+                                        <PostText>{post.content}</PostText>
+                                    </PostTextContainer>
+                                    <PostBottomContainer>
+                                        <PostLikeCommentContainer>
+                                            <LikeCommentButtonContainer>
+                                                <LikeCommentButton>
+                                                    <LikeCommentImg src={likeImg} />
+                                                </LikeCommentButton>
+
+                                                <LikeCommentCount>
+                                                    {post.likeCount}
+                                                </LikeCommentCount>
+                                            </LikeCommentButtonContainer>
+                                            <LikeCommentButtonContainer>
+                                                <LikeCommentButton>
+                                                    <LikeCommentImg src={commentImg} />
+                                                </LikeCommentButton>
+                                                <LikeCommentCount>
+                                                    {post.likeCount}
+                                                </LikeCommentCount>
+                                            </LikeCommentButtonContainer>
+                                        </PostLikeCommentContainer>
+
+                                        <PostDateContainer>
+                                            <PostDate>{post.createdAt.split(' ')[0]}</PostDate>
+                                        </PostDateContainer>
+                                    </PostBottomContainer>
+                                </div>
                             </PostContainer>
                         ))
                     )}

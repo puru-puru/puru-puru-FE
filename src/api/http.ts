@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import { CommunityData, CommunityFormData, DiaryEntry, newPlantData } from './model';
+import { DiaryEntry, newPlantData } from './model';
 import { SearchApiResponse } from './myplant/model';
 export const axios = Axios.create({
     baseURL: `${import.meta.env.VITE_REACT_APP_SERVER_URL}`,
@@ -84,9 +84,9 @@ export const http = {
     patch: function httpPatch<Request = any, Response = unknown>(url: string, data?: Request) {
         return axios.patch<Response>(url, data).then((res) => res.data);
     },
-    delete: function httpDelete< Response = unknown>(url: string){
-        return axios.delete<Response>(url).then((res)=> res.data);
-    }
+    delete: function httpDelete<Response = unknown>(url: string) {
+        return axios.delete<Response>(url).then((res) => res.data);
+    },
 };
 
 // 제네릭 타입을 지정함으로써 코드의 재사용성을 높이고, 함수를 호출할 때 요청과 응답의 타입을 명시적으로 지정하여 타입 안정성을 확보할 수 있습니다.
@@ -127,21 +127,6 @@ export const searchApi = {
 // 검색결과 없을때 새로 등록
 export const plantdataApi = {
     post: async function plantdataApi<Request = newPlantData, Response = string>(
-        url: string,
-        data?: Request,
-    ) {
-        const res = await axios.post<Response>(url, data);
-        return res.data;
-    },
-};
-
-// 커뮤니티 페이지
-export const communityApi = {
-    get: async function communityApi<Response = CommunityData>(url: string) {
-        const res = await axios.get<Response>(url);
-        return res.data;
-    },
-    post: async function communitywriteApi<Request = CommunityFormData, Response = string>(
         url: string,
         data?: Request,
     ) {
