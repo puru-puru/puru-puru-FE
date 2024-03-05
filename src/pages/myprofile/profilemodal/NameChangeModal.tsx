@@ -27,9 +27,10 @@ const NameChangeContainer = styled.div`
 `;
 interface NameChangeModalProps {
     modalClose: () => void; 
+    handleNameChange: (newName: string) => void;
 }
 
-const NameChangeModal: React.FC<NameChangeModalProps> = ({ modalClose }) => {
+const NameChangeModal: React.FC<NameChangeModalProps> = ({ modalClose, handleNameChange }) => {
     const [newName, setNewName] = useState('');
     const isNameValid = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,8}$/;
     const handleNameChangeClick = async () => {
@@ -40,6 +41,7 @@ const NameChangeModal: React.FC<NameChangeModalProps> = ({ modalClose }) => {
         try {
             await http.put('/api/users/change-name', {nickname: newName});
             alert('닉네임 변경에 성공 했습니다.');
+            handleNameChange(newName); 
             modalClose();
         } catch {
             alert('닉네임 변경에 실패 했습니다.');
