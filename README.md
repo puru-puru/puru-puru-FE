@@ -72,7 +72,7 @@
 </br>
 
 ## **🌾 주요기능 소개**
-
+<추가 예정>
 <table>
   <tr align="center">
     <td><strong>소셜 로그인</strong></td>
