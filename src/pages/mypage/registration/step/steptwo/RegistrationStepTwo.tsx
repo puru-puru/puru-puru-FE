@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import {
     SearchButton,
     SearchButtonContainer,
@@ -36,18 +36,24 @@ export const RegistrationStepTwo: React.FC = () => {
         setLoading(true);
         try {
             await refetchPlants();
-            setSelectionCompleted(true); 
+            setSelectionCompleted(true);
         } catch (error) {
             console.error('검색 중 오류 발생:', error);
         } finally {
             setLoading(false);
         }
     };
-    
 
-    const searchHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchItem(event.currentTarget.value);
-    }, []);
+    const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = event.currentTarget.value;
+        setSearchItem(inputValue);
+        if (!inputValue) {
+            setSelectionCompleted(false); // 입력값이 비어있는 경우에만 false로 설정
+        } else {
+            setSelectionCompleted(true); // 입력값이 있는 경우에만 true로 설정
+        }
+    };
+
     // 전체 페이지 수 계산
     const totalPages = Math.ceil(plants?.length / itemsPerPage);
 

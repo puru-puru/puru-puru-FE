@@ -11,7 +11,7 @@ const SocialKakao:React.FC = () => {
     };
 
     return (
-        <SocialButton type="button" onClick={loginHandler} style={{ backgroundImage: `url('/btn_kakao.svg')` }}/>
+        <SocialButton type="button" aria-label="Kakao Login Button" onClick={loginHandler} style={{ backgroundImage: `url('/btn_kakao.svg')` }}/>
     );
 };
 

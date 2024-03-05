@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const BackGroundText = styled.div`
@@ -47,38 +46,13 @@ const LeftImg = styled.img`
     bottom: 0;
     left: 0;
 `;
-const preloadImageUrls = [
-    '/BackGroundText.webp',
-    '/leaf_1.svg',
-    '/leaf_2.svg',
-    '/leaf_3.svg',
-    '/RightImg.svg',
-    '/LeftImg.svg',
-    '/Spin.gif',
-];
+
 const BackGround = () => {
-    const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>([]);
-
-    const preloadImages = () => {
-        const images: HTMLImageElement[] = [];
-        preloadImageUrls.forEach(url => {
-            const img = new Image();
-            img.src = url;
-            img.onload = () => {
-                images.push(img);
-                setPreloadedImages([...images]); // 이미지가 로드될 때마다 상태 업데이트
-            };
-        });
-    };
-
-    useEffect(() => {
-        preloadImages();
-    }, []);
     return (
         <>
             <BackGroundText>
                 <img
-                    src={preloadedImages.find(image => image.src.includes('BackGroundText'))?.src}
+                    src="/BackGroundText.webp"
                     alt="BackGroundText"
                     style={{ width: '100%', height: 'auto' }}
                 />

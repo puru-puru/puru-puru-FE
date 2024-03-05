@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
     return (
         <nav style={NavbarWrapper}>
             <div style={{ padding: '10px 10px' }}>
-                <img src={mainLogo} />
+                <img src={mainLogo} style={{width: '36px', height: '35px'}} alt='mainLogo'/>
             </div>
             {/* MVP 이후 구현 */}
             {/*<div>
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
                 </button>
             </div> */}
             <button onClick={handleHomeButton} style={NavbarHomeButtonStyle}>
-                <img src={home} />
+                <img src={home} style={{width: '22px', height: '22px'}} alt='home'/>
             </button>
         </nav>
     );

@@ -16,6 +16,7 @@ const SocialKakao: React.FC = () => {
         <SocialButton
             type="button"
             onClick={loginHandler}
+            aria-label="Google Login Button"
             style={{ backgroundImage: `url('/btn_google.svg')` }}
         />
     );

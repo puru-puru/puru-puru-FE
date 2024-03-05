@@ -5,7 +5,6 @@ export const SelectionCompletedContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px;
 `;
 
 export const SavePlantsButton = styled(SharedButton)<{$isChecked:boolean}>`
