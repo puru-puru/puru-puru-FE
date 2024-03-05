@@ -4,7 +4,7 @@ import { NotiModalButton, NotiModalContainer } from './NotificationModal.styles'
 
 const NotificationModal: React.FC = () => {
     const { open, modalOpen, modalClose } = useModal();
-    
+
     const notificationText = `
     해당 기기로 답장 알림 등
     서비스 이용에 필요한 안내 사항을
@@ -21,7 +21,7 @@ const NotificationModal: React.FC = () => {
     };
     useEffect(() => {
         modalOpen();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <>
@@ -45,8 +45,12 @@ const NotificationModal: React.FC = () => {
                         <p style={{ whiteSpace: 'pre-line' }}>{notificationText}</p>
                     </div>
                     <NotiModalContainer>
-                    <NotiModalButton $isChecked={true} onClick={handleAgree}>네</NotiModalButton>
-                    <NotiModalButton $isChecked={false} onClick={handleDisagree}>아니요</NotiModalButton>
+                        <NotiModalButton $isChecked={false} onClick={handleDisagree}>
+                            아니요
+                        </NotiModalButton>
+                        <NotiModalButton $isChecked={true} onClick={handleAgree}>
+                            네
+                        </NotiModalButton>
                     </NotiModalContainer>
                 </div>
             )}

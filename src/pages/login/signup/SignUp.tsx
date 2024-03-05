@@ -55,8 +55,6 @@ const SignUp: React.FC = () => {
     const handleError = (error: any) => {
         if (error.response) {
             if (error.response.status === 409) {
-                setError('회원가입 실패: 이미 존재하는 아이디입니다.');
-            } else if (error.response.status === 400) {
                 setError('회원가입 실패: 알맞은 이메일 형식을 입력해 주세요');
             } else {
                 setError('회원가입 실패: 서버 오류가 발생했습니다.');
