@@ -5,12 +5,36 @@
 > 안녕하세요, 푸릇푸릇은 개인 성향에 맞는 반려 식물을 추천해주고, 키우는데 도움을 주는 서비스를 만들고 있습니다.  
 > 자신이 키우는 식물 일지를 작성하며 같이 성장하는 특별한 즐거움을 경험해요!
 
-## Puru Puru 링크
-- 도메인 - https://puru-puru.vercel.app/
-- FE Github [링크]([FE_Github_URL](https://github.com/puru-puru/puru-puru-FE.git))
-- BE Github [링크]([BE_Github_URL](https://github.com/puru-puru/puru-puru-BE.git))
-- 팀 브로슈어
-- Figma
+</br>
+
+## **🌱 푸릇 푸릇**
+
+<table width="80%;">
+  <tr align="center">
+    <td><strong>구분</strong></td>
+    <td><strong>링크</strong></td>
+    <td><strong>구분</strong></td>
+    <td><strong>링크</strong></td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://velog.velcdn.com/images/eorb0717/post/6682ca3c-bf5c-4fa9-b0c4-06dc58e26a60/image.svg" alt="푸릇푸릇 아이콘" style="width: 25px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://puru-puru.vercel.app/">Puru-Puru</a></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1024px-Notion-logo.svg.png" alt="노션 아이콘" style="width: 20px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="">브로슈어</a></td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://user-images.githubusercontent.com/389021/165723723-c93929a5-01d9-49e1-907b-43669d8089e6.png" alt="리액트 아이콘" style="width: 25px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/puru-puru/puru-puru-FE">FE Github</a></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1024px-Notion-logo.svg.png" alt="노션 아이콘" style="width: 20px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.notion.so/91b7d59443d148179ded8245e0955e73?v=0df2dc36063a456280a629049691d5af">팀 SA</a></td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://static-00.iconduck.com/assets.00/node-js-icon-454x512-nztofx17.png" alt="노드js 아이콘" style="width: 20px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/puru-puru/puru-puru-BE">BE Github</a></td>
+    <td><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="피그마 아이콘" style="width: 20px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.figma.com/file/MpRPSQs04dB82pUN4HvOf0/%5B%ED%91%B8%EB%A6%87%ED%91%B8%EB%A6%87%5D_v2_0215_HI?type=design&node-id=2-2&mode=design&t=kPdyiXOJzqpCPn6h-0">Figma</a></td>
+  </tr>
+</table>
 
 ## FrontEnd 개발
 <table>
@@ -22,8 +46,15 @@
     </tr>
    <tr>
        <td>이대규</td>
-      <td>내용</td>
-      <td>이메일</td>   
+      <td>
+        1. 메인 페이지 (추천 미션 및 추천 식물)
+        2. 보드 테스트 페이지 (테스트 및 결과 페이지)
+        3. 상단의 Navbar
+        4. 커뮤니티 메인 페이지 ( 사용자 정보 추가 및 게시글 디자인 수정, 좋아요, 댓글, 전체, 인기순, 최신순 정렬) (현재 구현중)
+        5. 커뮤니티 내정보 페이지 (CRUD 중 UD) (현재 구현중)
+        6. 댓글 페이지 (CRUD) (현재 구현중)
+      </td>
+      <td>eorb0717@naver.com</td>   
    </tr>
   </tbody>
 </table>
