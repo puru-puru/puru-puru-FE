@@ -11,7 +11,7 @@ export const MissionCardLayout = styled.div`
     align-items: center;
     /* padding: 60px; */
     position: relative;
-    overflow: visible;
+    /* overflow: visible; */
 `;
 
 export const MissionCardContent = styled.div`

@@ -26,6 +26,7 @@ const PlantRegistrationPage = lazy(
 );
 const CommunityPage = lazy(() => import('../pages/community/CommunityPage'));
 const CommunityWritePage = lazy(() => import('../pages/community/write/CommunityWritePage'));
+const CommunityMyPostPage = lazy(() => import('../pages/mypost/CommunityMyPost'));
 const MyProfile = lazy(() => import('../pages/myprofile/MyProfilepage'));
 const MainPage = lazy(() => import('../pages/mainpage/MainPage'));
 const BoardTest = lazy(() => import('../pages/boardtest/boardtestpage/BoardTest'));
@@ -46,6 +47,7 @@ const RouterInfo = [
     { path: '/mycomponent', element: <MyComponent />, withAuthorization: true },
     { path: '/community', element: <CommunityPage />, withAuthorization: true },
     { path: '/communitywrite', element: <CommunityWritePage />, withAuthorization: true },
+    { path: '/communitymypost', element: <CommunityMyPostPage />, withAuthorization: true },
     { path: '/boardtest', element: <BoardTest />, withAuthorization: true },
     { path: '/boardresult', element: <BoardResult />, withAuthorization: true },
 ];
@@ -60,7 +62,6 @@ const Authorization = ({ redirectTo, children }) => {
 };
 
 export const Routes = () => {
-
     return (
         <Router>
             <GlobalStyles />
@@ -79,7 +80,7 @@ export const Routes = () => {
                     </div>
                 }
             >
-                <ScrollToTop/>
+                <ScrollToTop />
                 <RouteChangeTracker />
                 <ReactRouterRoutes>
                     <Route element={<Layout />}>
@@ -96,7 +97,10 @@ export const Routes = () => {
                                 }
                             />
                         ))}
-                        <Route path="/api/auth/login/google/return" element={<RedirectionGoogle />} />
+                        <Route
+                            path="/api/auth/login/google/return"
+                            element={<RedirectionGoogle />}
+                        />
                         <Route path="/api/auth/login/kakao/return" element={<RedirectionKakao />} />
                         <Route path="*" element={<Navigate replace to="/signin" />} />
                     </Route>
