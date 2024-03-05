@@ -58,7 +58,7 @@ const NameDecision: React.FC = () => {
                             ...prevState,
                             errorMessage: '',
                         }));
-                        navigate('/mainpage');
+                        navigate('/boardtest');
                     },
                     onError: (error: any) => {
                         if (error.response && error.response.status === 409) {
