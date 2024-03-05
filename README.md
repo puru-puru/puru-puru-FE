@@ -72,7 +72,7 @@
 </br>
 
 ## **🌾 주요기능 소개**
-<추가 예정>
+
 <table>
   <tr align="center">
     <td><strong>소셜 로그인</strong></td>
@@ -82,7 +82,7 @@
    <tr align="center">
     <td><img src="" alt="소셜 로그인" style="height:500px"/></td>
     <td><img src="" alt="메인" style="height:500px"/></td>
-    <td><img src="" alt="보드 테스트" style="height:500px"/></td>
+    <td><img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2Ff2ec8fb6-6ef3-4eb8-b760-91f79988642c%2F183_(1).png?table=block&id=f71d784c-2e7e-44e5-9817-961d5d31c8d9&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2" alt="보드 테스트" style="height:500px"/></td>
   </tr>
 </table>
 
@@ -94,15 +94,15 @@
     <td><strong>커뮤니티</strong></td>
   </tr>
    <tr align="center">
-    <td><img src="" alt="나의 반려 식물" style="height:500px"/></td>
-    <td><img src="" alt="커뮤니티" style="height:500px"/></td>
+    <td><img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F866b3ba4-6c0f-41cc-8e74-4e22da0d235e%2F176.png?table=block&id=91d55a2e-3bb7-4cdd-9456-59a1c3905a63&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2" alt="나의 반려 식물" style="height:500px"/></td>
+    <td><img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F93e1fd43-287f-46c0-baf3-b6356616a871%2F179.png?table=block&id=ad5abad4-329d-4f5b-8cd2-0989393e42f6&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2" alt="커뮤니티" style="height:500px"/></td>
   </tr>
 </table>
 
 </br>
 
 
-## 서비스 아키텍처
+## 🗂️ 서비스 아키텍처
 <img width="1378" alt="아키텍처" src="https://github.com/puru-puru/puru-puru-FE/assets/105138020/29bd9cc7-2367-4c31-859f-82ff6cb30ba8">
 
 </br>
@@ -129,7 +129,7 @@
 </br>
 
 
-## 기술적 의사결정
+## 🗣️ 기술적 의사결정
 
 <table>
   <tbody>
