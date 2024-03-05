@@ -174,6 +174,20 @@
 > #### 해결
 >부모-자식 관계가 아닌 경우 상태를 전달하는 것이 어려워졌습니다. 이를 해결하기 위해 recoil을 사용하여 상태를 저장하고 관리했습니다. 이를 통해 페이지 간에 상태를 유지할 수 있었습니다.
 </details>
+
+<details>
+<summary>로그인 인가 / 인증 문제</summary>
+
+> #### 문제
+> 사용자가 이용도중 AccessToken이 만료되면 그대로 로그인 페이지로 이동하였습니다. 또한 RefreshToken을 받고 있지만 활용을 전혀 하지 못하고 쿠키에 담아 두기만 하였습니다.
+
+> #### 해결
+> response 인터셉터 활용으로 AccessToken이 만료되어 api 요청으로 에러 메세지를 받으면 RefreshToken토큰을 이용해 AccessToken을 재발급 받은 후 다시 재요청 할 수 있도록 해결하였습니다.
+
+![인터셉터](https://github.com/puru-puru/puru-puru-FE/assets/105138020/63baddef-af35-4318-8543-3933abb8bfab)
+
+</details>
+
 <details>
 <summary>보드 테스트 버그</summary>
 
@@ -185,6 +199,7 @@
 
   ![코드](https://velog.velcdn.com/images/eorb0717/post/983a2786-a192-431c-a16c-96ee7075bece/image.JPG)
 </details>
+
 
 ## 👍 유저 피드백 & 반영
 
