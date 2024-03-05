@@ -28,16 +28,19 @@ const SelectionCompleted: React.FC<SelectedCardProps> = ({ selectedCard }) => {
         }
     };
     return (
-        <SelectionCompletedContainer>
+        <>
+            
+            <SelectionCompletedContainer>
             {showModal && <StepCompleteModal />}
-            <SavePlantsButton
-                $isChecked={!selectedCard}
-                disabled={!selectedCard}
-                onClick={handleSelect}
-            >
-                다음
-            </SavePlantsButton>
-        </SelectionCompletedContainer>
+                <SavePlantsButton
+                    $isChecked={!selectedCard}
+                    disabled={!selectedCard}
+                    onClick={handleSelect}
+                >
+                    다음
+                </SavePlantsButton>
+            </SelectionCompletedContainer>
+        </>
     );
 };
 

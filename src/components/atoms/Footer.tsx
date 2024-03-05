@@ -24,10 +24,10 @@ const Footer: React.FC = () => {
     return (
         <>
             <div style={FooterStyles}>
-                <Link to="/boardtest" style={FooterItemStyles}><img src="./test_img.svg" alt="test" style={{width: '20px', height: '20px'}}/></Link >
-                <Link to="/myplant" style={FooterItemStyles}><img src="./potted_img.svg" alt="potted" style={{width: '18px', height: '20px'}}/></Link>
-                <Link to="/community" style={FooterItemStyles}><img src="./diversity_img.svg" alt="diversity" style={{width: '24px', height: '19px'}}/></Link>
-                <Link to="/myprofile" style={FooterItemStyles}><img src="./grid_img.svg" alt="grid" style={{width: '18px', height: '18px'}}/></Link>
+                <Link to="/boardtest" style={FooterItemStyles}><img src="/test_img.svg" alt="test" style={{width: '20px', height: '20px'}}/></Link >
+                <Link to="/myplant" style={FooterItemStyles}><img src="/potted_img.svg" alt="potted" style={{width: '18px', height: '20px'}}/></Link>
+                <Link to="/community" style={FooterItemStyles}><img src="/diversity_img.svg" alt="diversity" style={{width: '24px', height: '19px'}}/></Link>
+                <Link to="/myprofile" style={FooterItemStyles}><img src="/grid_img.svg" alt="grid" style={{width: '18px', height: '18px'}}/></Link>
             </div>
         </>
     );
