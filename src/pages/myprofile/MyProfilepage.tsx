@@ -35,7 +35,7 @@ const MyProfilepage: React.FC = () => {
             }
         };
         fetchData();
-    }, [modalClose]);
+    }, []);
     const handleLogout = () => {
         Cookies.remove('AccessToken');
         Cookies.remove('RefreshToken');
@@ -63,6 +63,12 @@ const MyProfilepage: React.FC = () => {
         setNameChange(true);
         modalOpen();
     };
+    const handleNameChange = (newNickname: string) => {
+        setProfile(prevProfile => ({
+            ...prevProfile,
+            nickname: newNickname
+        }));
+    };
     return (
         <>
             <MyProfileContainer>
@@ -88,6 +94,7 @@ const MyProfilepage: React.FC = () => {
                 {open && nameChange && (
                     <NameChangeModal
                         modalClose={modalClose}
+                        handleNameChange={handleNameChange}
                     />
                 )}
                 <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
