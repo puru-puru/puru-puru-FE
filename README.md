@@ -1,4 +1,4 @@
-<h1 style="color:yellowgreen">Puru Puru - FE</h1>
+<h1 style="color:yellowgreen">🌿 Puru Puru - FE</h1>
 
 ![Title](https://github.com/puru-puru/puru-puru-FE/assets/105138020/bd9ef7a4-60b7-48a8-b303-3b9fb2777c9f)
 
@@ -36,7 +36,9 @@
   </tr>
 </table>
 
-## FrontEnd 개발
+</br>
+
+## ☘️ FrontEnd 개발
 <table>
   <tbody>
     <tr>
@@ -59,10 +61,65 @@
   </tbody>
 </table>
 
-## 주요기능 소개
+</br>
+
+## **🌾 주요기능 소개**
+
+<table>
+  <tr align="center">
+    <td><strong>소셜 로그인</strong></td>
+    <td><strong>메인 페이지</strong></td>
+    <td><strong>보드 테스트</strong></td>
+  </tr>
+   <tr align="center">
+    <td><img src="" alt="소셜 로그인" style="height:500px"/></td>
+    <td><img src="" alt="메인" style="height:500px"/></td>
+    <td><img src="" alt="보드 테스트" style="height:500px"/></td>
+  </tr>
+</table>
+
+</br>
+
+<table>
+  <tr align="center">
+    <td><strong>나의 반려 식물</strong></td>
+    <td><strong>커뮤니티</strong></td>
+  </tr>
+   <tr align="center">
+    <td><img src="" alt="나의 반려 식물" style="height:500px"/></td>
+    <td><img src="" alt="커뮤니티" style="height:500px"/></td>
+  </tr>
+</table>
+
+</br>
+
 
 ## 서비스 아키텍처
 <img width="1378" alt="아키텍처" src="https://github.com/puru-puru/puru-puru-FE/assets/105138020/29bd9cc7-2367-4c31-859f-82ff6cb30ba8">
+
+</br>
+
+## **📜 FE 기술 선정**
+
+<div align="center">
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
+  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=efefee"/>
+</div>
+<div align="center">
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
+  <img src="https://img.shields.io/badge/react--query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
+  <img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=efefee"/>
+  <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=efefee"/>
+</div>
+<div align="center">
+ <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=efefee"/>
+</div>
+<div align="center">
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+</div>
+
+</br>
+
 
 ## 기술적 의사결정
 
@@ -107,7 +164,7 @@
   </tbody>
 </table>
 
-## 트러블슈팅
+## 💥 트러블슈팅
 <details>
 <summary>구글 애널리틱스</summary>
 
@@ -148,8 +205,19 @@
 > #### 해결
 >부모-자식 관계가 아닌 경우 상태를 전달하는 것이 어려워졌습니다. 이를 해결하기 위해 recoil을 사용하여 상태를 저장하고 관리했습니다. 이를 통해 페이지 간에 상태를 유지할 수 있었습니다.
 </details>
+<details>
+<summary>보드 테스트 버그</summary>
 
-## 유저 피드백 & 반영
+> #### 문제
+>태그 요소를 선택하고 같은 요소를 재선택시에 결과 확인 버튼이 비활성화가 되었으나 첫 번째 태그 선택 후에 다른 태그 선택을 하게되면 결과 확인 버튼이 활성화를 유지하지 않고 비활성화가 되어버린 문제가 있었습니다 그리고 같은 태그 요소 선택 없이 결과확인 버튼이 클릭되어 결과 페이지로 넘어가는 문제 또한 있었습니다
+
+> #### 해결
+>태그 선택시에 setState가 되는 boardId가 있는데 이 state를 통해서 로직을 구현 하였습니다 그리고 이 boardId가 없는 경우에는 결과확인 버튼이 클릭되지 못하는 로직 또한 구현하여 해결하였습니다 코드 사진은 아래와 같습니다.
+
+  ![코드](https://velog.velcdn.com/images/eorb0717/post/983a2786-a192-431c-a16c-96ee7075bece/image.JPG)
+</details>
+
+## 👍 유저 피드백 & 반영
 <details>
 <summary>소셜 로그인</summary>
    <br/>
