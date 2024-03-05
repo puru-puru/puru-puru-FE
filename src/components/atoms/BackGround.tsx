@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const BackGroundText = styled.div`
-    width: 35%;
+    width: 25%;
     img {
         width: 100%;
     }
@@ -50,11 +50,11 @@ const LeftImg = styled.img`
 const BackGround = () => {
     return (
         <>
-            <BackGroundText>
+            <BackGroundText style={{marginRight: '200px' }}>
                 <img
                     src="/BackGroundText.webp"
                     alt="BackGroundText"
-                    style={{ width: '100%', height: 'auto' }}
+                    style={{ width: '100%', height: 'auto'}}
                 />
             </BackGroundText>
             <LeafContainer>
