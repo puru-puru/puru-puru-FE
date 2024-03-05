@@ -45,14 +45,14 @@
   <tr>
     <td align="center">강혜성</td>
     <td style="padding: 15px 10px;">
-      - 정적 타입 지원으로 타입 안정성을 확보 <br />
       - 인증( 회원가입, 유효성 검사, 로그인, 비로그인 처리, 인가 / 토큰 관리,  이용약관, 닉네임 설정) <br />
       - 반려 식물 페이지 ( 반려 식물 카드 / 일지, 반려 식물 등록 및 삭제, 식물 검색, 이미지 압축 업로드)   <br />
       - UX/UI ( 전반적인 배경, 스플래쉬 페이지 <br />
-      - 하단 바 제작(Footer) <br />
-      - 로딩 (spiner) <br />
+      - 하단 바 제작(Footer) / 로딩 (spiner) <br />
       - 커뮤니티 (CRUD중 CR) <br />
       - 마이 페이지 <br />
+      - 성능 개선 <br />
+      - vecel 배포 / 구글 애널리틱스 관리 <br />
     </td>
     <td align="center">pig10326@naver.com</td>
   </tr>
