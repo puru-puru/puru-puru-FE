@@ -20,7 +20,7 @@
     <td><img src="https://velog.velcdn.com/images/eorb0717/post/6682ca3c-bf5c-4fa9-b0c4-06dc58e26a60/image.svg" alt="푸릇푸릇 아이콘" style="width: 25px;"></td>
     <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://puru-puru.vercel.app/">Puru-Puru</a></td>
     <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1024px-Notion-logo.svg.png" alt="노션 아이콘" style="width: 20px;"></td>
-    <td><a target="_blank" rel="noopener noreferrer nofollow" href="">브로슈어</a></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://teamsparta.notion.site/99-18-2934bad8f617480f8deb299a64c6b5f2?p=940d44d40b864247b8c400646e5c8d9a&pm=c">브로슈어</a></td>
   </tr>
   <tr align="center">
     <td><img src="https://user-images.githubusercontent.com/389021/165723723-c93929a5-01d9-49e1-907b-43669d8089e6.png" alt="리액트 아이콘" style="width: 25px;"></td>
