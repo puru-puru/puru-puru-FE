@@ -1,6 +1,7 @@
 <h1 style="color:yellowgreen">🌿 Puru Puru - FE</h1>
 
-![Title](https://github.com/puru-puru/puru-puru-FE/assets/105138020/bd9ef7a4-60b7-48a8-b303-3b9fb2777c9f)
+![변경 후 배경](https://github.com/puru-puru/puru-puru-FE/assets/105138020/af11ba90-9a55-4dd2-b50c-0801cd38e7e7)
+
 
 > 안녕하세요, 푸릇푸릇은 개인 성향에 맞는 반려 식물을 추천해주고, 키우는데 도움을 주는 서비스를 만들고 있습니다.  
 > 자신이 키우는 식물 일지를 작성하며 같이 성장하는 특별한 즐거움을 경험해요!
@@ -61,7 +62,7 @@
       - 메인 페이지 (추천 미션 및 추천 식물) <br />
       - 보드 테스트 페이지 (테스트 및 결과 페이지) <br />
       - 상단의 Navbar <br />
-      - 커뮤니티 메인 페이지 ( 사용자 정보 추가 및 게시글 디자인 수정, 좋아요, 댓글, 전체, 인기순, 최신순 정렬) (현재 구현중) <br />
+      - 커뮤니티 메인 페이지 ( 사용자 정보 추가 및 게시글 디자인 수정, 좋아요, 댓글,  <br />전체, 인기순, 최신순 정렬) (현재 구현중) <br />
       - 커뮤니티 내정보 페이지 (CRUD 중 UD) (현재 구현중)<br />
       - 댓글 페이지 (CRUD) (현재 구현중) <br />
     </td>
@@ -71,35 +72,6 @@
 
 </br>
 
-## **🌾 주요기능 소개**
-
-<table>
-  <tr align="center">
-    <td><strong>소셜 로그인</strong></td>
-    <td><strong>메인 페이지</strong></td>
-    <td><strong>보드 테스트</strong></td>
-  </tr>
-   <tr align="center">
-    <td><img src="" alt="소셜 로그인" style="height:500px"/></td>
-    <td><img src="" alt="메인" style="height:500px"/></td>
-    <td><img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2Ff2ec8fb6-6ef3-4eb8-b760-91f79988642c%2F183_(1).png?table=block&id=f71d784c-2e7e-44e5-9817-961d5d31c8d9&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2" alt="보드 테스트" style="height:500px"/></td>
-  </tr>
-</table>
-
-</br>
-
-<table>
-  <tr align="center">
-    <td><strong>나의 반려 식물</strong></td>
-    <td><strong>커뮤니티</strong></td>
-  </tr>
-   <tr align="center">
-    <td><img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F866b3ba4-6c0f-41cc-8e74-4e22da0d235e%2F176.png?table=block&id=91d55a2e-3bb7-4cdd-9456-59a1c3905a63&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2" alt="나의 반려 식물" style="height:500px"/></td>
-    <td><img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F93e1fd43-287f-46c0-baf3-b6356616a871%2F179.png?table=block&id=ad5abad4-329d-4f5b-8cd2-0989393e42f6&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2" alt="커뮤니티" style="height:500px"/></td>
-  </tr>
-</table>
-
-</br>
 
 
 ## 🗂️ 서비스 아키텍처
@@ -135,55 +107,44 @@
   <tbody>
     <tr>
       <td>TypeScript</td>
-      <td>정적 타입 지원으로 타입 안정성을 확보할 수 있습니다.</td>
+      <td>타입스크립트는 정적 타입 지정을 통해 코드의 안정성을 향상시킵니다. 이는 개발 중에 발생할 수 있는 많은 오류를 컴파일 시간에 미리 잡아낼 수 있음을 의미합니다. 이러한 이유와 코드의 가독성을 높이고 타입 정보를 제공하여 코드의 구조를 명확하게 표현할 수 있기 때문에 결정하였습니다.</td>
     </tr>
     <tr>
       <td>Axios</td>
-      <td>HTTP 클라이언트 라이브러리로, 네트워크 요청을 처리할 때 사용됩니다.</td>
+      <td>Promise 기반의 API 호출을 쉽게 할수 있고, 인터셉터와 같은 기능 제공이나 직관적인 사용법때문에 결정하였습니다.</td>
     </tr>
     <tr>
       <td>React-Router</td>
-      <td>페이지 간의 이동 및 라우팅을 관리하기 위한 React 라이브러리입니다.</td>
+      <td>React-Router는 React 기반의 라우팅 라이브러리로, SPA의 사용자 경험을 향상시키기 위해 채택되었습니다. 이를 통해 페이지 전체를 새로 로딩하지 않고도 애플리케이션의 다양한 화면 간을 자연스럽게 이동할 수 있어 사용자들이 웹 애플리케이션을 더욱 빠르고 편리하게 이용할 수 있습니다. </td>
     </tr>
     <tr>
       <td>React-Query</td>
-      <td>데이터 요청을 관리하고 캐싱하여 상태 관리를 용이하게 합니다.</td>
+      <td>React-Query를 선택한 이유는 클라이언트쪽 데이터가 아닌 서버쪽 데이터 관리를 더 원활하게 하기위해 사용하였습니다. React-Query는 API 호출을 간편하게 관리할 수 있어서 비동기 데이터를 다루는데 효율적이며, 캐시 및 자동 재요청과 같은 기능을 제공하여 상태 관리를 단순화할 수 있기 때문입니다. 또한 TypeScript 지원과 강력한 문서화로 개발 생산성을 높일 수 있어서 결정하였습니다.</td>
     </tr>
     <tr>
       <td>Recoil</td>
-      <td>React 상태 관리 라이브러리로, 상태 전역 관리를 쉽게 구현할 수 있습니다.</td>
+      <td>Recoil은 Redux나 다른 상태 관리에 비해 설정이 간단하며, 직관적입니다. 또한 Redux와 달리 직접적으로 상태를 수정할 수 있고 여러 컴포넌트에서 동일한 상태를 쉽게 사용하고 수정할 수 있습니다. 이를 통해 상태 관리에 대한 복잡성을 줄이고 유연성을 높일 수 있어서 결정하였습니다.</td>
     </tr>
     <tr>
       <td>Styled-Components</td>
-      <td>컴포넌트 기반의 스타일링을 위한 CSS-in-JS 라이브러리입니다.</td>
+      <td>class 이름의 중복을 고민하지 않아도 되고, css코드 관리의 용이해서 선택하였습니다.</td>
     </tr>
     <tr>
       <td>browser-image-compression</td>
-      <td>클라이언트 측에서 이미지 압축을 수행하는 라이브러리입니다.</td>
+      <td>이미지를 압축해 서버에 업로드하기 전 해상도나 저장 용량을 줄여 대역폭을 절약할 수 있기 때문에 결정하였습니다.</td>
     </tr>
     <tr>
       <td>react-slick</td>
-      <td>React 기반의 이미지 슬라이더 컴포넌트 라이브러리로, 이미지 슬라이더를 구현할 때 사용됩니다.</td>
+      <td>react-slick를 선택한 이유는 먼저, 간단한 설정과 사용법으로 다양한 슬라이드를 구현할 수 있어서 개발 생산성을 높일 수 있습니다. 또한 풍부한 기능과 옵션을 제공, 높은 확장성과 널리 사용되는 커뮤니티 지원 덕분에 필요한 기능을 쉽게 구현할 수 있어서 결정하였습니다.</td>
     </tr>
     <tr>
       <td>react-ga4</td>
-      <td>Google Analytics 4를 React 앱에서 사용하기 쉽게하는 라이브러리입니다.</td>
+      <td>react-ga4는 Google Analytics 4를 React 앱에서 쉽게 사용할 수 있게 해주는 라이브러리로, 앱의 사용자 행동을 추적하고 데이터를 수집하기 위해 선택되었습니다.</td>
     </tr>
   </tbody>
 </table>
 
 ## 💥 트러블슈팅
-<details>
-<summary>구글 애널리틱스</summary>
-
-구글 애널리틱스를 이용하여 사용자가 어떤 페이지에 접속을 많이했고 어떤 이벤트를 했는지 분석 했습니다.  
-그러한 분석으로 페이지의 우선 순위를 두어 QA기반 코드 리팩토링을 하였습니다.
-  
-![캡처](https://github.com/puru-puru/puru-puru-FE/assets/105138020/3f2f62bc-6f84-4ac0-95d7-b0e922aceabd)
-  
-![캡처2](https://github.com/puru-puru/puru-puru-FE/assets/105138020/78e38168-4cfd-4463-b8f1-71bbfeff5330)
-
-</details>
 
 <details>
 <summary>식물 검색 기능</summary>
@@ -226,6 +187,19 @@
 </details>
 
 ## 👍 유저 피드백 & 반영
+
+<details>
+<summary>구글 애널리틱스</summary>
+
+구글 애널리틱스를 이용하여 사용자가 어떤 페이지에 접속을 많이했고 어떤 이벤트를 했는지 분석 했습니다.  
+그러한 분석으로 페이지의 우선 순위를 두어 QA기반 코드 리팩토링을 하였습니다.
+  
+![캡처](https://github.com/puru-puru/puru-puru-FE/assets/105138020/3f2f62bc-6f84-4ac0-95d7-b0e922aceabd)
+  
+![캡처2](https://github.com/puru-puru/puru-puru-FE/assets/105138020/78e38168-4cfd-4463-b8f1-71bbfeff5330)
+
+</details>
+
 <details>
 <summary>소셜 로그인</summary>
    <br/>
