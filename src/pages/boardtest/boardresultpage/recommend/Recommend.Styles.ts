@@ -66,15 +66,13 @@ export const BoardResultMainTagQuote = styled.div`
 `;
 
 export const RecommendLayout = styled.div`
-    width: 100%;
-    height: 100%;
-    max-width: 238px;
-    min-height: 320px;
+    width: 238px;
+    height: 310px;
     border: 1px solid white;
     border-radius: 30px;
     box-shadow: 0px 12px 5px rgba(185, 185, 185, 0.25);
     margin: 0px 50px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: flex;
     flex-direction: column;
 `;
@@ -92,51 +90,54 @@ export const RecommendPlantImg = styled.img`
 export const RecommendPlantHeadLayout = styled.div`
     width: 100%;
     height: 100%;
+    max-width: 236px;
+    max-height: 30px;
     display: flex;
+    justify-content: flex-start;
 `;
 
 export const RecommendPlantTitle = styled.div`
     width: 100%;
     height: 100%;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
-    font-family: 'Pretendard-Regular';
     color: rgba(114, 164, 116, 1);
     display: flex;
     margin: 10px 0px 10px 10px;
 `;
 
-export const RecommendPlantTypeLayout = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: 'Pretendard-Regular';
-    color: rgba(114, 164, 116, 1);
-    margin: 20px 10px;
-`;
+// export const RecommendPlantTypeLayout = styled.div`
+//     width: 100%;
+//     height: 100%;
+//     display: flex;
+//     justify-content: flex-end;
+//     gap: 10px;
+//     font-size: 14px;
+//     font-weight: 700;
+//     color: rgba(114, 164, 116, 1);
+//     margin: 20px 10px;
+// `;
 
-export const RecommendPlantTypeImg = styled.img`
+// export const RecommendPlantTypeImg = styled.img`
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     height: 100%;
+//     max-width: 20px;
+//     max-height: 25px;
+//     border: none;
+//     border-radius: 100%;
+// `;
+
+export const RecommendContentLayout = styled.div`
+    /* width: 100%; */
+    height: 100%;
+    max-height: 330px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0px 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    max-width: 20px;
-    max-height: 25px;
-    border: none;
-    border-radius: 100%;
-`;
-
-export const RecommendContentLayout = styled.div`
-    width: 100%;
-    height: 100%;
-    font-size: 14px;
-    font-weight: 400;
-    font-family: 'Pretendard-Regular';
-    margin: 0px 5px;
-    display: flex;
 `;

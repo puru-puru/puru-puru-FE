@@ -40,6 +40,7 @@ export const BoardTestMainItem = styled.button<{ $isSelected: boolean }>`
     border-radius: 20px;
     border: 2px solid white;
     box-shadow: 0px 8px 5px rgba(152, 152, 152, 0.25);
+    background-color: #ffffff;
     &:hover {
         border-color: rgba(218, 234, 202, 1);
     }

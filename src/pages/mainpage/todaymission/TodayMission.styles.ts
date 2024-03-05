@@ -17,7 +17,6 @@ export const MissionCardLayout = styled.div`
 export const MissionCardContent = styled.div`
     width: 220px;
     height: 54px;
-    font-family: 'Pretendard-Regular', sans-serif;
     font-weight: 700;
     font-size: 18px;
     line-height: 32px;

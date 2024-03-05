@@ -29,6 +29,7 @@ const Navbar: React.FC = () => {
         alignItems: 'center',
         fontSize: '18px',
         padding: '0px',
+        backgroundColor: '#FFFFFF',
     };
     // const NavbarSearchButtonStyle: CSSProperties = {
     //     marginRight: '60px',

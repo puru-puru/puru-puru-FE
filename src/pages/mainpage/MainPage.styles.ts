@@ -18,7 +18,6 @@ export const MainMissionTitle = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 22px;
-    font-family: 'Pretendard';
     line-height: 31.25px;
     font-weight: 700;
     gap: 10px;
@@ -47,7 +46,6 @@ export const MainPlantRecommendTitle = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 22px;
-    font-family: 'Pretendard';
     line-height: 31.25px;
     font-weight: 700;
     gap: 10px;
