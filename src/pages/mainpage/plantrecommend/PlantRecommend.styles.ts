@@ -29,7 +29,6 @@ export const PlantCardName = styled.div`
     /* justify-content: flex-start; */
     font-size: 16px;
     font-weight: 700;
-    font-family: 'Pretendard-Regular';
     color: rgba(114, 164, 116, 1);
     margin: 10px 5px;
 `;
@@ -41,6 +40,5 @@ export const PlantCardContent = styled.div`
     max-height: 54px;
     font-size: 12px;
     font-weight: 400;
-    font-family: 'Pretendard-Regular';
     margin: 0px 8px;
 `;

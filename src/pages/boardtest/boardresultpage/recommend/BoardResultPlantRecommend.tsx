@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import '../../../../components/slickcss/slick.css';
 import '../../../../components/slickcss/slick-theme.css';
 import * as St from './Recommend.Styles';
-import plantType from '../../../../assets/planttype.svg';
+// import plantType from '../../../../assets/planttype.svg';
 import tagImgURL from '../../boardtestpage/Test.json';
 
 const BoardResultPlantRecommend = ({ plantData, tagQuote, boardId }) => {
@@ -57,11 +57,11 @@ const BoardResultPlantRecommend = ({ plantData, tagQuote, boardId }) => {
                             <St.RecommendPlantImg src={item.image} alt={item.plantName} />
                             <St.RecommendPlantHeadLayout>
                                 <St.RecommendPlantTitle>{item.plantName}</St.RecommendPlantTitle>
-
+                                {/* 
                                 <St.RecommendPlantTypeLayout>
                                     <St.RecommendPlantTypeImg src={plantType} />
                                     {item.type}
-                                </St.RecommendPlantTypeLayout>
+                                </St.RecommendPlantTypeLayout> */}
                             </St.RecommendPlantHeadLayout>
 
                             <St.RecommendContentLayout>{item.content}</St.RecommendContentLayout>
