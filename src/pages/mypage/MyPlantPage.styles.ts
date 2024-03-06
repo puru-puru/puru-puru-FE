@@ -36,11 +36,12 @@ export const PetPlantHeaderTitle = styled.h2`
 
 export const PetPlantHeaderImg = styled.img`
     width: 100%;
-    height: auto;
+    height: 100%;
+    position: absolute;
 `;
 export const PetPlantHeaderImgContainer = styled.div`
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     width: 318px;
     height: 180px;
@@ -48,6 +49,7 @@ export const PetPlantHeaderImgContainer = styled.div`
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
     overflow: hidden;
+    position:relative;
 `;
 
 export const PetPlantHeaderSubTitle = styled.div`
@@ -66,6 +68,7 @@ export const ButtonContainer = styled.div`
     width: 70px;
     display: flex;
     gap: 5px;
+    z-index: 1;
 `;
 
 export const DeleteButton = styled.button`

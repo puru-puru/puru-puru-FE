@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
     SearchButton,
     SearchButtonContainer,
@@ -28,6 +28,8 @@ export const RegistrationStepTwo: React.FC = () => {
     const { data: plantsData, refetch: refetchPlants } = useSearchPlants(searchItem);
     const plants = Array.isArray(plantsData) ? plantsData : [];
 
+    const prevSearchItemRef = useRef<string>('');
+
     const handleSearch = async () => {
         if (!searchItem) {
             setPlants([]);
@@ -35,7 +37,10 @@ export const RegistrationStepTwo: React.FC = () => {
         }
         setLoading(true);
         try {
-            await refetchPlants();
+            if (searchItem !== prevSearchItemRef.current) {
+                await refetchPlants();
+                prevSearchItemRef.current = searchItem;
+            }
             setSelectionCompleted(true);
         } catch (error) {
             console.error('검색 중 오류 발생:', error);
@@ -46,11 +51,14 @@ export const RegistrationStepTwo: React.FC = () => {
 
     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.currentTarget.value;
-        setSearchItem(inputValue);
+        setSearchItem(inputValue); 
         if (!inputValue) {
-            setSelectionCompleted(false); // 입력값이 비어있는 경우에만 false로 설정
+            setSelectionCompleted(false);
         } else {
             setSelectionCompleted(true); // 입력값이 있는 경우에만 true로 설정
+        }
+        if (searchItem !== inputValue) { // 상태가 즉시 바뀌는게 아니라 비동기적으로 이루어 지기 때문에 searchItem은 이전값
+            setSelectedCard(undefined); // 검색어를 지웠을 경우 선택 해제
         }
     };
 
