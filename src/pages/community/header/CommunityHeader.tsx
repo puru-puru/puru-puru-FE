@@ -42,7 +42,9 @@ const CommunityHeader: React.FC<CommunityHeaderProps> = ({ username }) => {
                 </HeaderContainer>
             )}
 
-            <PostProfileBox>
+            <PostProfileBox
+                $iscommunitymypost={location.pathname === '/communitymypost'.toString()}
+            >
                 <PostProfileImgBox>
                     <img src="/person.svg" alt="카드 이미지" />
                 </PostProfileImgBox>
@@ -50,25 +52,43 @@ const CommunityHeader: React.FC<CommunityHeaderProps> = ({ username }) => {
                 <PostProfileWrapper>
                     <PostProfileTitleWrapper>
                         <PostProfileTitle>
-                            <span style={{ color: '#72A474' }}>{username}</span>&nbsp;님
+                            <span style={{ color: '#333333' }}>{username}</span>&nbsp;님
                         </PostProfileTitle>
                     </PostProfileTitleWrapper>
 
                     <PostProfileMyPostWrapper>
                         <PostProfileMyPostCountWrapper>
-                            <PostProfileMyPostCount>작성글</PostProfileMyPostCount>
+                            <PostProfileMyPostCount
+                                $iscommunitymypost={
+                                    location.pathname === '/communitymypost'.toString()
+                                }
+                            >
+                                작성글
+                            </PostProfileMyPostCount>
                             <PostProfileMyPostCountNumber>
                                 {data?.data.data.length}
                             </PostProfileMyPostCountNumber>
                         </PostProfileMyPostCountWrapper>
                         <PostProfileMyPostCountWrapper>
-                            <PostProfileMyPostCount>댓글 단 글</PostProfileMyPostCount>
+                            <PostProfileMyPostCount
+                                $iscommunitymypost={
+                                    location.pathname === '/communitymypost'.toString()
+                                }
+                            >
+                                댓글 단 글
+                            </PostProfileMyPostCount>
                             <PostProfileMyPostCountNumber>
                                 {data?.data.totalCommentsCount}
                             </PostProfileMyPostCountNumber>
                         </PostProfileMyPostCountWrapper>
                         <PostProfileMyPostCountWrapper>
-                            <PostProfileMyPostCount>좋아요</PostProfileMyPostCount>
+                            <PostProfileMyPostCount
+                                $iscommunitymypost={
+                                    location.pathname === '/communitymypost'.toString()
+                                }
+                            >
+                                좋아요
+                            </PostProfileMyPostCount>
                             <PostProfileMyPostCountNumber>
                                 {data?.data.totalLikesCount}
                             </PostProfileMyPostCountNumber>

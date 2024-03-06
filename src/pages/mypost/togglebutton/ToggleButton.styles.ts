@@ -13,20 +13,20 @@ export const PostModifyButtonImg = styled.img`
 `;
 
 export const ToggleButtonWrapper = styled.div`
-    width: 70px;
+    width: auto;
     height: 60px;
     border: 1px solid rgba(218, 234, 202, 1);
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 1);
     display: flex;
     flex-direction: column;
-    overflow: visible;
+    /* overflow: visible; */
     position: absolute;
     right: 8%;
 `;
 
 export const DeleteButton = styled.div`
-    width: 70px;
+    width: auto;
     padding: 0px;
     display: flex;
     justify-content: center;
@@ -34,9 +34,11 @@ export const DeleteButton = styled.div`
     gap: 3px;
     color: red;
     background-color: white;
+    border-radius: 8px 8px 0px 0px;
     font-size: 11px;
     font-weight: 400;
     line-height: 27px;
+    overflow: hidden;
 `;
 
 export const ModifyButton = styled.div`
@@ -47,9 +49,11 @@ export const ModifyButton = styled.div`
     align-items: center;
     gap: 3px;
     background-color: white;
+    border-radius: 0px 0px 8px 8px;
     font-size: 11px;
     font-weight: 400;
     line-height: 27px;
+    overflow: hidden;
 `;
 
 export const ButtonImg = styled.img`

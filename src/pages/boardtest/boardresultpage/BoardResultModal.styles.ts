@@ -26,7 +26,6 @@ export const ModalBody = styled.div`
     bottom: 10%;
 `;
 export const ModalContent = styled.div`
-    font-family: 'Noto Sans KR', sans-serif;
     font-weight: 600;
     font-size: 14px;
     line-height: 20.27px;

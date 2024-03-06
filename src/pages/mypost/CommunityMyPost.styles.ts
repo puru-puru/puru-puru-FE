@@ -49,7 +49,7 @@ export const PostContainer = styled.div`
     margin: 10px 0px;
     border: none;
     border-radius: 20px;
-    background-color: #fff;
+    background-color: #fafff4;
     display: flex;
     align-items: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -165,7 +165,7 @@ export const LikeCommentCount = styled.div`
 `;
 
 export const PostDateContainer = styled.div`
-    width: 42px;
+    width: auto;
     height: 12px;
     display: flex;
 `;

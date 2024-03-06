@@ -160,7 +160,7 @@ export const LikeCommentCount = styled.div`
 `;
 
 export const PostDateContainer = styled.div`
-    width: 42px;
+    width: auto;
     height: 12px;
     display: flex;
 `;

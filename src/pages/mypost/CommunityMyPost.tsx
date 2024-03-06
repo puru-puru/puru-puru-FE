@@ -24,6 +24,7 @@ import commentImg from '../../assets/chat.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ToggleButton from './togglebutton/ToggleButton';
+import { useModal } from '../../hook/useModal';
 
 const CommunityMyPost = () => {
     const navigate = useNavigate();
@@ -32,6 +33,7 @@ const CommunityMyPost = () => {
     const [isSelected, setSelected] = useState<boolean>(true);
     const { data, username } = location.state;
     // console.log('data => ', data.data.data);
+    const { open, modalOpen, modalClose } = useModal();
 
     const getPostHandler = () => {
         navigate('/communitymypost', { state: location.state });
@@ -91,6 +93,7 @@ const CommunityMyPost = () => {
                                                 mypost={mypost}
                                                 isOpenMap={isOpenMap}
                                                 getModifyToggleHandler={getModifyToggleHandler}
+                                                modalProps={(open, modalOpen, modalClose)}
                                             />
                                         </PostTitle>
                                         <PostText>{mypost.content}</PostText>

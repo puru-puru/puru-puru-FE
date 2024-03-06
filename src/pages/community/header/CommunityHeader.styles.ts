@@ -1,3 +1,9 @@
+import { HTMLAttributes } from 'react';
+
+interface PostProfileBoxProps extends HTMLAttributes<HTMLDivElement> {
+    $iscommunitymypost?: boolean;
+}
+
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
@@ -12,10 +18,10 @@ export const HeaderContent = styled.div`
     font-weight: 700;
 `;
 
-export const PostProfileBox = styled.div`
+export const PostProfileBox = styled.div<PostProfileBoxProps>`
     width: 330px;
     height: 60px;
-    background-color: #f5faf1;
+    background-color: ${({ $iscommunitymypost }) => ($iscommunitymypost ? '#72A474' : '#F5FAF1')};
     display: flex;
     padding: 5px;
     border-radius: 10px;
@@ -62,14 +68,14 @@ export const PostProfileMyPostCountWrapper = styled.div`
     flex-direction: column;
 `;
 
-export const PostProfileMyPostCount = styled.div`
+export const PostProfileMyPostCount = styled.div<PostProfileBoxProps>`
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 10px;
     font-weight: 600;
     line-height: 11.94px;
-    color: #989898;
+    color: ${({ $iscommunitymypost }) => ($iscommunitymypost ? '#FFFFFF' : '#989898')};
 `;
 
 export const PostProfileMyPostCountNumber = styled.div`
@@ -88,6 +94,7 @@ export const PostProfileButton = styled.button`
     font-size: 11px;
     font-weight: 700;
     line-height: 12.18px;
+    background: none;
     color: #72a474;
     padding: 0px;
 `;
