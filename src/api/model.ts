@@ -27,7 +27,7 @@ interface SavedTemplelates {
 }
 
 export interface DiaryEntry {
-    diaryId: number ;
+    diaryId: number;
     image: string;
     name: string;
     plantAt: string;
@@ -35,43 +35,14 @@ export interface DiaryEntry {
     SavedTemplelates: SavedTemplelates[];
 }
 
-
-
 export interface newPlantData {
     plantName: string;
     type: string;
     content: string;
 }
 
-export interface Plants extends newPlantData{
+export interface Plants extends newPlantData {
     plantsId: number;
     image: string;
     tag: string;
-}
-
-// 커뮤니티 페이지
-
-export interface CommunityFormData {
-    title: string;
-    content: string;
-    image: File | null;
-}
-
-// 게시글의 타입 정의
-interface Author {
-    nickname: string;
-}
-
-export interface CommunityPost {
-    boardId: number;
-    title: string;
-    image: string;
-    content: string;
-    createdAt: string;
-    author: Author;
-}
-
-export interface CommunityData {
-    data: CommunityPost[]; 
-    loginUser: string; 
 }

@@ -6,6 +6,10 @@ export const CommunityContainer = styled.div`
     flex-direction: column;
 `;
 
+export const PostNone = styled.div`
+    padding: 150px;
+`;
+
 export const PostButtonBox = styled.div`
     width: 321px;
     height: 20px;
@@ -13,31 +17,18 @@ export const PostButtonBox = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-export const CompositionSortButton = styled.button`
+export const CompositionSortButton = styled.button<{ $isSelected: boolean }>`
     width: 60px;
     height: 20px;
-    background-color: white;
+    background-color: ${({ $isSelected }) =>
+        $isSelected ? 'rgba(114, 164, 116, 0.5)' : 'rgba(255, 255, 255, 1)'};
     color: #989898;
     border: 2px solid #daebca;
     border-radius: 999px;
     font-size: 10px;
     font-weight: 700;
     line-height: 18.28px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const CompositionWriteButton = styled.button`
-    width: 72px;
-    height: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 18.28px;
-    color: white;
-    background-color: #72a474;
-    border: none;
-    border-radius: 999px;
+    padding: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,11 +83,25 @@ export const PostTextContainer = styled.div`
 export const PostTitle = styled.p`
     width: 190px;
     height: 21px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 800;
     line-height: 21.32px;
     margin: 0;
     margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const PostModifyButton = styled.button`
+    width: 24px;
+    height: 24px;
+    padding: 0px;
+    background-color: white;
+`;
+
+export const PostModifyButtonImg = styled.img`
+    width: 16px;
+    height: 16px;
 `;
 
 export const PostText = styled.p`

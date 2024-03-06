@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { communityApi } from '../../api/community/Community';
+import CommunityHeader from '../community/header/CommunityHeader';
 import {
     CommunityContainer,
     PostContainer,
@@ -19,76 +18,82 @@ import {
     Nickname,
     PostButtonBox,
     CompositionSortButton,
-    CompositionWriteButton,
-} from './Community.styles';
-import CommunityHeader from './header/CommunityHeader';
-import { CommunityData } from '../../api/community/model';
-import { useNavigate } from 'react-router-dom';
-import Spinner from '/Spin.gif';
+} from './CommunityMyPost.styles';
 import likeImg from '../../assets/favorite.svg';
 import commentImg from '../../assets/chat.svg';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import ToggleButton from './togglebutton/ToggleButton';
 
-const CommunityPage: React.FC = () => {
+const CommunityMyPost = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const [isOpenMap, setIsOpenMap] = useState<{ [key: number]: boolean }>({});
+    const [isSelected, setSelected] = useState<boolean>(true);
+    const { data, username } = location.state;
+    // console.log('data => ', data.data.data);
 
-    const [loading, setLoading] = useState(true);
-    const [post, setPost] = useState<CommunityData>({ data: [], loginUser: '' });
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await communityApi.get('/api/boards');
-                setPost(response);
-            } catch (error) {
-                console.error('Error: ', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
-    console.log('post => ', post.data);
-    const handleWriteButtonClick = () => {
-        navigate('/communityWrite');
+    const getPostHandler = () => {
+        navigate('/communitymypost', { state: location.state });
+        setSelected((prevState) => !prevState);
+    };
+    const getCommentHandler = () => {
+        setSelected((prevState) => !prevState);
+    };
+    const getModifyToggleHandler = (postBoardId: number) => {
+        setIsOpenMap((prevMap) => ({
+            ...prevMap,
+            [postBoardId]: !prevMap[postBoardId],
+        }));
     };
     return (
         <>
             <CommunityContainer>
-                <CommunityHeader username={post.loginUser} />
+                <CommunityHeader username={username} />
                 <PostButtonBox>
                     <div style={{ display: 'flex', gap: '10px' }}>
-                        <CompositionSortButton>전체</CompositionSortButton>
-                        <CompositionSortButton>최신순</CompositionSortButton>
-                        <CompositionSortButton>인기순</CompositionSortButton>
+                        <CompositionSortButton onClick={getPostHandler} $isSelected={isSelected}>
+                            작성글
+                        </CompositionSortButton>
+                        <CompositionSortButton
+                            onClick={getCommentHandler}
+                            $isSelected={!isSelected}
+                        >
+                            댓글 단 글
+                        </CompositionSortButton>
                     </div>
-                    <CompositionWriteButton onClick={handleWriteButtonClick}>
-                        글쓰기
-                    </CompositionWriteButton>
                 </PostButtonBox>
                 <PostContainerScroll>
-                    {loading ? (
-                        <img
-                            src={Spinner}
-                            alt="loding"
-                            style={{ width: '100px', height: '100px' }}
-                        />
+                    {data.data.data.length === 0 ? (
+                        <div style={{ padding: '150px' }}>
+                            <p>작성글이 없습니다.</p>
+                            <p>첫 번째 작성글을 남겨주세요.</p>
+                        </div>
                     ) : (
-                        post.data?.map((post) => (
-                            <PostContainer key={post.boardId}>
+                        data.data.data?.map((mypost) => (
+                            <PostContainer key={mypost.boardId}>
                                 <div>
-                                    {post.author?.nickname ? (
-                                        <Nickname>{post.author.nickname}</Nickname>
+                                    {mypost.author?.nickname ? (
+                                        <Nickname>{mypost.author.nickname}</Nickname>
                                     ) : (
                                         <Nickname>익명</Nickname>
                                     )}
                                     <PostImg
-                                        src={post.image ? post.image : '/plantimg.png'}
+                                        src={mypost.image ? mypost.image : '/plantimg.png'}
                                         alt="이미지 없음"
                                     />
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                                     <PostTextContainer>
-                                        <PostTitle>{post.title}</PostTitle>
-                                        <PostText>{post.content}</PostText>
+                                        <PostTitle>
+                                            {mypost.title}
+                                            <ToggleButton
+                                                mypost={mypost}
+                                                isOpenMap={isOpenMap}
+                                                getModifyToggleHandler={getModifyToggleHandler}
+                                            />
+                                        </PostTitle>
+                                        <PostText>{mypost.content}</PostText>
                                     </PostTextContainer>
                                     <PostBottomContainer>
                                         <PostLikeCommentContainer>
@@ -98,7 +103,7 @@ const CommunityPage: React.FC = () => {
                                                 </LikeCommentButton>
 
                                                 <LikeCommentCount>
-                                                    {post.likeCount}
+                                                    {mypost.likeCount}
                                                 </LikeCommentCount>
                                             </LikeCommentButtonContainer>
                                             <LikeCommentButtonContainer>
@@ -106,13 +111,13 @@ const CommunityPage: React.FC = () => {
                                                     <LikeCommentImg src={commentImg} />
                                                 </LikeCommentButton>
                                                 <LikeCommentCount>
-                                                    {post.likeCount}
+                                                    {mypost.likeCount}
                                                 </LikeCommentCount>
                                             </LikeCommentButtonContainer>
                                         </PostLikeCommentContainer>
 
                                         <PostDateContainer>
-                                            <PostDate>{post.createdAt.split(' ')[0]}</PostDate>
+                                            <PostDate>{mypost.createdAt.split(' ')[0]}</PostDate>
                                         </PostDateContainer>
                                     </PostBottomContainer>
                                 </div>
@@ -125,4 +130,4 @@ const CommunityPage: React.FC = () => {
     );
 };
 
-export default CommunityPage;
+export default CommunityMyPost;
