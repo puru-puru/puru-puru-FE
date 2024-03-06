@@ -30,6 +30,7 @@ import commentImg from '../../assets/chat.svg';
 
 const CommunityPage: React.FC = () => {
     const navigate = useNavigate();
+
     const [loading, setLoading] = useState(true);
     const [post, setPost] = useState<CommunityData>({ data: [], loginUser: '' });
     useEffect(() => {
@@ -45,7 +46,7 @@ const CommunityPage: React.FC = () => {
         };
         fetchData();
     }, []);
-    // console.log('post => ', post.data[0]?.createdAt.split(' ')[0]);
+    console.log('post => ', post.data);
     const handleWriteButtonClick = () => {
         navigate('/communityWrite');
     };

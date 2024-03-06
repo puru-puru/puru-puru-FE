@@ -89,4 +89,5 @@ export const PostProfileButton = styled.button`
     font-weight: 700;
     line-height: 12.18px;
     color: #72a474;
+    padding: 0px;
 `;

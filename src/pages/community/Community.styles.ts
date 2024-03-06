@@ -18,7 +18,7 @@ export const CompositionSortButton = styled.button`
     height: 20px;
     background-color: white;
     color: #989898;
-    border: 1px solid #daebca;
+    border: 2px solid #daebca;
     border-radius: 999px;
     font-size: 10px;
     font-weight: 700;
@@ -92,7 +92,7 @@ export const PostTextContainer = styled.div`
 export const PostTitle = styled.p`
     width: 190px;
     height: 21px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
     line-height: 21.32px;
     margin: 0;

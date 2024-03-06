@@ -34,15 +34,19 @@ const Layout: React.FC = () => {
     const isMain = pathname === '/mainpage';
     const isMyprofile = pathname === '/myprofile';
     const isCommunity = pathname === '/community';
-
+    const isCommunityMyPost = pathname === '/communitymypost';
     return (
         <>
             <LayoutContainer>
                 <BackGround />
                 <LayoutContent style={{ backgroundColor: colors.white }}>
-                    {(isMain || isMyPlant || isMyprofile || isCommunity) && <Navbar />}
+                    {(isMain || isMyPlant || isMyprofile || isCommunity || isCommunityMyPost) && (
+                        <Navbar />
+                    )}
                     <Outlet />
-                    {(isMain || isMyPlant || isMyprofile || isCommunity) && <Footer />}
+                    {(isMain || isMyPlant || isMyprofile || isCommunity || isCommunityMyPost) && (
+                        <Footer />
+                    )}
                 </LayoutContent>
             </LayoutContainer>
         </>
