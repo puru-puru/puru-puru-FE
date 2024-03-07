@@ -51,13 +51,14 @@ export const RegistrationStepTwo: React.FC = () => {
 
     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.currentTarget.value;
-        setSearchItem(inputValue); 
+        setSearchItem(inputValue);
         if (!inputValue) {
             setSelectionCompleted(false);
         } else {
             setSelectionCompleted(true); // 입력값이 있는 경우에만 true로 설정
         }
-        if (searchItem !== inputValue) { // 상태가 즉시 바뀌는게 아니라 비동기적으로 이루어 지기 때문에 searchItem은 이전값
+        if (searchItem !== inputValue) {
+            // 상태가 즉시 바뀌는게 아니라 비동기적으로 이루어 지기 때문에 searchItem은 이전값
             setSelectedCard(undefined); // 검색어를 지웠을 경우 선택 해제
         }
     };
@@ -100,7 +101,7 @@ export const RegistrationStepTwo: React.FC = () => {
                 onCardClick={(plantId: number) => setSelectedCard(plantId)}
             />
             <SearchButtonContainer>
-                {!selectionCompleted && (
+                {!selectionCompleted ? (
                     <SearchButton
                         onClick={handleSearch}
                         $isChecked={!!searchItem}
@@ -108,11 +109,8 @@ export const RegistrationStepTwo: React.FC = () => {
                     >
                         검색
                     </SearchButton>
-                )}
-                {selectionCompleted && (
-                    <>
-                        <SelectionCompleted selectedCard={selectedCard} />
-                    </>
+                ) : (
+                    <SelectionCompleted selectedCard={selectedCard} />
                 )}
             </SearchButtonContainer>
         </>

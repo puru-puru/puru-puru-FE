@@ -15,7 +15,7 @@ export const PetPlantBorder = styled.div`
     width: 100%;
     max-width: 320px;
     height: 100%;
-    max-height: 520px;
+    max-height: 510px;
     margin: 0 auto;
     border: 1px solid white;
     box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.1);
@@ -134,7 +134,7 @@ export const PetPlantDetailContainer = styled.div`
     color: ${colors.green100};
 `;
 export const PetPlantDetailTitle = styled.p`
-    font-size: 16px;
+    font-size: 24px;
     margin: 5px 0px;
     font-weight: bold;
     color: ${colors.green100};
@@ -155,7 +155,10 @@ export const JournalContainer = styled.div`
     height: 190px;
     letter-spacing: -1.2px;
     padding: 15px;
-    position: relative;
+    /* position: relative; */
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+    background-color: #FDFFFB;
 `;
 export const JournalHeaderContainer = styled.div`
     display: flex;
@@ -195,6 +198,7 @@ export const AnswerTextWrapper = styled.div`
 export const PetPlantIcon = styled.img`
     width: 18px;
     height: 18px;
+    z-index: 1;
     background: #fffaeb;
     border-radius: 10px;
 `;
@@ -202,7 +206,7 @@ export const VerticalDivider = styled.table`
     border-left: 2px dashed ${colors.green50};
     height: 100px;
     margin: 0 8px;
-    z-index: -1;
+
     position: absolute;
 `;
 

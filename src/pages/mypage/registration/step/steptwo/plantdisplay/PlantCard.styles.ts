@@ -27,8 +27,10 @@ export const HomeRecent = styled.section`
         display: flex;
         flex-direction: column;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
+        border-radius: 12px;
 
+        border: 2px solid transparent;
+        
         img {
             width: 100%;
             max-width: 100px;
@@ -83,9 +85,8 @@ export const HomeRecent = styled.section`
             img {
                 filter: grayscale(0%);
             }
-            border-width: 3px;
-            background-color: #f4fff4;
-            border: 2px solid ${colors.green100};
+            border-color: ${colors.green100};
+    background-color: #f4fff4;
         }
     }
 `;

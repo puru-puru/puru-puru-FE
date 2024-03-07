@@ -19,8 +19,8 @@ const MyComponent: React.FC = () => {
 
     // 수정을 저장할 때 PATCH 요청을 보냅니다.
     const saveChanges = async () => {
-        if (!editedEntry || editedEntry.length < 5 || editedEntry.length > 25) {
-            alert('5자 이상 25자 이내로 작성해주세요');
+        if (!editedEntry || editedEntry.length < 1 || editedEntry.length > 25) {
+            alert('1자 이상 25자 이내로 작성해주세요');
             return;
         }
         try {
@@ -39,7 +39,7 @@ const MyComponent: React.FC = () => {
                 <h3>{question}</h3>
                 <SharedInput
                     value={editedEntry}
-                    placeholder="5자 이상 25자 이내로 입력해주세요 :)"
+                    placeholder="1자 이상 25자 이내로 입력해주세요 :)"
                     onChange={handleEdit}
                 />
 
