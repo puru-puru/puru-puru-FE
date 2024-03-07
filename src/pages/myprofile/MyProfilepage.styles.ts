@@ -9,6 +9,9 @@ export const MyProfileContainer = styled.div`
 export const MyProfileHeader = styled.div`
     width: 312px;
     margin: 0 auto;
+    .parent-italic-text .italic-text {
+    font-style: italic !important;
+}
 `
 export const LogoutButton = styled(SharedButton)`
     margin-top: 20px;

@@ -23,7 +23,7 @@ export const TermsService: React.FC = () => {
                     onClick={() => handleArrowButtonClick('terms')}
                     style={{ marginLeft: '105px', background:'none' }}
                 >
-                    ➡
+                    <img src="/ArrowRight.svg" alt="ArrowRight" />
                 </button>
             </CheckboxContainer>
             <CheckboxContainer>
@@ -34,7 +34,7 @@ export const TermsService: React.FC = () => {
                     onClick={() => handleArrowButtonClick('privacy')}
                     style={{ marginLeft: '88px', background:'none' }}
                 >
-                    ➡
+                    <img src="/ArrowRight.svg" alt="ArrowRight" />
                 </button>
             </CheckboxContainer>
             {open && (
