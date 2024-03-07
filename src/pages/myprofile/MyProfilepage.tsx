@@ -75,16 +75,16 @@ const MyProfilepage: React.FC = () => {
                 <MyProfileHeader>
                     <h2>
                         {profile.nickname ? (
-                            <span style={{ color: '#2197BC' }}>{profile.nickname}</span>
+                            <span style={{ color: '#72A474' }}>{profile.nickname}</span>
                         ) : (
-                            <span style={{ color: '#2197BC' }}>{Cookies.get('Nickname')}</span>
+                            <span style={{ color: '#72A474' }}>{Cookies.get('Nickname')}</span>
                         )}
                         님
                     </h2>
-                    <p>{profile.email}</p>
+                    <p style={{ fontStyle: 'italic' }}>{profile.email}</p>
                     <TermsService />
+                    <p>VERSION : V1.0.0 최신버전</p>
                 </MyProfileHeader>
-                <p>VERSION : V1.0.0 최신버전</p>
                 {open && secession && (
                     <DeleteProfileModal
                         handleDeleteClick={handleDeleteClick}

@@ -27,9 +27,10 @@ export const HomeRecent = styled.section`
         display: flex;
         flex-direction: column;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
+        border-radius: 12px;
 
-
+        border: 2px solid transparent;
+        
         img {
             width: 100%;
             max-width: 100px;
@@ -53,23 +54,29 @@ export const HomeRecent = styled.section`
             flex-direction: column;
             justify-content: center;
             font-weight: 600;
+            padding: 10px;
         }
 
         .card-title {
             text-align: center;
-            color: #72A474;
-            font-size: 8px;
-
+            color: #72a474;
+            font-size: 10px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .card-text {
             margin-top: 0px;
             text-align: center;
-            color: #3D3D3D;
+            color: #3d3d3d;
             font-size: 10px;
         }
 
         &:hover {
-            background-color: #F4FFF4;
+            background-color: #f4fff4;
             img {
                 filter: grayscale(0%);
             }
@@ -78,14 +85,11 @@ export const HomeRecent = styled.section`
             img {
                 filter: grayscale(0%);
             }
-            border-width: 3px;
-            background-color: #F4FFF4;
-            border: 2px solid ${colors.green100};
+            border-color: ${colors.green100};
+    background-color: #f4fff4;
         }
-
     }
 `;
-
 
 export const NoneResult = styled.div`
     position: absolute;

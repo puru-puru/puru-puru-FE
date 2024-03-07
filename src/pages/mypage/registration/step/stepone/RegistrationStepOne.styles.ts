@@ -22,17 +22,19 @@ export const NextStepButton = styled(SharedButton)<{ $isChecked: boolean }>`
 `;
 
 export const PreviewContainer = styled.div`
-    width: 327px;
-    height: 150px;
+    width: 318px;
+    height: 180px;
     border: 2px solid rgba(204, 204, 204, 0.7);
-    border-radius: 18px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
     position: relative;
 `;
 export const PreviewImageBox = styled.div`
-    width: 145px;
-    height: 145px;
+    width: 100%;
+    height: 100%;
     background-color: ${colors.green100};
-    border-radius: 100px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
     overflow: hidden;
     position: absolute;
     top: 50%;

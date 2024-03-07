@@ -87,18 +87,22 @@ const MyPage: React.FC = () => {
         navigate('/plants');
     };
 
-    const IconAndText = ({ template }) => (
+    const IconAndText = ({ template, iconSrc }) => (
         <PetPlantDetailTextContainer
             onClick={() =>
                 handleIconClick(template.id, template.Templelate.question, template.answer)
             }
         >
-            <PetPlantIcon src={`plantimg.png`} style={{width: '18px', height: '18px'}}/>
+            <PetPlantIcon src={iconSrc} style={{ width: '18px', height: '18px' }} />
             <PetPlantDetailText>
                 {template.Templelate.question}
                 <br />
                 <AnswerTextWrapper>
-                    <span>{template.answer}</span>
+                    {template.answer ? (
+                        <span>{template.answer}</span>
+                    ) : (
+                        <span>질문에 답해주세요</span>
+                    )}
                 </AnswerTextWrapper>
             </PetPlantDetailText>
         </PetPlantDetailTextContainer>
@@ -131,7 +135,9 @@ const MyPage: React.FC = () => {
 
     return (
         <>
-            {open && <DeletePlantModal handleDeleteClick={handleDeleteClick} modalClose={modalClose} />}
+            {open && (
+                <DeletePlantModal handleDeleteClick={handleDeleteClick} modalClose={modalClose} />
+            )}
             <PetPlantHeaderTitle>나의 반려식물</PetPlantHeaderTitle>
             <PlantSlickCustom {...settings}>
                 {petPlant.map((plant, index) => {
@@ -161,7 +167,11 @@ const MyPage: React.FC = () => {
                                         <StyledImageContainer>
                                             <img
                                                 src="./calendar_clock.svg"
-                                                style={{ marginRight: '5px', width: '16px', height:'17px' }}
+                                                style={{
+                                                    marginRight: '5px',
+                                                    width: '16px',
+                                                    height: '17px',
+                                                }}
                                             />{' '}
                                             {` +  ${diffDays}`}
                                         </StyledImageContainer>
@@ -174,7 +184,10 @@ const MyPage: React.FC = () => {
 
                                 <JournalContainer>
                                     <JournalHeaderContainer>
-                                        <img src="/JournalTitleImg.svg" style={{width: '18px', height: '18px'}} />
+                                        <img
+                                            src="/JournalTitleImg.svg"
+                                            style={{ width: '18px', height: '18px' }}
+                                        />
                                         <JournalTitle>반려 식물 일지</JournalTitle>
                                     </JournalHeaderContainer>
                                     <JournalBody>
@@ -184,6 +197,7 @@ const MyPage: React.FC = () => {
                                                 <>
                                                     <IconAndText
                                                         template={plant.SavedTemplelates[0]}
+                                                        iconSrc={`/LogIcon1.svg`}
                                                     />
                                                 </>
                                             )}
@@ -191,11 +205,15 @@ const MyPage: React.FC = () => {
                                                 <>
                                                     <IconAndText
                                                         template={plant.SavedTemplelates[1]}
+                                                        iconSrc={`/LogIcon2.svg`}
                                                     />
                                                 </>
                                             )}
                                             {plant.SavedTemplelates?.length > 2 && (
-                                                <IconAndText template={plant.SavedTemplelates[2]} />
+                                                <IconAndText
+                                                    template={plant.SavedTemplelates[2]}
+                                                    iconSrc={`/LogIcon3.svg`}
+                                                />
                                             )}
                                         </div>
                                     </JournalBody>

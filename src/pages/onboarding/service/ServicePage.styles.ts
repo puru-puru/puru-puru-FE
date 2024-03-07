@@ -3,6 +3,8 @@ import { SharedButton } from '../../Shared.styles';
 
 export const CheckboxContainer = styled.div`
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 `;
 
 export const CheckboxButton = styled(SharedButton)`

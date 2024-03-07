@@ -70,7 +70,7 @@ const ServicePage: React.FC = () => {
                 <CheckboxContainer>
                     <label style={{ fontSize: '24px' }}>서비스 이용 동의</label>
                 </CheckboxContainer>
-                <div>
+                <CheckboxContainer>
                     <input
                         type="checkbox"
                         id="agree_check_all"
@@ -80,7 +80,7 @@ const ServicePage: React.FC = () => {
                     />
                     &nbsp;
                     <label htmlFor="agree_check_all">이용약관 전체동의</label>
-                </div>
+                </CheckboxContainer>
                 <OnboardingLine />
                 <CheckboxContainer>
                     <input
