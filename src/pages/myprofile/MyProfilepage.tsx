@@ -42,6 +42,7 @@ const MyProfilepage: React.FC = () => {
         navigate('/');
     };
 
+    // 회원탈퇴
     const handleSecession = () => {
         setSecession(true);
         modalOpen();
@@ -59,6 +60,7 @@ const MyProfilepage: React.FC = () => {
         modalClose();
     };
 
+    // 닉네임 변경
     const handelName= () => {
         setNameChange(true);
         modalOpen();
@@ -89,12 +91,14 @@ const MyProfilepage: React.FC = () => {
                     <DeleteProfileModal
                         handleDeleteClick={handleDeleteClick}
                         modalClose={modalClose}
+                        setSecession={setSecession}
                     />
                 )}
                 {open && nameChange && (
                     <NameChangeModal
                         modalClose={modalClose}
                         handleNameChange={handleNameChange}
+                        setNameChange={setNameChange}
                     />
                 )}
                 <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>

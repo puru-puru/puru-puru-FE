@@ -9,9 +9,15 @@ import {
 interface DeletePlantModalProps {
     handleDeleteClick: () => void;
     modalClose: () => void;
+    setSecession: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DeleteProfileModal: React.FC<DeletePlantModalProps> = ({ handleDeleteClick, modalClose }) => {
+const DeleteProfileModal: React.FC<DeletePlantModalProps> = ({ handleDeleteClick, modalClose,setSecession }) => {
+    const handleNoButtonClick = () => {
+        setSecession(false);
+        modalClose();
+    };
+
     return (
         <div>
             <div className="dark-overlay" />
@@ -19,7 +25,7 @@ const DeleteProfileModal: React.FC<DeletePlantModalProps> = ({ handleDeleteClick
                 <MyPlantToggleContainer>
                     회원 탈퇴 하시겠습니까?
                     <MyPlantToggleDetail>
-                        <MyPlantToggleButton $isChecked={true} onClick={modalClose}>
+                        <MyPlantToggleButton $isChecked={true} onClick={handleNoButtonClick}>
                             아니오
                         </MyPlantToggleButton>
                         <MyPlantToggleButton $isChecked={false} onClick={handleDeleteClick}>
