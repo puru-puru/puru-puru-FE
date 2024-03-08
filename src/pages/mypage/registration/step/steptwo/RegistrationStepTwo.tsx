@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
     SearchButton,
     SearchButtonContainer,
@@ -12,7 +12,7 @@ import { currentStepState } from '../../../../../recoil/atom';
 import { useRecoilState } from 'recoil';
 import { useSearchPlants } from '../../../../../api/myplant/StepTwo';
 import PlantDisplay from './plantdisplay/PlantDisplayCard';
-import { debounce } from '../../../../../components/debounce/Debounce';
+
 export const RegistrationStepTwo: React.FC = () => {
     const [searchItem, setSearchItem] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
@@ -30,10 +30,10 @@ export const RegistrationStepTwo: React.FC = () => {
 
     const prevSearchItemRef = useRef<string>('');
 
-
-    const handleSearch = async () => {
+    const handleSearchDebounced = useCallback(async () => {
         if (!searchItem) {
             setPlants([]);
+            setLoading(false);
             return;
         }
         setLoading(true);
@@ -44,15 +44,15 @@ export const RegistrationStepTwo: React.FC = () => {
             }
             setSelectionCompleted(true);
         } catch (error) {
-            console.error('검색 중 오류 발생:', error);
+            alert('검색 중 오류 발생');
         } finally {
             setLoading(false);
         }
-    };
+    }, [refetchPlants, searchItem]);
 
-    const searchHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        const inputValue = event.currentTarget.value;
-        debounce(setSearchItem(inputValue),300);
+    const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = event.target.value;
+        setSearchItem(inputValue);
         if (!inputValue) {
             setSelectionCompleted(false);
         } else {
@@ -62,7 +62,14 @@ export const RegistrationStepTwo: React.FC = () => {
             // 상태가 즉시 바뀌는게 아니라 비동기적으로 이루어 지기 때문에 searchItem은 이전값
             setSelectedCard(undefined); // 검색어를 지웠을 경우 선택 해제
         }
-    },[searchItem]);
+    };
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            handleSearchDebounced();
+        }, 500);
+        return () => clearTimeout(timeoutId);
+    }, [handleSearchDebounced, searchItem]);
 
     // 전체 페이지 수 계산
     const totalPages = Math.ceil(plants?.length / itemsPerPage);
@@ -80,7 +87,11 @@ export const RegistrationStepTwo: React.FC = () => {
     return (
         <>
             <SearchContainer>
-                <SearchIcon src="./SearchIcon.svg" alt="SearchIcon" onClick={handleSearch} />
+                <SearchIcon
+                    src="./SearchIcon.svg"
+                    alt="SearchIcon"
+                    onClick={handleSearchDebounced}
+                />
                 <SearchInput
                     placeholder="식물 관련 키워드(이름/종류)를 검색해주세요"
                     name="plantAt"
@@ -104,7 +115,7 @@ export const RegistrationStepTwo: React.FC = () => {
             <SearchButtonContainer>
                 {!selectionCompleted ? (
                     <SearchButton
-                        onClick={handleSearch}
+                    onClick={handleSearchDebounced}
                         $isChecked={!!searchItem}
                         disabled={!searchItem}
                     >
