@@ -1,5 +1,8 @@
 import React from 'react';
 import {
+    BackButtonLayout,
+    BackButton,
+    BackButtonImg,
     HeaderContainer,
     HeaderContent,
     PostProfileWrapper,
@@ -15,6 +18,7 @@ import {
 } from './CommunityHeader.styles';
 import { useGetMyPostPageData } from '../../../api/mypost/MyPost';
 import { useLocation, useNavigate } from 'react-router-dom';
+import backButton from '../../../assets/backbutton.svg';
 
 interface CommunityHeaderProps {
     username: string;
@@ -26,12 +30,21 @@ const CommunityHeader: React.FC<CommunityHeaderProps> = ({ username }) => {
     // console.log('MyPostPageData => ', data?.data.data);
     const location = useLocation();
     // console.log('location => ', location.pathname);
-
+    const backButtonHandler = () => {
+        navigate('/community');
+    };
     const getMyPostHandler = () => {
         navigate('/communitymypost', { state: { data, username } });
     };
     return (
         <>
+            {location.pathname === '/communitymypost' && (
+                <BackButtonLayout>
+                    <BackButton>
+                        <BackButtonImg src={backButton} onClick={backButtonHandler} />
+                    </BackButton>
+                </BackButtonLayout>
+            )}
             {location.pathname === '/community' ? (
                 <HeaderContainer>
                     <HeaderContent>커뮤니티</HeaderContent>
@@ -41,7 +54,6 @@ const CommunityHeader: React.FC<CommunityHeaderProps> = ({ username }) => {
                     <HeaderContent>커뮤니티 - 내 정보</HeaderContent>
                 </HeaderContainer>
             )}
-
             <PostProfileBox
                 $iscommunitymypost={location.pathname === '/communitymypost'.toString()}
             >

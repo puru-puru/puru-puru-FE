@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+interface CompositionSortButtonProps {
+    $total?: boolean;
+    $popular?: boolean;
+    onClick?: () => void;
+}
+
 export const CommunityContainer = styled.div`
     display: flex;
     align-items: center;
@@ -13,11 +19,13 @@ export const PostButtonBox = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-export const CompositionSortButton = styled.button`
+export const CompositionSortButton = styled.button<CompositionSortButtonProps>`
     width: 60px;
     height: 20px;
-    background-color: white;
-    color: #989898;
+    background-color: ${({ $total, $popular }) =>
+        $total ? '#72a474' : $popular ? '#72a474' : 'white'};
+    color: ${({ $total, $popular }) =>
+        $total ? 'white' : $popular ? 'white' : 'rgba(152, 152, 152, 1)'};
     border: 2px solid #daebca;
     border-radius: 999px;
     font-size: 10px;

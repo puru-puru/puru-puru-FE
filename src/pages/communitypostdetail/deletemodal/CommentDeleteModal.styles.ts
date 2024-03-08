@@ -11,7 +11,7 @@ export const ModalOverlay = styled.div`
     overflow-y: hidden;
 `;
 
-export const ModifyModalBody = styled.div`
+export const DeleteModalBody = styled.div`
     width: 334px;
     height: 116px;
     border-radius: 6px;
@@ -27,7 +27,7 @@ export const ModifyModalBody = styled.div`
     z-index: 2;
 `;
 
-export const ModifyModalContent = styled.div`
+export const DeleteModalContent = styled.div`
     width: auto;
     height: auto;
     font-size: 16px;
@@ -36,28 +36,28 @@ export const ModifyModalContent = styled.div`
     display: flex;
 `;
 
-export const ModifyModalButtonLayout = styled.div`
+export const DeleteModalButtonLayout = styled.div`
     width: auto;
     height: auto;
     display: flex;
     gap: 15px;
 `;
 
-export const ModifyModalRightButton = styled.button`
+export const DeleteModalRightButton = styled.button`
     width: 147px;
     height: 48px;
     border-radius: 20px;
     background-color: #72a474;
 `;
 
-export const ModifyModalLeftButton = styled.button`
+export const DeleteModalLeftButton = styled.button`
     width: 147px;
     height: 48px;
     border-radius: 20px;
     background-color: #daeaca;
 `;
 
-export const ModifyModalButtonContent = styled.div`
+export const DeleteModalButtonContent = styled.div`
     width: auto;
     height: auto;
     font-size: 18px;

@@ -1,10 +1,29 @@
 import { HTMLAttributes } from 'react';
+import styled from 'styled-components';
 
 interface PostProfileBoxProps extends HTMLAttributes<HTMLDivElement> {
     $iscommunitymypost?: boolean;
 }
 
-import styled from 'styled-components';
+export const BackButtonLayout = styled.div`
+    margin: 0px;
+    margin-right: auto;
+    margin-top: -5px;
+    padding: 0px;
+    padding-bottom: 5px;
+`;
+
+export const BackButton = styled.button`
+    width: 40px;
+    height: 40px;
+    background-color: none;
+    padding: 0px;
+`;
+
+export const BackButtonImg = styled.img`
+    width: 16px;
+    height: 16px;
+`;
 
 export const HeaderContainer = styled.div`
     width: 300px;

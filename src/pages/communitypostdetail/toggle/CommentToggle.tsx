@@ -1,32 +1,32 @@
-import * as St from './ToggleButton.styles';
+import * as St from './CommentToggle.styles';
 import modifyButtonImg from '../../../assets/modifybutton.svg';
 import deleteButtonImg from '../../../assets/delete.svg';
 import modifyPencil from '../../../assets/modifypen.svg';
-import { useModal } from '../../../hook/useModal';
 import { useState } from 'react';
-import ModifyModal from '../modifymodal/ModifyModal';
-import DeleteModal from '../deletemodal/DeleteModal';
+import CommentModifyModal from '../modifymodal/CommentModifyModal';
+import CommentDeleteModal from '../deletemodal/CommentDeleteModal';
+import { useModal } from '../../../hook/useModal';
 
-const ToggleButton = ({ mypost, isOpenMap, getModifyToggleHandler }) => {
-    const [postDelete, setPostDelete] = useState(false);
-    const [postModify, setPostModify] = useState(false);
+const CommentToggle = ({ commentId, isOpenMap, getModifyToggleHandler }) => {
+    const [commentDelete, setCommentDelete] = useState(false);
+    const [commentModify, setCommentModify] = useState(false);
     const {
         open,
         modalOpen,
         modalClose,
     }: { open: boolean; modalOpen: () => void; modalClose: () => void } = useModal();
     const handleDeleteButton = () => {
-        setPostDelete(true);
+        setCommentDelete(true);
         modalOpen();
     };
     const handleModifyButton = () => {
-        setPostModify(true);
+        setCommentModify(true);
         modalOpen();
     };
     return (
         <>
-            <St.PostModifyButton onClick={() => getModifyToggleHandler(mypost.boardId)}>
-                {isOpenMap[mypost.boardId] && (
+            <St.CommentModifyButton onClick={() => getModifyToggleHandler(commentId)}>
+                {isOpenMap[commentId] && (
                     <St.ToggleButtonWrapper>
                         <St.DeleteButton onClick={handleDeleteButton}>
                             <St.ButtonImg src={deleteButtonImg} />
@@ -39,16 +39,16 @@ const ToggleButton = ({ mypost, isOpenMap, getModifyToggleHandler }) => {
                         </St.ModifyButton>
                     </St.ToggleButtonWrapper>
                 )}
-                {!isOpenMap[mypost.boardId] && <St.PostModifyButtonImg src={modifyButtonImg} />}
-            </St.PostModifyButton>
-            {open && postModify && (
-                <ModifyModal modalClose={modalClose} setPostModify={setPostModify} />
+                {!isOpenMap[commentId] && <St.CommentModifyButtonImg src={modifyButtonImg} />}
+            </St.CommentModifyButton>
+            {open && commentModify && (
+                <CommentModifyModal modalClose={modalClose} setCommentModify={setCommentModify} />
             )}
-            {open && postDelete && (
-                <DeleteModal modalClose={modalClose} setPostDelete={setPostDelete} />
+            {open && commentDelete && (
+                <CommentDeleteModal modalClose={modalClose} setCommentDelete={setCommentDelete} />
             )}
         </>
     );
 };
 
-export default ToggleButton;
+export default CommentToggle;

@@ -22,25 +22,30 @@ import {
 import likeImg from '../../assets/favorite.svg';
 import commentImg from '../../assets/chat.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ToggleButton from './togglebutton/ToggleButton';
-import { useModal } from '../../hook/useModal';
 
 const CommunityMyPost = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isOpenMap, setIsOpenMap] = useState<{ [key: number]: boolean }>({});
-    const [isSelected, setSelected] = useState<boolean>(true);
+    const [getPost, setGetPost] = useState<boolean>(false);
+    const [getComment, setGetComment] = useState<boolean>(false);
     const { data, username } = location.state;
     // console.log('data => ', data.data.data);
-    const { open, modalOpen, modalClose } = useModal();
+
+    useEffect(() => {
+        setGetPost(true);
+    }, []);
 
     const getPostHandler = () => {
         navigate('/communitymypost', { state: location.state });
-        setSelected((prevState) => !prevState);
+        setGetPost(true);
+        setGetComment(false);
     };
     const getCommentHandler = () => {
-        setSelected((prevState) => !prevState);
+        setGetComment(true);
+        setGetPost(false);
     };
     const getModifyToggleHandler = (postBoardId: number) => {
         setIsOpenMap((prevMap) => ({
@@ -54,13 +59,10 @@ const CommunityMyPost = () => {
                 <CommunityHeader username={username} />
                 <PostButtonBox>
                     <div style={{ display: 'flex', gap: '10px' }}>
-                        <CompositionSortButton onClick={getPostHandler} $isSelected={isSelected}>
+                        <CompositionSortButton onClick={getPostHandler} $isSelected={getPost}>
                             작성글
                         </CompositionSortButton>
-                        <CompositionSortButton
-                            onClick={getCommentHandler}
-                            $isSelected={!isSelected}
-                        >
+                        <CompositionSortButton onClick={getCommentHandler} $isSelected={getComment}>
                             댓글 단 글
                         </CompositionSortButton>
                     </div>
@@ -93,7 +95,6 @@ const CommunityMyPost = () => {
                                                 mypost={mypost}
                                                 isOpenMap={isOpenMap}
                                                 getModifyToggleHandler={getModifyToggleHandler}
-                                                modalProps={(open, modalOpen, modalClose)}
                                             />
                                         </PostTitle>
                                         <PostText>{mypost.content}</PostText>

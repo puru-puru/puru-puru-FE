@@ -25,8 +25,10 @@ const PlantRegistrationPage = lazy(
     () => import('../pages/mypage/registration/PlantRegistrationPage'),
 );
 const CommunityPage = lazy(() => import('../pages/community/CommunityPage'));
+const CommunityDetail = lazy(() => import('../pages/communitypostdetail/detail/CommunityDetail'));
 const CommunityWritePage = lazy(() => import('../pages/community/write/CommunityWritePage'));
 const CommunityMyPostPage = lazy(() => import('../pages/mypost/CommunityMyPost'));
+const CommunityCommentWrite = lazy(() => import('../pages/communitycomment/CommunityComment'));
 const MyProfile = lazy(() => import('../pages/myprofile/MyProfilepage'));
 const MainPage = lazy(() => import('../pages/mainpage/MainPage'));
 const BoardTest = lazy(() => import('../pages/boardtest/boardtestpage/BoardTest'));
@@ -46,7 +48,9 @@ const RouterInfo = [
     { path: '/users', element: <NameDecision />, withAuthorization: true },
     { path: '/mycomponent', element: <MyComponent />, withAuthorization: true },
     { path: '/community', element: <CommunityPage />, withAuthorization: true },
+    { path: '/communitydetail', element: <CommunityDetail />, withAuthorization: true },
     { path: '/communitywrite', element: <CommunityWritePage />, withAuthorization: true },
+    { path: '/communitycomment', element: <CommunityCommentWrite />, withAuthorization: true },
     { path: '/communitymypost', element: <CommunityMyPostPage />, withAuthorization: true },
     { path: '/boardtest', element: <BoardTest />, withAuthorization: true },
     { path: '/boardresult', element: <BoardResult />, withAuthorization: true },

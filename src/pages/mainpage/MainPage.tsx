@@ -8,7 +8,7 @@ import plantRecommendImg from '../../assets/plantrecommend.svg';
 const MainPage = () => {
     // 메인 페이지 미션, 추천식물 데이터 useQuery
     const { data } = useGetMainPageData();
-    console.log('메인 페이지 데이터 확인 =>', data);
+    // console.log('메인 페이지 데이터 확인 =>', data);
     return (
         <St.MainWrapper>
             {/* 오늘의 미션 */}

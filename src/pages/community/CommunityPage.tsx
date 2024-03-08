@@ -24,7 +24,6 @@ import {
 import CommunityHeader from './header/CommunityHeader';
 import { CommunityData } from '../../api/community/model';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '/Spin.gif';
 import likeImg from '../../assets/favorite.svg';
 import commentImg from '../../assets/chat.svg';
 
@@ -32,11 +31,16 @@ const CommunityPage: React.FC = () => {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
+    // const [totalButtonClicked, setTotalButtonClicked] = useState<boolean>(false);
+    // const [popularButtonClicked, setPopularButtonClicked] = useState<boolean>(false);
     const [post, setPost] = useState<CommunityData>({ data: [], loginUser: '' });
+    const [url, setUrl] = useState('boards');
     useEffect(() => {
+        // setTotalButtonClicked(true);
         const fetchData = async () => {
             try {
-                const response = await communityApi.get('/api/boards');
+                const response = await communityApi.get(`/api/${url}`);
+                // console.log('Url => ', url);
                 setPost(response);
             } catch (error) {
                 console.error('Error: ', error);
@@ -45,10 +49,24 @@ const CommunityPage: React.FC = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [url]);
     console.log('post => ', post.data);
+
     const handleWriteButtonClick = () => {
         navigate('/communityWrite');
+    };
+    const totalButtonHandler = () => {
+        setUrl('boards');
+        // setTotalButtonClicked(true);
+        // setPopularButtonClicked(false);
+    };
+    const popularButtonHandler = () => {
+        setUrl('boards/sortBy/likes');
+        // setTotalButtonClicked(false);
+        // setPopularButtonClicked(true);
+    };
+    const postDetailNavigateHandler = (boardId: number, commentCount: number) => {
+        navigate('/communitydetail', { state: { boardId, commentCount } });
     };
     return (
         <>
@@ -56,9 +74,18 @@ const CommunityPage: React.FC = () => {
                 <CommunityHeader username={post.loginUser} />
                 <PostButtonBox>
                     <div style={{ display: 'flex', gap: '10px' }}>
-                        <CompositionSortButton>전체</CompositionSortButton>
-                        <CompositionSortButton>최신순</CompositionSortButton>
-                        <CompositionSortButton>인기순</CompositionSortButton>
+                        <CompositionSortButton
+                            $total={url === 'boards'}
+                            onClick={totalButtonHandler}
+                        >
+                            전체
+                        </CompositionSortButton>
+                        <CompositionSortButton
+                            $popular={url === 'boards'}
+                            onClick={popularButtonHandler}
+                        >
+                            인기순
+                        </CompositionSortButton>
                     </div>
                     <CompositionWriteButton onClick={handleWriteButtonClick}>
                         글쓰기
@@ -66,14 +93,18 @@ const CommunityPage: React.FC = () => {
                 </PostButtonBox>
                 <PostContainerScroll>
                     {loading ? (
-                        <img
-                            src={Spinner}
-                            alt="loding"
-                            style={{ width: '100px', height: '100px' }}
-                        />
+                        <div style={{ position: 'absolute', bottom: '40%' }}>
+                            <p>작성글이 없습니다.</p>
+                            <p>첫 번째 작성글을 남겨주세요.</p>
+                        </div>
                     ) : (
                         post.data?.map((post) => (
-                            <PostContainer key={post.boardId}>
+                            <PostContainer
+                                onClick={() =>
+                                    postDetailNavigateHandler(post.boardId, post.commentCount)
+                                }
+                                key={post.boardId}
+                            >
                                 <div>
                                     {post.author?.nickname ? (
                                         <Nickname>{post.author.nickname}</Nickname>
@@ -106,7 +137,7 @@ const CommunityPage: React.FC = () => {
                                                     <LikeCommentImg src={commentImg} />
                                                 </LikeCommentButton>
                                                 <LikeCommentCount>
-                                                    {post.likeCount}
+                                                    {post.commentCount}
                                                 </LikeCommentCount>
                                             </LikeCommentButtonContainer>
                                         </PostLikeCommentContainer>

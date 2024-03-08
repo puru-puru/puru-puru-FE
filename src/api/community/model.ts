@@ -19,6 +19,7 @@ export interface CommunityPost {
     createdAt: string;
     author: Author;
     likeCount: number;
+    commentCount: number;
 }
 
 export interface CommunityData {
