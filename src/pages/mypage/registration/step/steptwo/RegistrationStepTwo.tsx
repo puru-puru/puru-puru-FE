@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
     SearchButton,
     SearchButtonContainer,
@@ -12,7 +12,7 @@ import { currentStepState } from '../../../../../recoil/atom';
 import { useRecoilState } from 'recoil';
 import { useSearchPlants } from '../../../../../api/myplant/StepTwo';
 import PlantDisplay from './plantdisplay/PlantDisplayCard';
-
+import { debounce } from '../../../../../components/debounce/Debounce';
 export const RegistrationStepTwo: React.FC = () => {
     const [searchItem, setSearchItem] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
@@ -29,6 +29,7 @@ export const RegistrationStepTwo: React.FC = () => {
     const plants = Array.isArray(plantsData) ? plantsData : [];
 
     const prevSearchItemRef = useRef<string>('');
+
 
     const handleSearch = async () => {
         if (!searchItem) {
@@ -49,9 +50,9 @@ export const RegistrationStepTwo: React.FC = () => {
         }
     };
 
-    const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.currentTarget.value;
-        setSearchItem(inputValue);
+        debounce(setSearchItem(inputValue),300);
         if (!inputValue) {
             setSelectionCompleted(false);
         } else {
@@ -61,7 +62,7 @@ export const RegistrationStepTwo: React.FC = () => {
             // 상태가 즉시 바뀌는게 아니라 비동기적으로 이루어 지기 때문에 searchItem은 이전값
             setSelectedCard(undefined); // 검색어를 지웠을 경우 선택 해제
         }
-    };
+    },[searchItem]);
 
     // 전체 페이지 수 계산
     const totalPages = Math.ceil(plants?.length / itemsPerPage);

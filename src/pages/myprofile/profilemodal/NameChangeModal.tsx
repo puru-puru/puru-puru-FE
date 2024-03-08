@@ -28,9 +28,10 @@ const NameChangeContainer = styled.div`
 interface NameChangeModalProps {
     modalClose: () => void; 
     handleNameChange: (newName: string) => void;
+    setNameChange: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const NameChangeModal: React.FC<NameChangeModalProps> = ({ modalClose, handleNameChange }) => {
+const NameChangeModal: React.FC<NameChangeModalProps> = ({ modalClose, handleNameChange, setNameChange  }) => {
     const [newName, setNewName] = useState('');
     const isNameValid = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,8}$/;
     const handleNameChangeClick = async () => {
@@ -46,6 +47,11 @@ const NameChangeModal: React.FC<NameChangeModalProps> = ({ modalClose, handleNam
         } catch {
             alert('닉네임 변경에 실패 했습니다.');
         }
+    };
+
+    const handleNoButtonClick = () => {
+        setNameChange(false);
+        modalClose();
     };
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewName(e.target.value);
@@ -63,7 +69,7 @@ const NameChangeModal: React.FC<NameChangeModalProps> = ({ modalClose, handleNam
                 <MyPlantToggleContainer>
                     닉네임 변경 하시겠습니까?
                     <MyPlantToggleDetail>
-                        <MyPlantToggleButton $isChecked={false} onClick={modalClose}>
+                        <MyPlantToggleButton $isChecked={false} onClick={handleNoButtonClick}>
                             아니오
                         </MyPlantToggleButton>
                         <MyPlantToggleButton $isChecked={true} onClick={handleNameChangeClick}>

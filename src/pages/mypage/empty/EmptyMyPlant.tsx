@@ -17,7 +17,7 @@ const EmptyMyPlant: React.FC = () => {
                 </PetPlantRegisterText>
             </PetPlantHeader>
             <PetPlantRegister>
-                <PetPlantRegisterImg src='TitleIcon.svg' alt="Register Icon"
+                <PetPlantRegisterImg src='/TitleIcon.svg' alt="Register Icon"
                 />
                 <PetPlantRegisterButton onClick={handleRegisterClick}>
                     등록하기
