@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 import {
     BrowserRouter as Router,
     Route,
@@ -12,7 +12,6 @@ import RouteChangeTracker from '../components/RouteChangeTracker';
 import ScrollToTop from '../components/DocumentTitle';
 import RedirectionKakao from '../pages/login/social/redirection/RedirectionKakao';
 import RedirectionGoogle from '../pages/login/social/redirection/RedirectionGoogle';
-import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 // Lazy-loaded components
 const SignIn = lazy(() => import('../pages/login/signin/SignIn'));
@@ -64,11 +63,7 @@ export const Routes = () => {
     return (
         <Router>
             <GlobalStyles />
-            <Suspense
-                fallback={
-                    <LoadingSpinner/>
-                }
-            >
+
                 <ScrollToTop/>
                 <RouteChangeTracker />
                 <ReactRouterRoutes>
@@ -91,7 +86,7 @@ export const Routes = () => {
                         <Route path="*" element={<Navigate replace to="/signin" />} />
                     </Route>
                 </ReactRouterRoutes>
-            </Suspense>
+
         </Router>
     );
 };
