@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as St from './CommunityComment.styles';
 import backButtonImg from '../../assets/backbutton.svg';
 import { useState } from 'react';
 
 const CommunityComment = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { boardId } = location.state;
+    console.log('boardId => ', boardId);
     const [isInputClicked, setIsInputClicked] = useState(false);
     const backButtonHandler = () => {
         navigate('/community');

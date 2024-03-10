@@ -12,9 +12,11 @@ const CommentModifyModal = ({ modalClose, setCommentModify }) => {
                 <St.ModifyModalContent>댓글을 수정하시겠어요?</St.ModifyModalContent>
                 <St.ModifyModalButtonLayout>
                     <St.ModifyModalLeftButton onClick={handleDisagree}>
-                        아니오
+                        <St.ModifyModalButtonContent>아니오</St.ModifyModalButtonContent>
                     </St.ModifyModalLeftButton>
-                    <St.ModifyModalRightButton>네</St.ModifyModalRightButton>
+                    <St.ModifyModalRightButton>
+                        <St.ModifyModalButtonContent>네</St.ModifyModalButtonContent>
+                    </St.ModifyModalRightButton>
                 </St.ModifyModalButtonLayout>
             </St.ModifyModalBody>
         </>

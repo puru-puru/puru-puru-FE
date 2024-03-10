@@ -92,17 +92,18 @@ export const PostTitle = styled.p`
     justify-content: space-between;
 `;
 
-export const PostModifyButton = styled.button`
-    width: 24px;
-    height: 24px;
-    padding: 0px;
-    background-color: white;
-`;
+// export const PostModifyButton = styled.button`
+//     width: 24px;
+//     height: 24px;
+//     padding: 0px;
+//     background-color: rgba(218, 234, 202, 1);
+// `;
 
-export const PostModifyButtonImg = styled.img`
-    width: 16px;
-    height: 16px;
-`;
+// export const PostModifyButtonImg = styled.img`
+//     width: 16px;
+//     height: 16px;
+//     background-color: rgba(218, 234, 202, 1);
+// `;
 
 export const PostText = styled.p`
     width: 192px;
@@ -137,7 +138,7 @@ export const LikeCommentButtonContainer = styled.div`
     align-items: center;
 `;
 
-export const LikeCommentButton = styled.button`
+export const LikeCommentButton = styled.div`
     width: 14px;
     height: 14px;
     background: none;
@@ -174,4 +175,132 @@ export const PostDate = styled.div`
     font-size: 8px;
     font-weight: 400;
     line-height: 12.18px;
+`;
+
+export const CommentContainer = styled.div`
+    width: 330px;
+    height: 140px;
+    margin: 5px 15px;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+`;
+
+export const CommentHeadContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const CommentHeadLayout = styled.div`
+    width: 196px;
+    height: 24px;
+    display: flex;
+`;
+
+export const UserProfileImg = styled.div`
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ProfileImg = styled.img`
+    width: 16px;
+    height: 16px;
+`;
+
+export const UserNameLayout = styled.div`
+    width: 163px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+`;
+
+export const UserName = styled.span`
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 11.93px;
+`;
+
+export const CommentLayout = styled.div`
+    width: 100%;
+    height: 100%;
+    margin: 5px 0px;
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 15.23px;
+`;
+
+export const CommentBottomContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    max-width: 290px;
+    max-height: 15px;
+    margin: 20px 0px -10px 0px;
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const CommentBottomButtonContainer = styled.div`
+    width: 66px;
+    height: 15px;
+    display: flex;
+`;
+
+export const MyPostLikeCommentButtonContainer = styled.div`
+    width: 28px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const MyPostLikeCommentButton = styled.button`
+    width: 14px;
+    height: 14px;
+    background: none;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const MyPostLikeCommentImg = styled.img`
+    width: 11.67px;
+    height: 10.7px;
+`;
+
+export const ReComment = styled.div`
+    width: 14px;
+    height: 14px;
+    font-size: 8px;
+    font-weight: 500;
+    line-height: 12.18px;
+    color: #939393;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const MyPostPostDateContainer = styled.div`
+    width: auto;
+    height: 12px;
+    display: flex;
+`;
+
+export const MyPostPostDate = styled.div`
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 12.18px;
+`;
+
+export const NoCommentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0px;
 `;

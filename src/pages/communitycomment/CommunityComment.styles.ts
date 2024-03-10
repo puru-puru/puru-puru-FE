@@ -75,6 +75,7 @@ export const CommentPostTextTextarea = styled.textarea`
     padding: 15px;
     border: 2px solid rgba(223, 226, 229, 1);
     border-radius: 20px;
+    background-color: white;
     overflow: auto;
     transition: border-color 0.3s ease;
     &:focus {

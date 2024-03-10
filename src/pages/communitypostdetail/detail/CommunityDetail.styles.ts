@@ -175,7 +175,7 @@ export const LikeCommentButtonContainer = styled.div`
     align-items: center;
 `;
 
-export const LikeCommentButton = styled.button`
+export const DetailLikeCommentButton = styled.button`
     width: 14px;
     height: 14px;
     background: none;
@@ -183,6 +183,7 @@ export const LikeCommentButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `;
 
 export const LikeCommentImg = styled.img`

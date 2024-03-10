@@ -16,7 +16,7 @@ export const BackButtonLayout = styled.div`
 export const BackButton = styled.button`
     width: 40px;
     height: 40px;
-    background-color: none;
+    background-color: white;
     padding: 0px;
 `;
 

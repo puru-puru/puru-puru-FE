@@ -1,5 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useGetCommunityDetailData } from '../../../api/communitypostdetail/CommunityPostDetail';
+import {
+    useGetCommunityDetailData,
+    usePostLikeCountUp,
+} from '../../../api/communitypostdetail/CommunityPostDetail';
 import * as St from './CommunityDetail.styles';
 import backButtonImg from '../../../assets/backbutton.svg';
 import {
@@ -22,18 +25,26 @@ import commentImg from '../../../assets/chat.svg';
 import profileImg from '../../../../public/person.svg';
 import CommentToggle from '../toggle/CommentToggle';
 import { useState } from 'react';
+import coloredLikeImg from '../../../assets/coloredlikebutton.svg';
+import { useModal } from '../../../hook/useModal';
+import PostLikeModal from '../postlikemodal/PostLikeModal';
 
 const CommunityDetail = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { open, modalOpen, modalClose } = useModal();
     const { boardId, commentCount } = location.state;
     const { data } = useGetCommunityDetailData({ boardId });
+    const { mutate } = usePostLikeCountUp(boardId);
+    // const { mutate } = useDeleteLikeData();
     console.log('detailData => ', data?.data.board);
-    const navigateInputHandler = () => {
-        navigate('/communitycomment');
+    const navigateInputHandler = (boardId: number) => {
+        navigate('/communitycomment', { state: { boardId } });
     };
     const [isOpenMap, setIsOpenMap] = useState<{ [key: number]: boolean }>({});
     const [isInputClicked, setIsInputClicked] = useState(false);
+    const [likeButton, setLikeButton] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const backButtonHandler = () => {
         navigate('/community');
@@ -44,6 +55,29 @@ const CommunityDetail = () => {
             ...prevMap,
             [commentId]: !prevMap[commentId],
         }));
+    };
+
+    const handleSuccess = () => {
+        setLikeButton(true);
+        modalOpen();
+    };
+    const handleError = (error: any) => {
+        if (error.response.status === 404) {
+            setErrorMessage('좋아요 실패: 서버 오류가 발생했습니다.');
+            alert(errorMessage);
+            alert(error);
+        }
+    };
+
+    const likeButtonHandler = async () => {
+        try {
+            mutate({
+                onSuccess: handleSuccess,
+                onError: handleError,
+            });
+        } catch (error: any) {
+            handleError(error);
+        }
     };
 
     return (
@@ -82,9 +116,18 @@ const CommunityDetail = () => {
                     <PostBottomContainer>
                         <PostLikeCommentContainer>
                             <LikeCommentButtonContainer>
-                                <LikeCommentButton>
-                                    <LikeCommentImg src={likeImg} />
-                                </LikeCommentButton>
+                                {likeButton && (
+                                    <St.DetailLikeCommentButton
+                                        onClick={() => likeButtonHandler(boardId)}
+                                    >
+                                        <LikeCommentImg src={coloredLikeImg} />
+                                    </St.DetailLikeCommentButton>
+                                )}
+                                {!likeButton && (
+                                    <St.DetailLikeCommentButton>
+                                        <LikeCommentImg src={likeImg} />
+                                    </St.DetailLikeCommentButton>
+                                )}
 
                                 <LikeCommentCount>{data?.data.board.likeCount}</LikeCommentCount>
                             </LikeCommentButtonContainer>
@@ -165,11 +208,12 @@ const CommunityDetail = () => {
                 <St.CommentInput
                     onFocus={() => setIsInputClicked(true)}
                     onBlur={() => setIsInputClicked(false)}
-                    onClick={navigateInputHandler}
+                    onClick={() => navigateInputHandler(boardId)}
                     placeholder={isInputClicked ? '' : '댓글을 입력해주세요'}
                 />
                 <St.CommentPostButton>등록</St.CommentPostButton>
             </St.CommentInputLayout>
+            {open && <PostLikeModal modalClose={modalClose} />}
         </St.DetailContainer>
     );
 };

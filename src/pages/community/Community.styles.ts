@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 interface CompositionSortButtonProps {
-    $total?: boolean;
-    $popular?: boolean;
+    $active?: boolean;
     onClick?: () => void;
 }
 
@@ -22,10 +21,8 @@ export const PostButtonBox = styled.div`
 export const CompositionSortButton = styled.button<CompositionSortButtonProps>`
     width: 60px;
     height: 20px;
-    background-color: ${({ $total, $popular }) =>
-        $total ? '#72a474' : $popular ? '#72a474' : 'white'};
-    color: ${({ $total, $popular }) =>
-        $total ? 'white' : $popular ? 'white' : 'rgba(152, 152, 152, 1)'};
+    background-color: ${({ $active }) => ($active ? '#72a474' : 'white')};
+    color: ${({ $active }) => ($active ? 'white' : 'rgba(152, 152, 152, 1)')};
     border: 2px solid #daebca;
     border-radius: 999px;
     font-size: 10px;
@@ -74,6 +71,7 @@ export const PostContainer = styled.div`
     &:hover {
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
     }
+    cursor: pointer;
 `;
 
 export const Nickname = styled.div`
@@ -140,7 +138,7 @@ export const LikeCommentButtonContainer = styled.div`
     align-items: center;
 `;
 
-export const LikeCommentButton = styled.button`
+export const LikeCommentButton = styled.div`
     width: 14px;
     height: 14px;
     background: none;

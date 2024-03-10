@@ -4,12 +4,13 @@ export const PostModifyButton = styled.button`
     width: 24px;
     height: 24px;
     padding: 0px;
-    background-color: white;
+    background-color: #fafff4;
 `;
 
 export const PostModifyButtonImg = styled.img`
     width: 16px;
     height: 16px;
+    background-color: #fafff4;
 `;
 
 export const ToggleButtonWrapper = styled.div`

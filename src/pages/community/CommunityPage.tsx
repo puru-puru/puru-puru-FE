@@ -31,12 +31,9 @@ const CommunityPage: React.FC = () => {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
-    // const [totalButtonClicked, setTotalButtonClicked] = useState<boolean>(false);
-    // const [popularButtonClicked, setPopularButtonClicked] = useState<boolean>(false);
     const [post, setPost] = useState<CommunityData>({ data: [], loginUser: '' });
     const [url, setUrl] = useState('boards');
     useEffect(() => {
-        // setTotalButtonClicked(true);
         const fetchData = async () => {
             try {
                 const response = await communityApi.get(`/api/${url}`);
@@ -50,20 +47,16 @@ const CommunityPage: React.FC = () => {
         };
         fetchData();
     }, [url]);
-    console.log('post => ', post.data);
+    // console.log('post => ', post.data);
 
     const handleWriteButtonClick = () => {
         navigate('/communityWrite');
     };
     const totalButtonHandler = () => {
         setUrl('boards');
-        // setTotalButtonClicked(true);
-        // setPopularButtonClicked(false);
     };
     const popularButtonHandler = () => {
         setUrl('boards/sortBy/likes');
-        // setTotalButtonClicked(false);
-        // setPopularButtonClicked(true);
     };
     const postDetailNavigateHandler = (boardId: number, commentCount: number) => {
         navigate('/communitydetail', { state: { boardId, commentCount } });
@@ -75,13 +68,13 @@ const CommunityPage: React.FC = () => {
                 <PostButtonBox>
                     <div style={{ display: 'flex', gap: '10px' }}>
                         <CompositionSortButton
-                            $total={url === 'boards'}
+                            $active={url === 'boards'}
                             onClick={totalButtonHandler}
                         >
                             전체
                         </CompositionSortButton>
                         <CompositionSortButton
-                            $popular={url === 'boards'}
+                            $active={url === 'boards/sortBy/likes'}
                             onClick={popularButtonHandler}
                         >
                             인기순
