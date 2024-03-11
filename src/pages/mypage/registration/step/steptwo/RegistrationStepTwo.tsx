@@ -53,7 +53,7 @@ export const RegistrationStepTwo: React.FC = () => {
     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
         setSearchItem(inputValue);
-        if (!inputValue) {
+        if (!inputValue && selectedCard) {
             setSelectionCompleted(false);
         } else {
             setSelectionCompleted(true); // 입력값이 있는 경우에만 true로 설정

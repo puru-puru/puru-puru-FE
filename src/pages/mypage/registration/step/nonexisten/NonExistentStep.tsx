@@ -85,7 +85,7 @@ export const RegistrationListStep: React.FC = () => {
             alert('식물 분류를 2자 이상 10자 이내로 입력해주세요');
             return;
         } else if (!plantData.content || !isValidContent(plantData.content)) {
-            alert('식물 정보를 2자 이상 50자 이내로 입력해주세요');
+            alert('식물 정보를 5자 이상 50자 이내로 입력해주세요');
             return;
         }
         try {
