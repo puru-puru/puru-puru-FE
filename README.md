@@ -75,7 +75,7 @@
 
 
 ## 🗂️ 서비스 아키텍처
-<img width="1378" alt="아키텍처" src="https://github.com/puru-puru/puru-puru-FE/assets/105138020/29bd9cc7-2367-4c31-859f-82ff6cb30ba8">
+![서비스 아키텍처](https://github.com/puru-puru/puru-puru-FE/assets/105138020/c15728ee-202d-4d17-8123-b8e30c7b678b)
 
 </br>
 
